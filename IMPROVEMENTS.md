@@ -8,6 +8,56 @@
 
 ---
 
+### TASK-032
+**title:** MissionSystem — accept, track, complete missions with HUD integration
+**track:** BUILD
+**status:** BACKLOG
+**depends_on:** [TASK-031]
+**assigned_agents:** [architect, coder, reviewer, tester, git]
+**reads:** [app/game/systems/MissionSystem.js, app/game/systems/MissionGenerator.js, app/ui/hud.js, app/ui/journal.js, app/storage.js, app/config.js, data/missions.json]
+**writes:** [app/game/systems/MissionSystem.js, app/ui/hud.js, app/ui/journal.js, app/config.js]
+**done_when:** (1) MissionSystem accepts missions from NPCs via dialogue events. (2) Active mission displayed in HUD with objective text. (3) Mission completion conditions checked: vocabulary used, conversation had, item delivered. (4) On completion: reward applied, HUD updated, next mission unlockable. (5) Mission state persisted to KV. (6) Journal missions tab shows active + completed missions. (7) MissionGenerator targeted missions integrate with this system.
+**notes:** MissionGenerator already creates missions from mistakes — this task makes them playable. Missions drive location unlocks per CLAUDE-VISION.
+
+---
+
+### TASK-033
+**title:** Progress dashboard — learning summary in journal
+**track:** BUILD
+**status:** BACKLOG
+**depends_on:** []
+**assigned_agents:** [designer, coder, reviewer, git]
+**reads:** [app/ui/journal.js, app/storage.js, app/style.css, app/tokens.css, app/config.js]
+**writes:** [app/ui/journal.js, app/style.css]
+**done_when:** (1) New "Progress" tab in journal alongside Vocabulary and Missions. (2) Shows: words learned count, locations unlocked, missions completed, chapter progress. (3) Per-location breakdown: vocab learned vs total for that location. (4) Visual indicators — simple bars or counts, no gamification. (5) Data pulled from storage.js. (6) Feels like a student checking their own notebook, not a leaderboard.
+**notes:** Per CLAUDE-VISION: "Progress feels like a life being built, not a score being chased." No points, no streaks. Just honest tracking.
+
+---
+
+### TASK-034
+**title:** Sound effects — UI and interaction sounds via Tone.js synthesis
+**track:** BUILD
+**status:** BACKLOG
+**depends_on:** []
+**assigned_agents:** [composer, coder, reviewer, git]
+**reads:** [app/game/systems/AudioManager.js, app/ui/dialogue.js, app/ui/journal.js, app/ui/hud.js, app/config.js, .claude/music-spec.md]
+**writes:** [app/game/systems/AudioManager.js, app/config.js]
+**done_when:** (1) Dialogue text reveal has typewriter tick sound. (2) Choice selection has soft click. (3) Journal open/close has page-turn sound. (4) Mission complete has gentle chime. (5) Location unlock has discovery sound. (6) All sounds are Tone.js synthesized — no audio files. (7) Sounds respect mute toggle and volume setting.
+**notes:** Keep sounds subtle and warm. Not arcade bleeps. Think Stardew Valley gentle audio feedback. Composer writes spec, coder implements.
+
+---
+
+### TASK-035
+**title:** NPC relationship memory — dialogue reflects past interactions
+**track:** BUILD
+**status:** BACKLOG
+**depends_on:** [TASK-031]
+**assigned_agents:** [architect, content-writer, coder, reviewer, git]
+**reads:** [app/game/systems/DialogueSystem.js, app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js, app/game/content/market-dialogue.js, app/game/content/station-dialogue.js, app/game/content/police-dialogue.js, app/storage.js, app/config.js, app/tutor.js]
+**writes:** [app/game/systems/DialogueSystem.js, app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js, app/game/content/market-dialogue.js, app/game/content/station-dialogue.js, app/game/content/police-dialogue.js, app/config.js]
+**done_when:** (1) NPC relationship level tracked in KV (strangers → acquaintance → friend). (2) Dialogue selection uses relationship level — NPCs greet returning players differently. (3) Visit count per NPC tracked. (4) AI dialogue context includes relationship history summary. (5) At least 3 relationship tiers per NPC with distinct greeting/tone shifts.
+**notes:** Per CLAUDE-VISION: "NPCs remember the player — dialogue reflects relationship history." This makes the world feel alive. Content-writer adds relationship-aware dialogue variations.
+
 ---
 
 ### TASK-IMPROVE-001
@@ -48,6 +98,8 @@
 - TASK-019 | DONE | 2026-03-28 | Police Station — PoliceScene, Alina + Sergei, past tense/formal | 05ea5c7
 - TASK-020 | DONE | 2026-03-28 | Chapter test rooms — professor's apartment quiz, 70%+ unlock | c539348
 - TASK-021 | DONE | 2026-03-28 | Targeted missions — MistakeLogger-driven, NPC story hooks | 107ea83
+- TASK-030 | DONE | 2026-03-29 | Main Menu — title screen with New Game / Continue | 4ea55c1
+- TASK-031 | DONE | 2026-03-29 | DialogueSystem — branching dialogue, choice handling, NPC state | 43e3dfb
 
 ## Session log
 
@@ -73,3 +125,5 @@
 - 2026-03-28 · TASK-018+019 Station + Police — all 6 locations complete, full unlock chain · 05ea5c7
 - 2026-03-28 · TASK-020 Chapter test rooms — TestScene + TestUI, 4 chapters, vocab quiz, unlock logic · c539348
 - 2026-03-28 · TASK-021 Targeted missions — MissionGenerator.js, mistake→NPC mapping, story reasons · 107ea83
+- 2026-03-29 · TASK-030 Main Menu — title screen overlay, New Game / Continue, Boot.js event bridge · 4ea55c1
+- 2026-03-29 · TASK-031 DialogueSystem — variation selection, choice branching, KV persistence, AI NPC support · 43e3dfb
