@@ -6,18 +6,6 @@
 
 ## Backlog
 
-### TASK-016
-**title:** Cafe location — full location, A1+ content, basic accusative introduced naturally
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-015, TASK-002, TASK-012]
-**assigned_agents:** [architect, designer, composer, coder, curriculum-designer, content-writer, dialogue-writer, linguist, reviewer, ux-reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-VISION.md, STORY.md, WORLD.md, .claude/curriculum-map.md, .claude/music-spec.md]
-**writes:** [app/game/scenes/CafeScene.js, app/game/content/cafe-dialogue.js, assets/maps/cafe.json]
-**done_when:** Cafe fully playable, ordering introduces accusative without labelling it, park vocabulary reappears, warm cafe music distinct from park, linguist approved, ux-reviewer approved.
-
----
-
 ### TASK-017
 **title:** Market location — quantities, colours, numbers 10-100, 3+ NPCs
 **track:** BUILD
@@ -111,6 +99,7 @@
 - TASK-011 | DONE | 2026-03-28 | Mistake logging — silent KV capture, retrievable list | a440047
 - TASK-013 | DONE | 2026-03-28 | First location complete — apartment end-to-end with audio | 885a426
 - TASK-015 | DONE | 2026-03-28 | Park — ParkScene, Artyom + Tamara, unlock from apartment | a0ddf24
+- TASK-016 | DONE | 2026-03-28 | Cafe — CafeScene, Lena + Boris, ordering vocab, A1+ | 484d69a
 
 ## Session log
 
@@ -131,3 +120,4 @@
 - 2026-03-28 · TASK-011 MistakeLogger — silent mistake:log event capture to KV · a440047
 - 2026-03-28 · TASK-013 First location sign-off — Galina NPC wired, TutorAI init, integration fix · 885a426
 - 2026-03-28 · TASK-015 Park — ParkScene with Artyom + Tamara NPCs, directions/colors vocab, unlock after apartment · a0ddf24
+- 2026-03-28 · TASK-016 Cafe — CafeScene with Lena + Boris NPCs, ordering/prices vocab, unlock chain · 484d69a
