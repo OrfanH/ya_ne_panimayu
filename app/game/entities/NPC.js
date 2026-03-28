@@ -78,15 +78,34 @@ class NPC {
     const KEY  = 'npc-default';
     if (scene.textures.exists(KEY)) { return; }
 
-    const SIZE    = tileSize - 4;
+    const SIZE = tileSize - 4;
+
+    if (scene.textures.exists('urban')) {
+      // Frame 131 — row 4, col 23 of the urban tileset (second character design)
+      const FRAME      = 131;
+      const COLS       = 27;
+      const FRAME_SIZE = 16;
+      const col = FRAME % COLS;
+      const row = Math.floor(FRAME / COLS);
+      const canvas = scene.textures.createCanvas(KEY, SIZE, SIZE);
+      const ctx    = canvas.getContext();
+      ctx.imageSmoothingEnabled = false;
+      ctx.drawImage(
+        scene.textures.get('urban').getSourceImage(),
+        col * FRAME_SIZE, row * FRAME_SIZE, FRAME_SIZE, FRAME_SIZE,
+        0, 0, SIZE, SIZE
+      );
+      canvas.refresh();
+      return;
+    }
+
+    // Fallback: programmatic blue rectangle + circle head
     const texture = scene.textures.createCanvas(KEY, SIZE, SIZE);
     const ctx     = texture.getContext();
 
-    // Body — rectangle (lower 60%)
     ctx.fillStyle = '#5588CC';
     ctx.fillRect(SIZE * 0.2, SIZE * 0.42, SIZE * 0.6, SIZE * 0.58);
 
-    // Head — circle (upper 38%)
     const headR  = SIZE * 0.22;
     const headCx = SIZE / 2;
     const headCy = SIZE * 0.28;
@@ -95,7 +114,6 @@ class NPC {
     ctx.fillStyle = '#7AAAEE';
     ctx.fill();
 
-    // Border
     ctx.strokeStyle = '#3366AA';
     ctx.lineWidth   = 1;
     ctx.strokeRect(0.5, 0.5, SIZE - 1, SIZE - 1);

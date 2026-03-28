@@ -17,7 +17,14 @@ class Player {
 
     this._createDirectionalTextures(scene, tileSize);
 
-    this._sprite = scene.physics.add.image(x, y, 'player-down');
+    if (scene.textures.exists('urban')) {
+      // Use tileset character sprite — frame 23 (row 0, col 23, facing down idle)
+      this._sprite    = scene.physics.add.sprite(x, y, 'urban', 23);
+      this._useUrban  = true;
+    } else {
+      this._sprite    = scene.physics.add.image(x, y, 'player-down');
+      this._useUrban  = false;
+    }
     this._sprite.setCollideWorldBounds(true);
     this._sprite.setDisplaySize(tileSize - 4, tileSize - 4);
 
@@ -84,27 +91,41 @@ class Player {
 
     this._moving = vx !== 0 || vy !== 0;
 
-    if (this._moving) {
-      // Resolve facing direction — vertical wins if both axes active
-      let newDir = this._direction;
-      if      (vy < 0) { newDir = 'up'; }
-      else if (vy > 0) { newDir = 'down'; }
-      else if (vx < 0) { newDir = 'left'; }
-      else if (vx > 0) { newDir = 'right'; }
-
-      if (newDir !== this._direction) {
-        this._direction = newDir;
-        this._sprite.setTexture('player-' + this._direction);
+    if (this._useUrban) {
+      if (this._moving) {
+        // Pick animation by dominant axis
+        let animKey;
+        if      (vy < 0) { animKey = 'player-walk-up';   this._sprite.setFlipX(false); }
+        else if (vy > 0) { animKey = 'player-walk-down'; this._sprite.setFlipX(false); }
+        else if (vx < 0) { animKey = 'player-walk-side'; this._sprite.setFlipX(true);  }
+        else             { animKey = 'player-walk-side'; this._sprite.setFlipX(false); }
+        this._sprite.play(animKey, true);
+      } else {
+        this._sprite.anims.stop();
+        this._sprite.setFrame(23); // idle: row 0, col 23
       }
-
-      // Alpha oscillation: 0.85–1.0 ~250ms sine cycle
-      this._alphaTime += this._scene.game.loop.delta;
-      const alpha = 0.925 + 0.075 * Math.sin(this._alphaTime / 250 * Math.PI * 2);
-      this._sprite.setAlpha(alpha);
     } else {
-      // Stopped — reset alpha, keep last texture
-      this._sprite.setAlpha(1);
-      this._alphaTime = 0;
+      if (this._moving) {
+        // Resolve facing direction — vertical wins if both axes active
+        let newDir = this._direction;
+        if      (vy < 0) { newDir = 'up'; }
+        else if (vy > 0) { newDir = 'down'; }
+        else if (vx < 0) { newDir = 'left'; }
+        else if (vx > 0) { newDir = 'right'; }
+
+        if (newDir !== this._direction) {
+          this._direction = newDir;
+          this._sprite.setTexture('player-' + this._direction);
+        }
+
+        // Alpha oscillation: 0.85–1.0 ~250ms sine cycle
+        this._alphaTime += this._scene.game.loop.delta;
+        const alpha = 0.925 + 0.075 * Math.sin(this._alphaTime / 250 * Math.PI * 2);
+        this._sprite.setAlpha(alpha);
+      } else {
+        this._sprite.setAlpha(1);
+        this._alphaTime = 0;
+      }
     }
   }
 
