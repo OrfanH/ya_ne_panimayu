@@ -8,17 +8,6 @@
 
 ---
 
-### TASK-021
-**title:** Targeted missions — generated from MistakeLogger, delivered via existing NPCs
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-011, TASK-020, TASK-002]
-**assigned_agents:** [architect, coder, content-writer, linguist, reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, app/game/systems/MistakeLogger.js, STORY.md]
-**writes:** [app/game/systems/MissionGenerator.js]
-**done_when:** After 3+ mistakes on a word or failed test, a targeted mission appears in journal from an existing NPC with a plausible story reason. Mission tests exactly the weak vocabulary.
-**notes:** Grep STORY.md for the NPC relevant to the mission only.
-
 ---
 
 ### TASK-IMPROVE-001
@@ -58,6 +47,7 @@
 - TASK-018 | DONE | 2026-03-28 | Train Station — StationScene, Konstantin + Nadya, A2 time/future | 05ea5c7
 - TASK-019 | DONE | 2026-03-28 | Police Station — PoliceScene, Alina + Sergei, past tense/formal | 05ea5c7
 - TASK-020 | DONE | 2026-03-28 | Chapter test rooms — professor's apartment quiz, 70%+ unlock | c539348
+- TASK-021 | DONE | 2026-03-28 | Targeted missions — MistakeLogger-driven, NPC story hooks | 107ea83
 
 ## Session log
 
@@ -82,3 +72,4 @@
 - 2026-03-28 · TASK-017 Market — MarketScene with 3 vendor NPCs, quantities/haggling vocab · 33d9987
 - 2026-03-28 · TASK-018+019 Station + Police — all 6 locations complete, full unlock chain · 05ea5c7
 - 2026-03-28 · TASK-020 Chapter test rooms — TestScene + TestUI, 4 chapters, vocab quiz, unlock logic · c539348
+- 2026-03-28 · TASK-021 Targeted missions — MissionGenerator.js, mistake→NPC mapping, story reasons · 107ea83
