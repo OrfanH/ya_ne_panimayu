@@ -9,7 +9,7 @@
 ### TASK-006
 **title:** NPC system — NPC class, one NPC in apartment, E key triggers dialogue-start event
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-003]
 **assigned_agents:** [architect, coder, reviewer, tester, git]
 **reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, app/game/scenes/WorldScene.js]

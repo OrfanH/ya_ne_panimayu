@@ -121,6 +121,15 @@ class WorldScene extends Phaser.Scene {
     this._currentZoneId      = null;
     this._lastZoneEnterEmit  = null;
     this._proximityOutlines  = this._createProximityOutlines(T);
+
+    // -------------------------------------------------------
+    // 11. Scene transitions via ZONE_ENTER
+    // -------------------------------------------------------
+    this.game.events.on(EVENTS.ZONE_ENTER, ({ id }) => {
+      if (id === 'apartment') {
+        this.scene.start('Apartment');
+      }
+    });
   }
 
   update() {
