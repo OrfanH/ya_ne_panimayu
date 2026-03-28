@@ -9,7 +9,7 @@
 ### TASK-008
 **title:** AI dialogue — Gemini via api/tutor.js, NPC persona, Flash-Lite fallback on 429
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-007, TASK-002]
 **assigned_agents:** [architect, coder, reviewer, tester, git]
 **reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, api/tutor.js, STORY.md, app/ui/dialogue.js]

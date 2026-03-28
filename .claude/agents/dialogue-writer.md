@@ -1,3 +1,10 @@
+---
+name: dialogue-writer
+description: Writes actual NPC voice lines from content-spec.md. Owns tone, personality, and naturalness. Outputs dialogue-draft.md for linguist review.
+model: sonnet
+allowed-tools: Read, Grep, Write
+---
+
 # Dialogue writer
 
 ## Role

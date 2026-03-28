@@ -1,3 +1,10 @@
+---
+name: fixer
+description: Targeted bug fix from reviewer report. Reads review-report.md or test-report.md, fixes only what is flagged. Nothing more.
+model: sonnet
+allowed-tools: Read, Grep, Write, Edit
+---
+
 # Fixer
 
 ## Role

@@ -16,11 +16,7 @@
 
   <!-- UI overlay layer — all HTML UI goes here, above the canvas -->
   <div id="ui-overlay">
-    <!-- HUD -->
-    <div id="hud" class="hud hidden">
-      <div id="hud-location" class="hud-location"></div>
-      <div id="hud-mission" class="hud-mission"></div>
-    </div>
+    <!-- HUD — built dynamically by ui/hud.js -->
 
     <!-- Dialogue box -->
     <div id="dialogue-box" class="dialogue-box hidden">
@@ -66,9 +62,11 @@
 
   <!-- Scripts — Phaser first, then game, then UI -->
   <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tone@14/build/Tone.js"></script>
   <script src="config.js"></script>
   <script src="storage.js"></script>
   <script src="tutor.js"></script>
+  <script src="game/systems/AudioManager.js"></script>
   <script src="game/systems/DialogueSystem.js"></script>
   <script src="game/systems/MissionSystem.js"></script>
   <script src="game/entities/Player.js"></script>

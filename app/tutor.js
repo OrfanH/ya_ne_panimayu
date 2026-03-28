@@ -130,3 +130,200 @@ function renderTutorMessage(content, role) {
   chat.appendChild(msg);
   chat.scrollTop = chat.scrollHeight;
 }
+
+/* ============================================
+   TutorAI — NPC AI conversation module.
+   Drives in-world NPC dialogue via Gemini.
+   Flash-Lite fallback on 429. Scripted fallback if both fail.
+   ============================================ */
+
+const TutorAI = (() => {
+  // -----------------------------------------------------------
+  // Internal state
+  // -----------------------------------------------------------
+  let _history = [];
+  let _npcId = null;
+  let _npcData = null;
+  let _isWaiting = false;
+
+  // -----------------------------------------------------------
+  // Build system prompt from NPC data
+  // -----------------------------------------------------------
+  function _buildSystemPrompt(npcData) {
+    const vocab = Array.isArray(npcData.tutorVocabulary) ? npcData.tutorVocabulary : [];
+    return (
+      `You are ${npcData.name}, ${npcData.persona}.\n` +
+      `You are speaking with a beginner Russian learner.\n` +
+      `Respond ONLY in Russian. After each sentence add the English translation in parentheses.\n` +
+      `Keep responses to 1–3 sentences.\n` +
+      `Naturally work in vocabulary from this list when relevant: ${vocab.join(', ')}.\n` +
+      `Never break character. Never mention that you are an AI.`
+    );
+  }
+
+  // -----------------------------------------------------------
+  // Scripted fallback reply when AI is unavailable
+  // -----------------------------------------------------------
+  function _getFallbackReply() {
+    return 'Извините, я сейчас занят. (Sorry, I am busy right now.)';
+  }
+
+  // -----------------------------------------------------------
+  // Promisified wait helper
+  // -----------------------------------------------------------
+  function _wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  // -----------------------------------------------------------
+  // POST to api/tutor.js — never throws, returns reply string
+  // -----------------------------------------------------------
+  async function _sendToAI(userText) {
+    _history.push({ role: 'user', content: userText });
+
+    const systemPrompt = _buildSystemPrompt(_npcData);
+
+    try {
+      const res = await fetch(API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          messages: _history,
+          systemPrompt,
+          model: GEMINI_MODELS.PRIMARY,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.error === 'rate_limit') {
+        await _wait(RATE_LIMIT_RETRY_MS);
+
+        try {
+          const retryRes = await fetch(API_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              messages: _history,
+              systemPrompt,
+              model: GEMINI_MODELS.FALLBACK,
+            }),
+          });
+
+          const retryData = await retryRes.json();
+
+          if (retryData.reply) {
+            _history.push({ role: 'model', content: retryData.reply });
+            return retryData.reply;
+          }
+
+          return _getFallbackReply();
+        } catch (_retryErr) {
+          return _getFallbackReply();
+        }
+      }
+
+      if (data.reply) {
+        _history.push({ role: 'model', content: data.reply });
+        return data.reply;
+      }
+
+      return _getFallbackReply();
+    } catch (_err) {
+      return _getFallbackReply();
+    }
+  }
+
+  // -----------------------------------------------------------
+  // Dispatch a DIALOGUE_START event with the AI reply and
+  // standard continue / end choices so the player can respond
+  // -----------------------------------------------------------
+  function _dispatchAILine(replyText) {
+    window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+      detail: {
+        npcId: _npcId,
+        npcName: _npcData.name,
+        russian: replyText,
+        translation: '',
+        portrait: _npcData.portrait || null,
+        choices: [
+          { id: 'continue', russian: 'Продолжить...', isFinal: false },
+          { id: 'end',      russian: 'До свидания',   isFinal: true  },
+        ],
+      },
+    }));
+  }
+
+  // -----------------------------------------------------------
+  // Handle DIALOGUE_CHOICE — fetch AI response, dispatch new line
+  // -----------------------------------------------------------
+  async function _handleChoiceEvent(e) {
+    if (_npcId === null || _isWaiting) { return; }
+
+    const detail = e.detail || {};
+    const choiceId = detail.choiceId;
+    const choiceRussian = detail.russian || '';
+
+    const userText = choiceId === 'continue'
+      ? 'Please continue the conversation.'
+      : choiceRussian;
+
+    _isWaiting = true;
+
+    window.dispatchEvent(new CustomEvent(EVENTS.TUTOR_AI_REQUEST, {
+      detail: { npcId: _npcId },
+    }));
+
+    const reply = await _sendToAI(userText);
+
+    window.dispatchEvent(new CustomEvent(EVENTS.TUTOR_AI_RESPONSE, {
+      detail: { npcId: _npcId, reply },
+    }));
+
+    _isWaiting = false;
+    _dispatchAILine(reply);
+  }
+
+  // -----------------------------------------------------------
+  // Handle DIALOGUE_END — reset active NPC state
+  // -----------------------------------------------------------
+  function _handleDialogueEnd() {
+    _npcId = null;
+    _npcData = null;
+    _history = [];
+    _isWaiting = false;
+  }
+
+  // -----------------------------------------------------------
+  // Public — init()
+  // -----------------------------------------------------------
+  function init() {
+    window.addEventListener(EVENTS.DIALOGUE_CHOICE, _handleChoiceEvent);
+    window.addEventListener(EVENTS.DIALOGUE_END, _handleDialogueEnd);
+  }
+
+  // -----------------------------------------------------------
+  // Public — startConversation(npcData)
+  // Must be called before the first DIALOGUE_START event fires.
+  // -----------------------------------------------------------
+  function startConversation(npcData) {
+    _npcId = npcData.id;
+    _npcData = npcData;
+    _history = [];
+    _isWaiting = false;
+  }
+
+  // -----------------------------------------------------------
+  // Public — destroy()
+  // -----------------------------------------------------------
+  function destroy() {
+    window.removeEventListener(EVENTS.DIALOGUE_CHOICE, _handleChoiceEvent);
+    window.removeEventListener(EVENTS.DIALOGUE_END, _handleDialogueEnd);
+    _npcId = null;
+    _npcData = null;
+    _history = [];
+    _isWaiting = false;
+  }
+
+  return { init, startConversation, destroy };
+})();

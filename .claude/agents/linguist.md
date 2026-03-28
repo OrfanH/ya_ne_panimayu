@@ -1,3 +1,10 @@
+---
+name: linguist
+description: Reviews Russian accuracy, CEFR level appropriateness, and natural phrasing. Nothing in Russian ships without linguist PASS. Outputs language-review.md.
+model: sonnet
+allowed-tools: Read, Grep, Write
+---
+
 # Linguist
 
 ## Role
