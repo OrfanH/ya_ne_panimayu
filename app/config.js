@@ -48,6 +48,7 @@ const DEFAULT_PROGRESS = {
   scores: {},
   testScores: {},
   lastSession: null,
+  placementDone: false,
 };
 
 const DEFAULT_SETTINGS = {

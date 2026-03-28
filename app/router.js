@@ -7,6 +7,7 @@ const ROUTES = {
   '/lesson': 'lesson',
   '/vocabulary': 'vocabulary',
   '/notes': 'notes',
+  '/placement': 'placement',
 };
 
 let currentRoute = null;

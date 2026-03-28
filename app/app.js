@@ -5,15 +5,243 @@
 let curriculum = null;
 let progress = null;
 
+/* ============================================
+   Placement test
+   ============================================ */
+
+const PLACEMENT_QUESTIONS = [
+  {
+    prompt: 'What does кот mean?',
+    options: ['cat', 'dog', 'house', 'juice'],
+    answer: 'cat',
+  },
+  {
+    prompt: 'The Russian letter С sounds like:',
+    options: ['s as in sun', 'sh as in ship', 'ts as in bits', 'z as in zoo'],
+    answer: 's as in sun',
+  },
+  {
+    prompt: 'Which noun is feminine?',
+    options: ['книга', 'стол', 'окно', 'брат'],
+    answer: 'книга',
+  },
+  {
+    prompt: '"I am a student" (male speaker) — correct form:',
+    options: ['Я студент.', 'Я студентка.', 'Я студенту.', 'Я студентом.'],
+    answer: 'Я студент.',
+  },
+  {
+    prompt: 'What is the plural of книга (book)?',
+    options: ['книги', 'книге', 'книгу', 'книгой'],
+    answer: 'книги',
+  },
+  {
+    prompt: '"I see the cat" — кот changes to:',
+    options: ['кота', 'котом', 'коту', 'коте'],
+    answer: 'кота',
+  },
+  {
+    prompt: 'Fill in: Я ___ (читать, present tense, я-form)',
+    options: ['читаю', 'читает', 'читаешь', 'читал'],
+    answer: 'читаю',
+  },
+  {
+    prompt: '"The book is on the table" — Книга ___ столе.',
+    options: ['на', 'в', 'у', 'с'],
+    answer: 'на',
+  },
+  {
+    prompt: 'What is the genitive of книга?',
+    options: ['книги', 'книге', 'книгу', 'книгой'],
+    answer: 'книги',
+  },
+  {
+    prompt: '"I finished reading the book" — which sentence is correct?',
+    options: ['Я прочитал книгу.', 'Я читал книгу.', 'Я читаю книгу.', 'Я буду читать книгу.'],
+    answer: 'Я прочитал книгу.',
+  },
+];
+
+const PLACEMENT_RECOMMENDATIONS = [
+  { maxScore: 2, lesson: '1-1', label: 'Unit 1 · Familiar letters', reason: 'Start from scratch with the Cyrillic alphabet — the right foundation makes everything else easier.' },
+  { maxScore: 4, lesson: '1-7', label: 'Unit 1 · Reading practice + stress rules', reason: 'You know the basics. This lesson bridges alphabet knowledge into real reading and pronunciation.' },
+  { maxScore: 6, lesson: '3-1', label: 'Unit 3 · Noun gender', reason: 'Past survival phrases — time to build grammar foundations starting with gender.' },
+  { maxScore: 8, lesson: '5-1', label: 'Unit 5 · The case system', reason: 'Solid base. Cases are your next milestone and where most learners need the most drilling.' },
+  { maxScore: 10, lesson: '7-1', label: 'Unit 7 · Family and people', reason: 'Strong fundamentals — move straight into everyday language.' },
+];
+
+let placementIndex = 0;
+let placementAnswers = [];
+let placementStarted = false;
+
+function getPlacementRecommendation(score) {
+  for (const rec of PLACEMENT_RECOMMENDATIONS) {
+    if (score <= rec.maxScore) return rec;
+  }
+  return PLACEMENT_RECOMMENDATIONS[PLACEMENT_RECOMMENDATIONS.length - 1];
+}
+
+function renderPlacementView() {
+  const container = document.getElementById('placement-container');
+  if (!container) return;
+
+  if (!placementStarted) {
+    container.innerHTML = renderPlacementIntro();
+    const startBtn = container.querySelector('#placement-start-btn');
+    if (startBtn) {
+      startBtn.addEventListener('click', () => {
+        placementStarted = true;
+        placementIndex = 0;
+        placementAnswers = [];
+        renderPlacementView();
+      });
+    }
+    return;
+  }
+
+  if (placementIndex >= PLACEMENT_QUESTIONS.length) {
+    const score = placementAnswers.filter(Boolean).length;
+    container.innerHTML = renderPlacementResult(score);
+    wirePlacementResult(score);
+    return;
+  }
+
+  container.innerHTML = renderPlacementQuestion();
+  wirePlacementQuestion();
+}
+
+function renderPlacementIntro() {
+  return `
+    <div class="placement-screen">
+      <div class="placement-intro-icon">Я</div>
+      <h1 class="placement-title">Before you start</h1>
+      <p class="placement-subtitle">10 quick questions to find your starting point.<br>No pressure — just answer honestly.</p>
+      <button class="btn btn-primary placement-cta" id="placement-start-btn">Start the test</button>
+      <button class="btn btn-secondary placement-skip" id="placement-skip-btn">Skip — I'll browse lessons myself</button>
+    </div>
+  `;
+}
+
+function renderPlacementQuestion() {
+  const q = PLACEMENT_QUESTIONS[placementIndex];
+  const progress = placementIndex + 1;
+  const total = PLACEMENT_QUESTIONS.length;
+  const pct = Math.round((placementIndex / total) * 100);
+
+  let optionsHTML = '';
+  for (const opt of q.options) {
+    optionsHTML += `<button class="btn placement-option" data-value="${opt}">${opt}</button>`;
+  }
+
+  return `
+    <div class="placement-screen">
+      <div class="placement-progress-bar">
+        <div class="placement-progress-fill" style="width: ${pct}%"></div>
+      </div>
+      <p class="placement-counter">${progress} of ${total}</p>
+      <p class="placement-question">${q.prompt}</p>
+      <div class="placement-options">${optionsHTML}</div>
+    </div>
+  `;
+}
+
+function renderPlacementResult(score) {
+  const rec = getPlacementRecommendation(score);
+  const total = PLACEMENT_QUESTIONS.length;
+  const pct = Math.round((score / total) * 100);
+
+  return `
+    <div class="placement-screen">
+      <div class="placement-score-ring">
+        <span class="placement-score-number">${score}<span class="placement-score-denom">/${total}</span></span>
+      </div>
+      <h2 class="placement-result-title">Here's where to start</h2>
+      <div class="placement-recommendation">
+        <span class="placement-rec-label">${rec.label}</span>
+        <p class="placement-rec-reason">${rec.reason}</p>
+      </div>
+      <button class="btn btn-primary placement-cta" id="placement-accept-btn">Start here</button>
+      <button class="btn btn-secondary placement-skip" id="placement-browse-btn">Browse all lessons</button>
+    </div>
+  `;
+}
+
+function wirePlacementQuestion() {
+  const container = document.getElementById('placement-container');
+  if (!container) return;
+
+  const skipBtn = container.querySelector('#placement-skip-btn');
+  if (skipBtn) {
+    skipBtn.addEventListener('click', async () => {
+      progress.placementDone = true;
+      await saveProgress(progress);
+      navigateTo('/');
+    });
+  }
+
+  const options = container.querySelectorAll('.placement-option');
+  for (const btn of options) {
+    btn.addEventListener('click', () => {
+      const q = PLACEMENT_QUESTIONS[placementIndex];
+      placementAnswers.push(btn.dataset.value === q.answer);
+
+      btn.classList.add(btn.dataset.value === q.answer ? 'placement-option-correct' : 'placement-option-wrong');
+      for (const b of options) b.disabled = true;
+
+      setTimeout(() => {
+        placementIndex++;
+        renderPlacementView();
+      }, 400);
+    });
+  }
+}
+
+function wirePlacementResult(score) {
+  const container = document.getElementById('placement-container');
+  if (!container) return;
+
+  const rec = getPlacementRecommendation(score);
+
+  const acceptBtn = container.querySelector('#placement-accept-btn');
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', async () => {
+      progress.currentLesson = rec.lesson;
+      progress.placementDone = true;
+      await saveProgress(progress);
+      renderLessonList();
+      renderResumeBanner();
+      navigateTo('/');
+    });
+  }
+
+  const browseBtn = container.querySelector('#placement-browse-btn');
+  if (browseBtn) {
+    browseBtn.addEventListener('click', async () => {
+      progress.placementDone = true;
+      await saveProgress(progress);
+      navigateTo('/');
+    });
+  }
+}
+
 async function initApp() {
   progress = await getProgress();
   await loadCurriculum();
   renderLessonList();
   renderResumeBanner();
-  initRouter();
   initKeyboardShortcuts();
   wireEvents();
   wireShortcuts();
+
+  const needsPlacement = !progress.placementDone && progress.completedLessons.length === 0;
+  if (needsPlacement) {
+    placementStarted = false;
+    placementIndex = 0;
+    placementAnswers = [];
+    navigateTo('/placement');
+  }
+
+  initRouter();
 }
 
 async function loadCurriculum() {
@@ -687,6 +915,9 @@ function wireEvents() {
 
   window.addEventListener('routechange', async (e) => {
     const { route, params } = e.detail;
+    if (route === 'placement') {
+      renderPlacementView();
+    }
     if (route === 'lesson' && params.id) {
       if (params.id === progress.currentLesson && progress.currentPhase > 0) {
         await resumeLesson();
