@@ -325,5 +325,12 @@ const TutorAI = (() => {
     _isWaiting = false;
   }
 
+  // Boot after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
   return { init, startConversation, destroy };
 })();

@@ -37,11 +37,16 @@ class ApartmentScene extends Phaser.Scene {
     this._player.gameObject.setCollideWorldBounds(true);
 
     // -------------------------------------------------------
-    // 3. NPC
+    // 3. NPC — Galina Ivanovna from apartment dialogue content
     // -------------------------------------------------------
+    const npcData = APARTMENT_DIALOGUE.NPC_DATA;
     const npcX = 8 * T + T / 2;
     const npcY = 4 * T + T / 2;
-    this._npc = new NPC(this, npcX, npcY, { id: 'tutor', name: 'Tutor', tileSize: T });
+    this._npc = new NPC(this, npcX, npcY, {
+      id: npcData.id,
+      name: npcData.name,
+      tileSize: T,
+    });
 
     // -------------------------------------------------------
     // 4. World bounds
@@ -68,12 +73,30 @@ class ApartmentScene extends Phaser.Scene {
     });
 
     // -------------------------------------------------------
-    // 7. Dialogue-end listener → resume physics
+    // 7. Dialogue-start listener → init TutorAI with NPC data
+    // -------------------------------------------------------
+    this._onDialogueStart = (e) => {
+      const detail = e.detail || {};
+      if (detail.npcId === npcData.id) {
+        TutorAI.startConversation(npcData);
+      }
+    };
+    window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
+
+    // -------------------------------------------------------
+    // 8. Dialogue-end listener → resume physics
     // -------------------------------------------------------
     this._onDialogueEnd = () => {
       this.physics.resume();
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+
+    // -------------------------------------------------------
+    // 9. Location enter event for HUD
+    // -------------------------------------------------------
+    window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_ENTER, {
+      detail: { name: 'Apartment Building' },
+    }));
   }
 
   update() {
@@ -85,6 +108,7 @@ class ApartmentScene extends Phaser.Scene {
   }
 
   shutdown() {
+    window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
   }
 }
