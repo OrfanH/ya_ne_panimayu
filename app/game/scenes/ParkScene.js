@@ -138,6 +138,16 @@ class ParkScene extends Phaser.Scene {
     window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_ENTER, {
       detail: { name: 'Park' },
     }));
+
+    // -------------------------------------------------------
+    // 11. Unlock cafe after first park visit
+    // -------------------------------------------------------
+    getProgress().then((progress) => {
+      if (!progress.unlockedLocations.includes('cafe')) {
+        progress.unlockedLocations.push('cafe');
+        saveProgress(progress);
+      }
+    });
   }
 
   update() {
