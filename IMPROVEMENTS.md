@@ -6,19 +6,6 @@
 
 ## Backlog
 
-### TASK-015
-**title:** Park location — map, NPC, dialogue, music, unlock from apartment
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-013, TASK-002, TASK-012]
-**assigned_agents:** [architect, designer, composer, coder, curriculum-designer, content-writer, dialogue-writer, linguist, reviewer, ux-reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-VISION.md, STORY.md, WORLD.md, .claude/curriculum-map.md, .claude/music-spec.md]
-**writes:** [app/game/scenes/ParkScene.js, app/game/content/park-dialogue.js, assets/maps/park.json]
-**done_when:** Park unlocks after apartment story beat, NPC has full dialogue with reused apartment vocabulary in new context, park music distinct from apartment, linguist approved, ux-reviewer approved.
-**notes:** Unlock must have a story reason from STORY.md — never a grammar reason.
-
----
-
 ### TASK-016
 **title:** Cafe location — full location, A1+ content, basic accusative introduced naturally
 **track:** BUILD
@@ -123,6 +110,7 @@
 - TASK-010 | DONE | 2026-03-28 | Journal UI — vocabulary tab, mission tab, J/X/Escape close | a440047
 - TASK-011 | DONE | 2026-03-28 | Mistake logging — silent KV capture, retrievable list | a440047
 - TASK-013 | DONE | 2026-03-28 | First location complete — apartment end-to-end with audio | 885a426
+- TASK-015 | DONE | 2026-03-28 | Park — ParkScene, Artyom + Tamara, unlock from apartment | a0ddf24
 
 ## Session log
 
@@ -142,3 +130,4 @@
 - 2026-03-28 · TASK-010 Journal UI — vocabulary + mission tabs, storage.js reads, notebook CSS · a440047
 - 2026-03-28 · TASK-011 MistakeLogger — silent mistake:log event capture to KV · a440047
 - 2026-03-28 · TASK-013 First location sign-off — Galina NPC wired, TutorAI init, integration fix · 885a426
+- 2026-03-28 · TASK-015 Park — ParkScene with Artyom + Tamara NPCs, directions/colors vocab, unlock after apartment · a0ddf24
