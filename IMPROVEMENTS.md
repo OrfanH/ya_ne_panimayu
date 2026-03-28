@@ -6,19 +6,6 @@
 
 ## Backlog
 
-### TASK-003
-**title:** Town map — Tiled overworld, 6 buildings, collision, locked locations visually distinct
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-001]
-**assigned_agents:** [architect, designer, coder, reviewer, tester, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-VISION.md, app/game/main.js, app/game/scenes/Town.js]
-**writes:** [app/game/scenes/WorldScene.js, app/game/main.js, assets/maps/town.json, assets/tilesets/]
-**done_when:** WorldScene is registered in main.js scene array and BootScene chains to it. Tilemap asset loaded in preload(). Collision layer set on physics staticGroup. 6 building zones present in scene data. Locked locations have a distinct visual property (tint or alpha). Collision layer prevents setVelocity from passing through walls (traceable in code).
-**notes:** Phaser owns all of this. No HTML layer involved. Locations 2-6 start locked. Coder must update main.js scene registry — WorldScene replaces TownScene as the active scene.
-
----
-
 ### TASK-004
 **title:** Player sprite — 4-direction walk, camera follow, collision, scene entry zones
 **track:** BUILD
@@ -250,6 +237,7 @@
 
 - TASK-001 | DONE | 2026-03-28 | Project scaffold — Phaser boots, tokens.css loads, Vercel deploys | 39badb6
 - TASK-002 | DONE | 2026-03-28 | STORY.md, WORLD.md, curriculum-map — full story bible and world spec | 27f3716
+- TASK-003 | DONE | 2026-03-28 | Town map — WorldScene, 6 buildings, collision, locked locations | 261f7d0
 
 ## Session log
 
@@ -257,3 +245,4 @@
 - 2026-03-28 · Infrastructure setup — scoped CLAUDE files, backlog schema, token rules · 2797d6d
 - 2026-03-28 · Project scaffold · 39badb6
 - 2026-03-28 · TASK-002 STORY.md + WORLD.md + curriculum-map via narrative-director + curriculum-designer · 27f3716
+- 2026-03-28 · TASK-003 WorldScene — 6 buildings, collision, locked locations via architect + designer + coder · 261f7d0
