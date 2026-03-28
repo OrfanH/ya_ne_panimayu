@@ -1,0 +1,266 @@
+{
+  "id": "1-7",
+  "unit": 1,
+  "lesson": 7,
+  "block": "foundation",
+  "title": "Reading practice",
+  "subtitle": "Stress rules and reading real words",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "молоко",
+      "transliteration": "moloko",
+      "gender": "neuter",
+      "meaning": "milk",
+      "exampleCyrillic": "Это молоко.",
+      "exampleTransliteration": "Eto moloko.",
+      "exampleMeaning": "This is milk."
+    },
+    {
+      "cyrillic": "хорошо",
+      "transliteration": "khorosho",
+      "gender": null,
+      "meaning": "good / well",
+      "exampleCyrillic": "Всё хорошо.",
+      "exampleTransliteration": "Vsyo khorosho.",
+      "exampleMeaning": "Everything is good."
+    },
+    {
+      "cyrillic": "спасибо",
+      "transliteration": "spasibo",
+      "gender": null,
+      "meaning": "thank you",
+      "exampleCyrillic": "Спасибо!",
+      "exampleTransliteration": "Spasibo!",
+      "exampleMeaning": "Thank you!"
+    },
+    {
+      "cyrillic": "слово",
+      "transliteration": "slovo",
+      "gender": "neuter",
+      "meaning": "word",
+      "exampleCyrillic": "Это русское слово.",
+      "exampleTransliteration": "Eto russkoye slovo.",
+      "exampleMeaning": "This is a Russian word."
+    },
+    {
+      "cyrillic": "город",
+      "transliteration": "gorod",
+      "gender": "masculine",
+      "meaning": "city",
+      "exampleCyrillic": "Это большой город.",
+      "exampleTransliteration": "Eto bolshoy gorod.",
+      "exampleMeaning": "This is a big city."
+    },
+    {
+      "cyrillic": "голова",
+      "transliteration": "golova",
+      "gender": "feminine",
+      "meaning": "head",
+      "exampleCyrillic": "Моя голова.",
+      "exampleTransliteration": "Moya golova.",
+      "exampleMeaning": "My head."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You know all 33 letters now. But reading Russian isn't just about knowing letters — it's about knowing which syllable to stress. Stress changes how vowels sound, and getting it wrong can even change the meaning of a word. This lesson gives you the tools to read any Russian word confidently."
+    },
+    "why": {
+      "text": "Russian stress is unpredictable — there's no accent mark in normal text to tell you where it falls. But there are patterns, and once you learn the main vowel reduction rules, you'll sound natural even before you have a large vocabulary. Stress is the single biggest factor in sounding 'right' versus sounding like you're reading a textbook."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "The stress rule",
+          "body": "Every Russian word with more than one syllable has exactly one stressed syllable. The stressed vowel is pronounced clearly and fully. All other vowels are 'reduced' — they become shorter and shift in sound. There is no fixed rule for which syllable gets the stress; you learn it word by word. Dictionaries mark stress with an accent: молоко́.",
+          "examples": [
+            { "cyrillic": "молоко́", "transliteration": "ma-la-KO", "meaning": "milk — stress on the last syllable" },
+            { "cyrillic": "го́род", "transliteration": "GO-rad", "meaning": "city — stress on the first syllable" },
+            { "cyrillic": "хорошо́", "transliteration": "kha-ra-SHO", "meaning": "good — stress on the last syllable" }
+          ]
+        },
+        {
+          "title": "Vowel reduction: О and А",
+          "body": "When О or А are not stressed, they both reduce to a short 'ah' sound (like the 'a' in 'about'). This is the most important reduction rule in Russian. It means that молоко sounds like 'ma-la-KO' — only the last О gets its full 'o' sound.",
+          "examples": [
+            { "cyrillic": "молоко", "transliteration": "ma-la-KO", "meaning": "The first two О's reduce to 'ah'" },
+            { "cyrillic": "голова", "transliteration": "ga-la-VA", "meaning": "head — both О's reduce, А is stressed" },
+            { "cyrillic": "Москва", "transliteration": "ma-SKVA", "meaning": "Moscow — the О reduces to 'ah'" }
+          ]
+        },
+        {
+          "title": "Vowel reduction: Е and Я",
+          "body": "When Е or Я are not stressed, they reduce to a short 'ih' sound (like the 'i' in 'bit'). This is less dramatic than the О/А reduction but still important for natural pronunciation.",
+          "examples": [
+            { "cyrillic": "язы́к", "transliteration": "yi-ZYK", "meaning": "language — the Я is unstressed, sounds like 'yi'" },
+            { "cyrillic": "тебя́", "transliteration": "ti-BYA", "meaning": "you (accusative) — the Е reduces to 'ih'" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "In молоко, which syllable is stressed?",
+          "type": "multiple-choice",
+          "options": ["first (мо)", "second (ло)", "third (ко)"],
+          "answer": "third (ко)",
+          "explanation": "молоко́ — stress falls on the last syllable. The first two О's reduce to 'ah'."
+        },
+        {
+          "prompt": "What sound does an unstressed О make?",
+          "type": "text-input",
+          "answer": "ah",
+          "explanation": "Unstressed О reduces to a short 'ah' sound, like the 'a' in 'about'."
+        },
+        {
+          "prompt": "How would you approximately pronounce город?",
+          "type": "multiple-choice",
+          "options": ["GO-rod", "go-ROD", "GO-rad", "ga-ROD"],
+          "answer": "GO-rad",
+          "explanation": "го́род — stress on the first syllable. The unstressed О in the second syllable reduces to 'ah', giving GO-rad."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Stress can change meaning",
+          "body": "In some Russian words, moving the stress changes the meaning entirely. This is rare at the beginner level, but it's good to be aware of. The most famous example: за́мок (castle) vs замо́к (lock).",
+          "examples": [
+            { "cyrillic": "за́мок", "transliteration": "ZA-mak", "meaning": "castle" },
+            { "cyrillic": "замо́к", "transliteration": "za-MOK", "meaning": "lock" },
+            { "cyrillic": "му́ка", "transliteration": "MU-ka", "meaning": "torment" },
+            { "cyrillic": "мука́", "transliteration": "mu-KA", "meaning": "flour" }
+          ]
+        },
+        {
+          "title": "Reading strategy",
+          "body": "When you encounter a new word: (1) identify all the vowels, (2) if you know the stress, reduce the unstressed vowels, (3) if you don't know the stress, try stressing different syllables — one will sound more familiar. Over time, you'll build intuition for common stress patterns.",
+          "examples": [
+            { "cyrillic": "спасибо", "transliteration": "spa-SI-ba", "meaning": "thank you — stress on the second syllable" },
+            { "cyrillic": "слово", "transliteration": "SLO-va", "meaning": "word — stress on the first syllable" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Which syllable is stressed in спасибо?",
+          "type": "multiple-choice",
+          "options": ["first (спа)", "second (си)", "third (бо)"],
+          "answer": "second (си)",
+          "explanation": "спаси́бо — stress is on the second syllable 'си'."
+        },
+        {
+          "prompt": "What does молоко mean?",
+          "type": "text-input",
+          "answer": "milk",
+          "explanation": "молоко́ = milk. Remember: ma-la-KO with stress on the last syllable."
+        },
+        {
+          "prompt": "Type the Russian word for 'city':",
+          "type": "text-input",
+          "answer": "город",
+          "explanation": "город (GO-rad) = city."
+        },
+        {
+          "prompt": "An unstressed О sounds like:",
+          "type": "multiple-choice",
+          "options": ["'o' as in bore", "'ah' as in about", "'oo' as in moon", "'e' as in bed"],
+          "answer": "'ah' as in about",
+          "explanation": "Unstressed О always reduces to a short 'ah' sound."
+        },
+        {
+          "prompt": "What does хорошо mean?",
+          "type": "text-input",
+          "answer": "good",
+          "explanation": "хорошо́ (kha-ra-SHO) = good / well."
+        },
+        {
+          "prompt": "How do you pronounce the О in Москва?",
+          "type": "multiple-choice",
+          "options": ["full 'o' sound", "reduced 'ah' sound"],
+          "answer": "reduced 'ah' sound",
+          "explanation": "Москва́ — stress is on the last syllable (ва), so the О is unstressed and reduces to 'ah': ma-SKVA."
+        },
+        {
+          "prompt": "What does слово mean?",
+          "type": "text-input",
+          "answer": "word",
+          "explanation": "сло́во (SLO-va) = word."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Every multi-syllable Russian word has one stressed syllable — learn it with the word",
+        "Unstressed О and А both reduce to a short 'ah' sound",
+        "Unstressed Е and Я reduce to a short 'ih' sound",
+        "Stress can change meaning: за́мок (castle) vs замо́к (lock)",
+        "Reading strategy: find the vowels, apply stress, reduce the rest"
+      ],
+      "vocabulary": ["молоко", "хорошо", "спасибо", "слово", "город", "голова"],
+      "nextLesson": "Next: Greetings — hello, goodbye, and the polite basics for real conversations."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What does молоко mean?",
+        "type": "multiple-choice",
+        "options": ["water", "milk", "juice", "bread"],
+        "answer": "milk",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Which syllable is stressed in хорошо?",
+        "type": "multiple-choice",
+        "options": ["first (хо)", "second (ро)", "third (шо)"],
+        "answer": "third (шо)",
+        "grammarPoint": "stress-rules"
+      },
+      {
+        "prompt": "Type the Russian word for 'thank you':",
+        "type": "text-input",
+        "answer": "спасибо",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What sound does an unstressed А make?",
+        "type": "multiple-choice",
+        "options": ["'a' as in father", "'ah' as in about", "'e' as in bed", "'o' as in bore"],
+        "answer": "'ah' as in about",
+        "grammarPoint": "stress-rules"
+      },
+      {
+        "prompt": "What does город mean?",
+        "type": "text-input",
+        "answer": "city",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "In голова, what happens to the two О's?",
+        "type": "multiple-choice",
+        "options": ["They keep their full 'o' sound", "They reduce to 'ah' because they are unstressed", "They are silent", "They sound like 'oo'"],
+        "answer": "They reduce to 'ah' because they are unstressed",
+        "grammarPoint": "stress-rules"
+      },
+      {
+        "prompt": "What does слово mean?",
+        "type": "text-input",
+        "answer": "word",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "за́мок means 'castle'. What does замо́к mean?",
+        "type": "multiple-choice",
+        "options": ["key", "lock", "door", "window"],
+        "answer": "lock",
+        "grammarPoint": "stress-meaning"
+      }
+    ]
+  }
+}

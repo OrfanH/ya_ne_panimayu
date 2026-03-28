@@ -1,0 +1,298 @@
+{
+  "id": "2-5",
+  "unit": 2,
+  "lesson": 5,
+  "block": "foundation",
+  "title": "Survival phrases",
+  "subtitle": "Please, sorry, and what to say when language fails",
+  "estimatedMinutes": 15,
+  "vocabulary": [
+    {
+      "cyrillic": "пожалуйста",
+      "transliteration": "pozhaluysta",
+      "gender": null,
+      "meaning": "please / you're welcome",
+      "exampleCyrillic": "Воды, пожалуйста.",
+      "exampleTransliteration": "Vody, pozhaluysta.",
+      "exampleMeaning": "Water, please."
+    },
+    {
+      "cyrillic": "извините",
+      "transliteration": "izvinite",
+      "gender": null,
+      "meaning": "excuse me / sorry (formal)",
+      "exampleCyrillic": "Извините, где вокзал?",
+      "exampleTransliteration": "Izvinite, gde vokzal?",
+      "exampleMeaning": "Excuse me, where is the train station?"
+    },
+    {
+      "cyrillic": "прости",
+      "transliteration": "prosti",
+      "gender": null,
+      "meaning": "sorry (informal)",
+      "exampleCyrillic": "Прости, я опоздал.",
+      "exampleTransliteration": "Prosti, ya opozdal.",
+      "exampleMeaning": "Sorry, I was late."
+    },
+    {
+      "cyrillic": "я не понимаю",
+      "transliteration": "ya ne ponimayu",
+      "gender": null,
+      "meaning": "I don't understand",
+      "exampleCyrillic": "Я не понимаю. Говорите медленно.",
+      "exampleTransliteration": "Ya ne ponimayu. Govoritye medlenno.",
+      "exampleMeaning": "I don't understand. Speak slowly."
+    },
+    {
+      "cyrillic": "повторите",
+      "transliteration": "povtorite",
+      "gender": null,
+      "meaning": "repeat that, please (formal)",
+      "exampleCyrillic": "Повторите, пожалуйста.",
+      "exampleTransliteration": "Povtorite, pozhaluysta.",
+      "exampleMeaning": "Please repeat that."
+    },
+    {
+      "cyrillic": "говорите медленно",
+      "transliteration": "govoritye medlenno",
+      "gender": null,
+      "meaning": "speak slowly",
+      "exampleCyrillic": "Говорите медленно, пожалуйста.",
+      "exampleTransliteration": "Govoritye medlenno, pozhaluysta.",
+      "exampleMeaning": "Please speak slowly."
+    },
+    {
+      "cyrillic": "где",
+      "transliteration": "gde",
+      "gender": null,
+      "meaning": "where",
+      "exampleCyrillic": "Где туалет?",
+      "exampleTransliteration": "Gde tualet?",
+      "exampleMeaning": "Where is the toilet?"
+    },
+    {
+      "cyrillic": "не",
+      "transliteration": "ne",
+      "gender": null,
+      "meaning": "not (negation particle)",
+      "exampleCyrillic": "Я не знаю.",
+      "exampleTransliteration": "Ya ne znayu.",
+      "exampleMeaning": "I don't know."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "The most important thing you can learn in a language isn't how to perform perfectly — it's how to recover gracefully when you don't understand. These phrases keep the conversation going when your Russian runs out. A learner who says 'повторите, пожалуйста' is far more impressive than one who just goes silent."
+    },
+    "why": {
+      "text": "Survival phrases serve two functions: they get you what you need in real situations, and they signal to native speakers that you're making a genuine effort. Russians tend to be very encouraging to language learners who clearly try. Saying пожалуйста and извините correctly opens more doors than a perfect grammar sentence delivered coldly."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Please and you're welcome — пожалуйста",
+          "body": "пожалуйста does double duty: it means 'please' when making a request AND 'you're welcome' when someone thanks you. It's placed after the request or standalone as a polite response. Pronunciation: the Л is soft and the whole word flows — pah-ZHAH-luh-stah.",
+          "examples": [
+            { "cyrillic": "Воды, пожалуйста.", "transliteration": "Vody, pozhaluysta.", "meaning": "Water, please." },
+            { "cyrillic": "Спасибо. — Пожалуйста.", "transliteration": "Spasibo. — Pozhaluysta.", "meaning": "Thank you. — You're welcome." },
+            { "cyrillic": "Повторите, пожалуйста.", "transliteration": "Povtorite, pozhaluysta.", "meaning": "Please repeat that." }
+          ]
+        },
+        {
+          "title": "Two ways to say sorry",
+          "body": "извините is formal — use it to get someone's attention, apologise to a stranger, or in professional settings. прости is informal — use it with friends when you've made a small mistake. The same formal/informal split as здравствуйте/привет.",
+          "examples": [
+            { "cyrillic": "Извините, вы не знаете...", "transliteration": "Izvinite, vy ne znayete...", "meaning": "Excuse me, do you know..." },
+            { "cyrillic": "Прости, я не знал.", "transliteration": "Prosti, ya ne znal.", "meaning": "Sorry, I didn't know. (informal)" },
+            { "cyrillic": "Ничего страшного.", "transliteration": "Nichego strashnogo.", "meaning": "No problem / it's okay (response to an apology)" }
+          ]
+        },
+        {
+          "title": "When language fails",
+          "body": "These three phrases are your emergency kit. Use them immediately and without embarrassment — they're far better than nodding and pretending to understand.",
+          "examples": [
+            { "cyrillic": "Я не понимаю.", "transliteration": "Ya ne ponimayu.", "meaning": "I don't understand." },
+            { "cyrillic": "Повторите, пожалуйста.", "transliteration": "Povtorite, pozhaluysta.", "meaning": "Please repeat that." },
+            { "cyrillic": "Говорите медленно, пожалуйста.", "transliteration": "Govoritye medlenno, pozhaluysta.", "meaning": "Please speak slowly." }
+          ]
+        },
+        {
+          "title": "Negation — не",
+          "body": "не (ne) is the negation particle. Place it directly before the word you're negating — almost always before the verb. Я не понимаю = I don't understand (not: Я понимаю не). не never changes form.",
+          "examples": [
+            { "cyrillic": "Я не понимаю.", "transliteration": "Ya ne ponimayu.", "meaning": "I don't understand." },
+            { "cyrillic": "Я не знаю.", "transliteration": "Ya ne znayu.", "meaning": "I don't know." },
+            { "cyrillic": "Это не стол.", "transliteration": "Eto ne stol.", "meaning": "This is not a table." }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Someone thanks you — спасибо! What do you say?",
+          "type": "text-input",
+          "answer": "пожалуйста",
+          "explanation": "пожалуйста = you're welcome. It also means 'please' — it covers both."
+        },
+        {
+          "prompt": "You don't understand what someone said. What do you say?",
+          "type": "multiple-choice",
+          "options": ["Спасибо.", "Я не понимаю.", "Доброе утро.", "Рад познакомиться."],
+          "answer": "Я не понимаю.",
+          "explanation": "Я не понимаю. (Ya ne ponimayu.) = I don't understand."
+        },
+        {
+          "prompt": "What does не do in a sentence?",
+          "type": "multiple-choice",
+          "options": ["Marks a question", "Negates the following word", "Shows respect", "Indicates past tense"],
+          "answer": "Negates the following word",
+          "explanation": "не is the negation particle — place it before the verb or word you're negating."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "где — the most useful single word",
+          "body": "где (gde) = where. A single word question with где + noun will get you very far: Где туалет? (Where is the toilet?) Где метро? (Where is the metro?) Где вокзал? (Where is the train station?) No verb needed — Russians understand immediately.",
+          "examples": [
+            { "cyrillic": "Где туалет?", "transliteration": "Gde tualet?", "meaning": "Where is the toilet?" },
+            { "cyrillic": "Где метро?", "transliteration": "Gde metro?", "meaning": "Where is the metro?" },
+            { "cyrillic": "Где банк?", "transliteration": "Gde bank?", "meaning": "Where is the bank?" }
+          ]
+        },
+        {
+          "title": "Я не знаю — I don't know",
+          "body": "Я не знаю (ya ne znayu) is another essential phrase. You'll use it constantly. Notice the pattern: я (I) + не (not) + verb. This is how almost all negation in first person works. The verb знать (to know) conjugates to знаю for я.",
+          "examples": [
+            { "cyrillic": "Я не знаю.", "transliteration": "Ya ne znayu.", "meaning": "I don't know." },
+            { "cyrillic": "Я не говорю по-русски.", "transliteration": "Ya ne govoryu po-russki.", "meaning": "I don't speak Russian." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What does пожалуйста mean?",
+          "type": "multiple-choice",
+          "options": ["thank you", "please / you're welcome", "sorry", "excuse me"],
+          "answer": "please / you're welcome",
+          "explanation": "пожалуйста covers both 'please' (making a request) and 'you're welcome' (responding to thanks)."
+        },
+        {
+          "prompt": "How do you say 'where is the bank?' in Russian?",
+          "type": "text-input",
+          "answer": "Где банк?",
+          "explanation": "Где банк? (Gde bank?) = Where is the bank? где = where; банк = bank."
+        },
+        {
+          "prompt": "Which phrase means 'please repeat that'?",
+          "type": "multiple-choice",
+          "options": ["Я не знаю.", "Говорите медленно.", "Повторите, пожалуйста.", "Прости."],
+          "answer": "Повторите, пожалуйста.",
+          "explanation": "Повторите, пожалуйста. (Povtorite, pozhaluysta.) = Please repeat that."
+        },
+        {
+          "prompt": "What is the formal way to say 'excuse me'?",
+          "type": "text-input",
+          "answer": "извините",
+          "explanation": "извините (izvinite) = excuse me / sorry (formal). Informal version: прости."
+        },
+        {
+          "prompt": "Type the Russian for 'I don't understand':",
+          "type": "text-input",
+          "answer": "Я не понимаю.",
+          "explanation": "Я не понимаю. (Ya ne ponimayu.) = I don't understand."
+        },
+        {
+          "prompt": "What does не do?",
+          "type": "multiple-choice",
+          "options": ["Makes a question", "Negates the following word", "Adds politeness", "Changes tense"],
+          "answer": "Negates the following word",
+          "explanation": "не is placed before the word you're negating — always before the verb in basic sentences."
+        },
+        {
+          "prompt": "What does говорите медленно mean?",
+          "type": "text-input",
+          "answer": "speak slowly",
+          "explanation": "говорите медленно (govoritye medlenno) = speak slowly. говорите = speak (formal imperative), медленно = slowly."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "пожалуйста = please (requests) AND you're welcome (after thanks)",
+        "извините = excuse me / sorry (formal); прости = sorry (informal)",
+        "Survival kit: Я не понимаю / Повторите, пожалуйста / Говорите медленно, пожалуйста",
+        "где + noun = 'where is X?' — no verb needed",
+        "не before the verb = negation: Я не знаю = I don't know"
+      ],
+      "vocabulary": ["пожалуйста", "извините", "прости", "я не понимаю", "повторите", "говорите медленно", "где", "не"],
+      "nextLesson": "Next block — Core grammar. First up: noun gender and plurals — why стол becomes столы and книга becomes книги."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What does пожалуйста mean?",
+        "type": "multiple-choice",
+        "options": ["thank you", "please / you're welcome", "sorry", "goodbye"],
+        "answer": "please / you're welcome",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Type the Russian for 'I don't understand':",
+        "type": "text-input",
+        "answer": "Я не понимаю.",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Which is the formal word for 'excuse me'?",
+        "type": "multiple-choice",
+        "options": ["прости", "пока", "извините", "не"],
+        "answer": "извините",
+        "grammarPoint": "register-formal-informal"
+      },
+      {
+        "prompt": "What does где mean?",
+        "type": "text-input",
+        "answer": "where",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "How do you ask 'where is the table?' in Russian?",
+        "type": "text-input",
+        "answer": "Где стол?",
+        "grammarPoint": "question-formation"
+      },
+      {
+        "prompt": "What does не do in a sentence?",
+        "type": "multiple-choice",
+        "options": [
+          "Makes it a question",
+          "Negates the following word",
+          "Adds formality",
+          "Softens the consonant before it"
+        ],
+        "answer": "Negates the following word",
+        "grammarPoint": "negation-ne"
+      },
+      {
+        "prompt": "What does повторите mean?",
+        "type": "multiple-choice",
+        "options": ["thank you", "goodbye", "repeat that", "speak slowly"],
+        "answer": "repeat that",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Someone says спасибо. You respond:",
+        "type": "multiple-choice",
+        "options": ["Извините.", "Пожалуйста.", "Прости.", "Где?"],
+        "answer": "Пожалуйста.",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

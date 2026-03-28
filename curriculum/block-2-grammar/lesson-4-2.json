@@ -1,0 +1,267 @@
+{
+  "id": "4-2",
+  "unit": 4,
+  "lesson": 2,
+  "block": "grammar",
+  "title": "Second conjugation",
+  "subtitle": "И-verbs — говорить, учить, любить",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "говорить",
+      "transliteration": "govorit'",
+      "gender": null,
+      "meaning": "to speak / to talk",
+      "exampleCyrillic": "Вы говорите по-русски?",
+      "exampleTransliteration": "Vy govorite po-russki?",
+      "exampleMeaning": "Do you speak Russian?"
+    },
+    {
+      "cyrillic": "учить",
+      "transliteration": "uchit'",
+      "gender": null,
+      "meaning": "to learn / to teach",
+      "exampleCyrillic": "Я учу русский язык.",
+      "exampleTransliteration": "Ya uchu russkiy yazyk.",
+      "exampleMeaning": "I am learning Russian."
+    },
+    {
+      "cyrillic": "любить",
+      "transliteration": "lyubit'",
+      "gender": null,
+      "meaning": "to love / to like",
+      "exampleCyrillic": "Я люблю кофе.",
+      "exampleTransliteration": "Ya lyublyu kofe.",
+      "exampleMeaning": "I love coffee."
+    },
+    {
+      "cyrillic": "жить",
+      "transliteration": "zhit'",
+      "gender": null,
+      "meaning": "to live",
+      "exampleCyrillic": "Где вы живёте?",
+      "exampleTransliteration": "Gde vy zhivyote?",
+      "exampleMeaning": "Where do you live?"
+    },
+    {
+      "cyrillic": "видеть",
+      "transliteration": "videt'",
+      "gender": null,
+      "meaning": "to see",
+      "exampleCyrillic": "Я вижу море.",
+      "exampleTransliteration": "Ya vizhu more.",
+      "exampleMeaning": "I see the sea."
+    },
+    {
+      "cyrillic": "слышать",
+      "transliteration": "slyshat'",
+      "gender": null,
+      "meaning": "to hear",
+      "exampleCyrillic": "Ты слышишь меня?",
+      "exampleTransliteration": "Ty slishish' menya?",
+      "exampleMeaning": "Do you hear me?"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You have the first conjugation pattern. The second conjugation covers another large group of verbs — including говорить (to speak) and учить (to learn), two verbs you'll use in almost every Russian interaction. The endings look different but follow just as clear a pattern."
+    },
+    "why": {
+      "text": "The difference between first and second conjugation is the vowel in the endings: first conjugation uses Е/Ю, second conjugation uses И/Ю. That's the core distinction. The я and они forms converge to -Ю/-ЯТ regardless of class, which is worth noting — those two forms are predictable no matter which class the verb is."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Second conjugation endings",
+          "body": "Remove -ИТЬ from the infinitive to get the stem. Add the second conjugation endings. Key difference from first: the vowel is И instead of Е in the middle forms.",
+          "examples": [
+            { "cyrillic": "я говорю", "transliteration": "ya govoryu", "meaning": "I speak" },
+            { "cyrillic": "ты говоришь", "transliteration": "ty govorish'", "meaning": "you speak" },
+            { "cyrillic": "он/она говорит", "transliteration": "on/ona govorit", "meaning": "he/she speaks" },
+            { "cyrillic": "мы говорим", "transliteration": "my govorim", "meaning": "we speak" },
+            { "cyrillic": "вы говорите", "transliteration": "vy govorite", "meaning": "you (pl/formal) speak" },
+            { "cyrillic": "они говорят", "transliteration": "oni govoryat", "meaning": "they speak" }
+          ]
+        },
+        {
+          "title": "Consonant mutations in я-form",
+          "body": "Many second-conjugation verbs have a consonant change in the я (first person singular) form only. Other forms are regular. This is a reliable pattern: Б→БЛ, В→ВЛ, П→ПЛ, М→МЛ, Ф→ФЛ (the 'L epethesis'), plus Д→Ж, З→Ж, С→Ш, Т→Ч.",
+          "examples": [
+            { "cyrillic": "любить: я люблю", "transliteration": "lyubit': ya lyublyu", "meaning": "to love: I love — Б→БЛ in я form" },
+            { "cyrillic": "видеть: я вижу", "transliteration": "videt': ya vizhu", "meaning": "to see: I see — Д→Ж in я form" },
+            { "cyrillic": "слышать: я слышу", "transliteration": "slyshat': ya slyshu", "meaning": "to hear: I hear — no mutation (ш stays)" }
+          ]
+        },
+        {
+          "title": "Comparing first and second conjugation",
+          "body": "The easiest way to see the difference: look at the ты and они forms. First conjugation: ты -ешь / они -ют. Second conjugation: ты -ишь / они -ят. If you only remember one thing to distinguish them, remember the ты ending.",
+          "examples": [
+            { "cyrillic": "ты читаешь (1st)", "transliteration": "ty chitayesh'", "meaning": "you read — 1st conj. (-ешь)" },
+            { "cyrillic": "ты говоришь (2nd)", "transliteration": "ty govorish'", "meaning": "you speak — 2nd conj. (-ишь)" },
+            { "cyrillic": "они читают (1st)", "transliteration": "oni chitayut", "meaning": "they read — 1st conj. (-ют)" },
+            { "cyrillic": "они говорят (2nd)", "transliteration": "oni govoryat", "meaning": "they speak — 2nd conj. (-ят)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Conjugate говорить for ты. What is 'you speak'?",
+          "type": "text-input",
+          "answer": "ты говоришь",
+          "explanation": "говорить → stem говор- + -ишь = говоришь."
+        },
+        {
+          "prompt": "What is 'I love'? (любить has a mutation in я)",
+          "type": "text-input",
+          "answer": "я люблю",
+          "explanation": "любить: Б→БЛ mutation in я form. я + -ю = люблю."
+        },
+        {
+          "prompt": "Which ending distinguishes second conjugation from first in the ты form?",
+          "type": "multiple-choice",
+          "options": ["-ешь (2nd)", "-ишь (2nd)", "-ют (1st)", "-ят (2nd)"],
+          "answer": "-ишь (2nd)",
+          "explanation": "ты takes -ишь in second conjugation, -ешь in first. This is the clearest distinction."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "жить — a mixed-class verb",
+          "body": "жить (to live) looks like it belongs to the second conjugation but actually uses modified first-conjugation endings. The key forms: я живу, ты живёшь, он живёт, мы живём, вы живёте, они живут. Note the Ё in the middle forms — this is the stressed vowel.",
+          "examples": [
+            { "cyrillic": "я живу", "transliteration": "ya zhivu", "meaning": "I live" },
+            { "cyrillic": "ты живёшь", "transliteration": "ty zhivyosh'", "meaning": "you live" },
+            { "cyrillic": "они живут", "transliteration": "oni zhivut", "meaning": "they live" }
+          ]
+        },
+        {
+          "title": "говорить по-русски — speaking a language",
+          "body": "To say you speak a language in Russian, use говорить по- + the adjectival form. This construction is fixed — don't try to vary it. говорить по-русски (Russian), по-английски (English), по-немецки (German).",
+          "examples": [
+            { "cyrillic": "Я говорю по-русски.", "transliteration": "Ya govoryu po-russki.", "meaning": "I speak Russian." },
+            { "cyrillic": "Вы говорите по-английски?", "transliteration": "Vy govorite po-angliyski?", "meaning": "Do you speak English?" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is 'he speaks'?",
+          "type": "text-input",
+          "answer": "он говорит",
+          "explanation": "говорить → stem говор- + -ит = говорит."
+        },
+        {
+          "prompt": "What is 'we love'?",
+          "type": "text-input",
+          "answer": "мы любим",
+          "explanation": "любить → stem люб- + -им = любим. No mutation in мы form."
+        },
+        {
+          "prompt": "What is 'I am learning'?",
+          "type": "text-input",
+          "answer": "я учу",
+          "explanation": "учить: Ч stays in я form. я + -у = учу. (Spelling rule: after Ч, write У not Ю.)"
+        },
+        {
+          "prompt": "What is 'they speak'?",
+          "type": "text-input",
+          "answer": "они говорят",
+          "explanation": "говорить → они + -ят = говорят."
+        },
+        {
+          "prompt": "What is 'do you see?' (informal)?",
+          "type": "text-input",
+          "answer": "ты видишь?",
+          "explanation": "видеть is 2nd conjugation. ты + -ишь = видишь. Mutation only in я form (я вижу)."
+        },
+        {
+          "prompt": "How do you say 'I speak Russian'?",
+          "type": "text-input",
+          "answer": "Я говорю по-русски.",
+          "explanation": "говорить + по-русски = speaking Russian as a language."
+        },
+        {
+          "prompt": "What is 'you (formal) live'?",
+          "type": "text-input",
+          "answer": "вы живёте",
+          "explanation": "жить: вы + -ёте = живёте."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Second conjugation endings: -ю, -ишь, -ит, -им, -ите, -ят",
+        "Key difference from first: -ишь (ты) and -ят (они) vs -ешь and -ют",
+        "Consonant mutations in я-form only: Б→БЛ, Д→Ж, В→ВЛ, Т→Ч, З→Ж, С→Ш",
+        "говорить по-[language] = to speak [language]"
+      ],
+      "vocabulary": ["говорить", "учить", "любить", "жить", "видеть", "слышать"],
+      "nextLesson": "Next: the most common irregular verbs — хотеть, мочь, идти, and the special verb быть."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Conjugate говорить for ты:",
+        "type": "text-input",
+        "answer": "говоришь",
+        "grammarPoint": "verb-conjugation-2nd-ty"
+      },
+      {
+        "prompt": "What is 'I love'? (любить)",
+        "type": "text-input",
+        "answer": "люблю",
+        "grammarPoint": "verb-conjugation-2nd-mutation-ya"
+      },
+      {
+        "prompt": "What is the они ending in second conjugation?",
+        "type": "multiple-choice",
+        "options": ["-ют", "-ят", "-ат", "-ут"],
+        "answer": "-ят",
+        "grammarPoint": "verb-endings-2nd-conjugation"
+      },
+      {
+        "prompt": "Conjugate учить for мы:",
+        "type": "text-input",
+        "answer": "учим",
+        "grammarPoint": "verb-conjugation-2nd-my"
+      },
+      {
+        "prompt": "What is 'I see'? (видеть — Д→Ж in я form)",
+        "type": "text-input",
+        "answer": "вижу",
+        "grammarPoint": "verb-conjugation-2nd-mutation-ya"
+      },
+      {
+        "prompt": "How do you say 'I speak Russian'?",
+        "type": "text-input",
+        "answer": "Я говорю по-русски.",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Consonant mutations in second conjugation occur in which form?",
+        "type": "multiple-choice",
+        "options": [
+          "All forms",
+          "Only я (first person singular)",
+          "только он/она",
+          "мы and вы"
+        ],
+        "answer": "Only я (first person singular)",
+        "grammarPoint": "verb-conjugation-2nd-mutation-ya"
+      },
+      {
+        "prompt": "What does жить mean?",
+        "type": "text-input",
+        "answer": "to live",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "id": "5-2",
+  "unit": 5,
+  "lesson": 2,
+  "block": "grammar",
+  "title": "Nominative and Accusative",
+  "subtitle": "Subject and direct object — the two most common cases",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "кошка",
+      "transliteration": "koshka",
+      "gender": "feminine",
+      "meaning": "cat (female)",
+      "exampleCyrillic": "Кошка спит.",
+      "exampleTransliteration": "Koshka spit.",
+      "exampleMeaning": "The cat is sleeping."
+    },
+    {
+      "cyrillic": "письмо",
+      "transliteration": "pis'mo",
+      "gender": "neuter",
+      "meaning": "letter (written)",
+      "exampleCyrillic": "Я пишу письмо.",
+      "exampleTransliteration": "Ya pishu pis'mo.",
+      "exampleMeaning": "I am writing a letter."
+    },
+    {
+      "cyrillic": "газета",
+      "transliteration": "gazeta",
+      "gender": "feminine",
+      "meaning": "newspaper",
+      "exampleCyrillic": "Он читает газету.",
+      "exampleTransliteration": "On chitayet gazetu.",
+      "exampleMeaning": "He is reading a newspaper."
+    },
+    {
+      "cyrillic": "вопрос",
+      "transliteration": "vopros",
+      "gender": "masculine",
+      "meaning": "question",
+      "exampleCyrillic": "У меня есть вопрос.",
+      "exampleTransliteration": "U menya yest' vopros.",
+      "exampleMeaning": "I have a question."
+    },
+    {
+      "cyrillic": "ответ",
+      "transliteration": "otvet",
+      "gender": "masculine",
+      "meaning": "answer",
+      "exampleCyrillic": "Я знаю ответ.",
+      "exampleTransliteration": "Ya znayu otvet.",
+      "exampleMeaning": "I know the answer."
+    },
+    {
+      "cyrillic": "магазин",
+      "transliteration": "magazin",
+      "gender": "masculine",
+      "meaning": "shop / store",
+      "exampleCyrillic": "Я иду в магазин.",
+      "exampleTransliteration": "Ya idu v magazin.",
+      "exampleMeaning": "I am going to the shop."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Every complete Russian sentence uses the nominative case (subject). Almost every sentence with an action verb also uses the accusative case (object). These two cases together cover the majority of what you'll produce in everyday speech. Get them right and you can make meaningful sentences immediately."
+    },
+    "why": {
+      "text": "⚠ Cases are your declared weak area — so let's be precise. The nominative-accusative pair is the most important to drill because it's the most common. The good news: for most masculine inanimate nouns and all neuter nouns, nominative and accusative are identical. The changes mostly affect feminines and animates — a manageable scope."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Nominative case — the subject",
+          "body": "Nominative is the dictionary form — the form you look up and the form the noun takes when it's the subject. No special endings are added for nominative; it's the base form. Subject = who or what is performing the action.",
+          "examples": [
+            { "cyrillic": "Студент читает. (nom.)", "transliteration": "Student chitayet.", "meaning": "The student is reading. (student = subject)" },
+            { "cyrillic": "Кошка спит. (nom.)", "transliteration": "Koshka spit.", "meaning": "The cat is sleeping. (cat = subject)" },
+            { "cyrillic": "Письмо лежит. (nom.)", "transliteration": "Pis'mo lezhit.", "meaning": "The letter is lying (there). (letter = subject)" }
+          ]
+        },
+        {
+          "title": "Accusative case — the direct object (inanimate)",
+          "body": "The accusative is the case of the direct object — what the action is directed at. For inanimate (non-living) nouns: masculine inanimate = same as nominative; neuter = same as nominative; feminine changes А→У / Я→Ю.",
+          "examples": [
+            { "cyrillic": "Masculine inanimate: no change", "transliteration": "стол → стол", "meaning": "Я вижу стол. (I see the table — nom. = acc.)" },
+            { "cyrillic": "Neuter: no change", "transliteration": "письмо → письмо", "meaning": "Я пишу письмо. (I write a letter — nom. = acc.)" },
+            { "cyrillic": "Feminine А→У", "transliteration": "газета → газету", "meaning": "Он читает газету. (He reads the newspaper)" },
+            { "cyrillic": "Feminine Я→Ю", "transliteration": "земля → землю", "meaning": "Я вижу землю. (I see the earth)" }
+          ]
+        },
+        {
+          "title": "Accusative — animate nouns",
+          "body": "Animate nouns (people, animals) behave differently in accusative. Masculine animate accusative = genitive singular (not nominative). This is unique to Russian and worth flagging clearly. Feminine animate accusative = same as inanimate feminine (А→У). Neuter animate = same as nominative.",
+          "examples": [
+            { "cyrillic": "студент → студента (acc. animate)", "transliteration": "student → studenta", "meaning": "Я вижу студента. (I see the student) — masc. animate acc. = gen." },
+            { "cyrillic": "кошку (acc. animate fem.)", "transliteration": "koshka → koshku", "meaning": "Я вижу кошку. (I see the cat) — same rule as inanimate fem." },
+            { "cyrillic": "Compare: стол vs студента", "transliteration": "stol vs studenta", "meaning": "стол (inanimate: no change) vs студента (animate: gen. form)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Я читаю ___. (газета — newspaper). What accusative form?",
+          "type": "text-input",
+          "answer": "газету",
+          "explanation": "газета (feminine, А) → accusative: А→У = газету."
+        },
+        {
+          "prompt": "Я вижу ___. (стол — table, inanimate masculine). What accusative form?",
+          "type": "text-input",
+          "answer": "стол",
+          "explanation": "стол is inanimate masculine — accusative = nominative. No change."
+        },
+        {
+          "prompt": "Я вижу ___. (студент — male student, animate). What accusative form?",
+          "type": "text-input",
+          "answer": "студента",
+          "explanation": "студент is animate masculine — accusative = genitive singular. студент → студента."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "⚠ The animate/inanimate split — a critical distinction",
+          "body": "Russian treats animate and inanimate nouns differently in the accusative. This is one of the most drilled items in Russian because it affects every sentence with a person or animal as the direct object. The rule: masculine animate accusative = genitive. Memorise it as a fact — don't try to rationalise it.",
+          "examples": [
+            { "cyrillic": "Я вижу стол. (стол — inanimate)", "transliteration": "Ya vizhu stol.", "meaning": "I see the table. (no change for masculine inanimate)" },
+            { "cyrillic": "Я вижу брата. (брат — animate)", "transliteration": "Ya vizhu brata.", "meaning": "I see (my) brother. (acc. = gen. for masculine animate)" },
+            { "cyrillic": "Я вижу врача. (врач — animate)", "transliteration": "Ya vizhu vracha.", "meaning": "I see the doctor." }
+          ]
+        },
+        {
+          "title": "в + accusative — direction of movement",
+          "body": "The preposition в (in / to) uses accusative when expressing movement toward a place. Я иду в магазин = I am going to the shop (accusative — direction). Compare to location: Я в магазине (prepositional — location). Same preposition, two different cases, two different meanings.",
+          "examples": [
+            { "cyrillic": "Я иду в магазин. (acc.)", "transliteration": "Ya idu v magazin.", "meaning": "I am going to the shop. (direction → accusative)" },
+            { "cyrillic": "Я в магазине. (prep.)", "transliteration": "Ya v magazine.", "meaning": "I am in the shop. (location → prepositional)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Put в МАГАЗИН in the correct accusative form: Я иду в ___. (магазин — inanimate masculine)",
+          "type": "text-input",
+          "answer": "магазин",
+          "explanation": "магазин is inanimate masculine — accusative = nominative. No change. Я иду в магазин."
+        },
+        {
+          "prompt": "Я читаю ___. (книга — book, feminine)",
+          "type": "text-input",
+          "answer": "книгу",
+          "explanation": "книга → книгу. Feminine А→У in accusative."
+        },
+        {
+          "prompt": "Я вижу ___. (письмо — letter, neuter)",
+          "type": "text-input",
+          "answer": "письмо",
+          "explanation": "письмо is neuter — accusative = nominative. No change."
+        },
+        {
+          "prompt": "Я знаю ___. (врач — doctor, animate masculine)",
+          "type": "text-input",
+          "answer": "врача",
+          "explanation": "врач is animate masculine — accusative = genitive. врач → врача."
+        },
+        {
+          "prompt": "Я вижу ___. (кошка — cat, animate feminine)",
+          "type": "text-input",
+          "answer": "кошку",
+          "explanation": "кошка → кошку. Animate feminine follows the same rule as inanimate feminine: А→У."
+        },
+        {
+          "prompt": "What is the accusative form of газета?",
+          "type": "text-input",
+          "answer": "газету",
+          "explanation": "газета → газету. Feminine А→У."
+        },
+        {
+          "prompt": "Masculine animate accusative equals which other case?",
+          "type": "multiple-choice",
+          "options": ["nominative", "genitive", "dative", "prepositional"],
+          "answer": "genitive",
+          "explanation": "⚠ Masculine animate accusative = genitive singular. This is a core rule to memorise."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Nominative = subject = dictionary form — no special endings",
+        "Accusative (inanimate): masculine = nominative; neuter = nominative; feminine А→У / Я→Ю",
+        "⚠ Accusative (animate masculine) = genitive singular (студент→студента, врач→врача)",
+        "в + accusative = direction of movement; в + prepositional = location",
+        "Drill accusative with people and animals especially — that's where errors happen"
+      ],
+      "vocabulary": ["кошка", "письмо", "газета", "вопрос", "ответ", "магазин"],
+      "nextLesson": "Next: Genitive case — possession, absence (нет), after quantities, and a large set of prepositions."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Я читаю ___. (газета) — accusative form:",
+        "type": "text-input",
+        "answer": "газету",
+        "grammarPoint": "accusative-feminine"
+      },
+      {
+        "prompt": "Я вижу ___. (стол, inanimate masculine) — accusative form:",
+        "type": "text-input",
+        "answer": "стол",
+        "grammarPoint": "accusative-masculine-inanimate"
+      },
+      {
+        "prompt": "Я вижу ___. (студент, animate masculine) — accusative form:",
+        "type": "text-input",
+        "answer": "студента",
+        "grammarPoint": "accusative-masculine-animate"
+      },
+      {
+        "prompt": "Masculine animate accusative = which case?",
+        "type": "multiple-choice",
+        "options": ["nominative", "genitive", "dative", "prepositional"],
+        "answer": "genitive",
+        "grammarPoint": "accusative-animate-rule"
+      },
+      {
+        "prompt": "Я иду в ___. (магазин) — what case is this?",
+        "type": "multiple-choice",
+        "options": ["nominative", "accusative", "genitive", "prepositional"],
+        "answer": "accusative",
+        "grammarPoint": "accusative-direction"
+      },
+      {
+        "prompt": "Accusative of книга:",
+        "type": "text-input",
+        "answer": "книгу",
+        "grammarPoint": "accusative-feminine"
+      },
+      {
+        "prompt": "Accusative of письмо (neuter):",
+        "type": "text-input",
+        "answer": "письмо",
+        "grammarPoint": "accusative-neuter"
+      },
+      {
+        "prompt": "What does ответ mean?",
+        "type": "text-input",
+        "answer": "answer",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Я вижу ___. (кошка, animate feminine) — accusative:",
+        "type": "text-input",
+        "answer": "кошку",
+        "grammarPoint": "accusative-feminine"
+      }
+    ]
+  }
+}

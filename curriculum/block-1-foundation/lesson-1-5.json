@@ -1,0 +1,308 @@
+{
+  "id": "1-5",
+  "unit": 1,
+  "lesson": 5,
+  "block": "foundation",
+  "title": "Final letters",
+  "subtitle": "Ь Ъ Ы Э Ю Я and Ё",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "мать",
+      "transliteration": "mat'",
+      "gender": "feminine",
+      "meaning": "mother",
+      "exampleCyrillic": "Моя мать дома.",
+      "exampleTransliteration": "Moya mat' doma.",
+      "exampleMeaning": "My mother is at home."
+    },
+    {
+      "cyrillic": "юг",
+      "transliteration": "yug",
+      "gender": "masculine",
+      "meaning": "south",
+      "exampleCyrillic": "Это юг.",
+      "exampleTransliteration": "Eto yug.",
+      "exampleMeaning": "This is the south."
+    },
+    {
+      "cyrillic": "яблоко",
+      "transliteration": "yabloko",
+      "gender": "neuter",
+      "meaning": "apple",
+      "exampleCyrillic": "Это яблоко.",
+      "exampleTransliteration": "Eto yabloko.",
+      "exampleMeaning": "This is an apple."
+    },
+    {
+      "cyrillic": "эхо",
+      "transliteration": "ekho",
+      "gender": "neuter",
+      "meaning": "echo",
+      "exampleCyrillic": "Слышно эхо.",
+      "exampleTransliteration": "Slishno ekho.",
+      "exampleMeaning": "You can hear an echo."
+    },
+    {
+      "cyrillic": "мёд",
+      "transliteration": "myod",
+      "gender": "masculine",
+      "meaning": "honey",
+      "exampleCyrillic": "Это мёд.",
+      "exampleTransliteration": "Eto myod.",
+      "exampleMeaning": "This is honey."
+    },
+    {
+      "cyrillic": "ты",
+      "transliteration": "ty",
+      "gender": null,
+      "meaning": "you (informal singular)",
+      "exampleCyrillic": "Ты дома?",
+      "exampleTransliteration": "Ty doma?",
+      "exampleMeaning": "Are you at home?"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You've learned 26 of 33 letters. The final seven include two that don't make any sound at all — they only change the sound of the letter next to them. The remaining five are vowels that complete the Russian vowel system. After this lesson, you know the full Cyrillic alphabet."
+    },
+    "why": {
+      "text": "The soft sign (Ь) and hard sign (Ъ) are unique to Slavic languages — they control whether consonants are soft or hard. Understanding them is essential for correct pronunciation. The remaining vowels Ы Э Ю Я Ё complete the vowel system and appear in many high-frequency words."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Ь — the soft sign",
+          "body": "Ь has no sound of its own. It makes the preceding consonant 'soft' — meaning your tongue moves slightly upward toward the palate, adding a faint 'y' quality to the consonant. In transliteration it's shown as an apostrophe. Compare мат (mat — mat) with мать (mat' — mother): the final Т is softened by Ь.",
+          "examples": [
+            { "cyrillic": "Ь", "transliteration": "'", "meaning": "soft sign — softens the preceding consonant" },
+            { "cyrillic": "мать", "transliteration": "mat'", "meaning": "mother — the Т is softened" },
+            { "cyrillic": "день", "transliteration": "den'", "meaning": "day — the Н is softened" },
+            { "cyrillic": "соль", "transliteration": "sol'", "meaning": "salt — the Л is softened" }
+          ]
+        },
+        {
+          "title": "Ъ — the hard sign",
+          "body": "Ъ also has no sound. It's a separator — it appears between a prefix and a root to keep them distinct, preventing the prefix consonant from softening before Е, Ё, Ю, Я. In modern Russian it's rare. You'll see it mainly in formal or compound words. Don't stress over it — just know it exists.",
+          "examples": [
+            { "cyrillic": "Ъ", "transliteration": "(separator)", "meaning": "hard sign — separates prefix from root" },
+            { "cyrillic": "объект", "transliteration": "ob-yekt", "meaning": "object — Ъ separates об- from -ект" },
+            { "cyrillic": "съезд", "transliteration": "s-yezd", "meaning": "congress/convention — Ъ separates с- from -езд" }
+          ]
+        },
+        {
+          "title": "Ы Э — two distinct vowels",
+          "body": "Ы is a back vowel with no English equivalent. Say 'ee' and then push your tongue back and lower it slightly — that's Ы. It's often described as the sound you make when punched in the stomach. Э is a plain 'EH' — like the 'e' in 'bed', but without the 'y' element that Е carries.",
+          "examples": [
+            { "cyrillic": "Ы", "transliteration": "y", "meaning": "back vowel — deeper than 'ee', no English equivalent" },
+            { "cyrillic": "Э", "transliteration": "e", "meaning": "plain 'EH' — like 'e' in 'bed'" },
+            { "cyrillic": "ты", "transliteration": "ty", "meaning": "you (informal) — ends with Ы" },
+            { "cyrillic": "эхо", "transliteration": "ekho", "meaning": "echo — starts with Э" }
+          ]
+        },
+        {
+          "title": "Ю Я Ё — the iotated vowels",
+          "body": "These three vowels each start with a 'y' sound. Ю = YOO (like 'you'), Я = YAH (like 'yar'), Ё = YO (like 'yo-yo'). After a consonant, they soften it and drop most of the 'y'. Ё always carries the stress — so if you see Ё, that syllable is stressed. Note: Ё is often printed without its dots in informal Russian text, becoming Е — a frequent source of confusion.",
+          "examples": [
+            { "cyrillic": "Ю", "transliteration": "yu", "meaning": "YOO — like 'you'" },
+            { "cyrillic": "Я", "transliteration": "ya", "meaning": "YAH — like 'yard'" },
+            { "cyrillic": "Ё", "transliteration": "yo", "meaning": "YO — always stressed, often printed without dots" },
+            { "cyrillic": "юг", "transliteration": "yug", "meaning": "south — Ю at word start" },
+            { "cyrillic": "яблоко", "transliteration": "yabloko", "meaning": "apple — Я at word start" },
+            { "cyrillic": "мёд", "transliteration": "myod", "meaning": "honey — Ё after consonant" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What does Ь do?",
+          "type": "multiple-choice",
+          "options": [
+            "Makes the following vowel longer",
+            "Softens the preceding consonant",
+            "Makes its own 'y' sound",
+            "Separates prefix from root"
+          ],
+          "answer": "Softens the preceding consonant",
+          "explanation": "Ь = soft sign. It has no sound — it only signals that the consonant before it should be softened (palatalised)."
+        },
+        {
+          "prompt": "Ё always signals what about the syllable it's in?",
+          "type": "multiple-choice",
+          "options": ["It is unstressed", "It is stressed", "It is silent", "It is a separate syllable"],
+          "answer": "It is stressed",
+          "explanation": "Ё always carries the stress. If you see Ё in a word, that syllable is stressed — every time."
+        },
+        {
+          "prompt": "What does яблоко mean?",
+          "type": "text-input",
+          "answer": "apple",
+          "explanation": "яблоко (yabloko) = apple. Я at word start sounds like 'ya'."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Soft consonants — why it matters",
+          "body": "When a consonant is soft (followed by Ь or by the iotated vowels Е Ё И Ю Я), it changes its sound slightly — the middle of the tongue rises toward the hard palate. This is a feature of Russian you can't skip. Мать (mother) and мат (obscenity/mat) differ only by the soft sign. Getting Ь right prevents embarrassing errors.",
+          "examples": [
+            { "cyrillic": "мат", "transliteration": "mat", "meaning": "mat — or obscene language (hard Т)" },
+            { "cyrillic": "мать", "transliteration": "mat'", "meaning": "mother (soft Т — the Ь makes all the difference)" },
+            { "cyrillic": "угол", "transliteration": "ugol", "meaning": "corner (hard Л)" },
+            { "cyrillic": "уголь", "transliteration": "ugol'", "meaning": "coal (soft Л)" }
+          ]
+        },
+        {
+          "title": "Ё without its dots",
+          "body": "In most printed Russian — newspapers, websites, everyday text — Ё is written as Е (without the two dots). This means you often can't tell from the text whether a word has Ё or Е. Dictionaries and textbooks restore the dots. When learning a new word, check a dictionary to confirm if the Е is actually Ё.",
+          "examples": [
+            { "cyrillic": "все / всё", "transliteration": "vsye / vsyo", "meaning": "'all (people)' vs 'everything' — different words, printed the same way without dots" },
+            { "cyrillic": "мед / мёд", "transliteration": "med / myod", "meaning": "'honey' with and without Ё dots" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What does the soft sign Ь do?",
+          "type": "multiple-choice",
+          "options": [
+            "Makes its own sound like 'y'",
+            "Softens the preceding consonant",
+            "Separates two parts of a word",
+            "Makes the word louder"
+          ],
+          "answer": "Softens the preceding consonant",
+          "explanation": "Ь has no sound — it palatalises (softens) the consonant before it."
+        },
+        {
+          "prompt": "What does мать mean?",
+          "type": "text-input",
+          "answer": "mother",
+          "explanation": "мать (mat') = mother. М=m, А=a, Т=t (softened by Ь)."
+        },
+        {
+          "prompt": "What does юг mean?",
+          "type": "text-input",
+          "answer": "south",
+          "explanation": "юг (yug) = south. Ю=yu (yoo), Г=g."
+        },
+        {
+          "prompt": "What does ты mean?",
+          "type": "multiple-choice",
+          "options": ["he", "she", "you (informal)", "we"],
+          "answer": "you (informal)",
+          "explanation": "ты (ty) = you (informal/singular). Т=t, Ы=back-ee vowel."
+        },
+        {
+          "prompt": "What does мёд mean?",
+          "type": "text-input",
+          "answer": "honey",
+          "explanation": "мёд (myod) = honey. М=m, Ё=yo (stressed), Д=d."
+        },
+        {
+          "prompt": "When Ё appears in a word, what do you know about that syllable?",
+          "type": "multiple-choice",
+          "options": ["It is unstressed", "It is stressed", "It is optional", "The letter is silent"],
+          "answer": "It is stressed",
+          "explanation": "Ё always marks the stressed syllable. Use it as a built-in stress indicator."
+        },
+        {
+          "prompt": "What does эхо mean?",
+          "type": "text-input",
+          "answer": "echo",
+          "explanation": "эхо (ekho) = echo. Э=plain 'eh', Х=kh, О=o."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Ь (soft sign) — no sound, softens the preceding consonant",
+        "Ъ (hard sign) — no sound, separates prefix from root; rare in modern Russian",
+        "Ы = back 'ee' vowel (no English equivalent); Э = plain 'eh' (like 'e' in 'bed')",
+        "Ю = YOO, Я = YAH, Ё = YO — all iotated vowels that soften preceding consonants",
+        "Ё always carries stress; in informal text its dots are often omitted, making it look like Е"
+      ],
+      "vocabulary": ["мать", "юг", "яблоко", "эхо", "мёд", "ты"],
+      "nextLesson": "Next: the full 33-letter alphabet in one reading consolidation lesson — you'll read real Russian words and sentences using everything you've learned."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What does Ь do?",
+        "type": "multiple-choice",
+        "options": [
+          "Makes a 'y' sound",
+          "Softens the preceding consonant",
+          "Separates prefix from root",
+          "Always carries stress"
+        ],
+        "answer": "Softens the preceding consonant",
+        "grammarPoint": "soft-sign"
+      },
+      {
+        "prompt": "What does мать mean?",
+        "type": "text-input",
+        "answer": "mother",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Ё always signals that its syllable is:",
+        "type": "multiple-choice",
+        "options": ["unstressed", "stressed", "silent", "optional"],
+        "answer": "stressed",
+        "grammarPoint": "stress-rules"
+      },
+      {
+        "prompt": "What does яблоко mean?",
+        "type": "multiple-choice",
+        "options": ["apple", "honey", "echo", "south"],
+        "answer": "apple",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Ы is described as:",
+        "type": "multiple-choice",
+        "options": [
+          "The same as И",
+          "A back vowel with no direct English equivalent",
+          "Silent like Ь",
+          "The same as Э"
+        ],
+        "answer": "A back vowel with no direct English equivalent",
+        "grammarPoint": "cyrillic-final-letters"
+      },
+      {
+        "prompt": "What does мёд mean?",
+        "type": "text-input",
+        "answer": "honey",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does ты mean?",
+        "type": "multiple-choice",
+        "options": ["he", "she", "you (informal)", "I"],
+        "answer": "you (informal)",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "In everyday Russian text, Ё is often printed as:",
+        "type": "multiple-choice",
+        "options": ["Э", "Е", "Ю", "И"],
+        "answer": "Е",
+        "grammarPoint": "cyrillic-final-letters"
+      },
+      {
+        "prompt": "What does эхо mean?",
+        "type": "text-input",
+        "answer": "echo",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "id": "4-1",
+  "unit": 4,
+  "lesson": 1,
+  "block": "grammar",
+  "title": "First conjugation",
+  "subtitle": "Е-verbs — читать, знать, думать",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "читать",
+      "transliteration": "chitat'",
+      "gender": null,
+      "meaning": "to read",
+      "exampleCyrillic": "Я читаю книгу.",
+      "exampleTransliteration": "Ya chitayu knigu.",
+      "exampleMeaning": "I am reading a book."
+    },
+    {
+      "cyrillic": "знать",
+      "transliteration": "znat'",
+      "gender": null,
+      "meaning": "to know",
+      "exampleCyrillic": "Он знает ответ.",
+      "exampleTransliteration": "On znayet otvet.",
+      "exampleMeaning": "He knows the answer."
+    },
+    {
+      "cyrillic": "думать",
+      "transliteration": "dumat'",
+      "gender": null,
+      "meaning": "to think",
+      "exampleCyrillic": "Я думаю, что да.",
+      "exampleTransliteration": "Ya dumayu, chto da.",
+      "exampleMeaning": "I think so / I think yes."
+    },
+    {
+      "cyrillic": "понимать",
+      "transliteration": "ponimat'",
+      "gender": null,
+      "meaning": "to understand",
+      "exampleCyrillic": "Ты понимаешь?",
+      "exampleTransliteration": "Ty ponimayesh'?",
+      "exampleMeaning": "Do you understand?"
+    },
+    {
+      "cyrillic": "работать",
+      "transliteration": "rabotat'",
+      "gender": null,
+      "meaning": "to work",
+      "exampleCyrillic": "Где ты работаешь?",
+      "exampleTransliteration": "Gde ty rabotayesh'?",
+      "exampleMeaning": "Where do you work?"
+    },
+    {
+      "cyrillic": "писать",
+      "transliteration": "pisat'",
+      "gender": null,
+      "meaning": "to write",
+      "exampleCyrillic": "Он пишет письмо.",
+      "exampleTransliteration": "On pishet pis'mo.",
+      "exampleMeaning": "He is writing a letter."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Russian has two conjugation classes — first and second. Today you learn the first. The pattern is systematic: one set of six endings attaches to the verb stem and tells you who's doing the action. Once you know the endings, you can conjugate hundreds of verbs. No exceptions in this class — just the pattern."
+    },
+    "why": {
+      "text": "Unlike English, Russian can drop the subject pronoun because the verb ending already shows who's acting. Читаю means 'I read' without needing я. But you do need the ending to be correct — get it wrong and Russian speakers will struggle to understand who's doing what."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Personal pronouns — all six",
+          "body": "Russian has six grammatical persons, matching six conjugation endings. You know я and ты. Now the full set: он/она/оно (he/she/it), мы (we), вы (you formal/plural), они (they).",
+          "examples": [
+            { "cyrillic": "я", "transliteration": "ya", "meaning": "I" },
+            { "cyrillic": "ты", "transliteration": "ty", "meaning": "you (informal)" },
+            { "cyrillic": "он / она / оно", "transliteration": "on / ona / ono", "meaning": "he / she / it" },
+            { "cyrillic": "мы", "transliteration": "my", "meaning": "we" },
+            { "cyrillic": "вы", "transliteration": "vy", "meaning": "you (formal/plural)" },
+            { "cyrillic": "они", "transliteration": "oni", "meaning": "they" }
+          ]
+        },
+        {
+          "title": "First conjugation endings",
+          "body": "Find the stem: remove -ТЬ from the infinitive (читать → чита-). Add the endings. For е-verbs, the endings use the vowel Е (or Ю/Ю for я/они).",
+          "examples": [
+            { "cyrillic": "я читаю", "transliteration": "ya chitayu", "meaning": "I read / I am reading" },
+            { "cyrillic": "ты читаешь", "transliteration": "ty chitayesh'", "meaning": "you read" },
+            { "cyrillic": "он/она читает", "transliteration": "on/ona chitayet", "meaning": "he/she reads" },
+            { "cyrillic": "мы читаем", "transliteration": "my chitayem", "meaning": "we read" },
+            { "cyrillic": "вы читаете", "transliteration": "vy chitayete", "meaning": "you (pl/formal) read" },
+            { "cyrillic": "они читают", "transliteration": "oni chitayut", "meaning": "they read" }
+          ]
+        },
+        {
+          "title": "The stem-change verbs",
+          "body": "Some first-conjugation verbs have a consonant change in the stem. писать is the key example: the С changes to Ш in conjugation. This pattern recurs — when you see an irregular stem, it's usually a consonant mutation, not a completely different paradigm.",
+          "examples": [
+            { "cyrillic": "писать → пис-", "transliteration": "pisat' → pis-", "meaning": "to write — stem is пис-" },
+            { "cyrillic": "я пишу", "transliteration": "ya pishu", "meaning": "I write — С→Ш mutation + -У ending" },
+            { "cyrillic": "ты пишешь", "transliteration": "ty pishesh'", "meaning": "you write" },
+            { "cyrillic": "он пишет", "transliteration": "on pishet", "meaning": "he writes" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Conjugate знать for 'мы'. What is 'we know'?",
+          "type": "text-input",
+          "answer": "мы знаем",
+          "explanation": "знать → stem зна- + -ем = знаем. мы знаем = we know."
+        },
+        {
+          "prompt": "What ending does ты take in first conjugation?",
+          "type": "multiple-choice",
+          "options": ["-ю", "-ешь", "-ет", "-ем"],
+          "answer": "-ешь",
+          "explanation": "ты → -ешь. So: ты знаешь, ты читаешь, ты думаешь."
+        },
+        {
+          "prompt": "What is 'I write' in Russian?",
+          "type": "text-input",
+          "answer": "я пишу",
+          "explanation": "писать has a stem-change: С→Ш. я + -у = пишу."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Russian present tense = English present + progressive",
+          "body": "Russian has no separate progressive form. Я читаю means both 'I read' (habitually) and 'I am reading' (right now). Context decides which meaning. Don't try to add a separate form for 'I am reading' — it doesn't exist in Russian.",
+          "examples": [
+            { "cyrillic": "Я читаю книгу.", "transliteration": "Ya chitayu knigu.", "meaning": "I read a book. / I am reading a book." },
+            { "cyrillic": "Он работает.", "transliteration": "On rabotayet.", "meaning": "He works. / He is working." }
+          ]
+        },
+        {
+          "title": "First conjugation — the full endings table",
+          "body": "Memorise this. Every first-conjugation verb uses these six endings: -Ю, -ЕШЬ, -ЕТ, -ЕМ, -ЕТЕ, -ЮТ. Note: after stems ending in a vowel, it's -Ю/-ЮТ. After consonants with spelling rules, the Е may change. But the pattern holds.",
+          "examples": [
+            { "cyrillic": "-ю / -ю", "transliteration": "ya / oni", "meaning": "я -ю, они -ют" },
+            { "cyrillic": "-ешь", "transliteration": "ty", "meaning": "ты -ешь" },
+            { "cyrillic": "-ет / -ем / -ете", "transliteration": "on/my/vy", "meaning": "он/а -ет, мы -ем, вы -ете" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Conjugate думать for 'она'. What is 'she thinks'?",
+          "type": "text-input",
+          "answer": "она думает",
+          "explanation": "думать → stem дума- + -ет = думает. она думает = she thinks."
+        },
+        {
+          "prompt": "What is 'you (informal) understand'?",
+          "type": "text-input",
+          "answer": "ты понимаешь",
+          "explanation": "понимать → stem понима- + -ешь = понимаешь. ты понимаешь."
+        },
+        {
+          "prompt": "What is 'they read'?",
+          "type": "text-input",
+          "answer": "они читают",
+          "explanation": "читать → stem чита- + -ют = читают. они читают."
+        },
+        {
+          "prompt": "What is 'we work'?",
+          "type": "text-input",
+          "answer": "мы работаем",
+          "explanation": "работать → stem работа- + -ем = работаем."
+        },
+        {
+          "prompt": "What is the ending for он/она in first conjugation?",
+          "type": "multiple-choice",
+          "options": ["-ит", "-ет", "-ют", "-ешь"],
+          "answer": "-ет",
+          "explanation": "он/она takes -ет in first conjugation: знает, читает, думает."
+        },
+        {
+          "prompt": "What is 'I know'?",
+          "type": "text-input",
+          "answer": "я знаю",
+          "explanation": "знать → stem зна- + -ю = знаю. я знаю."
+        },
+        {
+          "prompt": "Я читаю can mean:",
+          "type": "multiple-choice",
+          "options": [
+            "Only 'I read' (habitually)",
+            "Only 'I am reading' (right now)",
+            "Both 'I read' and 'I am reading'"
+          ],
+          "answer": "Both 'I read' and 'I am reading'",
+          "explanation": "Russian present tense covers both. Context determines which English translation fits."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "First conjugation endings: -ю, -ешь, -ет, -ем, -ете, -ют",
+        "Stem = infinitive minus -ТЬ (читать → чита-, знать → зна-)",
+        "Russian present = English present + present progressive — no separate форм",
+        "Some verbs have consonant stem changes (писать: С→Ш before endings)",
+        "Pronouns: я ты он/она/оно мы вы они"
+      ],
+      "vocabulary": ["читать", "знать", "думать", "понимать", "работать", "писать"],
+      "nextLesson": "Next: second conjugation — и-verbs like говорить and учить, with their own set of six endings."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What is 'я know' — conjugate знать for я?",
+        "type": "text-input",
+        "answer": "знаю",
+        "grammarPoint": "verb-conjugation-1st-ya"
+      },
+      {
+        "prompt": "What is 'she reads' — conjugate читать for она?",
+        "type": "text-input",
+        "answer": "читает",
+        "grammarPoint": "verb-conjugation-1st-on-ona"
+      },
+      {
+        "prompt": "What is the ты ending in first conjugation?",
+        "type": "multiple-choice",
+        "options": ["-ю", "-ешь", "-ет", "-ем"],
+        "answer": "-ешь",
+        "grammarPoint": "verb-endings-1st-conjugation"
+      },
+      {
+        "prompt": "Conjugate думать for мы:",
+        "type": "text-input",
+        "answer": "думаем",
+        "grammarPoint": "verb-conjugation-1st-my"
+      },
+      {
+        "prompt": "What is 'I write'? (stem change verb)",
+        "type": "text-input",
+        "answer": "пишу",
+        "grammarPoint": "verb-conjugation-stem-change"
+      },
+      {
+        "prompt": "Я читаю translates as:",
+        "type": "multiple-choice",
+        "options": [
+          "I read (not progressive)",
+          "I am reading (not habitual)",
+          "Both I read and I am reading"
+        ],
+        "answer": "Both I read and I am reading",
+        "grammarPoint": "present-tense-meaning"
+      },
+      {
+        "prompt": "Conjugate работать for они:",
+        "type": "text-input",
+        "answer": "работают",
+        "grammarPoint": "verb-conjugation-1st-oni"
+      },
+      {
+        "prompt": "What does понимать mean?",
+        "type": "text-input",
+        "answer": "to understand",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

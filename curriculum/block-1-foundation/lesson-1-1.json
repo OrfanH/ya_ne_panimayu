@@ -1,0 +1,241 @@
+{
+  "id": "1-1",
+  "unit": 1,
+  "lesson": 1,
+  "block": "foundation",
+  "title": "Familiar letters",
+  "subtitle": "Letters А К М О С Т",
+  "estimatedMinutes": 15,
+  "vocabulary": [
+    {
+      "cyrillic": "кот",
+      "transliteration": "kot",
+      "gender": "masculine",
+      "meaning": "cat",
+      "exampleCyrillic": "Это кот.",
+      "exampleTransliteration": "Eto kot.",
+      "exampleMeaning": "This is a cat."
+    },
+    {
+      "cyrillic": "том",
+      "transliteration": "tom",
+      "gender": "masculine",
+      "meaning": "volume (book)",
+      "exampleCyrillic": "Это том.",
+      "exampleTransliteration": "Eto tom.",
+      "exampleMeaning": "This is a volume."
+    },
+    {
+      "cyrillic": "мак",
+      "transliteration": "mak",
+      "gender": "masculine",
+      "meaning": "poppy",
+      "exampleCyrillic": "Это мак.",
+      "exampleTransliteration": "Eto mak.",
+      "exampleMeaning": "This is a poppy."
+    },
+    {
+      "cyrillic": "сок",
+      "transliteration": "sok",
+      "gender": "masculine",
+      "meaning": "juice",
+      "exampleCyrillic": "Это сок.",
+      "exampleTransliteration": "Eto sok.",
+      "exampleMeaning": "This is juice."
+    },
+    {
+      "cyrillic": "так",
+      "transliteration": "tak",
+      "gender": null,
+      "meaning": "so / like that",
+      "exampleCyrillic": "Вот так.",
+      "exampleTransliteration": "Vot tak.",
+      "exampleMeaning": "Like that."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You already know more Russian letters than you think. Six letters in the Cyrillic alphabet look almost identical to their Latin counterparts and make the same sounds. By the end of this lesson, you'll be reading real Russian words."
+    },
+    "why": {
+      "text": "Starting with familiar letters removes the fear of a 'foreign' alphabet. Once you see that А, К, М, О, С, and Т work exactly like in English, the rest of the alphabet becomes a manageable set of new shapes to learn — not an alien system."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Six letters you already know",
+          "body": "These six Cyrillic letters look and sound like their English equivalents: А (a), К (k), М (m), О (o), С (s), Т (t). When you see them in a Russian word, pronounce them exactly as you would in English.",
+          "examples": [
+            { "cyrillic": "А", "transliteration": "a", "meaning": "like 'a' in 'father'" },
+            { "cyrillic": "К", "transliteration": "k", "meaning": "like 'k' in 'kite'" },
+            { "cyrillic": "М", "transliteration": "m", "meaning": "like 'm' in 'mother'" },
+            { "cyrillic": "О", "transliteration": "o", "meaning": "like 'o' in 'bore' (when stressed)" },
+            { "cyrillic": "С", "transliteration": "s", "meaning": "like 's' in 'sun'" },
+            { "cyrillic": "Т", "transliteration": "t", "meaning": "like 't' in 'top'" }
+          ]
+        },
+        {
+          "title": "Reading your first words",
+          "body": "With just these six letters, you can already read real Russian words. Try sounding each one out letter by letter.",
+          "examples": [
+            { "cyrillic": "кот", "transliteration": "kot", "meaning": "cat" },
+            { "cyrillic": "том", "transliteration": "tom", "meaning": "volume (book)" },
+            { "cyrillic": "мак", "transliteration": "mak", "meaning": "poppy" },
+            { "cyrillic": "сок", "transliteration": "sok", "meaning": "juice" },
+            { "cyrillic": "так", "transliteration": "tak", "meaning": "so / like that" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What does the Russian word 'кот' mean?",
+          "type": "text-input",
+          "answer": "cat",
+          "explanation": "кот (kot) means 'cat'. К=k, О=o, Т=t — all familiar letters."
+        },
+        {
+          "prompt": "Write the Russian word for 'juice' using these letters: А К М О С Т",
+          "type": "text-input",
+          "answer": "сок",
+          "explanation": "Juice is сок (sok) — С=s, О=o, К=k."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Uppercase and lowercase",
+          "body": "Like English, Russian has uppercase and lowercase forms. For these six letters, they look the same as English: А/а, К/к, М/м, О/о, С/с, Т/т. Russian uses uppercase at the start of sentences and for proper nouns, just like English.",
+          "examples": [
+            { "cyrillic": "Москва", "transliteration": "Moskva", "meaning": "Moscow (uppercase М)" },
+            { "cyrillic": "Том", "transliteration": "Tom", "meaning": "Tom (the name, uppercase Т)" }
+          ]
+        },
+        {
+          "title": "Stressed vs unstressed О",
+          "body": "When О is stressed (emphasised), it sounds like 'o' in 'bore'. When unstressed, it reduces to an 'ah' sound. This is a key Russian pronunciation rule you'll use constantly. For now, just know it exists — we'll drill it in lesson 1-7.",
+          "examples": [
+            { "cyrillic": "мОсква", "transliteration": "mah-SKVA", "meaning": "The first О is unstressed (sounds like 'ah')" },
+            { "cyrillic": "кОт", "transliteration": "KOT", "meaning": "О is stressed here (sounds like 'o')" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What letter does this look like in English? К",
+          "type": "text-input",
+          "answer": "k",
+          "explanation": "К in Russian is the same as K in English — same shape, same sound."
+        },
+        {
+          "prompt": "Read this word and type its meaning: мак",
+          "type": "text-input",
+          "answer": "poppy",
+          "explanation": "мак (mak) means 'poppy'. М=m, А=a, К=k."
+        },
+        {
+          "prompt": "Read this word and type its meaning: так",
+          "type": "text-input",
+          "answer": "so",
+          "explanation": "так (tak) means 'so' or 'like that'. Т=t, А=a, К=k."
+        },
+        {
+          "prompt": "Which Russian word means 'volume' (of a book)?",
+          "type": "multiple-choice",
+          "options": ["кот", "том", "мак", "сок"],
+          "answer": "том",
+          "explanation": "том (tom) means a volume or tome."
+        },
+        {
+          "prompt": "Type the Russian word for 'cat':",
+          "type": "text-input",
+          "answer": "кот",
+          "explanation": "кот = cat. К(k) + О(o) + Т(t)."
+        },
+        {
+          "prompt": "What sound does С make?",
+          "type": "multiple-choice",
+          "options": ["s as in sun", "sh as in ship", "k as in kite", "z as in zoo"],
+          "answer": "s as in sun",
+          "explanation": "С always makes the 's' sound in Russian, just like in English."
+        },
+        {
+          "prompt": "Read this word and type its meaning: сок",
+          "type": "text-input",
+          "answer": "juice",
+          "explanation": "сок (sok) means 'juice'. С=s, О=o, К=k."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "А, К, М, О, С, Т look and sound the same as their English equivalents",
+        "Stressed О sounds like 'o' in 'bore'; unstressed О sounds like 'ah'",
+        "Russian uses uppercase for sentence starts and proper nouns, just like English"
+      ],
+      "vocabulary": ["кот", "том", "мак", "сок", "так"],
+      "nextLesson": "Next: six letters that look like English but make completely different sounds — the 'false friends'."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What does кот mean?",
+        "type": "multiple-choice",
+        "options": ["dog", "cat", "book", "juice"],
+        "answer": "cat",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Type the Russian word for 'juice':",
+        "type": "text-input",
+        "answer": "сок",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What sound does the Russian letter М make?",
+        "type": "multiple-choice",
+        "options": ["n", "m", "p", "b"],
+        "answer": "m",
+        "grammarPoint": "cyrillic-familiar"
+      },
+      {
+        "prompt": "Which word means 'poppy'?",
+        "type": "multiple-choice",
+        "options": ["так", "мак", "кот", "том"],
+        "answer": "мак",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Type the Russian word for 'cat':",
+        "type": "text-input",
+        "answer": "кот",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does том mean?",
+        "type": "text-input",
+        "answer": "volume",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "When О is unstressed, it sounds like:",
+        "type": "multiple-choice",
+        "options": ["'o' in bore", "'ah'", "'oo' in moon", "'e' in bed"],
+        "answer": "'ah'",
+        "grammarPoint": "stress-rules"
+      },
+      {
+        "prompt": "What does так mean?",
+        "type": "multiple-choice",
+        "options": ["cat", "poppy", "so / like that", "volume"],
+        "answer": "so / like that",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

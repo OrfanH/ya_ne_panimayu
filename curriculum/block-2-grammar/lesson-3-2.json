@@ -1,0 +1,283 @@
+{
+  "id": "3-2",
+  "unit": 3,
+  "lesson": 2,
+  "block": "grammar",
+  "title": "Plural forms",
+  "subtitle": "How nouns change when there's more than one",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "города",
+      "transliteration": "goroda",
+      "gender": "masculine",
+      "meaning": "cities (plural of город)",
+      "exampleCyrillic": "Большие города.",
+      "exampleTransliteration": "Bolshiye goroda.",
+      "exampleMeaning": "Big cities."
+    },
+    {
+      "cyrillic": "книги",
+      "transliteration": "knigi",
+      "gender": "feminine",
+      "meaning": "books (plural of книга)",
+      "exampleCyrillic": "Мои книги.",
+      "exampleTransliteration": "Moi knigi.",
+      "exampleMeaning": "My books."
+    },
+    {
+      "cyrillic": "слова",
+      "transliteration": "slova",
+      "gender": "neuter",
+      "meaning": "words (plural of слово)",
+      "exampleCyrillic": "Новые слова.",
+      "exampleTransliteration": "Noviye slova.",
+      "exampleMeaning": "New words."
+    },
+    {
+      "cyrillic": "друзья",
+      "transliteration": "druz'ya",
+      "gender": "masculine",
+      "meaning": "friends (plural of друг)",
+      "exampleCyrillic": "Мои друзья здесь.",
+      "exampleTransliteration": "Moi druz'ya zdes'.",
+      "exampleMeaning": "My friends are here."
+    },
+    {
+      "cyrillic": "люди",
+      "transliteration": "lyudi",
+      "gender": "plural",
+      "meaning": "people (supletive plural of человек)",
+      "exampleCyrillic": "Здесь много людей.",
+      "exampleTransliteration": "Zdes' mnogo lyudey.",
+      "exampleMeaning": "There are many people here."
+    },
+    {
+      "cyrillic": "дети",
+      "transliteration": "deti",
+      "gender": "plural",
+      "meaning": "children (supletive plural of ребёнок)",
+      "exampleCyrillic": "Дети играют.",
+      "exampleTransliteration": "Deti igrayut.",
+      "exampleMeaning": "The children are playing."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "In English, plurals are simple — add -s, with a handful of exceptions (mouse→mice). Russian is more systematic, but the system has more patterns. Today you'll learn the three main plural endings and two important irregular plurals that appear constantly. Master these and you can pluralise almost any noun you encounter."
+    },
+    "why": {
+      "text": "Plural formation in Russian depends on gender, the final consonant of the stem, and whether the spelling rules apply. There's a pattern to it — it's not random. Learning it as a set of rules (with the exceptions flagged) is faster than memorising each plural individually."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Masculine plurals",
+          "body": "Most masculine nouns add -Ы or -И. The spelling rule: after Г К Х Ж Ш Щ Ч, write -И (not -Ы). Otherwise, use -Ы. Some masculine nouns take a stressed -А ending instead — these must be memorised.",
+          "examples": [
+            { "cyrillic": "стол → столы", "transliteration": "stol → stoly", "meaning": "table → tables (add -Ы)" },
+            { "cyrillic": "урок → уроки", "transliteration": "urok → uroki", "meaning": "lesson → lessons (К → -И, spelling rule)" },
+            { "cyrillic": "город → города", "transliteration": "gorod → goroda", "meaning": "city → cities (stressed -А ending, irregular)" },
+            { "cyrillic": "дом → дома", "transliteration": "dom → doma", "meaning": "house → houses (stressed -А ending, irregular)" }
+          ]
+        },
+        {
+          "title": "Feminine plurals",
+          "body": "Feminine nouns ending in -А drop the А and add -Ы or -И. After Г К Х Ж Ш Щ Ч, use -И. Feminines ending in -Я take -И. Feminines ending in -Ь take -И.",
+          "examples": [
+            { "cyrillic": "книга → книги", "transliteration": "kniga → knigi", "meaning": "book → books (-А dropped, -И after Г)" },
+            { "cyrillic": "школа → школы", "transliteration": "shkola → shkoly", "meaning": "school → schools (-А → -Ы)" },
+            { "cyrillic": "дверь → двери", "transliteration": "dver' → dveri", "meaning": "door → doors (-Ь → -И)" }
+          ]
+        },
+        {
+          "title": "Neuter plurals",
+          "body": "Neuter nouns ending in -О take -А. Neuter nouns ending in -Е take -Я.",
+          "examples": [
+            { "cyrillic": "слово → слова", "transliteration": "slovo → slova", "meaning": "word → words (-О → -А)" },
+            { "cyrillic": "окно → окна", "transliteration": "okno → okna", "meaning": "window → windows (-О → -А)" },
+            { "cyrillic": "море → моря", "transliteration": "more → morya", "meaning": "sea → seas (-Е → -Я)" }
+          ]
+        },
+        {
+          "title": "Supletive plurals — completely different words",
+          "body": "A few very common nouns form their plural from a different root entirely — called supletive plurals. These must be learned as separate vocabulary items. человек → люди (person → people) and ребёнок → дети (child → children) are the two you'll use constantly.",
+          "examples": [
+            { "cyrillic": "человек → люди", "transliteration": "chelovek → lyudi", "meaning": "person → people" },
+            { "cyrillic": "ребёнок → дети", "transliteration": "ryobonok → deti", "meaning": "child → children" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What is the plural of книга?",
+          "type": "text-input",
+          "answer": "книги",
+          "explanation": "книга → книги. The А drops and -И replaces it (spelling rule: after Г, use И not Ы)."
+        },
+        {
+          "prompt": "What is the plural of слово?",
+          "type": "text-input",
+          "answer": "слова",
+          "explanation": "слово → слова. Neuter О-ending: drop О, add А."
+        },
+        {
+          "prompt": "What is the plural of человек?",
+          "type": "multiple-choice",
+          "options": ["человеки", "человека", "люди", "человеков"],
+          "answer": "люди",
+          "explanation": "человек → люди. Supletive plural — completely different root. Must be memorised."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "The spelling rules (7-letter rule)",
+          "body": "Russian has a crucial spelling rule: after Г К Х Ж Ш Щ Ч Ц, you cannot write Ы — use И instead. This applies in plural endings: урок→уроки (not уроки), книга→книги (not книги is actually correct here due to this rule). The 7-letter rule also applies in other contexts — learn it as a universal constraint.",
+          "examples": [
+            { "cyrillic": "урок → уроки", "transliteration": "urok → uroki", "meaning": "lesson → lessons (К triggers -И)" },
+            { "cyrillic": "нож → ножи", "transliteration": "nozh → nozhi", "meaning": "knife → knives (Ж triggers -И)" },
+            { "cyrillic": "карандаш → карандаши", "transliteration": "karandash → karandashi", "meaning": "pencil → pencils (Ш triggers -И)" }
+          ]
+        },
+        {
+          "title": "Irregular masculine -А plurals",
+          "body": "Some masculine nouns have irregular plurals ending in stressed -А. These are high-frequency words you'll use constantly. There's no grammatical rule to predict which nouns do this — memorise the list.",
+          "examples": [
+            { "cyrillic": "город → города", "transliteration": "gorod → goroda", "meaning": "city → cities" },
+            { "cyrillic": "дом → дома", "transliteration": "dom → doma", "meaning": "house → houses" },
+            { "cyrillic": "глаз → глаза", "transliteration": "glaz → glaza", "meaning": "eye → eyes" },
+            { "cyrillic": "доктор → доктора", "transliteration": "doktor → doktora", "meaning": "doctor → doctors" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is the plural of стол?",
+          "type": "text-input",
+          "answer": "столы",
+          "explanation": "стол → столы. Masculine consonant ending: add -Ы."
+        },
+        {
+          "prompt": "What is the plural of дверь?",
+          "type": "text-input",
+          "answer": "двери",
+          "explanation": "дверь → двери. Feminine Ь-ending: Ь → -И."
+        },
+        {
+          "prompt": "What is the plural of ребёнок (child)?",
+          "type": "multiple-choice",
+          "options": ["ребёнки", "ребята", "дети", "детки"],
+          "answer": "дети",
+          "explanation": "ребёнок → дети. Supletive plural — completely different root."
+        },
+        {
+          "prompt": "What is the plural of окно?",
+          "type": "text-input",
+          "answer": "окна",
+          "explanation": "окно → окна. Neuter О-ending: О → А."
+        },
+        {
+          "prompt": "What is the plural of урок?",
+          "type": "text-input",
+          "answer": "уроки",
+          "explanation": "урок → уроки. Masculine + spelling rule: after К, use -И not -Ы."
+        },
+        {
+          "prompt": "What is the plural of люди?",
+          "type": "multiple-choice",
+          "options": [
+            "люди is the plural (of человек)",
+            "людей",
+            "люды",
+            "людья"
+          ],
+          "answer": "люди is the plural (of человек)",
+          "explanation": "люди is already the plural. The singular is человек. люди → людей in genitive plural."
+        },
+        {
+          "prompt": "What is the plural of школа?",
+          "type": "text-input",
+          "answer": "школы",
+          "explanation": "школа → школы. Feminine А-ending: А → -Ы."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Masculine: add -Ы (after hard consonants) or -И (after Г К Х Ж Ш Щ Ч). Exception: some take stressed -А (город→города)",
+        "Feminine -А/-Я: drop ending, add -Ы or -И. Feminine -Ь: drop Ь, add -И",
+        "Neuter -О: -О→-А. Neuter -Е: -Е→-Я",
+        "Spelling rule: never write Ы after Г К Х Ж Ш Щ Ч — use И instead",
+        "Supletive plurals: человек→люди, ребёнок→дети"
+      ],
+      "vocabulary": ["города", "книги", "слова", "друзья", "люди", "дети"],
+      "nextLesson": "Next: numbers and nouns — why 2 дома but 5 домов, and the counting rules that govern Russian quantity."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What is the plural of стол?",
+        "type": "text-input",
+        "answer": "столы",
+        "grammarPoint": "nominative-plural-masculine"
+      },
+      {
+        "prompt": "What is the plural of книга?",
+        "type": "text-input",
+        "answer": "книги",
+        "grammarPoint": "nominative-plural-feminine"
+      },
+      {
+        "prompt": "What is the plural of слово?",
+        "type": "text-input",
+        "answer": "слова",
+        "grammarPoint": "nominative-plural-neuter"
+      },
+      {
+        "prompt": "What is the plural of человек?",
+        "type": "multiple-choice",
+        "options": ["человеки", "люди", "человека", "людя"],
+        "answer": "люди",
+        "grammarPoint": "supletive-plural"
+      },
+      {
+        "prompt": "After which letters do you write -И instead of -Ы in plural?",
+        "type": "multiple-choice",
+        "options": [
+          "After all consonants",
+          "After Г К Х Ж Ш Щ Ч",
+          "After vowels only",
+          "After Л М Н Р"
+        ],
+        "answer": "After Г К Х Ж Ш Щ Ч",
+        "grammarPoint": "spelling-rule-7-letters"
+      },
+      {
+        "prompt": "What is the plural of дом?",
+        "type": "multiple-choice",
+        "options": ["домы", "доми", "дома", "домья"],
+        "answer": "дома",
+        "grammarPoint": "nominative-plural-irregular"
+      },
+      {
+        "prompt": "What is the plural of дверь?",
+        "type": "text-input",
+        "answer": "двери",
+        "grammarPoint": "nominative-plural-feminine"
+      },
+      {
+        "prompt": "What is the plural of ребёнок (child)?",
+        "type": "text-input",
+        "answer": "дети",
+        "grammarPoint": "supletive-plural"
+      }
+    ]
+  }
+}

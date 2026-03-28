@@ -1,0 +1,266 @@
+{
+  "id": "1-2",
+  "unit": 1,
+  "lesson": 2,
+  "block": "foundation",
+  "title": "False friends",
+  "subtitle": "Letters В Е Н Р У Х",
+  "estimatedMinutes": 15,
+  "vocabulary": [
+    {
+      "cyrillic": "вот",
+      "transliteration": "vot",
+      "gender": null,
+      "meaning": "here is / there",
+      "exampleCyrillic": "Вот мак.",
+      "exampleTransliteration": "Vot mak.",
+      "exampleMeaning": "Here is a poppy."
+    },
+    {
+      "cyrillic": "нет",
+      "transliteration": "net",
+      "gender": null,
+      "meaning": "no",
+      "exampleCyrillic": "Нет, это не так.",
+      "exampleTransliteration": "Net, eto ne tak.",
+      "exampleMeaning": "No, that is not so."
+    },
+    {
+      "cyrillic": "нос",
+      "transliteration": "nos",
+      "gender": "masculine",
+      "meaning": "nose",
+      "exampleCyrillic": "Это нос.",
+      "exampleTransliteration": "Eto nos.",
+      "exampleMeaning": "This is a nose."
+    },
+    {
+      "cyrillic": "рот",
+      "transliteration": "rot",
+      "gender": "masculine",
+      "meaning": "mouth",
+      "exampleCyrillic": "Это рот.",
+      "exampleTransliteration": "Eto rot.",
+      "exampleMeaning": "This is a mouth."
+    },
+    {
+      "cyrillic": "ура",
+      "transliteration": "ura",
+      "gender": null,
+      "meaning": "hurrah",
+      "exampleCyrillic": "Ура!",
+      "exampleTransliteration": "Ura!",
+      "exampleMeaning": "Hurrah!"
+    },
+    {
+      "cyrillic": "ухо",
+      "transliteration": "ukho",
+      "gender": "neuter",
+      "meaning": "ear",
+      "exampleCyrillic": "Это ухо.",
+      "exampleTransliteration": "Eto ukho.",
+      "exampleMeaning": "This is an ear."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Six Cyrillic letters look like English letters you already know — В, Е, Н, Р, У, Х. But every single one of them makes a different sound. This is the most common trap for English speakers. One glance and you think you know them. You don't — yet."
+    },
+    "why": {
+      "text": "These 'false friends' cause more mispronunciation errors than any other part of the Cyrillic alphabet. В looks like B but makes a V sound. Н looks like H but makes an N sound. Р looks like P but makes an R sound. Knowing these precisely — not approximately — is the difference between readable Russian and gibberish."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "The six false friends",
+          "body": "These letters look similar to English letters but make completely different sounds. Memorise the correct sound — not the visual association.",
+          "examples": [
+            { "cyrillic": "В", "transliteration": "v", "meaning": "like 'v' in 'victory' — NOT 'b'" },
+            { "cyrillic": "Е", "transliteration": "ye", "meaning": "like 'ye' in 'yes' — NOT 'e' as in 'bed'" },
+            { "cyrillic": "Н", "transliteration": "n", "meaning": "like 'n' in 'night' — NOT 'h'" },
+            { "cyrillic": "Р", "transliteration": "r", "meaning": "rolled 'r' as in Spanish — NOT 'p'" },
+            { "cyrillic": "У", "transliteration": "u", "meaning": "like 'oo' in 'moon' — NOT 'y' or 'u' in 'cut'" },
+            { "cyrillic": "Х", "transliteration": "kh", "meaning": "like 'ch' in Scottish 'loch' — NOT 'x'" }
+          ]
+        },
+        {
+          "title": "Reading with false friends",
+          "body": "Now combine the false friends with the six familiar letters from lesson 1-1 (А К М О С Т) to read real words.",
+          "examples": [
+            { "cyrillic": "вот", "transliteration": "vot", "meaning": "here is (В=v, not b)" },
+            { "cyrillic": "нет", "transliteration": "net", "meaning": "no (Н=n, not h)" },
+            { "cyrillic": "нос", "transliteration": "nos", "meaning": "nose (Н=n, Р absent here — all familiar)" },
+            { "cyrillic": "рот", "transliteration": "rot", "meaning": "mouth (Р=r, not p)" },
+            { "cyrillic": "ура", "transliteration": "ura", "meaning": "hurrah (У=oo, Р=r)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What sound does В make?",
+          "type": "multiple-choice",
+          "options": ["b as in bat", "v as in victory", "w as in west", "p as in put"],
+          "answer": "v as in victory",
+          "explanation": "В = V. It looks like the English B but always makes a V sound in Russian."
+        },
+        {
+          "prompt": "What does нет mean?",
+          "type": "text-input",
+          "answer": "no",
+          "explanation": "нет (net) = no. Н=n (not h), Е=ye, Т=t."
+        },
+        {
+          "prompt": "What sound does Р make?",
+          "type": "multiple-choice",
+          "options": ["p as in put", "r (rolled)", "b as in bat", "f as in fox"],
+          "answer": "r (rolled)",
+          "explanation": "Р = R (rolled). It looks like the English P but makes an R sound — similar to Spanish R."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Х — the rough sound",
+          "body": "Х (kh) is a sound English doesn't have natively. It's a raspy sound made at the back of the throat — like the 'ch' in the Scottish word 'loch' or the German 'Bach'. It's not 'h', it's not 'k' — it's somewhere between them. Don't swallow it; make it clearly.",
+          "examples": [
+            { "cyrillic": "ухо", "transliteration": "ukho", "meaning": "ear — the kh sound is in the middle" },
+            { "cyrillic": "хор", "transliteration": "khor", "meaning": "choir — starts with the kh sound" }
+          ]
+        },
+        {
+          "title": "Е — the two-in-one vowel",
+          "body": "Е is a two-part sound: 'y' + 'e'. At the start of a word or after another vowel it sounds like 'YEH' (as in 'yes'). After a consonant it softens that consonant and sounds closer to 'EH'. For now, read it as 'ye' — you'll refine this in later lessons.",
+          "examples": [
+            { "cyrillic": "нет", "transliteration": "nyet", "meaning": "no — Е after consonant Н" },
+            { "cyrillic": "ел", "transliteration": "yel", "meaning": "he ate — Е at word start, clear 'ye' sound" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What sound does Н make?",
+          "type": "multiple-choice",
+          "options": ["h as in hat", "n as in night", "m as in moon", "k as in kite"],
+          "answer": "n as in night",
+          "explanation": "Н = N. It looks like H but always makes an N sound."
+        },
+        {
+          "prompt": "Read this word and type its meaning: нос",
+          "type": "text-input",
+          "answer": "nose",
+          "explanation": "нос (nos) = nose. Н=n, О=o, С=s."
+        },
+        {
+          "prompt": "Read this word and type its meaning: рот",
+          "type": "text-input",
+          "answer": "mouth",
+          "explanation": "рот (rot) = mouth. Р=r (not p), О=o, Т=t."
+        },
+        {
+          "prompt": "What does вот mean?",
+          "type": "multiple-choice",
+          "options": ["yes", "no", "here is", "cat"],
+          "answer": "here is",
+          "explanation": "вот (vot) = here is / there. В=v (not b), О=o, Т=t."
+        },
+        {
+          "prompt": "Type the Russian word for 'hurrah':",
+          "type": "text-input",
+          "answer": "ура",
+          "explanation": "ура (ura) = hurrah. У=oo, Р=r, А=a."
+        },
+        {
+          "prompt": "What does ухо mean?",
+          "type": "text-input",
+          "answer": "ear",
+          "explanation": "ухо (ukho) = ear. У=oo, Х=kh (back-of-throat), О=o."
+        },
+        {
+          "prompt": "Which letter looks like H but makes an N sound?",
+          "type": "multiple-choice",
+          "options": ["В", "Е", "Н", "Р"],
+          "answer": "Н",
+          "explanation": "Н looks identical to the English H but always makes an N sound in Russian."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "В = V (not B), Е = YE (not E), Н = N (not H), Р = R (not P), У = OO (not Y), Х = KH (not X)",
+        "Х is a back-of-throat sound — like Scottish 'loch', not a K or H",
+        "Е after a consonant softens it; at word start it sounds like 'ye'"
+      ],
+      "vocabulary": ["вот", "нет", "нос", "рот", "ура", "ухо"],
+      "nextLesson": "Next: nine entirely new letter shapes — Б Г Д З И Й Л П Ф — none of them look like anything in English."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What sound does В make?",
+        "type": "multiple-choice",
+        "options": ["b", "v", "w", "p"],
+        "answer": "v",
+        "grammarPoint": "cyrillic-false-friends"
+      },
+      {
+        "prompt": "What does нет mean?",
+        "type": "multiple-choice",
+        "options": ["yes", "no", "here", "good"],
+        "answer": "no",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Which letter looks like P but sounds like R?",
+        "type": "multiple-choice",
+        "options": ["В", "Х", "Р", "Н"],
+        "answer": "Р",
+        "grammarPoint": "cyrillic-false-friends"
+      },
+      {
+        "prompt": "Type the Russian word for 'nose':",
+        "type": "text-input",
+        "answer": "нос",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What sound does У make?",
+        "type": "multiple-choice",
+        "options": ["y as in yes", "oo as in moon", "u as in cut", "e as in bed"],
+        "answer": "oo as in moon",
+        "grammarPoint": "cyrillic-false-friends"
+      },
+      {
+        "prompt": "What does рот mean?",
+        "type": "text-input",
+        "answer": "mouth",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Х sounds most like:",
+        "type": "multiple-choice",
+        "options": ["x in box", "k in kite", "h in hat", "ch in Scottish loch"],
+        "answer": "ch in Scottish loch",
+        "grammarPoint": "cyrillic-false-friends"
+      },
+      {
+        "prompt": "What does ухо mean?",
+        "type": "text-input",
+        "answer": "ear",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does вот mean?",
+        "type": "multiple-choice",
+        "options": ["no", "hurrah", "here is", "mouth"],
+        "answer": "here is",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

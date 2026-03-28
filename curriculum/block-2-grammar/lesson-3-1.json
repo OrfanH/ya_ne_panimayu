@@ -1,0 +1,286 @@
+{
+  "id": "3-1",
+  "unit": 3,
+  "lesson": 1,
+  "block": "grammar",
+  "title": "Noun gender",
+  "subtitle": "Masculine, feminine, and neuter — the rules and exceptions",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "словарь",
+      "transliteration": "slovar'",
+      "gender": "masculine",
+      "meaning": "dictionary",
+      "exampleCyrillic": "Где мой словарь?",
+      "exampleTransliteration": "Gde moy slovar'?",
+      "exampleMeaning": "Where is my dictionary?"
+    },
+    {
+      "cyrillic": "дверь",
+      "transliteration": "dver'",
+      "gender": "feminine",
+      "meaning": "door",
+      "exampleCyrillic": "Закрой дверь.",
+      "exampleTransliteration": "Zakroy dver'.",
+      "exampleMeaning": "Close the door."
+    },
+    {
+      "cyrillic": "море",
+      "transliteration": "more",
+      "gender": "neuter",
+      "meaning": "sea",
+      "exampleCyrillic": "Я вижу море.",
+      "exampleTransliteration": "Ya vizhu more.",
+      "exampleMeaning": "I see the sea."
+    },
+    {
+      "cyrillic": "площадь",
+      "transliteration": "ploshchad'",
+      "gender": "feminine",
+      "meaning": "square / plaza",
+      "exampleCyrillic": "Красная площадь.",
+      "exampleTransliteration": "Krasnaya ploshchad'.",
+      "exampleMeaning": "Red Square."
+    },
+    {
+      "cyrillic": "кафе",
+      "transliteration": "kafe",
+      "gender": "neuter",
+      "meaning": "cafe",
+      "exampleCyrillic": "Я в кафе.",
+      "exampleTransliteration": "Ya v kafe.",
+      "exampleMeaning": "I am in a cafe."
+    },
+    {
+      "cyrillic": "имя",
+      "transliteration": "imya",
+      "gender": "neuter",
+      "meaning": "first name",
+      "exampleCyrillic": "Как ваше имя?",
+      "exampleTransliteration": "Kak vashe imya?",
+      "exampleMeaning": "What is your first name?"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Every Russian noun has a gender — masculine, feminine, or neuter. This isn't biological sex; it's a grammatical category that affects every adjective, pronoun, and verb that agrees with the noun. You can predict gender from the ending most of the time. Today you learn the rules — and the exceptions that trip everyone up."
+    },
+    "why": {
+      "text": "Gender is the foundation of Russian agreement. If you get the gender wrong, the adjective ending is wrong, the pronoun is wrong, and the verb agreement is wrong. Everything downstream of gender becomes an error. Getting gender right from the start is more important than memorising complex grammar — it's the root of correctness."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Gender from the ending — the core rules",
+          "body": "Most noun gender is predictable from the final letter. Three rules cover about 90% of nouns.",
+          "examples": [
+            { "cyrillic": "Consonant ending → masculine", "transliteration": "стол, дом, год, друг", "meaning": "table, house, year, friend" },
+            { "cyrillic": "А / Я ending → feminine", "transliteration": "книга, школа, земля", "meaning": "book, school, earth" },
+            { "cyrillic": "О / Е ending → neuter", "transliteration": "окно, море, слово", "meaning": "window, sea, word" }
+          ]
+        },
+        {
+          "title": "Nouns ending in Ь — the split",
+          "body": "Nouns ending in Ь (soft sign) can be EITHER masculine OR feminine. There is no rule — you must learn the gender with the word. This is the biggest source of gender errors for learners.",
+          "examples": [
+            { "cyrillic": "словарь (м)", "transliteration": "slovar' (m)", "meaning": "dictionary — masculine" },
+            { "cyrillic": "дверь (ж)", "transliteration": "dver' (f)", "meaning": "door — feminine" },
+            { "cyrillic": "день (м)", "transliteration": "den' (m)", "meaning": "day — masculine" },
+            { "cyrillic": "мать (ж)", "transliteration": "mat' (f)", "meaning": "mother — feminine" },
+            { "cyrillic": "площадь (ж)", "transliteration": "ploshchad' (f)", "meaning": "square/plaza — feminine" }
+          ]
+        },
+        {
+          "title": "Exceptions and invariable nouns",
+          "body": "Some nouns defy the ending rules. People words follow biological gender regardless of ending (мужчина is masculine). Borrowed words that end in vowels other than А/О/Е don't decline and are usually neuter.",
+          "examples": [
+            { "cyrillic": "кафе (ср)", "transliteration": "kafe (n)", "meaning": "cafe — neuter, ends in Е, doesn't decline" },
+            { "cyrillic": "такси (ср)", "transliteration": "taksi (n)", "meaning": "taxi — neuter, ends in И, doesn't decline" },
+            { "cyrillic": "мужчина (м)", "transliteration": "muzhchina (m)", "meaning": "man — masculine despite А ending" },
+            { "cyrillic": "имя (ср)", "transliteration": "imya (n)", "meaning": "name — neuter, ends in Я (special declension)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What gender is книга?",
+          "type": "multiple-choice",
+          "options": ["masculine", "feminine", "neuter"],
+          "answer": "feminine",
+          "explanation": "книга ends in А — feminine. The rule is reliable here."
+        },
+        {
+          "prompt": "What gender are nouns ending in Ь?",
+          "type": "multiple-choice",
+          "options": [
+            "Always masculine",
+            "Always feminine",
+            "Always neuter",
+            "Either masculine or feminine — must be learned with the word"
+          ],
+          "answer": "Either masculine or feminine — must be learned with the word",
+          "explanation": "Ь-ending nouns split between masculine and feminine. No rule — learn gender with the word."
+        },
+        {
+          "prompt": "What gender is море (sea)?",
+          "type": "multiple-choice",
+          "options": ["masculine", "feminine", "neuter"],
+          "answer": "neuter",
+          "explanation": "море ends in Е — neuter."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Why gender matters — agreement",
+          "body": "Every adjective modifying a noun must agree in gender, number, and case. The word 'my' has four forms: мой (masculine), моя (feminine), моё (neuter), мои (plural). Get the gender wrong and the possessive is wrong. The same applies to красивый/красивая/красивое (beautiful), новый/новая/новое (new), etc.",
+          "examples": [
+            { "cyrillic": "мой словарь", "transliteration": "moy slovar'", "meaning": "my dictionary (masculine)" },
+            { "cyrillic": "моя дверь", "transliteration": "moya dver'", "meaning": "my door (feminine)" },
+            { "cyrillic": "моё море", "transliteration": "moyo more", "meaning": "my sea (neuter)" }
+          ]
+        },
+        {
+          "title": "Learning gender as part of the word",
+          "body": "The most effective strategy: never learn a noun alone. Always learn it with a determiner that shows its gender. Learn мой дом (not just дом), моя книга (not just книга). This drills the agreement pattern into muscle memory alongside the word. The mnemonic: мой = masculine, моя = feminine, моё = neuter.",
+          "examples": [
+            { "cyrillic": "мой — masculine", "transliteration": "moy", "meaning": "my (m): мой дом, мой год, мой словарь" },
+            { "cyrillic": "моя — feminine", "transliteration": "moya", "meaning": "my (f): моя книга, моя школа, моя дверь" },
+            { "cyrillic": "моё — neuter", "transliteration": "moyo", "meaning": "my (n): моё слово, моё море, моё кафе" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What gender is стол?",
+          "type": "multiple-choice",
+          "options": ["masculine", "feminine", "neuter"],
+          "answer": "masculine",
+          "explanation": "стол ends in a consonant — masculine."
+        },
+        {
+          "prompt": "What gender is школа?",
+          "type": "multiple-choice",
+          "options": ["masculine", "feminine", "neuter"],
+          "answer": "feminine",
+          "explanation": "школа ends in А — feminine."
+        },
+        {
+          "prompt": "What gender is окно?",
+          "type": "multiple-choice",
+          "options": ["masculine", "feminine", "neuter"],
+          "answer": "neuter",
+          "explanation": "окно ends in О — neuter."
+        },
+        {
+          "prompt": "What gender is дверь?",
+          "type": "multiple-choice",
+          "options": ["masculine", "feminine", "neuter"],
+          "answer": "feminine",
+          "explanation": "дверь ends in Ь — this must be learned. It is feminine."
+        },
+        {
+          "prompt": "What is the correct form of 'my' for словарь (dictionary, masculine)?",
+          "type": "multiple-choice",
+          "options": ["моя", "мой", "моё", "мои"],
+          "answer": "мой",
+          "explanation": "мой is the masculine form. словарь is masculine, so: мой словарь."
+        },
+        {
+          "prompt": "What gender is кафе?",
+          "type": "multiple-choice",
+          "options": ["masculine", "feminine", "neuter"],
+          "answer": "neuter",
+          "explanation": "кафе is a borrowed word ending in Е — neuter. It doesn't decline."
+        },
+        {
+          "prompt": "What does море mean?",
+          "type": "text-input",
+          "answer": "sea",
+          "explanation": "море (more) = sea. Neuter (ends in Е)."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Consonant ending → masculine (стол, год, друг)",
+        "А / Я ending → feminine (книга, школа, земля)",
+        "О / Е ending → neuter (слово, море, окно)",
+        "Ь ending → EITHER masculine OR feminine — learn with the word",
+        "Borrowed words ending in non-standard vowels → usually neuter, don't decline",
+        "People words follow biological gender regardless of ending"
+      ],
+      "vocabulary": ["словарь", "дверь", "море", "площадь", "кафе", "имя"],
+      "nextLesson": "Next: plural forms — how nouns change when there's more than one."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What gender is год?",
+        "type": "multiple-choice",
+        "options": ["masculine", "feminine", "neuter"],
+        "answer": "masculine",
+        "grammarPoint": "noun-gender"
+      },
+      {
+        "prompt": "What gender is вода?",
+        "type": "multiple-choice",
+        "options": ["masculine", "feminine", "neuter"],
+        "answer": "feminine",
+        "grammarPoint": "noun-gender"
+      },
+      {
+        "prompt": "Nouns ending in Ь are:",
+        "type": "multiple-choice",
+        "options": [
+          "Always masculine",
+          "Always feminine",
+          "Either masculine or feminine",
+          "Always neuter"
+        ],
+        "answer": "Either masculine or feminine",
+        "grammarPoint": "noun-gender"
+      },
+      {
+        "prompt": "What is 'my' for a feminine noun?",
+        "type": "multiple-choice",
+        "options": ["мой", "моя", "моё", "мои"],
+        "answer": "моя",
+        "grammarPoint": "possessive-gender-agreement"
+      },
+      {
+        "prompt": "What gender is слово?",
+        "type": "multiple-choice",
+        "options": ["masculine", "feminine", "neuter"],
+        "answer": "neuter",
+        "grammarPoint": "noun-gender"
+      },
+      {
+        "prompt": "What does дверь mean?",
+        "type": "text-input",
+        "answer": "door",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "кафе doesn't decline. What gender is it?",
+        "type": "multiple-choice",
+        "options": ["masculine", "feminine", "neuter"],
+        "answer": "neuter",
+        "grammarPoint": "noun-gender"
+      },
+      {
+        "prompt": "What does море mean?",
+        "type": "text-input",
+        "answer": "sea",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

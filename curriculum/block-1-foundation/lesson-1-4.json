@@ -1,0 +1,278 @@
+{
+  "id": "1-4",
+  "unit": 1,
+  "lesson": 4,
+  "block": "foundation",
+  "title": "Hissing consonants",
+  "subtitle": "Letters Ж Ц Ч Ш Щ",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "шаг",
+      "transliteration": "shag",
+      "gender": "masculine",
+      "meaning": "step / pace",
+      "exampleCyrillic": "Один шаг.",
+      "exampleTransliteration": "Odin shag.",
+      "exampleMeaning": "One step."
+    },
+    {
+      "cyrillic": "чай",
+      "transliteration": "chay",
+      "gender": "masculine",
+      "meaning": "tea",
+      "exampleCyrillic": "Хочу чай.",
+      "exampleTransliteration": "Khochu chay.",
+      "exampleMeaning": "I want tea."
+    },
+    {
+      "cyrillic": "жук",
+      "transliteration": "zhuk",
+      "gender": "masculine",
+      "meaning": "beetle",
+      "exampleCyrillic": "Это жук.",
+      "exampleTransliteration": "Eto zhuk.",
+      "exampleMeaning": "This is a beetle."
+    },
+    {
+      "cyrillic": "борщ",
+      "transliteration": "borshch",
+      "gender": "masculine",
+      "meaning": "borscht (beetroot soup)",
+      "exampleCyrillic": "Борщ вкусный.",
+      "exampleTransliteration": "Borshch vkusniy.",
+      "exampleMeaning": "Borscht is delicious."
+    },
+    {
+      "cyrillic": "каша",
+      "transliteration": "kasha",
+      "gender": "feminine",
+      "meaning": "porridge / kasha",
+      "exampleCyrillic": "Это каша.",
+      "exampleTransliteration": "Eto kasha.",
+      "exampleMeaning": "This is porridge."
+    },
+    {
+      "cyrillic": "цирк",
+      "transliteration": "tsirk",
+      "gender": "masculine",
+      "meaning": "circus",
+      "exampleCyrillic": "Это цирк.",
+      "exampleTransliteration": "Eto tsirk.",
+      "exampleMeaning": "This is a circus."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You're about to meet five sounds that English doesn't have as single letters: Ж (the sound in 'measure'), Ц (a ts-sound), Ч (ch), Ш (sh), and Щ (a longer sh-ch hybrid). These five letters appear constantly in Russian — master them and you'll sound noticeably more natural."
+    },
+    "why": {
+      "text": "These five consonants are grouped together because they're all 'sibilants' — they produce a hissing or hushing sound. Russian uses them far more than English does. Getting them right early means you won't develop bad pronunciation habits that are hard to undo later."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Ш and Ж — the sh/zh pair",
+          "body": "Ш makes the 'sh' sound as in 'ship'. Ж makes the voiced version of that — the sound in the middle of 'measure' or 'treasure'. These two are a voiced/voiceless pair just like the B/P, D/T pairs you saw in lesson 1-3.",
+          "examples": [
+            { "cyrillic": "Ш", "transliteration": "sh", "meaning": "like 'sh' in 'ship' or 'push'" },
+            { "cyrillic": "Ж", "transliteration": "zh", "meaning": "like 's' in 'measure' or 'treasure'" },
+            { "cyrillic": "шаг", "transliteration": "shag", "meaning": "step — starts with Ш" },
+            { "cyrillic": "жук", "transliteration": "zhuk", "meaning": "beetle — starts with Ж" }
+          ]
+        },
+        {
+          "title": "Ч — the ch sound",
+          "body": "Ч makes the 'ch' sound as in 'chair' or 'cheese'. It's always soft in Russian — you can't make a hard 'ch' sound with this letter. It never sounds like 'k'.",
+          "examples": [
+            { "cyrillic": "Ч", "transliteration": "ch", "meaning": "like 'ch' in 'chair' — always soft" },
+            { "cyrillic": "чай", "transliteration": "chay", "meaning": "tea" },
+            { "cyrillic": "час", "transliteration": "chas", "meaning": "hour — ч + known letters" }
+          ]
+        },
+        {
+          "title": "Ц and Щ",
+          "body": "Ц makes a combined 'ts' sound — like the end of 'cats' or 'bits'. It's a single letter, not two. Щ makes a longer, softer sound than Ш — somewhere between 'shch' and a long soft 'sh'. It's the hardest of the five to get right. The word борщ ends in Щ.",
+          "examples": [
+            { "cyrillic": "Ц", "transliteration": "ts", "meaning": "like 'ts' in 'bits' or 'cats'" },
+            { "cyrillic": "Щ", "transliteration": "shch", "meaning": "a long soft 'sh' sound — like 'shch' in 'fresh cheese'" },
+            { "cyrillic": "цирк", "transliteration": "tsirk", "meaning": "circus — starts with Ц" },
+            { "cyrillic": "борщ", "transliteration": "borshch", "meaning": "borscht — ends with Щ" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What sound does Ш make?",
+          "type": "multiple-choice",
+          "options": ["s as in sun", "sh as in ship", "zh as in measure", "ch as in chair"],
+          "answer": "sh as in ship",
+          "explanation": "Ш = SH. Its voiced partner is Ж (ZH)."
+        },
+        {
+          "prompt": "What does чай mean?",
+          "type": "text-input",
+          "answer": "tea",
+          "explanation": "чай (chay) = tea. Ч=ch, А=a, Й=short y."
+        },
+        {
+          "prompt": "Ц makes the sound found at the end of which English word?",
+          "type": "multiple-choice",
+          "options": ["car", "cats", "chain", "church"],
+          "answer": "cats",
+          "explanation": "Ц = TS — the combined sound at the end of 'cats', 'bits', 'nets'."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Ж always stays hard",
+          "body": "Unlike most Russian consonants, Ж and Ш are always hard — they never soften before Е or И. This is a spelling rule exception you'll encounter later. For now, just know that жи and ши (not жы/шы) are the correct spellings, even though the vowel doesn't technically soften the consonant.",
+          "examples": [
+            { "cyrillic": "жить", "transliteration": "zhit'", "meaning": "to live — Ж stays hard before И" },
+            { "cyrillic": "шить", "transliteration": "shit'", "meaning": "to sew — Ш stays hard before И" }
+          ]
+        },
+        {
+          "title": "Щ in everyday words",
+          "body": "Щ appears in some very common Russian words. The key is to make it softer and longer than Ш — let the tongue press wider against the palate. If you just say SH, native speakers will understand but you'll sound slightly foreign.",
+          "examples": [
+            { "cyrillic": "борщ", "transliteration": "borshch", "meaning": "borscht — the most famous example" },
+            { "cyrillic": "ещё", "transliteration": "yeshchyo", "meaning": "still / yet / more — very common" },
+            { "cyrillic": "овощи", "transliteration": "ovoshchi", "meaning": "vegetables" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What sound does Ж make?",
+          "type": "multiple-choice",
+          "options": ["sh as in ship", "zh as in measure", "z as in zoo", "ch as in chair"],
+          "answer": "zh as in measure",
+          "explanation": "Ж = ZH — the voiced partner of Ш (SH). Think of the 's' in 'measure'."
+        },
+        {
+          "prompt": "What does шаг mean?",
+          "type": "text-input",
+          "answer": "step",
+          "explanation": "шаг (shag) = step / pace. Ш=sh, А=a, Г=g."
+        },
+        {
+          "prompt": "What does жук mean?",
+          "type": "text-input",
+          "answer": "beetle",
+          "explanation": "жук (zhuk) = beetle. Ж=zh, У=oo, К=k."
+        },
+        {
+          "prompt": "What does борщ mean?",
+          "type": "multiple-choice",
+          "options": ["bread", "porridge", "borscht", "tea"],
+          "answer": "borscht",
+          "explanation": "борщ (borshch) = borscht — the famous Russian/Ukrainian beetroot soup. Ends with Щ."
+        },
+        {
+          "prompt": "Type the Russian word for 'circus':",
+          "type": "text-input",
+          "answer": "цирк",
+          "explanation": "цирк (tsirk) = circus. Ц=ts, И=ee, Р=r, К=k."
+        },
+        {
+          "prompt": "What does каша mean?",
+          "type": "text-input",
+          "answer": "porridge",
+          "explanation": "каша (kasha) = porridge / kasha. К=k, А=a, Ш=sh, А=a."
+        },
+        {
+          "prompt": "Which pair are voiced/voiceless partners?",
+          "type": "multiple-choice",
+          "options": ["Ш and Ч", "Ш and Ж", "Ц and Щ", "Ч and Щ"],
+          "answer": "Ш and Ж",
+          "explanation": "Ш (SH) and Ж (ZH) are a voiced/voiceless pair, just like С/З or Т/Д."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Ш = SH, Ж = ZH (voiced partner of Ш), Ч = CH (always soft), Ц = TS, Щ = SHCH (longer, softer than Ш)",
+        "Ж and Ш are always hard — they never soften before Е or И",
+        "Ж devoices to Ш at word end (like other voiced consonants)"
+      ],
+      "vocabulary": ["шаг", "чай", "жук", "борщ", "каша", "цирк"],
+      "nextLesson": "Next: the final 7 letters — Ь Ъ Ы Э Ю Я Ё — including the two signs that modify pronunciation rather than adding a sound."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What sound does Ш make?",
+        "type": "multiple-choice",
+        "options": ["s", "sh", "zh", "ch"],
+        "answer": "sh",
+        "grammarPoint": "cyrillic-hissing-consonants"
+      },
+      {
+        "prompt": "What does чай mean?",
+        "type": "multiple-choice",
+        "options": ["step", "tea", "beetle", "circus"],
+        "answer": "tea",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Ж sounds like the letter in the middle of which English word?",
+        "type": "multiple-choice",
+        "options": ["chair", "sheep", "measure", "cats"],
+        "answer": "measure",
+        "grammarPoint": "cyrillic-hissing-consonants"
+      },
+      {
+        "prompt": "Type the Russian word for 'beetle':",
+        "type": "text-input",
+        "answer": "жук",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Ц makes a combined sound. What is it?",
+        "type": "multiple-choice",
+        "options": ["sh", "ch", "ts", "zh"],
+        "answer": "ts",
+        "grammarPoint": "cyrillic-hissing-consonants"
+      },
+      {
+        "prompt": "What does борщ mean?",
+        "type": "text-input",
+        "answer": "borscht",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Which statement about Ж and Ш is correct?",
+        "type": "multiple-choice",
+        "options": [
+          "They are always soft",
+          "They are always hard — never softened by following vowels",
+          "Ж is soft, Ш is hard",
+          "They are silent at word end"
+        ],
+        "answer": "They are always hard — never softened by following vowels",
+        "grammarPoint": "cyrillic-hissing-consonants"
+      },
+      {
+        "prompt": "What does каша mean?",
+        "type": "text-input",
+        "answer": "porridge",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Щ differs from Ш in that it is:",
+        "type": "multiple-choice",
+        "options": ["louder", "longer and softer", "the same sound", "voiced"],
+        "answer": "longer and softer",
+        "grammarPoint": "cyrillic-hissing-consonants"
+      }
+    ]
+  }
+}

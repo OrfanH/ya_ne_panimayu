@@ -1,0 +1,278 @@
+{
+  "id": "4-3",
+  "unit": 4,
+  "lesson": 3,
+  "block": "grammar",
+  "title": "Irregular verbs",
+  "subtitle": "хотеть, мочь, идти, and the verb быть",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "хотеть",
+      "transliteration": "khotet'",
+      "gender": null,
+      "meaning": "to want",
+      "exampleCyrillic": "Я хочу чай.",
+      "exampleTransliteration": "Ya khochu chay.",
+      "exampleMeaning": "I want tea."
+    },
+    {
+      "cyrillic": "мочь",
+      "transliteration": "moch'",
+      "gender": null,
+      "meaning": "to be able to / can",
+      "exampleCyrillic": "Ты можешь помочь?",
+      "exampleTransliteration": "Ty mozhesh' pomoch'?",
+      "exampleMeaning": "Can you help?"
+    },
+    {
+      "cyrillic": "идти",
+      "transliteration": "idti",
+      "gender": null,
+      "meaning": "to go (on foot, one direction)",
+      "exampleCyrillic": "Куда ты идёшь?",
+      "exampleTransliteration": "Kuda ty idyosh'?",
+      "exampleMeaning": "Where are you going?"
+    },
+    {
+      "cyrillic": "быть",
+      "transliteration": "byt'",
+      "gender": null,
+      "meaning": "to be",
+      "exampleCyrillic": "Буду дома.",
+      "exampleTransliteration": "Budu doma.",
+      "exampleMeaning": "I will be at home."
+    },
+    {
+      "cyrillic": "есть",
+      "transliteration": "yest'",
+      "gender": null,
+      "meaning": "there is / there are (existence)",
+      "exampleCyrillic": "У меня есть книга.",
+      "exampleTransliteration": "U menya yest' kniga.",
+      "exampleMeaning": "I have a book. (lit: at me there is a book)"
+    },
+    {
+      "cyrillic": "куда",
+      "transliteration": "kuda",
+      "gender": null,
+      "meaning": "where to (direction)",
+      "exampleCyrillic": "Куда вы идёте?",
+      "exampleTransliteration": "Kuda vy idyote?",
+      "exampleMeaning": "Where are you going?"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Three verbs in today's lesson appear in almost every Russian sentence — хотеть (to want), мочь (can), идти (to go). They're irregular, which means the conjugations don't fit neatly into either class you've learned. You can't derive them from rules — you have to know them. The payoff is immediate: these are the most useful verbs at A1 level."
+    },
+    "why": {
+      "text": "хотеть is uniquely irregular — it uses first-conjugation endings for singular (хочу, хочешь, хочет) but second-conjugation endings for plural (хотим, хотите, хотят). This split-conjugation pattern is rare in Russian and this is the most common example. мочь has a consonant change throughout: Г→Ж. идти is completely irregular in stem."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "хотеть — to want (split conjugation)",
+          "body": "хотеть switches conjugation class mid-paradigm. Singular forms use first-conjugation endings. Plural forms use second-conjugation endings. The consonant also changes: Т→Ч in я, ты, он forms.",
+          "examples": [
+            { "cyrillic": "я хочу", "transliteration": "ya khochu", "meaning": "I want" },
+            { "cyrillic": "ты хочешь", "transliteration": "ty khochesh'", "meaning": "you want" },
+            { "cyrillic": "он/она хочет", "transliteration": "on/ona khochet", "meaning": "he/she wants" },
+            { "cyrillic": "мы хотим", "transliteration": "my khotim", "meaning": "we want (2nd conj.)" },
+            { "cyrillic": "вы хотите", "transliteration": "vy khotite", "meaning": "you want (2nd conj.)" },
+            { "cyrillic": "они хотят", "transliteration": "oni khotyat", "meaning": "they want (2nd conj.)" }
+          ]
+        },
+        {
+          "title": "мочь — can / to be able to",
+          "body": "мочь has a consonant change throughout: Г→Ж in all forms. The stress also shifts. Learn all six forms — they appear constantly in requests, offers, and expressing ability.",
+          "examples": [
+            { "cyrillic": "я могу", "transliteration": "ya mogu", "meaning": "I can" },
+            { "cyrillic": "ты можешь", "transliteration": "ty mozhesh'", "meaning": "you can" },
+            { "cyrillic": "он/она может", "transliteration": "on/ona mozhet", "meaning": "he/she can" },
+            { "cyrillic": "мы можем", "transliteration": "my mozhem", "meaning": "we can" },
+            { "cyrillic": "вы можете", "transliteration": "vy mozhete", "meaning": "you can" },
+            { "cyrillic": "они могут", "transliteration": "oni mogut", "meaning": "they can" }
+          ]
+        },
+        {
+          "title": "идти — to go (on foot, one direction)",
+          "body": "идти uses a different stem (ид-) in conjugation. It means 'to be going' right now, in one specific direction, on foot. Don't use it for habitual 'going' — that's ходить (covered later).",
+          "examples": [
+            { "cyrillic": "я иду", "transliteration": "ya idu", "meaning": "I am going" },
+            { "cyrillic": "ты идёшь", "transliteration": "ty idyosh'", "meaning": "you are going" },
+            { "cyrillic": "он/она идёт", "transliteration": "on/ona idyot", "meaning": "he/she is going" },
+            { "cyrillic": "мы идём", "transliteration": "my idyom", "meaning": "we are going" },
+            { "cyrillic": "вы идёте", "transliteration": "vy idyote", "meaning": "you are going" },
+            { "cyrillic": "они идут", "transliteration": "oni idut", "meaning": "they are going" }
+          ]
+        },
+        {
+          "title": "быть — to be; есть — there is",
+          "body": "быть (to be) is absent in present tense (you already know this from Unit 2). But it reappears in future tense: буду, будешь, будет, будем, будете, будут. The present-tense remnant есть means 'there is / there are' — used in У меня есть (I have, literally 'at me there is').",
+          "examples": [
+            { "cyrillic": "У меня есть книга.", "transliteration": "U menya yest' kniga.", "meaning": "I have a book. (at me there is a book)" },
+            { "cyrillic": "У него есть машина.", "transliteration": "U nego yest' mashina.", "meaning": "He has a car." },
+            { "cyrillic": "Я буду дома.", "transliteration": "Ya budu doma.", "meaning": "I will be at home. (future)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What is 'I want'?",
+          "type": "text-input",
+          "answer": "я хочу",
+          "explanation": "хотеть: я хочу. Т→Ч mutation, first conjugation ending -у."
+        },
+        {
+          "prompt": "How do you say 'I have a book' in Russian?",
+          "type": "text-input",
+          "answer": "У меня есть книга.",
+          "explanation": "У меня есть книга. = at me there is a book. This is the standard Russian construction for 'to have'."
+        },
+        {
+          "prompt": "What is 'you can'? (informal)",
+          "type": "text-input",
+          "answer": "ты можешь",
+          "explanation": "мочь: Г→Ж mutation throughout. ты + -ешь = можешь."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "To have — У + genitive + есть",
+          "body": "Russian has no verb 'to have'. Instead: У [person in genitive] есть [thing in nominative]. У меня (at me) есть (there is) книга = I have a book. To negate: У меня нет книги (I don't have a book — thing goes genitive). The есть is often dropped in spoken Russian when the possession is obvious.",
+          "examples": [
+            { "cyrillic": "У меня есть время.", "transliteration": "U menya yest' vremya.", "meaning": "I have time." },
+            { "cyrillic": "У тебя есть деньги?", "transliteration": "U tebya yest' den'gi?", "meaning": "Do you have money?" },
+            { "cyrillic": "У меня нет времени.", "transliteration": "U menya net vremeni.", "meaning": "I don't have time. (нет + genitive)" }
+          ]
+        },
+        {
+          "title": "идти vs ходить — direction matters",
+          "body": "Russian has two verbs for 'to go on foot': идти (one direction, right now) and ходить (habitual, multi-directional, or back-and-forth). You'll learn ходить in Unit 9 when verb aspects are covered. For now, use идти for 'I am going somewhere now' — you'll encounter this distinction a lot.",
+          "examples": [
+            { "cyrillic": "Я иду в магазин.", "transliteration": "Ya idu v magazin.", "meaning": "I am going to the shop (now, one way)." },
+            { "cyrillic": "Я хожу в магазин каждый день.", "transliteration": "Ya khozhu v magazin kazhdiy den'.", "meaning": "I go to the shop every day (habitual)." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is 'she wants'?",
+          "type": "text-input",
+          "answer": "она хочет",
+          "explanation": "хотеть: singular uses 1st conjugation. она + Т→Ч + -ет = хочет."
+        },
+        {
+          "prompt": "What is 'we can'?",
+          "type": "text-input",
+          "answer": "мы можем",
+          "explanation": "мочь: мы + -ем = можем. Г→Ж throughout."
+        },
+        {
+          "prompt": "How do you ask 'where are you going?' (informal)?",
+          "type": "text-input",
+          "answer": "Куда ты идёшь?",
+          "explanation": "идти: ты → идёшь. куда = where to (direction)."
+        },
+        {
+          "prompt": "What is 'they want'?",
+          "type": "multiple-choice",
+          "options": ["они хочут", "они хотят", "они хотет", "они хочат"],
+          "answer": "они хотят",
+          "explanation": "хотеть: они uses second conjugation (-ят). они хотят."
+        },
+        {
+          "prompt": "How do you say 'do you have money?' (informal)?",
+          "type": "text-input",
+          "answer": "У тебя есть деньги?",
+          "explanation": "У тебя (at you, informal) есть (there is) деньги (money)?."
+        },
+        {
+          "prompt": "What is 'I am going' (on foot, right now)?",
+          "type": "text-input",
+          "answer": "я иду",
+          "explanation": "идти: я иду."
+        },
+        {
+          "prompt": "What does куда mean?",
+          "type": "multiple-choice",
+          "options": ["where (location)", "where to (direction)", "where from", "why"],
+          "answer": "where to (direction)",
+          "explanation": "куда = where to (movement toward). где = where (static location). откуда = where from."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "хотеть: singular uses 1st conjugation (хочу хочешь хочет), plural uses 2nd (хотим хотите хотят)",
+        "мочь: Г→Ж throughout (могу можешь может можем можете могут)",
+        "идти: я иду, ты идёшь, он идёт, мы идём, вы идёте, они идут — one-direction foot travel",
+        "To have: У + genitive + есть (У меня есть книга = I have a book)",
+        "быть is absent in present tense but used in future: буду будешь будет..."
+      ],
+      "vocabulary": ["хотеть", "мочь", "идти", "быть", "есть", "куда"],
+      "nextLesson": "Next: verb aspects — the perfective/imperfective distinction you already know conceptually, applied to the verbs you've learned."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What is 'I want'?",
+        "type": "text-input",
+        "answer": "хочу",
+        "grammarPoint": "verb-irregular-khotet"
+      },
+      {
+        "prompt": "What is 'you can'? (informal)",
+        "type": "text-input",
+        "answer": "можешь",
+        "grammarPoint": "verb-irregular-moch"
+      },
+      {
+        "prompt": "How do you say 'I have a book'?",
+        "type": "text-input",
+        "answer": "У меня есть книга.",
+        "grammarPoint": "possession-u-menya-est"
+      },
+      {
+        "prompt": "What is 'they want'?",
+        "type": "multiple-choice",
+        "options": ["они хочут", "они хотят", "они хочат", "они хотет"],
+        "answer": "они хотят",
+        "grammarPoint": "verb-irregular-khotet"
+      },
+      {
+        "prompt": "What is 'we are going'? (on foot)",
+        "type": "text-input",
+        "answer": "мы идём",
+        "grammarPoint": "verb-irregular-idti"
+      },
+      {
+        "prompt": "куда means:",
+        "type": "multiple-choice",
+        "options": ["where (location)", "where to (direction)", "where from", "when"],
+        "answer": "where to (direction)",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What is 'she can'?",
+        "type": "text-input",
+        "answer": "она может",
+        "grammarPoint": "verb-irregular-moch"
+      },
+      {
+        "prompt": "I will be at home = ?",
+        "type": "text-input",
+        "answer": "Я буду дома.",
+        "grammarPoint": "verb-byt-future"
+      }
+    ]
+  }
+}

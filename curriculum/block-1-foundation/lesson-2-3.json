@@ -1,0 +1,318 @@
+{
+  "id": "2-3",
+  "unit": 2,
+  "lesson": 3,
+  "block": "foundation",
+  "title": "Numbers 1–10",
+  "subtitle": "Counting and basic quantity",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "один",
+      "transliteration": "odin",
+      "gender": "masculine",
+      "meaning": "one (masculine form)",
+      "exampleCyrillic": "Один дом.",
+      "exampleTransliteration": "Odin dom.",
+      "exampleMeaning": "One house."
+    },
+    {
+      "cyrillic": "два",
+      "transliteration": "dva",
+      "gender": "masculine",
+      "meaning": "two (masculine/neuter form)",
+      "exampleCyrillic": "Два кота.",
+      "exampleTransliteration": "Dva kota.",
+      "exampleMeaning": "Two cats."
+    },
+    {
+      "cyrillic": "три",
+      "transliteration": "tri",
+      "gender": null,
+      "meaning": "three",
+      "exampleCyrillic": "Три книги.",
+      "exampleTransliteration": "Tri knigi.",
+      "exampleMeaning": "Three books."
+    },
+    {
+      "cyrillic": "четыре",
+      "transliteration": "chetyre",
+      "gender": null,
+      "meaning": "four",
+      "exampleCyrillic": "Четыре урока.",
+      "exampleTransliteration": "Chetyre uroka.",
+      "exampleMeaning": "Four lessons."
+    },
+    {
+      "cyrillic": "пять",
+      "transliteration": "pyat'",
+      "gender": null,
+      "meaning": "five",
+      "exampleCyrillic": "Пять лет.",
+      "exampleTransliteration": "Pyat' let.",
+      "exampleMeaning": "Five years."
+    },
+    {
+      "cyrillic": "шесть",
+      "transliteration": "shest'",
+      "gender": null,
+      "meaning": "six",
+      "exampleCyrillic": "Шесть часов.",
+      "exampleTransliteration": "Shest' chasov.",
+      "exampleMeaning": "Six o'clock."
+    },
+    {
+      "cyrillic": "семь",
+      "transliteration": "sem'",
+      "gender": null,
+      "meaning": "seven",
+      "exampleCyrillic": "Семь дней.",
+      "exampleTransliteration": "Sem' dney.",
+      "exampleMeaning": "Seven days."
+    },
+    {
+      "cyrillic": "восемь",
+      "transliteration": "vosem'",
+      "gender": null,
+      "meaning": "eight",
+      "exampleCyrillic": "Восемь букв.",
+      "exampleTransliteration": "Vosem' bukv.",
+      "exampleMeaning": "Eight letters."
+    },
+    {
+      "cyrillic": "девять",
+      "transliteration": "devyat'",
+      "gender": null,
+      "meaning": "nine",
+      "exampleCyrillic": "Девять лет.",
+      "exampleTransliteration": "Devyat' let.",
+      "exampleMeaning": "Nine years."
+    },
+    {
+      "cyrillic": "десять",
+      "transliteration": "desyat'",
+      "gender": null,
+      "meaning": "ten",
+      "exampleCyrillic": "Десять минут.",
+      "exampleTransliteration": "Desyat' minut.",
+      "exampleMeaning": "Ten minutes."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Numbers unlock a huge amount of practical Russian: prices, times, ages, addresses, dates. There are only 10 to learn today. The catch: the noun after a number changes form depending on the number. This lesson teaches the numbers first — the noun rules come later. Lock in the words now."
+    },
+    "why": {
+      "text": "Russian numbers 1–4 and 5–20 follow different grammar rules for the nouns they govern — a notorious Russian difficulty. You'll meet this in detail in Unit 3. For now, see the numbers in example sentences and notice the noun endings changing, but don't stress about them yet. Your job today is to know один through десять cold."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Numbers 1–5",
+          "body": "Learn these as pure sound-shapes first, then attach meaning. Notice: один/одна/одно (one) has three gender forms. один for masculine, одна for feminine, одно for neuter. For now, default to один when speaking.",
+          "examples": [
+            { "cyrillic": "один / одна / одно", "transliteration": "odin / odna / odno", "meaning": "one (m / f / n)" },
+            { "cyrillic": "два / две", "transliteration": "dva / dve", "meaning": "two (m-n / f)" },
+            { "cyrillic": "три", "transliteration": "tri", "meaning": "three (all genders)" },
+            { "cyrillic": "четыре", "transliteration": "chetyre", "meaning": "four (all genders)" },
+            { "cyrillic": "пять", "transliteration": "pyat'", "meaning": "five — ends in Ь (soft sign)" }
+          ]
+        },
+        {
+          "title": "Numbers 6–10",
+          "body": "Numbers 6–10 all end in Ь (soft sign). Say them as one unit — don't pause between the base and the soft sign. шесть, семь, восемь, девять, десять.",
+          "examples": [
+            { "cyrillic": "шесть", "transliteration": "shest'", "meaning": "six" },
+            { "cyrillic": "семь", "transliteration": "sem'", "meaning": "seven" },
+            { "cyrillic": "восемь", "transliteration": "vosem'", "meaning": "eight" },
+            { "cyrillic": "девять", "transliteration": "devyat'", "meaning": "nine" },
+            { "cyrillic": "десять", "transliteration": "desyat'", "meaning": "ten" }
+          ]
+        },
+        {
+          "title": "Noun form after numbers — preview",
+          "body": "After 1: nominative singular (один дом — one house). After 2–4: genitive singular (два дома — two houses, literally 'two of house'). After 5–20: genitive plural (пять домов — five houses, 'five of houses'). You don't need to produce this correctly yet — just see the pattern in examples.",
+          "examples": [
+            { "cyrillic": "один дом", "transliteration": "odin dom", "meaning": "one house (nominative)" },
+            { "cyrillic": "два дома", "transliteration": "dva doma", "meaning": "two houses (gen. singular)" },
+            { "cyrillic": "пять домов", "transliteration": "pyat' domov", "meaning": "five houses (gen. plural)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What is the Russian word for 'seven'?",
+          "type": "text-input",
+          "answer": "семь",
+          "explanation": "семь (sem') = seven. Ends with a soft sign Ь."
+        },
+        {
+          "prompt": "которое из этих чисел — 'four'?",
+          "type": "multiple-choice",
+          "options": ["три", "четыре", "пять", "шесть"],
+          "answer": "четыре",
+          "explanation": "четыре (chetyre) = four."
+        },
+        {
+          "prompt": "один has three gender forms. What are they?",
+          "type": "multiple-choice",
+          "options": [
+            "один / одна / одно",
+            "один / одни / одно",
+            "один / одну / одно",
+            "один / одна / одни"
+          ],
+          "answer": "один / одна / одно",
+          "explanation": "один (m), одна (f), одно (n). The number 'one' agrees in gender with its noun."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Counting vs using numbers",
+          "body": "When counting aloud (один, два, три...), all genders default to the masculine form. But when saying 'one book' vs 'one house', the gender of the noun matters: одна книга (one book, feminine) vs один дом (one house, masculine). This only affects 1 and 2.",
+          "examples": [
+            { "cyrillic": "один урок", "transliteration": "odin urok", "meaning": "one lesson (masculine)" },
+            { "cyrillic": "одна книга", "transliteration": "odna kniga", "meaning": "one book (feminine)" },
+            { "cyrillic": "два урока", "transliteration": "dva uroka", "meaning": "two lessons (masculine/neuter)" },
+            { "cyrillic": "две книги", "transliteration": "dve knigi", "meaning": "two books (feminine)" }
+          ]
+        },
+        {
+          "title": "Numbers in everyday contexts",
+          "body": "You'll use numbers constantly for prices (сколько стоит? — how much does it cost?), time (сколько времени? — what time is it?), and age (сколько вам лет? — how old are you?). The word сколько (how many / how much) is worth noting now.",
+          "examples": [
+            { "cyrillic": "Мне двадцать лет.", "transliteration": "Mne dvadtsat' let.", "meaning": "I am twenty years old." },
+            { "cyrillic": "Сколько стоит?", "transliteration": "Skolko stoit?", "meaning": "How much does it cost?" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is the Russian for 'three'?",
+          "type": "text-input",
+          "answer": "три",
+          "explanation": "три (tri) = three."
+        },
+        {
+          "prompt": "What is the Russian for 'eight'?",
+          "type": "text-input",
+          "answer": "восемь",
+          "explanation": "восемь (vosem') = eight. Ends with a soft sign."
+        },
+        {
+          "prompt": "Which number is пять?",
+          "type": "multiple-choice",
+          "options": ["four", "five", "six", "seven"],
+          "answer": "five",
+          "explanation": "пять (pyat') = five."
+        },
+        {
+          "prompt": "What is the Russian for 'ten'?",
+          "type": "text-input",
+          "answer": "десять",
+          "explanation": "десять (desyat') = ten."
+        },
+        {
+          "prompt": "Which number is шесть?",
+          "type": "multiple-choice",
+          "options": ["five", "six", "seven", "eight"],
+          "answer": "six",
+          "explanation": "шесть (shest') = six."
+        },
+        {
+          "prompt": "You want to say 'two books'. Which form of two do you use?",
+          "type": "multiple-choice",
+          "options": ["два", "две", "двое", "двух"],
+          "answer": "две",
+          "explanation": "две is the feminine form of two. книга is feminine, so: две книги."
+        },
+        {
+          "prompt": "What is the Russian for 'nine'?",
+          "type": "text-input",
+          "answer": "девять",
+          "explanation": "девять (devyat') = nine."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "один (m) / одна (f) / одно (n) — 'one' agrees in gender with its noun",
+        "два (m/n) / две (f) — 'two' also has gender forms",
+        "три, четыре — all genders the same",
+        "5–10 all end in Ь: пять шесть семь восемь девять десять",
+        "After 1: nominative; after 2–4: genitive singular; after 5+: genitive plural (learn fully in Unit 3)"
+      ],
+      "vocabulary": ["один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять", "десять"],
+      "nextLesson": "Next: essential nouns — the people, objects, and places you'll use from day one."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What is the Russian for 'five'?",
+        "type": "text-input",
+        "answer": "пять",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Which number is восемь?",
+        "type": "multiple-choice",
+        "options": ["six", "seven", "eight", "nine"],
+        "answer": "eight",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What is the Russian for 'two' (masculine)?",
+        "type": "multiple-choice",
+        "options": ["две", "два", "двое", "один"],
+        "answer": "два",
+        "grammarPoint": "number-gender-forms"
+      },
+      {
+        "prompt": "What is the Russian for 'ten'?",
+        "type": "text-input",
+        "answer": "десять",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Numbers 5–10 all end in:",
+        "type": "multiple-choice",
+        "options": ["А", "О", "Ь", "Й"],
+        "answer": "Ь",
+        "grammarPoint": "number-patterns"
+      },
+      {
+        "prompt": "What is the Russian for 'three'?",
+        "type": "text-input",
+        "answer": "три",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "'one book' — книга is feminine. Which form of one?",
+        "type": "multiple-choice",
+        "options": ["один", "одна", "одно", "одни"],
+        "answer": "одна",
+        "grammarPoint": "number-gender-forms"
+      },
+      {
+        "prompt": "What is the Russian for 'seven'?",
+        "type": "text-input",
+        "answer": "семь",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Which is 'four'?",
+        "type": "multiple-choice",
+        "options": ["три", "четыре", "шесть", "девять"],
+        "answer": "четыре",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

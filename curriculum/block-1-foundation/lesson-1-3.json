@@ -1,0 +1,299 @@
+{
+  "id": "1-3",
+  "unit": 1,
+  "lesson": 3,
+  "block": "foundation",
+  "title": "New shapes",
+  "subtitle": "Letters Б Г Д З И Й Л П Ф",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "дом",
+      "transliteration": "dom",
+      "gender": "masculine",
+      "meaning": "house / home",
+      "exampleCyrillic": "Это мой дом.",
+      "exampleTransliteration": "Eto moy dom.",
+      "exampleMeaning": "This is my house."
+    },
+    {
+      "cyrillic": "год",
+      "transliteration": "god",
+      "gender": "masculine",
+      "meaning": "year",
+      "exampleCyrillic": "Новый год.",
+      "exampleTransliteration": "Noviy god.",
+      "exampleMeaning": "New Year."
+    },
+    {
+      "cyrillic": "лес",
+      "transliteration": "les",
+      "gender": "masculine",
+      "meaning": "forest",
+      "exampleCyrillic": "Это лес.",
+      "exampleTransliteration": "Eto les.",
+      "exampleMeaning": "This is a forest."
+    },
+    {
+      "cyrillic": "пол",
+      "transliteration": "pol",
+      "gender": "masculine",
+      "meaning": "floor",
+      "exampleCyrillic": "Книга на полу.",
+      "exampleTransliteration": "Kniga na polu.",
+      "exampleMeaning": "The book is on the floor."
+    },
+    {
+      "cyrillic": "бок",
+      "transliteration": "bok",
+      "gender": "masculine",
+      "meaning": "side / flank",
+      "exampleCyrillic": "Больно в боку.",
+      "exampleTransliteration": "Bolno v boku.",
+      "exampleMeaning": "It hurts in my side."
+    },
+    {
+      "cyrillic": "зал",
+      "transliteration": "zal",
+      "gender": "masculine",
+      "meaning": "hall / room",
+      "exampleCyrillic": "Большой зал.",
+      "exampleTransliteration": "Bolshoy zal.",
+      "exampleMeaning": "A large hall."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You've handled the familiar letters and the false friends. Now you meet nine letters with no English lookalike at all — completely new shapes. Some are logical (Б is almost like B), some are surprising (Д looks like a little house). By the end of this lesson you'll have 21 of 33 Cyrillic letters."
+    },
+    "why": {
+      "text": "These nine letters complete the core consonants of Russian. Most represent sounds that exist in English — B, G, D, Z, L, P, F, and two Y-sounds. Learning their shapes now means you can read the majority of common Russian words before you even finish the alphabet."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Letters with recognisable sounds",
+          "body": "These letters make sounds you know — their shapes are just new. Focus on connecting each shape to its sound, not to any English letter it might vaguely resemble.",
+          "examples": [
+            { "cyrillic": "Б", "transliteration": "b", "meaning": "like 'b' in 'bat' — similar to B but with a tail" },
+            { "cyrillic": "Г", "transliteration": "g", "meaning": "like 'g' in 'go' — looks like an upside-down L" },
+            { "cyrillic": "Д", "transliteration": "d", "meaning": "like 'd' in 'dog' — looks like a little house" },
+            { "cyrillic": "З", "transliteration": "z", "meaning": "like 'z' in 'zoo' — looks like the number 3" },
+            { "cyrillic": "Л", "transliteration": "l", "meaning": "like 'l' in 'let' — looks like an inverted V" },
+            { "cyrillic": "П", "transliteration": "p", "meaning": "like 'p' in 'pen' — looks like a goalpost or gate" },
+            { "cyrillic": "Ф", "transliteration": "f", "meaning": "like 'f' in 'fox' — looks like the Greek phi (φ)" }
+          ]
+        },
+        {
+          "title": "И and Й — the two I-sounds",
+          "body": "These two deserve special attention because they look almost identical but function differently. И is a vowel (a pure 'ee' sound). Й is a consonant — a very short 'y' sound, always attached to the vowel before it. Think of Й as the 'y' at the end of 'boy'.",
+          "examples": [
+            { "cyrillic": "И", "transliteration": "ee", "meaning": "vowel — like 'ee' in 'feet'" },
+            { "cyrillic": "Й", "transliteration": "y", "meaning": "short consonant — like 'y' in 'boy' or 'toy'" },
+            { "cyrillic": "дай", "transliteration": "day", "meaning": "give (imperative) — А+Й forms the 'ay' sound" },
+            { "cyrillic": "мой", "transliteration": "moy", "meaning": "my (masculine) — О+Й forms the 'oy' sound" }
+          ]
+        },
+        {
+          "title": "Reading with all 21 letters",
+          "body": "You now know 21 of 33 Cyrillic letters. Try reading these words — every letter should be recognisable.",
+          "examples": [
+            { "cyrillic": "дом", "transliteration": "dom", "meaning": "house" },
+            { "cyrillic": "год", "transliteration": "god", "meaning": "year" },
+            { "cyrillic": "лес", "transliteration": "les", "meaning": "forest" },
+            { "cyrillic": "пол", "transliteration": "pol", "meaning": "floor" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What sound does П make?",
+          "type": "multiple-choice",
+          "options": ["r as in run", "p as in pen", "n as in night", "t as in top"],
+          "answer": "p as in pen",
+          "explanation": "П = P. It looks like a goalpost and makes a P sound. Don't confuse it with Р (which makes an R sound)."
+        },
+        {
+          "prompt": "What is the difference between И and Й?",
+          "type": "multiple-choice",
+          "options": [
+            "They are the same letter",
+            "И is a vowel ('ee'), Й is a short consonant ('y')",
+            "И is a consonant, Й is a vowel",
+            "И is uppercase, Й is lowercase"
+          ],
+          "answer": "И is a vowel ('ee'), Й is a short consonant ('y')",
+          "explanation": "И = 'ee' (vowel). Й = short 'y' (consonant). Й has a breve mark above it."
+        },
+        {
+          "prompt": "What does дом mean?",
+          "type": "text-input",
+          "answer": "house",
+          "explanation": "дом (dom) = house / home. Д=d, О=o, М=m."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Voicing pairs",
+          "body": "Russian consonants often come in voiced/voiceless pairs. Б/П, Г/К, Д/Т, З/С, В/Ф are pairs where one is voiced (your vocal cords vibrate) and one is voiceless (they don't). Russian has a rule: at the end of a word, a voiced consonant becomes its voiceless pair. So год (year) is pronounced 'got' at the end.",
+          "examples": [
+            { "cyrillic": "год", "transliteration": "got", "meaning": "year — Д sounds like Т at word end" },
+            { "cyrillic": "гриб", "transliteration": "grip", "meaning": "mushroom — Б sounds like П at word end" },
+            { "cyrillic": "нож", "transliteration": "nosh", "meaning": "knife — Ж sounds like Ш at word end (preview)" }
+          ]
+        },
+        {
+          "title": "Й in common words",
+          "body": "Й appears most often after a vowel, turning it into a diphthong. You've already seen мой (my). It also appears at the start of some words borrowed from other languages.",
+          "examples": [
+            { "cyrillic": "мой", "transliteration": "moy", "meaning": "my (masculine)" },
+            { "cyrillic": "твой", "transliteration": "tvoy", "meaning": "your (masculine, informal)" },
+            { "cyrillic": "новый", "transliteration": "noviy", "meaning": "new (masculine adjective)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What sound does Б make?",
+          "type": "multiple-choice",
+          "options": ["v", "b", "p", "f"],
+          "answer": "b",
+          "explanation": "Б = B. It looks like the number 6 and makes a B sound."
+        },
+        {
+          "prompt": "Read this word and type its meaning: лес",
+          "type": "text-input",
+          "answer": "forest",
+          "explanation": "лес (les) = forest. Л=l, Е=ye, С=s."
+        },
+        {
+          "prompt": "What does зал mean?",
+          "type": "text-input",
+          "answer": "hall",
+          "explanation": "зал (zal) = hall / room. З=z (looks like 3), А=a, Л=l."
+        },
+        {
+          "prompt": "Which letter makes a Z sound?",
+          "type": "multiple-choice",
+          "options": ["Б", "Д", "З", "Г"],
+          "answer": "З",
+          "explanation": "З = Z. It looks like the number 3 and makes a Z sound."
+        },
+        {
+          "prompt": "Type the Russian word for 'floor':",
+          "type": "text-input",
+          "answer": "пол",
+          "explanation": "пол (pol) = floor. П=p, О=o, Л=l."
+        },
+        {
+          "prompt": "What happens to voiced consonants at the end of a Russian word?",
+          "type": "multiple-choice",
+          "options": [
+            "They become louder",
+            "They become their voiceless pair (e.g. Д→Т)",
+            "They are silent",
+            "Nothing changes"
+          ],
+          "answer": "They become their voiceless pair (e.g. Д→Т)",
+          "explanation": "Word-final devoicing: Б→П, В→Ф, Г→К, Д→Т, З→С. So год sounds like 'got'."
+        },
+        {
+          "prompt": "What does бок mean?",
+          "type": "text-input",
+          "answer": "side",
+          "explanation": "бок (bok) = side / flank. Б=b, О=o, К=k."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Б=B, Г=G, Д=D, З=Z, И=EE, Й=short Y, Л=L, П=P, Ф=F",
+        "И is a vowel; Й is a short consonant — they look similar but function differently",
+        "Word-final devoicing: voiced consonants (Б Г Д З В) become voiceless at word end",
+        "You now know 21 of 33 Cyrillic letters"
+      ],
+      "vocabulary": ["дом", "год", "лес", "пол", "бок", "зал"],
+      "nextLesson": "Next: the hissing and hushing consonants — Ж Ц Ч Ш Щ — sounds that don't exist in English."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What sound does П make?",
+        "type": "multiple-choice",
+        "options": ["r", "p", "n", "t"],
+        "answer": "p",
+        "grammarPoint": "cyrillic-new-shapes"
+      },
+      {
+        "prompt": "What does дом mean?",
+        "type": "multiple-choice",
+        "options": ["year", "floor", "house", "forest"],
+        "answer": "house",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Which letter makes an 'ee' sound (vowel)?",
+        "type": "multiple-choice",
+        "options": ["Й", "И", "Г", "Л"],
+        "answer": "И",
+        "grammarPoint": "cyrillic-new-shapes"
+      },
+      {
+        "prompt": "Type the Russian word for 'forest':",
+        "type": "text-input",
+        "answer": "лес",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "год is pronounced 'got' at the end. Why?",
+        "type": "multiple-choice",
+        "options": [
+          "Because Г is always silent",
+          "Because Д devoices to Т at word end",
+          "Because О is unstressed",
+          "Because Г devoices to К"
+        ],
+        "answer": "Because Д devoices to Т at word end",
+        "grammarPoint": "word-final-devoicing"
+      },
+      {
+        "prompt": "What does зал mean?",
+        "type": "text-input",
+        "answer": "hall",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What sound does З make?",
+        "type": "multiple-choice",
+        "options": ["s", "z", "ts", "zh"],
+        "answer": "z",
+        "grammarPoint": "cyrillic-new-shapes"
+      },
+      {
+        "prompt": "What does бок mean?",
+        "type": "text-input",
+        "answer": "side",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Й is best described as:",
+        "type": "multiple-choice",
+        "options": [
+          "A vowel like 'ee'",
+          "A short consonant like the 'y' in 'boy'",
+          "Silent",
+          "The same as И"
+        ],
+        "answer": "A short consonant like the 'y' in 'boy'",
+        "grammarPoint": "cyrillic-new-shapes"
+      }
+    ]
+  }
+}

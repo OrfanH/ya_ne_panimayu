@@ -1,0 +1,281 @@
+{
+  "id": "2-1",
+  "unit": 2,
+  "lesson": 1,
+  "block": "foundation",
+  "title": "Greetings",
+  "subtitle": "Hello, goodbye, and time-of-day greetings",
+  "estimatedMinutes": 15,
+  "vocabulary": [
+    {
+      "cyrillic": "привет",
+      "transliteration": "privet",
+      "gender": null,
+      "meaning": "hi (informal)",
+      "exampleCyrillic": "Привет! Как дела?",
+      "exampleTransliteration": "Privet! Kak dela?",
+      "exampleMeaning": "Hi! How are you?"
+    },
+    {
+      "cyrillic": "здравствуйте",
+      "transliteration": "zdravstvuyte",
+      "gender": null,
+      "meaning": "hello (formal / to a group)",
+      "exampleCyrillic": "Здравствуйте, меня зовут Анна.",
+      "exampleTransliteration": "Zdravstvuyte, menya zovut Anna.",
+      "exampleMeaning": "Hello, my name is Anna."
+    },
+    {
+      "cyrillic": "пока",
+      "transliteration": "poka",
+      "gender": null,
+      "meaning": "bye (informal)",
+      "exampleCyrillic": "Пока!",
+      "exampleTransliteration": "Poka!",
+      "exampleMeaning": "Bye!"
+    },
+    {
+      "cyrillic": "до свидания",
+      "transliteration": "do svidaniya",
+      "gender": null,
+      "meaning": "goodbye (formal)",
+      "exampleCyrillic": "До свидания!",
+      "exampleTransliteration": "Do svidaniya!",
+      "exampleMeaning": "Goodbye!"
+    },
+    {
+      "cyrillic": "доброе утро",
+      "transliteration": "dobroye utro",
+      "gender": null,
+      "meaning": "good morning",
+      "exampleCyrillic": "Доброе утро!",
+      "exampleTransliteration": "Dobroye utro!",
+      "exampleMeaning": "Good morning!"
+    },
+    {
+      "cyrillic": "добрый день",
+      "transliteration": "dobry den'",
+      "gender": null,
+      "meaning": "good afternoon",
+      "exampleCyrillic": "Добрый день!",
+      "exampleTransliteration": "Dobry den'!",
+      "exampleMeaning": "Good afternoon!"
+    },
+    {
+      "cyrillic": "добрый вечер",
+      "transliteration": "dobry vecher",
+      "gender": null,
+      "meaning": "good evening",
+      "exampleCyrillic": "Добрый вечер!",
+      "exampleTransliteration": "Dobry vecher!",
+      "exampleMeaning": "Good evening!"
+    },
+    {
+      "cyrillic": "спокойной ночи",
+      "transliteration": "spokoynoy nochi",
+      "gender": null,
+      "meaning": "good night",
+      "exampleCyrillic": "Спокойной ночи!",
+      "exampleTransliteration": "Spokoynoy nochi!",
+      "exampleMeaning": "Good night!"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You can now read any Russian word. Let's use that skill immediately with the most useful words in any language — greetings. By the end of this lesson you'll know how to open and close every basic Russian interaction, in both formal and informal registers."
+    },
+    "why": {
+      "text": "Russian has a strict formal/informal distinction that affects not just vocabulary but grammar. Getting this wrong marks you immediately as foreign and can come across as rude. Learning both registers from the start prevents bad habits — you'll know exactly when to use привет versus здравствуйте."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Two registers: informal and formal",
+          "body": "Russian uses different greetings depending on the relationship. Informal (ты-register): for friends, family, children, peers your age. Formal (вы-register): for strangers, elders, authority figures, business contexts. When in doubt, use formal — it's never wrong.",
+          "examples": [
+            { "cyrillic": "привет", "transliteration": "privet", "meaning": "hi — informal only" },
+            { "cyrillic": "здравствуйте", "transliteration": "zdravstvuyte", "meaning": "hello — formal, also used for groups" },
+            { "cyrillic": "здравствуй", "transliteration": "zdravstvuy", "meaning": "hello — formal to one person you know well (less common)" }
+          ]
+        },
+        {
+          "title": "Goodbye",
+          "body": "Like hello, Russian has formal and informal goodbyes. пока is casual and warm. до свидания is the safe default in any context.",
+          "examples": [
+            { "cyrillic": "пока", "transliteration": "poka", "meaning": "bye — informal" },
+            { "cyrillic": "до свидания", "transliteration": "do svidaniya", "meaning": "goodbye — formal, literally 'until the meeting'" },
+            { "cyrillic": "до встречи", "transliteration": "do vstrechi", "meaning": "see you — informal, 'until the meeting'" }
+          ]
+        },
+        {
+          "title": "Time-of-day greetings",
+          "body": "Russian has specific greetings for morning, afternoon, evening, and night. They follow the same structure: добро(е/ый) + time of day. The adjective ending changes because it agrees with the noun — more on this in Unit 6. For now, learn them as fixed phrases.",
+          "examples": [
+            { "cyrillic": "доброе утро", "transliteration": "dobroye utro", "meaning": "good morning (утро = morning, neuter)" },
+            { "cyrillic": "добрый день", "transliteration": "dobry den'", "meaning": "good afternoon (день = day, masculine)" },
+            { "cyrillic": "добрый вечер", "transliteration": "dobry vecher", "meaning": "good evening (вечер = evening, masculine)" },
+            { "cyrillic": "спокойной ночи", "transliteration": "spokoynoy nochi", "meaning": "good night (literally 'of a peaceful night')" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "You're meeting your boss for the first time. Which greeting do you use?",
+          "type": "multiple-choice",
+          "options": ["привет", "здравствуйте", "пока", "спокойной ночи"],
+          "answer": "здравствуйте",
+          "explanation": "здравствуйте is the formal greeting — always correct with strangers, authority figures, and in professional settings."
+        },
+        {
+          "prompt": "What does пока mean?",
+          "type": "text-input",
+          "answer": "bye",
+          "explanation": "пока (poka) = bye (informal). Use it with friends — not with your boss."
+        },
+        {
+          "prompt": "What is the Russian greeting for 'good evening'?",
+          "type": "text-input",
+          "answer": "добрый вечер",
+          "explanation": "добрый вечер (dobry vecher) = good evening. вечер = evening (masculine)."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Pronouncing здравствуйте",
+          "body": "This word looks terrifying but is pronounced much more simply than it's spelled. The В in the consonant cluster ЗДРАВСТВ is usually swallowed — native speakers say 'ZDRA-stvuy-tye', not every letter. The ЛТ at the end also simplifies. Practise the rhythm: ZDRA-stvuy-tye (three beats).",
+          "examples": [
+            { "cyrillic": "здравствуйте", "transliteration": "ZDRA-stvuy-tye", "meaning": "hello (formal) — say it in three beats" }
+          ]
+        },
+        {
+          "title": "Как дела? — How are you?",
+          "body": "The standard follow-up to привет is как дела? (kak dela? — how are things?). The standard reply is хорошо (good) or нормально (fine/normal). You won't use these in today's drill but you'll encounter them constantly — plant the pattern now.",
+          "examples": [
+            { "cyrillic": "Как дела?", "transliteration": "Kak dela?", "meaning": "How are things? (informal)" },
+            { "cyrillic": "Хорошо, спасибо.", "transliteration": "Khorosho, spasibo.", "meaning": "Good, thanks." },
+            { "cyrillic": "Нормально.", "transliteration": "Normal'no.", "meaning": "Fine / normal." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is the informal way to say 'hi' in Russian?",
+          "type": "text-input",
+          "answer": "привет",
+          "explanation": "привет (privet) = hi (informal). Use with friends and peers."
+        },
+        {
+          "prompt": "What does до свидания mean?",
+          "type": "text-input",
+          "answer": "goodbye",
+          "explanation": "до свидания (do svidaniya) = goodbye (formal). Literally 'until the meeting'."
+        },
+        {
+          "prompt": "Which greeting is appropriate at 9am?",
+          "type": "multiple-choice",
+          "options": ["добрый день", "доброе утро", "добрый вечер", "спокойной ночи"],
+          "answer": "доброе утро",
+          "explanation": "доброе утро = good morning. Used until around noon."
+        },
+        {
+          "prompt": "You're leaving a friend's house late at night. What do you say?",
+          "type": "multiple-choice",
+          "options": ["добрый вечер", "привет", "спокойной ночи", "до свидания"],
+          "answer": "спокойной ночи",
+          "explanation": "спокойной ночи (spokoynoy nochi) = good night. Used when parting for the night."
+        },
+        {
+          "prompt": "What does добрый день mean?",
+          "type": "text-input",
+          "answer": "good afternoon",
+          "explanation": "добрый день (dobry den') = good afternoon. добрый = good (masculine), день = day."
+        },
+        {
+          "prompt": "Your friend says привет. You reply informally. What do you say?",
+          "type": "multiple-choice",
+          "options": ["здравствуйте", "до свидания", "привет", "спокойной ночи"],
+          "answer": "привет",
+          "explanation": "Respond with the same register. Informal → привет."
+        },
+        {
+          "prompt": "What does здравствуйте mean?",
+          "type": "text-input",
+          "answer": "hello",
+          "explanation": "здравствуйте (ZDRA-stvuy-tye) = hello (formal). The standard formal greeting."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Informal register: привет / пока — friends, family, peers",
+        "Formal register: здравствуйте / до свидания — strangers, elders, professionals",
+        "When in doubt, use formal — it's never wrong",
+        "Time-of-day greetings: доброе утро / добрый день / добрый вечер / спокойной ночи"
+      ],
+      "vocabulary": ["привет", "здравствуйте", "пока", "до свидания", "доброе утро", "добрый день", "добрый вечер", "спокойной ночи"],
+      "nextLesson": "Next: introducing yourself — your name, where you're from, and the two key pronouns я and ты/вы."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What does привет mean?",
+        "type": "multiple-choice",
+        "options": ["goodbye", "hello (formal)", "hi (informal)", "good night"],
+        "answer": "hi (informal)",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Which greeting do you use with your boss?",
+        "type": "multiple-choice",
+        "options": ["привет", "пока", "здравствуйте", "до встречи"],
+        "answer": "здравствуйте",
+        "grammarPoint": "register-formal-informal"
+      },
+      {
+        "prompt": "Type the Russian for 'goodbye' (formal):",
+        "type": "text-input",
+        "answer": "до свидания",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does спокойной ночи mean?",
+        "type": "multiple-choice",
+        "options": ["good morning", "good evening", "good afternoon", "good night"],
+        "answer": "good night",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What is the Russian for 'good morning'?",
+        "type": "text-input",
+        "answer": "доброе утро",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does добрый вечер mean?",
+        "type": "text-input",
+        "answer": "good evening",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Which is the informal goodbye?",
+        "type": "multiple-choice",
+        "options": ["до свидания", "здравствуйте", "пока", "добрый день"],
+        "answer": "пока",
+        "grammarPoint": "register-formal-informal"
+      },
+      {
+        "prompt": "What does добрый день mean?",
+        "type": "text-input",
+        "answer": "good afternoon",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

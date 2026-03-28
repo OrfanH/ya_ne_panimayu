@@ -1,0 +1,270 @@
+{
+  "id": "5-3",
+  "unit": 5,
+  "lesson": 3,
+  "block": "grammar",
+  "title": "Genitive case",
+  "subtitle": "Possession, absence, and quantity",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "брат",
+      "transliteration": "brat",
+      "gender": "masculine",
+      "meaning": "brother",
+      "exampleCyrillic": "Это книга брата.",
+      "exampleTransliteration": "Eto kniga brata.",
+      "exampleMeaning": "This is (my) brother's book."
+    },
+    {
+      "cyrillic": "сестра",
+      "transliteration": "sestra",
+      "gender": "feminine",
+      "meaning": "sister",
+      "exampleCyrillic": "Машина сестры.",
+      "exampleTransliteration": "Mashina sestry.",
+      "exampleMeaning": "My sister's car."
+    },
+    {
+      "cyrillic": "машина",
+      "transliteration": "mashina",
+      "gender": "feminine",
+      "meaning": "car",
+      "exampleCyrillic": "Это моя машина.",
+      "exampleTransliteration": "Eto moya mashina.",
+      "exampleMeaning": "This is my car."
+    },
+    {
+      "cyrillic": "время",
+      "transliteration": "vremya",
+      "gender": "neuter",
+      "meaning": "time",
+      "exampleCyrillic": "У меня нет времени.",
+      "exampleTransliteration": "U menya net vremeni.",
+      "exampleMeaning": "I don't have time."
+    },
+    {
+      "cyrillic": "без",
+      "transliteration": "bez",
+      "gender": null,
+      "meaning": "without (+ genitive)",
+      "exampleCyrillic": "Кофе без сахара.",
+      "exampleTransliteration": "Kofe bez sakhara.",
+      "exampleMeaning": "Coffee without sugar."
+    },
+    {
+      "cyrillic": "после",
+      "transliteration": "posle",
+      "gender": null,
+      "meaning": "after (+ genitive)",
+      "exampleCyrillic": "После урока.",
+      "exampleTransliteration": "Posle uroka.",
+      "exampleMeaning": "After the lesson."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Genitive is the second most common case in Russian, after nominative. It does three big jobs: possession (whose?), absence (no X / without X), and quantity (of X — used with numbers and words like много). It's also required by a long list of prepositions. Master genitive and you've unlocked a huge chunk of the language."
+    },
+    "why": {
+      "text": "⚠ Genitive is the case that trips up learners most consistently. Not because the endings are hard, but because genitive is required in so many contexts — нет + genitive, numbers 2-4 + genitive, после/без/у/от/до + genitive, and possessive phrases. Drilling genitive widely is the single highest-return case activity at A1 level."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Genitive singular endings",
+          "body": "Genitive singular has clear, consistent endings by gender. Masculine: add -А (hard) or -Я (soft). Feminine: А→Ы or А→И (after Г К Х Ж Ш Щ Ч). Neuter: О→А, Е→Я.",
+          "examples": [
+            { "cyrillic": "Masculine: стол → стола", "transliteration": "stol → stola", "meaning": "table → of the table" },
+            { "cyrillic": "Masculine: словарь → словаря", "transliteration": "slovar' → slovarya", "meaning": "dictionary → of the dictionary (soft)" },
+            { "cyrillic": "Feminine: книга → книги", "transliteration": "kniga → knigi", "meaning": "book → of the book (А→И after Г)" },
+            { "cyrillic": "Feminine: школа → школы", "transliteration": "shkola → shkoly", "meaning": "school → of the school (А→Ы)" },
+            { "cyrillic": "Neuter: слово → слова", "transliteration": "slovo → slova", "meaning": "word → of the word (О→А)" }
+          ]
+        },
+        {
+          "title": "Possession — X of Y / Y's X",
+          "body": "Russian expresses possession with the noun in genitive after the possessed item. There's no word for 'apostrophe-s' — just the genitive ending. книга брата = the book of (the) brother = brother's book.",
+          "examples": [
+            { "cyrillic": "книга брата", "transliteration": "kniga brata", "meaning": "brother's book (lit: book of brother)" },
+            { "cyrillic": "машина сестры", "transliteration": "mashina sestry", "meaning": "sister's car (сестра → сестры)" },
+            { "cyrillic": "дом друга", "transliteration": "dom druga", "meaning": "friend's house (друг → друга)" }
+          ]
+        },
+        {
+          "title": "Negation — нет + genitive",
+          "body": "After нет (there is no), the noun goes into genitive. This extends to У меня нет (I don't have) — the thing you lack is genitive. Compare: У меня есть книга (nominative — I have a book) vs У меня нет книги (genitive — I don't have a book).",
+          "examples": [
+            { "cyrillic": "У меня нет книги.", "transliteration": "U menya net knigi.", "meaning": "I don't have a book. (книга→книги)" },
+            { "cyrillic": "У меня нет времени.", "transliteration": "U menya net vremeni.", "meaning": "I don't have time. (время→времени)" },
+            { "cyrillic": "Нет проблем.", "transliteration": "Net problem.", "meaning": "No problem. (проблема → проблем, genitive plural)" }
+          ]
+        },
+        {
+          "title": "Prepositions that take genitive",
+          "body": "A large set of prepositions always require genitive. The most common at A1: без (without), после (after), у (at/by — possession), от (from), до (until/up to), из (from/out of), около (near).",
+          "examples": [
+            { "cyrillic": "без сахара", "transliteration": "bez sakhara", "meaning": "without sugar (сахар → сахара)" },
+            { "cyrillic": "после урока", "transliteration": "posle uroka", "meaning": "after the lesson (урок → урока)" },
+            { "cyrillic": "у врача", "transliteration": "u vracha", "meaning": "at the doctor's (врач → врача)" },
+            { "cyrillic": "из России", "transliteration": "iz Rossii", "meaning": "from Russia (Россия → России)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'I don't have a book'?",
+          "type": "text-input",
+          "answer": "У меня нет книги.",
+          "explanation": "У меня нет + genitive. книга → книги. нет requires genitive."
+        },
+        {
+          "prompt": "Genitive singular of стол:",
+          "type": "text-input",
+          "answer": "стола",
+          "explanation": "стол → стола. Masculine: add -А."
+        },
+        {
+          "prompt": "машина сестры — what does this mean?",
+          "type": "text-input",
+          "answer": "sister's car",
+          "explanation": "машина сестры = the car of (the) sister = sister's car. сестра → сестры (feminine: А→Ы)."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "⚠ нет + genitive is a top error site",
+          "body": "The switch from nominative (У меня есть книга) to genitive (У меня нет книги) when negating possession is one of the most commonly tested and most commonly wrong points in Russian. The pattern is: positive = nominative; negative = genitive. Drill it until it's automatic — don't reason through it each time.",
+          "examples": [
+            { "cyrillic": "У меня есть время. (nom.)", "transliteration": "U menya yest' vremya.", "meaning": "I have time." },
+            { "cyrillic": "У меня нет времени. (gen.)", "transliteration": "U menya net vremeni.", "meaning": "I don't have time. (время → времени)" },
+            { "cyrillic": "У него есть машина. (nom.)", "transliteration": "U nego yest' mashina.", "meaning": "He has a car." },
+            { "cyrillic": "У него нет машины. (gen.)", "transliteration": "U nego net mashiny.", "meaning": "He doesn't have a car. (машина → машины)" }
+          ]
+        },
+        {
+          "title": "Genitive plural — frequency note",
+          "body": "You've already met genitive plural with numbers 5+ and words like много/мало. Masculine genitive plural: add -ОВ/-ЕВ (домов, столов). Feminine and neuter: zero ending (книг, слов). There are many exceptions — but for the words you know so far, the pattern holds.",
+          "examples": [
+            { "cyrillic": "много домов", "transliteration": "mnogo domov", "meaning": "many houses (gen. plural)" },
+            { "cyrillic": "нет книг", "transliteration": "net knig", "meaning": "no books (gen. plural, zero ending)" },
+            { "cyrillic": "пять уроков", "transliteration": "pyat' urokov", "meaning": "five lessons (gen. plural)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Give the genitive singular of книга:",
+          "type": "text-input",
+          "answer": "книги",
+          "explanation": "книга → книги. Feminine А→И (spelling rule after Г)."
+        },
+        {
+          "prompt": "Give the genitive singular of дом:",
+          "type": "text-input",
+          "answer": "дома",
+          "explanation": "дом → дома. Masculine: add -А."
+        },
+        {
+          "prompt": "How do you say 'coffee without sugar'?",
+          "type": "text-input",
+          "answer": "кофе без сахара",
+          "explanation": "без + genitive. сахар → сахара."
+        },
+        {
+          "prompt": "How do you say 'after the lesson'?",
+          "type": "text-input",
+          "answer": "после урока",
+          "explanation": "после + genitive. урок → урока."
+        },
+        {
+          "prompt": "У меня нет ___. (время — time). Genitive form?",
+          "type": "text-input",
+          "answer": "времени",
+          "explanation": "время → времени. Neuter special declension: -Е ending in genitive."
+        },
+        {
+          "prompt": "много ___ (книга — many books). Genitive plural?",
+          "type": "text-input",
+          "answer": "книг",
+          "explanation": "книга → книг. Feminine genitive plural: zero ending (drop А)."
+        },
+        {
+          "prompt": "книга брата means:",
+          "type": "text-input",
+          "answer": "brother's book",
+          "explanation": "брат → брата (genitive). книга брата = book of brother = brother's book."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Genitive singular: masculine +А/Я, feminine А→Ы/И, neuter О→А",
+        "Possession: noun in genitive after the possessed item (книга брата = brother's book)",
+        "⚠ нет + genitive — always. У меня нет книги (I have no book)",
+        "⚠ есть (positive) → nominative; нет (negative) → genitive",
+        "Key genitive prepositions: без, после, у, от, до, из, около"
+      ],
+      "vocabulary": ["брат", "сестра", "машина", "время", "без", "после"],
+      "nextLesson": "Next: Dative case — indirect objects, age, and verbs that require the dative."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Genitive singular of стол:",
+        "type": "text-input",
+        "answer": "стола",
+        "grammarPoint": "genitive-singular-masculine"
+      },
+      {
+        "prompt": "Genitive singular of книга:",
+        "type": "text-input",
+        "answer": "книги",
+        "grammarPoint": "genitive-singular-feminine"
+      },
+      {
+        "prompt": "У меня нет ___. (книга) — genitive:",
+        "type": "text-input",
+        "answer": "книги",
+        "grammarPoint": "negation-net-genitive"
+      },
+      {
+        "prompt": "У меня есть машина. Negated:",
+        "type": "text-input",
+        "answer": "У меня нет машины.",
+        "grammarPoint": "negation-net-genitive"
+      },
+      {
+        "prompt": "Coffee without sugar:",
+        "type": "text-input",
+        "answer": "кофе без сахара",
+        "grammarPoint": "preposition-bez-genitive"
+      },
+      {
+        "prompt": "After the lesson:",
+        "type": "text-input",
+        "answer": "после урока",
+        "grammarPoint": "preposition-posle-genitive"
+      },
+      {
+        "prompt": "машина сестры means:",
+        "type": "text-input",
+        "answer": "sister's car",
+        "grammarPoint": "genitive-possession"
+      },
+      {
+        "prompt": "много ___ (урок) — genitive plural:",
+        "type": "text-input",
+        "answer": "уроков",
+        "grammarPoint": "genitive-plural-masculine"
+      }
+    ]
+  }
+}

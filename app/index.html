@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Russian Tutor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+      <div class="header-left">
+        <h1 class="header-title">Russian Tutor</h1>
+      </div>
+      <div class="header-right">
+        <span class="header-level" id="header-level">A1</span>
+      </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT AREA ===== -->
+    <div class="app-body">
+
+      <!-- Sidebar (desktop only) -->
+      <nav class="sidebar" id="sidebar">
+        <div class="sidebar-section">
+          <h2 class="sidebar-heading">Lessons</h2>
+          <ul class="lesson-list" id="lesson-list">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Main content views -->
+      <main class="main-content">
+
+        <!-- INDEX VIEW (lesson selection / resume) -->
+        <div data-view="index" class="view view-active">
+          <div class="resume-banner" id="resume-banner" style="display: none;">
+            <div class="resume-banner-content">
+              <span class="resume-label">Continue where you left off</span>
+              <h2 class="resume-title" id="resume-title"></h2>
+              <p class="resume-phase" id="resume-phase"></p>
+            </div>
+            <button class="btn btn-primary resume-btn" id="resume-btn">
+              Continue
+            </button>
+          </div>
+
+          <section class="lesson-grid" id="lesson-grid">
+            <!-- Populated by JS -->
+          </section>
+        </div>
+
+        <!-- LESSON VIEW -->
+        <div data-view="lesson" class="view view-hidden">
+          <!-- Populated by lesson.html content via JS -->
+          <div id="lesson-container"></div>
+        </div>
+
+        <!-- VOCABULARY VIEW -->
+        <div data-view="vocabulary" class="view view-hidden">
+          <div class="page-header">
+            <h2 class="page-title">Vocabulary</h2>
+            <p class="page-subtitle" id="vocab-count">0 words</p>
+          </div>
+          <div class="vocab-list" id="vocab-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- NOTES VIEW -->
+        <div data-view="notes" class="view view-hidden">
+          <div class="page-header">
+            <h2 class="page-title">Bookmarks</h2>
+            <p class="page-subtitle" id="notes-count">0 saved</p>
+          </div>
+          <div class="notes-list" id="notes-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </main>
+
+      <!-- Tutor panel (desktop: sidebar, mobile: bottom sheet) -->
+      <aside class="tutor-panel" id="tutor-panel">
+        <div class="tutor-header">
+          <span class="tutor-label">
+            <i data-lucide="message-circle" class="icon-inline"></i>
+            Tutor
+          </span>
+          <div class="tutor-status" id="tutor-status"></div>
+        </div>
+        <div class="tutor-messages" id="tutor-messages">
+          <div class="tutor-welcome">
+            Ask me anything about the lesson.
+          </div>
+        </div>
+        <div class="tutor-loading" id="tutor-loading">
+          <span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
+        </div>
+        <div class="tutor-input-area">
+          <input
+            type="text"
+            class="tutor-input"
+            id="tutor-input"
+            placeholder="Ask a question..."
+            autocomplete="off"
+          >
+          <button class="btn btn-icon tutor-send" id="tutor-send">
+            <i data-lucide="send" class="icon-inline"></i>
+          </button>
+        </div>
+      </aside>
+
+    </div>
+
+    <!-- ===== MOBILE TAB BAR ===== -->
+    <nav class="tab-bar">
+      <button class="tab tab-active" data-tab="index" onclick="navigateTo('/')">
+        <i data-lucide="book-open"></i>
+        <span>Lessons</span>
+      </button>
+      <button class="tab" data-tab="vocabulary" onclick="navigateTo('/vocabulary')">
+        <i data-lucide="languages"></i>
+        <span>Vocabulary</span>
+      </button>
+      <button class="tab" data-tab="notes" onclick="navigateTo('/notes')">
+        <i data-lucide="bookmark"></i>
+        <span>Notes</span>
+      </button>
+      <button class="tab" data-tab="lesson" onclick="focusTutorInput()">
+        <i data-lucide="message-circle"></i>
+        <span>Tutor</span>
+      </button>
+    </nav>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toast-container"></div>
+
+  </div>
+
+  <script src="config.js"></script>
+  <script src="storage.js"></script>
+  <script src="tutor.js"></script>
+  <script src="session.js"></script>
+  <script src="router.js"></script>
+  <script src="app.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

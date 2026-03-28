@@ -1,0 +1,312 @@
+{
+  "id": "2-4",
+  "unit": 2,
+  "lesson": 4,
+  "block": "foundation",
+  "title": "Core nouns",
+  "subtitle": "People, places, and everyday objects",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "человек",
+      "transliteration": "chelovek",
+      "gender": "masculine",
+      "meaning": "person / human being",
+      "exampleCyrillic": "Это хороший человек.",
+      "exampleTransliteration": "Eto khoroshiy chelovek.",
+      "exampleMeaning": "This is a good person."
+    },
+    {
+      "cyrillic": "мужчина",
+      "transliteration": "muzhchina",
+      "gender": "masculine",
+      "meaning": "man (adult male)",
+      "exampleCyrillic": "Это мужчина.",
+      "exampleTransliteration": "Eto muzhchina.",
+      "exampleMeaning": "This is a man."
+    },
+    {
+      "cyrillic": "женщина",
+      "transliteration": "zhenshchina",
+      "gender": "feminine",
+      "meaning": "woman (adult female)",
+      "exampleCyrillic": "Это женщина.",
+      "exampleTransliteration": "Eto zhenshchina.",
+      "exampleMeaning": "This is a woman."
+    },
+    {
+      "cyrillic": "друг",
+      "transliteration": "drug",
+      "gender": "masculine",
+      "meaning": "friend (male)",
+      "exampleCyrillic": "Это мой друг.",
+      "exampleTransliteration": "Eto moy drug.",
+      "exampleMeaning": "This is my friend."
+    },
+    {
+      "cyrillic": "стол",
+      "transliteration": "stol",
+      "gender": "masculine",
+      "meaning": "table",
+      "exampleCyrillic": "Книга на столе.",
+      "exampleTransliteration": "Kniga na stole.",
+      "exampleMeaning": "The book is on the table."
+    },
+    {
+      "cyrillic": "стул",
+      "transliteration": "stul",
+      "gender": "masculine",
+      "meaning": "chair",
+      "exampleCyrillic": "Сядь на стул.",
+      "exampleTransliteration": "Syad' na stul.",
+      "exampleMeaning": "Sit on the chair."
+    },
+    {
+      "cyrillic": "окно",
+      "transliteration": "okno",
+      "gender": "neuter",
+      "meaning": "window",
+      "exampleCyrillic": "Открой окно.",
+      "exampleTransliteration": "Otkroy okno.",
+      "exampleMeaning": "Open the window."
+    },
+    {
+      "cyrillic": "вода",
+      "transliteration": "voda",
+      "gender": "feminine",
+      "meaning": "water",
+      "exampleCyrillic": "Дайте воду, пожалуйста.",
+      "exampleTransliteration": "Dayte vodu, pozhaluysta.",
+      "exampleMeaning": "Give me water, please."
+    },
+    {
+      "cyrillic": "еда",
+      "transliteration": "yeda",
+      "gender": "feminine",
+      "meaning": "food",
+      "exampleCyrillic": "Это еда.",
+      "exampleTransliteration": "Eto yeda.",
+      "exampleMeaning": "This is food."
+    },
+    {
+      "cyrillic": "деньги",
+      "transliteration": "den'gi",
+      "gender": "plural",
+      "meaning": "money (used in plural)",
+      "exampleCyrillic": "У меня нет денег.",
+      "exampleTransliteration": "U menya net deneg.",
+      "exampleMeaning": "I have no money."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Grammar is only useful when you have words to use it on. This lesson is a direct vocabulary investment — ten high-frequency nouns covering people, objects, and things you'll need from the very first real conversation. Every word here appears within the first five minutes of any practical interaction."
+    },
+    "why": {
+      "text": "Russian nouns carry gender (masculine, feminine, neuter) and this gender affects everything — adjective endings, pronoun choice, verb agreement. Learning gender as part of the word from the start is far easier than learning it separately. Every noun entry here includes gender — treat it as inseparable from the word itself."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Nouns and their gender",
+          "body": "Every Russian noun is masculine, feminine, or neuter. You mostly can predict gender from the ending. Nouns ending in a consonant are usually masculine. Nouns ending in А/Я are usually feminine. Nouns ending in О/Е are usually neuter. Exceptions exist — learn them with the noun.",
+          "examples": [
+            { "cyrillic": "стол (consonant ending)", "transliteration": "stol", "meaning": "table — masculine" },
+            { "cyrillic": "вода (А ending)", "transliteration": "voda", "meaning": "water — feminine" },
+            { "cyrillic": "окно (О ending)", "transliteration": "okno", "meaning": "window — neuter" },
+            { "cyrillic": "мужчина (А ending, exception)", "transliteration": "muzhchina", "meaning": "man — masculine despite А ending" }
+          ]
+        },
+        {
+          "title": "People vocabulary",
+          "body": "Core people nouns — learn these with their gender. Note that мужчина ends in А but is masculine (biological gender overrides the ending rule for people words).",
+          "examples": [
+            { "cyrillic": "человек", "transliteration": "chelovek", "meaning": "person — masculine" },
+            { "cyrillic": "мужчина", "transliteration": "muzhchina", "meaning": "man — masculine (ends in А but refers to males)" },
+            { "cyrillic": "женщина", "transliteration": "zhenshchina", "meaning": "woman — feminine" },
+            { "cyrillic": "друг", "transliteration": "drug", "meaning": "friend (male) — masculine" }
+          ]
+        },
+        {
+          "title": "Objects and essentials",
+          "body": "High-frequency object nouns. These appear in the first lesson of almost any Russian course — they're the building blocks of sentences.",
+          "examples": [
+            { "cyrillic": "стол", "transliteration": "stol", "meaning": "table — masculine" },
+            { "cyrillic": "стул", "transliteration": "stul", "meaning": "chair — masculine" },
+            { "cyrillic": "окно", "transliteration": "okno", "meaning": "window — neuter" },
+            { "cyrillic": "вода", "transliteration": "voda", "meaning": "water — feminine" },
+            { "cyrillic": "еда", "transliteration": "yeda", "meaning": "food — feminine" },
+            { "cyrillic": "деньги", "transliteration": "den'gi", "meaning": "money — always plural in Russian" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What gender is стол?",
+          "type": "multiple-choice",
+          "options": ["masculine", "feminine", "neuter"],
+          "answer": "masculine",
+          "explanation": "стол ends in a consonant — masculine. The pattern: consonant ending = usually masculine."
+        },
+        {
+          "prompt": "What does деньги mean?",
+          "type": "text-input",
+          "answer": "money",
+          "explanation": "деньги (den'gi) = money. It's always plural in Russian — there's no singular form in everyday use."
+        },
+        {
+          "prompt": "мужчина ends in А. What gender is it?",
+          "type": "multiple-choice",
+          "options": ["feminine", "masculine", "neuter"],
+          "answer": "masculine",
+          "explanation": "мужчина is masculine despite ending in А. For people, biological gender overrides the spelling rule."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Это — this is / these are",
+          "body": "Это (eto) is one of the most useful words in Russian. It means 'this is', 'that is', 'these are', 'those are' — it covers all of them. Crucially, это never changes form, regardless of what follows. Это книга, это стол, это деньги — always это.",
+          "examples": [
+            { "cyrillic": "Это стол.", "transliteration": "Eto stol.", "meaning": "This is a table." },
+            { "cyrillic": "Это вода.", "transliteration": "Eto voda.", "meaning": "This is water." },
+            { "cyrillic": "Это деньги.", "transliteration": "Eto den'gi.", "meaning": "This is money (these are)." }
+          ]
+        },
+        {
+          "title": "Russian has no articles",
+          "body": "There is no 'a' or 'the' in Russian. стол means 'a table', 'the table', or just 'table' — context decides. Don't add an article when translating to Russian, and when translating from Russian, choose the article that fits the context.",
+          "examples": [
+            { "cyrillic": "Это стол.", "transliteration": "Eto stol.", "meaning": "This is a table. / This is the table." },
+            { "cyrillic": "Где стол?", "transliteration": "Gde stol?", "meaning": "Where is the table?" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What does стол mean?",
+          "type": "text-input",
+          "answer": "table",
+          "explanation": "стол (stol) = table. Masculine."
+        },
+        {
+          "prompt": "What does женщина mean?",
+          "type": "text-input",
+          "answer": "woman",
+          "explanation": "женщина (zhenshchina) = woman. Feminine."
+        },
+        {
+          "prompt": "What gender is окно?",
+          "type": "multiple-choice",
+          "options": ["masculine", "feminine", "neuter"],
+          "answer": "neuter",
+          "explanation": "окно ends in О — neuter. Pattern: О/Е ending = usually neuter."
+        },
+        {
+          "prompt": "What does вода mean?",
+          "type": "text-input",
+          "answer": "water",
+          "explanation": "вода (voda) = water. Feminine (ends in А)."
+        },
+        {
+          "prompt": "How do you say 'this is a chair' in Russian?",
+          "type": "text-input",
+          "answer": "Это стул.",
+          "explanation": "Это стул. (Eto stul.) = This is a chair. Это never changes form."
+        },
+        {
+          "prompt": "What does друг mean?",
+          "type": "text-input",
+          "answer": "friend",
+          "explanation": "друг (drug) = friend (male). Masculine."
+        },
+        {
+          "prompt": "деньги is always used in which form?",
+          "type": "multiple-choice",
+          "options": ["singular", "plural", "both", "depends on the context"],
+          "answer": "plural",
+          "explanation": "деньги is always plural in Russian — there's no everyday singular form. Same pattern as English 'scissors' or 'trousers'."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Noun gender: consonant ending = usually masculine; А/Я ending = usually feminine; О/Е ending = usually neuter",
+        "Exception: people words follow biological gender (мужчина is masculine despite А ending)",
+        "Это = this is / that is / these are — never changes form",
+        "Russian has no articles (a/the) — context determines which to use in translation",
+        "деньги (money) is always plural"
+      ],
+      "vocabulary": ["человек", "мужчина", "женщина", "друг", "стол", "стул", "окно", "вода", "еда", "деньги"],
+      "nextLesson": "Next: survival phrases — please, sorry, I don't understand, speak slowly — everything you need when language fails."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What does стол mean?",
+        "type": "multiple-choice",
+        "options": ["chair", "table", "window", "floor"],
+        "answer": "table",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What gender is вода?",
+        "type": "multiple-choice",
+        "options": ["masculine", "feminine", "neuter"],
+        "answer": "feminine",
+        "grammarPoint": "noun-gender"
+      },
+      {
+        "prompt": "What does женщина mean?",
+        "type": "text-input",
+        "answer": "woman",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What is the gender rule for nouns ending in О?",
+        "type": "multiple-choice",
+        "options": ["masculine", "feminine", "neuter", "depends"],
+        "answer": "neuter",
+        "grammarPoint": "noun-gender"
+      },
+      {
+        "prompt": "How do you say 'this is water' in Russian?",
+        "type": "text-input",
+        "answer": "Это вода.",
+        "grammarPoint": "demonstrative-eto"
+      },
+      {
+        "prompt": "What does деньги mean?",
+        "type": "text-input",
+        "answer": "money",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "мужчина ends in А but its gender is:",
+        "type": "multiple-choice",
+        "options": ["feminine", "masculine", "neuter"],
+        "answer": "masculine",
+        "grammarPoint": "noun-gender"
+      },
+      {
+        "prompt": "What does друг mean?",
+        "type": "text-input",
+        "answer": "friend",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Russian has no articles. 'стол' can mean:",
+        "type": "multiple-choice",
+        "options": ["only 'a table'", "only 'the table'", "both 'a table' and 'the table'", "neither"],
+        "answer": "both 'a table' and 'the table'",
+        "grammarPoint": "zero-article"
+      }
+    ]
+  }
+}

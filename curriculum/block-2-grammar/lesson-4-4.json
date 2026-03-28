@@ -1,0 +1,293 @@
+{
+  "id": "4-4",
+  "unit": 4,
+  "lesson": 4,
+  "block": "grammar",
+  "title": "Aspect preview",
+  "subtitle": "Imperfective vs perfective — what you already know, applied to verbs",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "делать",
+      "transliteration": "delat'",
+      "gender": null,
+      "meaning": "to do (imperfective)",
+      "exampleCyrillic": "Что ты делаешь?",
+      "exampleTransliteration": "Chto ty delayesh'?",
+      "exampleMeaning": "What are you doing?"
+    },
+    {
+      "cyrillic": "сделать",
+      "transliteration": "sdelat'",
+      "gender": null,
+      "meaning": "to do / complete (perfective)",
+      "exampleCyrillic": "Я сделал домашнее задание.",
+      "exampleTransliteration": "Ya sdelal domashneye zadaniye.",
+      "exampleMeaning": "I did (completed) the homework."
+    },
+    {
+      "cyrillic": "читать",
+      "transliteration": "chitat'",
+      "gender": null,
+      "meaning": "to read (imperfective — ongoing)",
+      "exampleCyrillic": "Я читал книгу час.",
+      "exampleTransliteration": "Ya chital knigu chas.",
+      "exampleMeaning": "I was reading the book for an hour."
+    },
+    {
+      "cyrillic": "прочитать",
+      "transliteration": "prochitat'",
+      "gender": null,
+      "meaning": "to read / finish reading (perfective)",
+      "exampleCyrillic": "Я прочитал книгу.",
+      "exampleTransliteration": "Ya prochital knigu.",
+      "exampleMeaning": "I read (finished) the book."
+    },
+    {
+      "cyrillic": "говорить",
+      "transliteration": "govorit'",
+      "gender": null,
+      "meaning": "to speak (imperfective — ongoing)",
+      "exampleCyrillic": "Он говорил долго.",
+      "exampleTransliteration": "On govoril dolgo.",
+      "exampleMeaning": "He was speaking for a long time."
+    },
+    {
+      "cyrillic": "сказать",
+      "transliteration": "skazat'",
+      "gender": null,
+      "meaning": "to say (perfective — completed utterance)",
+      "exampleCyrillic": "Что он сказал?",
+      "exampleTransliteration": "Chto on skazal?",
+      "exampleMeaning": "What did he say?"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You already understand the concept of imperfective and perfective from Unit 9's placement — this is an early application of that knowledge. Every Russian verb exists as a pair: imperfective (process, ongoing, habitual) and perfective (completed, one-time result). Today you see these pairs in practice with the verbs you've already learned."
+    },
+    "why": {
+      "text": "Aspect is not optional in Russian — every time you choose a past or future tense verb, you're choosing a form. Getting it wrong doesn't make a sentence ungrammatical, but it changes the meaning significantly. Since you already grasp the concept, today's goal is recognising the pairs, not production. Production comes in Unit 9."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "The aspect pair — one concept, two verbs",
+          "body": "Every action in Russian has two verb forms. Imperfective: describes the process, duration, repetition, or ongoing state. Perfective: describes a completed event with a result. Think of imperfective as 'watching the film' and perfective as 'the film is over'.",
+          "examples": [
+            { "cyrillic": "читать (impf) / прочитать (pf)", "transliteration": "chitat' / prochitat'", "meaning": "to read (process) / to finish reading (result)" },
+            { "cyrillic": "делать (impf) / сделать (pf)", "transliteration": "delat' / sdelat'", "meaning": "to do (process) / to complete (result)" },
+            { "cyrillic": "говорить (impf) / сказать (pf)", "transliteration": "govorit' / skazat'", "meaning": "to speak (ongoing) / to say (one utterance)" }
+          ]
+        },
+        {
+          "title": "Present tense — imperfective only",
+          "body": "Present tense in Russian can only be imperfective. Why? Because a completed action can't be happening right now — by definition it's already done. So all the present tense conjugations you've learned so far are imperfective. This matters when you add perfective verbs to your vocabulary.",
+          "examples": [
+            { "cyrillic": "Я читаю. (impf present)", "transliteration": "Ya chitayu.", "meaning": "I am reading. / I read. — ongoing, present" },
+            { "cyrillic": "Я читал. (impf past)", "transliteration": "Ya chital.", "meaning": "I was reading / I used to read." },
+            { "cyrillic": "Я прочитал. (pf past)", "transliteration": "Ya prochital.", "meaning": "I read (finished it / completed)." }
+          ]
+        },
+        {
+          "title": "How perfective pairs are formed",
+          "body": "Most perfective verbs are formed by adding a prefix to the imperfective. The most common prefixes: с- (сделать), про- (прочитать), на- (написать). The prefix doesn't change the stem — only the aspect. Some pairs are completely different words (говорить/сказать) — these must be memorised.",
+          "examples": [
+            { "cyrillic": "делать → сделать", "transliteration": "delat' → sdelat'", "meaning": "с- prefix" },
+            { "cyrillic": "читать → прочитать", "transliteration": "chitat' → prochitat'", "meaning": "про- prefix" },
+            { "cyrillic": "писать → написать", "transliteration": "pisat' → napisat'", "meaning": "на- prefix" },
+            { "cyrillic": "говорить → сказать", "transliteration": "govorit' → skazat'", "meaning": "suppletive pair (different root)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "You were reading for two hours but didn't finish. Which verb?",
+          "type": "multiple-choice",
+          "options": ["прочитать (perfective)", "читать (imperfective)"],
+          "answer": "читать (imperfective)",
+          "explanation": "Two hours of reading = process without specified completion → imperfective. Я читал книгу два часа."
+        },
+        {
+          "prompt": "You finished reading the book. Which verb?",
+          "type": "multiple-choice",
+          "options": ["прочитать (perfective)", "читать (imperfective)"],
+          "answer": "прочитать (perfective)",
+          "explanation": "Finished = completed result → perfective. Я прочитал книгу."
+        },
+        {
+          "prompt": "Which tense can ONLY use imperfective verbs?",
+          "type": "multiple-choice",
+          "options": ["Past tense", "Present tense", "Future tense"],
+          "answer": "Present tense",
+          "explanation": "Present tense = imperfective only. A completed action can't be happening right now."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Aspect in practice — the key contexts",
+          "body": "Three signals that tell you imperfective is needed: (1) 'was doing / used to do' in past — process; (2) 'doing right now' — present tense; (3) question 'what were you doing?' — focus on process. Three signals for perfective: (1) 'did and finished'; (2) 'will do (once, result)'; (3) sequence of completed events.",
+          "examples": [
+            { "cyrillic": "Я читал (impf) — процесс", "transliteration": "Ya chital", "meaning": "I was reading — process" },
+            { "cyrillic": "Я прочитал (pf) — результат", "transliteration": "Ya prochital", "meaning": "I read (completed) — result" },
+            { "cyrillic": "Он говорил (impf) долго.", "transliteration": "On govoril dolgo.", "meaning": "He spoke for a long time (process)." },
+            { "cyrillic": "Он сказал (pf) правду.", "transliteration": "On skazal pravdu.", "meaning": "He told the truth (one statement, completed)." }
+          ]
+        },
+        {
+          "title": "Unit 9 preview",
+          "body": "You already know the conceptual distinction between imperfective and perfective — that's confirmed by your placement score. This lesson is about recognising pairs in context. Full production — forming future tense with both aspects, and navigating complex aspect choices — is the focus of Unit 9. Don't try to master it now; notice it.",
+          "examples": [
+            { "cyrillic": "Буду читать. (impf future)", "transliteration": "Budu chitat'.", "meaning": "I will be reading. / I will read (ongoing)." },
+            { "cyrillic": "Прочитаю. (pf future)", "transliteration": "Prochitayu.", "meaning": "I will read (and finish it)." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Which is the perfective of делать?",
+          "type": "multiple-choice",
+          "options": ["доделать", "сделать", "поделать", "наделать"],
+          "answer": "сделать",
+          "explanation": "делать (impf) / сделать (pf). The perfective uses the prefix с-."
+        },
+        {
+          "prompt": "Я ___ книгу (I finished reading the book). Which verb?",
+          "type": "multiple-choice",
+          "options": ["читал", "прочитал"],
+          "answer": "прочитал",
+          "explanation": "прочитал = read and finished. Completed result → perfective."
+        },
+        {
+          "prompt": "What does говорить / сказать illustrate?",
+          "type": "multiple-choice",
+          "options": [
+            "Two verbs with the same meaning",
+            "A suppletive aspect pair — different roots",
+            "First and second conjugation",
+            "The same verb in two tenses"
+          ],
+          "answer": "A suppletive aspect pair — different roots",
+          "explanation": "говорить (impf, ongoing speech) / сказать (pf, one utterance). Different roots — must be memorised."
+        },
+        {
+          "prompt": "Which verb do you use in present tense?",
+          "type": "multiple-choice",
+          "options": [
+            "Perfective only",
+            "Imperfective only",
+            "Either, depending on meaning"
+          ],
+          "answer": "Imperfective only",
+          "explanation": "Present tense is always imperfective — a completed action can't be happening now."
+        },
+        {
+          "prompt": "What does сделать mean?",
+          "type": "text-input",
+          "answer": "to do / complete",
+          "explanation": "сделать = to do / complete (perfective of делать). The с- prefix marks completion."
+        },
+        {
+          "prompt": "What does прочитать mean?",
+          "type": "text-input",
+          "answer": "to read and finish",
+          "explanation": "прочитать = to read through and complete (perfective of читать)."
+        },
+        {
+          "prompt": "He was speaking for an hour — which aspect?",
+          "type": "multiple-choice",
+          "options": [
+            "Perfective — говорить",
+            "Imperfective — говорить",
+            "Perfective — сказать"
+          ],
+          "answer": "Imperfective — говорить",
+          "explanation": "'For an hour' = duration = process = imperfective. Он говорил час."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Imperfective: process, duration, repetition, ongoing state. Perfective: completed event with result.",
+        "Present tense is always imperfective — completion and the present moment are contradictory",
+        "Most perfective verbs: prefix + imperfective stem (с-, про-, на-, etc.)",
+        "Some aspect pairs are suppletive (different roots): говорить / сказать",
+        "Full aspect mastery in Unit 9 — for now, recognise the pairs"
+      ],
+      "vocabulary": ["делать", "сделать", "читать", "прочитать", "говорить", "сказать"],
+      "nextLesson": "Next: Unit 5 — the case system. All 6 cases, starting with an overview and the two you'll use most: nominative and accusative."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Which aspect describes a completed action?",
+        "type": "multiple-choice",
+        "options": ["imperfective", "perfective"],
+        "answer": "perfective",
+        "grammarPoint": "aspect-imperfective-perfective"
+      },
+      {
+        "prompt": "What is the perfective of читать?",
+        "type": "multiple-choice",
+        "options": ["прочитать", "начитать", "дочитать", "вчитать"],
+        "answer": "прочитать",
+        "grammarPoint": "aspect-pairs"
+      },
+      {
+        "prompt": "Present tense in Russian uses:",
+        "type": "multiple-choice",
+        "options": [
+          "Perfective only",
+          "Imperfective only",
+          "Both aspects"
+        ],
+        "answer": "Imperfective only",
+        "grammarPoint": "aspect-present-tense"
+      },
+      {
+        "prompt": "Я ___ книгу (I finished the book). Which form?",
+        "type": "multiple-choice",
+        "options": ["читал", "прочитал"],
+        "answer": "прочитал",
+        "grammarPoint": "aspect-past-perfective"
+      },
+      {
+        "prompt": "What does сделать mean?",
+        "type": "text-input",
+        "answer": "to complete / to do (perfective)",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "говорить / сказать is an example of:",
+        "type": "multiple-choice",
+        "options": [
+          "Two synonyms",
+          "First and second conjugation",
+          "A suppletive aspect pair"
+        ],
+        "answer": "A suppletive aspect pair",
+        "grammarPoint": "aspect-pairs"
+      },
+      {
+        "prompt": "'He was speaking for a long time' uses which aspect?",
+        "type": "multiple-choice",
+        "options": ["говорить (imperfective)", "сказать (perfective)"],
+        "answer": "говорить (imperfective)",
+        "grammarPoint": "aspect-imperfective-duration"
+      },
+      {
+        "prompt": "What does прочитать mean?",
+        "type": "text-input",
+        "answer": "to finish reading",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

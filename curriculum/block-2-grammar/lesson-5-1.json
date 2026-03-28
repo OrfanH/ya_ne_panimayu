@@ -1,0 +1,286 @@
+{
+  "id": "5-1",
+  "unit": 5,
+  "lesson": 1,
+  "block": "grammar",
+  "title": "The case system",
+  "subtitle": "What cases are and how they work — an overview of all 6",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "падеж",
+      "transliteration": "padezh",
+      "gender": "masculine",
+      "meaning": "grammatical case",
+      "exampleCyrillic": "В русском языке шесть падежей.",
+      "exampleTransliteration": "V russkom yazyke shest' padezey.",
+      "exampleMeaning": "Russian has six grammatical cases."
+    },
+    {
+      "cyrillic": "окончание",
+      "transliteration": "okonchaniye",
+      "gender": "neuter",
+      "meaning": "ending / suffix",
+      "exampleCyrillic": "Окончание меняется.",
+      "exampleTransliteration": "Okonchaniye menyayetsya.",
+      "exampleMeaning": "The ending changes."
+    },
+    {
+      "cyrillic": "студент",
+      "transliteration": "student",
+      "gender": "masculine",
+      "meaning": "student (male)",
+      "exampleCyrillic": "Я студент.",
+      "exampleTransliteration": "Ya student.",
+      "exampleMeaning": "I am a student."
+    },
+    {
+      "cyrillic": "студентка",
+      "transliteration": "studentka",
+      "gender": "feminine",
+      "meaning": "student (female)",
+      "exampleCyrillic": "Она студентка.",
+      "exampleTransliteration": "Ona studentka.",
+      "exampleMeaning": "She is a student."
+    },
+    {
+      "cyrillic": "предложение",
+      "transliteration": "predlozheniye",
+      "gender": "neuter",
+      "meaning": "sentence / proposal",
+      "exampleCyrillic": "В предложении есть подлежащее.",
+      "exampleTransliteration": "V predlozhenii yest' podlezhashcheye.",
+      "exampleMeaning": "A sentence has a subject."
+    },
+    {
+      "cyrillic": "врач",
+      "transliteration": "vrach",
+      "gender": "masculine",
+      "meaning": "doctor",
+      "exampleCyrillic": "Она врач.",
+      "exampleTransliteration": "Ona vrach.",
+      "exampleMeaning": "She is a doctor."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Cases are the reason Russian nouns, adjectives, and pronouns change their endings constantly. There are six of them. This might sound daunting — but cases are the most logical part of Russian grammar. Once you understand what each case does, you'll know exactly which ending to use. This lesson is the conceptual foundation. Every case lesson from here builds on it."
+    },
+    "why": {
+      "text": "English uses word order to show meaning: 'the dog bites the man' vs 'the man bites the dog'. Russian uses endings instead. You can rearrange a Russian sentence almost any way you want and the meaning stays the same because the endings carry the grammatical information. Cases are what give Russian its famous word order freedom — and what makes it seem hard to learners who expect word order to do the work."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "What a case is",
+          "body": "A case is a set of endings that shows a noun's role in a sentence. Every noun in Russian is in one of six cases at all times. The case changes the noun's ending but not its core meaning. кот (cat) can appear as кот, кота, коту, котом, коте — same animal, different roles.",
+          "examples": [
+            { "cyrillic": "Кот спит.", "transliteration": "Kot spit.", "meaning": "The cat is sleeping. (subject → nominative)" },
+            { "cyrillic": "Я вижу кота.", "transliteration": "Ya vizhu kota.", "meaning": "I see the cat. (object → accusative)" },
+            { "cyrillic": "У кота молоко.", "transliteration": "U kota moloko.", "meaning": "The cat has milk. (possession → genitive)" }
+          ]
+        },
+        {
+          "title": "The six cases — roles and questions",
+          "body": "Each case answers a question. Learning the question is the fastest way to identify which case you need.",
+          "examples": [
+            { "cyrillic": "Именительный (Nom.)", "transliteration": "Imenitel'niy", "meaning": "Who/what? — subject of the sentence" },
+            { "cyrillic": "Родительный (Gen.)", "transliteration": "Roditel'niy", "meaning": "Whose/of whom? — possession, absence, quantity" },
+            { "cyrillic": "Дательный (Dat.)", "transliteration": "Datel'niy", "meaning": "To whom? — recipient, indirect object" },
+            { "cyrillic": "Винительный (Acc.)", "transliteration": "Vinitel'niy", "meaning": "Whom/what? — direct object" },
+            { "cyrillic": "Творительный (Instr.)", "transliteration": "Tvoritel'niy", "meaning": "With whom/by what? — instrument, accompaniment" },
+            { "cyrillic": "Предложный (Prep.)", "transliteration": "Predlozhniy", "meaning": "About/in/at? — location, topic (only with prepositions)" }
+          ]
+        },
+        {
+          "title": "Case affects nouns, pronouns, and adjectives",
+          "body": "Every word that modifies a noun takes the same case. If the noun is in genitive, its adjective is also in genitive. If the pronoun refers to a genitive noun, it's in genitive too. This is 'agreement' — the whole phrase inflects together. You've already seen this with possessives: мой/моя/моё.",
+          "examples": [
+            { "cyrillic": "мой новый студент (nom.)", "transliteration": "moy noviy student", "meaning": "my new student (nominative — subject)" },
+            { "cyrillic": "моего нового студента (acc.)", "transliteration": "moyego novogo studenta", "meaning": "my new student (accusative — object)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How many cases does Russian have?",
+          "type": "multiple-choice",
+          "options": ["4", "5", "6", "7"],
+          "answer": "6",
+          "explanation": "Russian has 6 cases: Nominative, Genitive, Dative, Accusative, Instrumental, Prepositional."
+        },
+        {
+          "prompt": "The nominative case answers which question?",
+          "type": "multiple-choice",
+          "options": ["To whom?", "Whose?", "Who/what? (subject)", "With whom?"],
+          "answer": "Who/what? (subject)",
+          "explanation": "Nominative = the subject of the sentence. Кот спит — кот is nominative."
+        },
+        {
+          "prompt": "In Russian, 'the dog bites the man' and 'the man bites the dog' are distinguished by:",
+          "type": "multiple-choice",
+          "options": [
+            "Word order only",
+            "Case endings — not necessarily word order",
+            "Verb changes",
+            "Context only"
+          ],
+          "answer": "Case endings — not necessarily word order",
+          "explanation": "Cases carry meaning in Russian. Word order is flexible because endings show who does what."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "⚠ Cases are your weak point — a direct note",
+          "body": "Your placement results show you have case awareness but lack drilling. This unit will not just explain cases — it will drill them systematically. Don't try to memorise all endings before you start using them. The approach that works: learn one case at a time, drill it in context, then add the next. Mixing all cases at once before any are solid creates confusion.",
+          "examples": [
+            { "cyrillic": "Один падеж за раз.", "transliteration": "Odin padezh za raz.", "meaning": "One case at a time." }
+          ]
+        },
+        {
+          "title": "Which cases matter most at A1",
+          "body": "Frequency at A1 level: Nominative (every sentence), Accusative (direct objects, very common), Genitive (possession, negation, quantity — extremely common), Prepositional (location — immediately useful). Dative and Instrumental come next. Learn them in this order — the first four are in almost every sentence you'll encounter.",
+          "examples": [
+            { "cyrillic": "Nom. > Acc. > Gen. > Prep. > Dat. > Instr.", "transliteration": "Priority order", "meaning": "Learn this order — it reflects real frequency" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Which case is used for the subject of a sentence?",
+          "type": "text-input",
+          "answer": "nominative",
+          "explanation": "Nominative = subject. Answers 'who/what is doing the action?'"
+        },
+        {
+          "prompt": "Which case is used for the direct object?",
+          "type": "multiple-choice",
+          "options": ["nominative", "genitive", "accusative", "dative"],
+          "answer": "accusative",
+          "explanation": "Accusative = direct object. Answers 'whom/what is the action directed at?'"
+        },
+        {
+          "prompt": "Which case expresses possession (whose)?",
+          "type": "multiple-choice",
+          "options": ["nominative", "genitive", "dative", "instrumental"],
+          "answer": "genitive",
+          "explanation": "Genitive = possession. Answers 'whose?' or 'of whom/what?'"
+        },
+        {
+          "prompt": "Which case is used only with prepositions — location and topic?",
+          "type": "multiple-choice",
+          "options": ["accusative", "dative", "instrumental", "prepositional"],
+          "answer": "prepositional",
+          "explanation": "Prepositional case is always used with a preposition (в, на, о, etc.) — never standalone."
+        },
+        {
+          "prompt": "What does 'case' mean in Russian grammar?",
+          "type": "multiple-choice",
+          "options": [
+            "A verb tense",
+            "A set of endings showing a noun's role in a sentence",
+            "The number of a noun (singular/plural)",
+            "A type of vowel reduction"
+          ],
+          "answer": "A set of endings showing a noun's role in a sentence",
+          "explanation": "Cases are grammatical categories — endings that show whether a noun is the subject, object, possessor, etc."
+        },
+        {
+          "prompt": "Which case answers 'to whom?'",
+          "type": "multiple-choice",
+          "options": ["accusative", "genitive", "dative", "instrumental"],
+          "answer": "dative",
+          "explanation": "Dative = indirect object. Answers 'to whom?' or 'for whom?'"
+        },
+        {
+          "prompt": "Which case answers 'with whom / by means of what?'",
+          "type": "multiple-choice",
+          "options": ["prepositional", "genitive", "accusative", "instrumental"],
+          "answer": "instrumental",
+          "explanation": "Instrumental = instrument, means, accompaniment. Answers 'with whom?' or 'by means of what?'"
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Russian has 6 cases: Nominative, Genitive, Dative, Accusative, Instrumental, Prepositional",
+        "Cases are endings that show a noun's role — not just word order",
+        "Case affects nouns, pronouns, AND adjectives — the whole phrase agrees",
+        "Priority order: Nominative > Accusative > Genitive > Prepositional > Dative > Instrumental",
+        "Prepositional is always used with a preposition — never standalone"
+      ],
+      "vocabulary": ["падеж", "окончание", "студент", "студентка", "предложение", "врач"],
+      "nextLesson": "Next: Nominative and Accusative — the subject and direct object, the two cases you'll use in every sentence."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "How many cases does Russian have?",
+        "type": "multiple-choice",
+        "options": ["4", "5", "6", "8"],
+        "answer": "6",
+        "grammarPoint": "case-system-overview"
+      },
+      {
+        "prompt": "Which case is used for the subject?",
+        "type": "multiple-choice",
+        "options": ["accusative", "nominative", "genitive", "dative"],
+        "answer": "nominative",
+        "grammarPoint": "case-nominative"
+      },
+      {
+        "prompt": "Which case expresses 'whose?' or possession?",
+        "type": "multiple-choice",
+        "options": ["nominative", "accusative", "genitive", "instrumental"],
+        "answer": "genitive",
+        "grammarPoint": "case-genitive"
+      },
+      {
+        "prompt": "Which case is the direct object case?",
+        "type": "multiple-choice",
+        "options": ["nominative", "genitive", "dative", "accusative"],
+        "answer": "accusative",
+        "grammarPoint": "case-accusative"
+      },
+      {
+        "prompt": "Which case is always used with a preposition?",
+        "type": "multiple-choice",
+        "options": ["accusative", "genitive", "prepositional", "dative"],
+        "answer": "prepositional",
+        "grammarPoint": "case-prepositional"
+      },
+      {
+        "prompt": "What does 'case' do to a noun?",
+        "type": "multiple-choice",
+        "options": [
+          "Changes its gender",
+          "Changes its ending to show its role in the sentence",
+          "Changes its meaning",
+          "Changes its stress"
+        ],
+        "answer": "Changes its ending to show its role in the sentence",
+        "grammarPoint": "case-system-overview"
+      },
+      {
+        "prompt": "Which case answers 'to whom?'?",
+        "type": "multiple-choice",
+        "options": ["accusative", "dative", "genitive", "instrumental"],
+        "answer": "dative",
+        "grammarPoint": "case-dative"
+      },
+      {
+        "prompt": "What does студент mean?",
+        "type": "text-input",
+        "answer": "student",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

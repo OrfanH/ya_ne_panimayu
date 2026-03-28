@@ -1,0 +1,292 @@
+{
+  "id": "2-2",
+  "unit": 2,
+  "lesson": 2,
+  "block": "foundation",
+  "title": "Introductions",
+  "subtitle": "Name, origin, and the pronouns я / ты / вы",
+  "estimatedMinutes": 15,
+  "vocabulary": [
+    {
+      "cyrillic": "я",
+      "transliteration": "ya",
+      "gender": null,
+      "meaning": "I",
+      "exampleCyrillic": "Я студент.",
+      "exampleTransliteration": "Ya student.",
+      "exampleMeaning": "I am a student."
+    },
+    {
+      "cyrillic": "вы",
+      "transliteration": "vy",
+      "gender": null,
+      "meaning": "you (formal / plural)",
+      "exampleCyrillic": "Как вас зовут?",
+      "exampleTransliteration": "Kak vas zovut?",
+      "exampleMeaning": "What is your name? (formal)"
+    },
+    {
+      "cyrillic": "меня зовут",
+      "transliteration": "menya zovut",
+      "gender": null,
+      "meaning": "my name is (literally: they call me)",
+      "exampleCyrillic": "Меня зовут Анна.",
+      "exampleTransliteration": "Menya zovut Anna.",
+      "exampleMeaning": "My name is Anna."
+    },
+    {
+      "cyrillic": "откуда",
+      "transliteration": "otkuda",
+      "gender": null,
+      "meaning": "from where",
+      "exampleCyrillic": "Откуда вы?",
+      "exampleTransliteration": "Otkuda vy?",
+      "exampleMeaning": "Where are you from?"
+    },
+    {
+      "cyrillic": "из",
+      "transliteration": "iz",
+      "gender": null,
+      "meaning": "from (preposition)",
+      "exampleCyrillic": "Я из России.",
+      "exampleTransliteration": "Ya iz Rossii.",
+      "exampleMeaning": "I am from Russia."
+    },
+    {
+      "cyrillic": "рад",
+      "transliteration": "rad",
+      "gender": null,
+      "meaning": "glad / pleased (said by a male speaker)",
+      "exampleCyrillic": "Рад познакомиться.",
+      "exampleTransliteration": "Rad poznakomit'sya.",
+      "exampleMeaning": "Pleased to meet you. (male speaker)"
+    },
+    {
+      "cyrillic": "рада",
+      "transliteration": "rada",
+      "gender": null,
+      "meaning": "glad / pleased (said by a female speaker)",
+      "exampleCyrillic": "Рада познакомиться.",
+      "exampleTransliteration": "Rada poznakomit'sya.",
+      "exampleMeaning": "Pleased to meet you. (female speaker)"
+    },
+    {
+      "cyrillic": "как",
+      "transliteration": "kak",
+      "gender": null,
+      "meaning": "how / what (question word)",
+      "exampleCyrillic": "Как вас зовут?",
+      "exampleTransliteration": "Kak vas zovut?",
+      "exampleMeaning": "What is your name? (formal)"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You can greet someone in Russian. Now what? In any conversation, the next move is exchanging names and finding common ground. This lesson gives you the exact phrases for a complete introduction — from 'hello' to 'nice to meet you' — in both formal and informal registers."
+    },
+    "why": {
+      "text": "Russian has no verb 'to be' in the present tense — 'I am a student' is literally 'I student' (Я студент). This seems strange but it's actually simpler: you don't have to conjugate anything. The flipside is that Russian has formal/informal pronouns (вы/ты) that affect all the verbs around them. Getting these right from the start prevents deeply ingrained errors."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "The pronouns я, ты, вы",
+          "body": "Russian distinguishes formal and informal 'you' — just like French tu/vous or German du/Sie. ты is singular informal (friends, family). вы is formal singular OR any plural. Use вы until someone invites you to use ты.",
+          "examples": [
+            { "cyrillic": "я", "transliteration": "ya", "meaning": "I" },
+            { "cyrillic": "ты", "transliteration": "ty", "meaning": "you (informal, singular)" },
+            { "cyrillic": "вы", "transliteration": "vy", "meaning": "you (formal singular, or any plural)" }
+          ]
+        },
+        {
+          "title": "My name is... — меня зовут",
+          "body": "The literal translation is 'they call me' — меня (me, accusative) зовут (they call). There's no word for 'my' or 'is' here. Don't try to translate it word for word — learn the phrase as a unit.",
+          "examples": [
+            { "cyrillic": "Меня зовут Анна.", "transliteration": "Menya zovut Anna.", "meaning": "My name is Anna." },
+            { "cyrillic": "Как вас зовут?", "transliteration": "Kak vas zovut?", "meaning": "What is your name? (formal)" },
+            { "cyrillic": "Как тебя зовут?", "transliteration": "Kak tebya zovut?", "meaning": "What is your name? (informal)" }
+          ]
+        },
+        {
+          "title": "Where are you from — откуда + из",
+          "body": "To say where you're from, use я из + city/country name. The city name may take a genitive ending — for now, just learn the most common ones as phrases. откуда (from where) is the question word.",
+          "examples": [
+            { "cyrillic": "Я из России.", "transliteration": "Ya iz Rossii.", "meaning": "I am from Russia." },
+            { "cyrillic": "Я из Англии.", "transliteration": "Ya iz Anglii.", "meaning": "I am from England." },
+            { "cyrillic": "Откуда вы?", "transliteration": "Otkuda vy?", "meaning": "Where are you from? (formal)" },
+            { "cyrillic": "Откуда ты?", "transliteration": "Otkuda ty?", "meaning": "Where are you from? (informal)" }
+          ]
+        },
+        {
+          "title": "Nice to meet you",
+          "body": "рад/рада познакомиться is 'pleased to meet you'. The key: рад is used by male speakers, рада by female speakers. This is your first encounter with grammatical gender affecting the speaker — not just the noun. Russian adjectives agree with the subject, and the subject's biological gender determines which form to use when talking about yourself.",
+          "examples": [
+            { "cyrillic": "Рад познакомиться.", "transliteration": "Rad poznakomit'sya.", "meaning": "Pleased to meet you. (male speaker)" },
+            { "cyrillic": "Рада познакомиться.", "transliteration": "Rada poznakomit'sya.", "meaning": "Pleased to meet you. (female speaker)" },
+            { "cyrillic": "Очень приятно.", "transliteration": "Ochen' priyatno.", "meaning": "Very pleasant / nice to meet you (gender-neutral alternative)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'my name is...' in Russian?",
+          "type": "text-input",
+          "answer": "меня зовут",
+          "explanation": "меня зовут (menya zovut) = my name is. Literally 'they call me'."
+        },
+        {
+          "prompt": "You are female. How do you say 'pleased to meet you'?",
+          "type": "multiple-choice",
+          "options": ["Рад познакомиться.", "Рада познакомиться.", "Очень хорошо.", "Как дела?"],
+          "answer": "Рада познакомиться.",
+          "explanation": "рада is the feminine form of рад. Female speakers use рада; male speakers use рад."
+        },
+        {
+          "prompt": "What is the formal way to ask 'what is your name?'",
+          "type": "text-input",
+          "answer": "Как вас зовут?",
+          "explanation": "Как вас зовут? (Kak vas zovut?) — formal. вас = you (formal, genitive). Informal version: Как тебя зовут?"
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "No verb 'to be' in present tense",
+          "body": "Russian drops the present tense of 'to be' entirely. There is no equivalent of 'am', 'is', 'are' in a Russian present tense sentence. Я студент = 'I student' = I am a student. Это книга = 'This book' = This is a book. This applies throughout the language — not just in introductions.",
+          "examples": [
+            { "cyrillic": "Я студент.", "transliteration": "Ya student.", "meaning": "I am a student. (no 'am')" },
+            { "cyrillic": "Он врач.", "transliteration": "On vrach.", "meaning": "He is a doctor. (no 'is')" },
+            { "cyrillic": "Анна учитель.", "transliteration": "Anna uchitel'.", "meaning": "Anna is a teacher. (no 'is')" }
+          ]
+        },
+        {
+          "title": "Switching from вы to ты",
+          "body": "In Russian culture, switching from formal вы to informal ты is a social milestone — it's called перейти на ты (to switch to ты). You don't do it unilaterally; you wait for the other person to invite it, or one person says 'Можно на ты?' (May I use ты with you?). Skipping this step with the wrong person is rude.",
+          "examples": [
+            { "cyrillic": "Можно на ты?", "transliteration": "Mozhno na ty?", "meaning": "Can we use ты? (switching to informal)" },
+            { "cyrillic": "Давай на ты.", "transliteration": "Davay na ty.", "meaning": "Let's use ты. (accepting the switch)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What does я mean?",
+          "type": "text-input",
+          "answer": "I",
+          "explanation": "я (ya) = I. Always lowercase in Russian (unlike English 'I')."
+        },
+        {
+          "prompt": "How do you ask 'where are you from?' formally?",
+          "type": "text-input",
+          "answer": "Откуда вы?",
+          "explanation": "Откуда вы? (Otkuda vy?) = Where are you from? (formal). Informal: Откуда ты?"
+        },
+        {
+          "prompt": "What does вы mean?",
+          "type": "multiple-choice",
+          "options": ["I", "he", "you (formal/plural)", "we"],
+          "answer": "you (formal/plural)",
+          "explanation": "вы = you (formal singular) OR you (plural). Use with strangers, elders, and multiple people."
+        },
+        {
+          "prompt": "Complete the sentence: Меня ___ Антон.",
+          "type": "text-input",
+          "answer": "зовут",
+          "explanation": "Меня зовут Антон. = My name is Anton. The phrase is меня зовут."
+        },
+        {
+          "prompt": "How do you say 'I am from Russia'?",
+          "type": "text-input",
+          "answer": "Я из России.",
+          "explanation": "Я из России. (Ya iz Rossii.) = I am from Russia. из = from, России = Russia (genitive)."
+        },
+        {
+          "prompt": "What does как mean in Как вас зовут?",
+          "type": "multiple-choice",
+          "options": ["where", "who", "how / what", "why"],
+          "answer": "how / what",
+          "explanation": "как = how / what. Как вас зовут? = What is your name? (literally 'how do they call you?')"
+        },
+        {
+          "prompt": "You're male. You meet someone new. How do you say 'pleased to meet you'?",
+          "type": "text-input",
+          "answer": "Рад познакомиться.",
+          "explanation": "Рад познакомиться. (Rad poznakomit'sya.) = Pleased to meet you (male speaker). Female speakers say: Рада познакомиться."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "я = I, ты = you (informal), вы = you (formal / plural)",
+        "меня зовут = my name is (literally: they call me)",
+        "я из + country/city = I am from...",
+        "рад (male) / рада (female) познакомиться = pleased to meet you",
+        "No present-tense 'to be': Я студент = I am a student"
+      ],
+      "vocabulary": ["я", "вы", "меня зовут", "откуда", "из", "рад", "рада", "как"],
+      "nextLesson": "Next: numbers 1–10 — the foundation for dates, times, prices, and counting."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What does я mean?",
+        "type": "multiple-choice",
+        "options": ["you", "I", "he", "we"],
+        "answer": "I",
+        "grammarPoint": "pronouns-nominative"
+      },
+      {
+        "prompt": "What does меня зовут mean?",
+        "type": "multiple-choice",
+        "options": ["my name is", "where are you from", "nice to meet you", "how are you"],
+        "answer": "my name is",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "You are female. How do you say 'pleased to meet you'?",
+        "type": "multiple-choice",
+        "options": ["Рад познакомиться.", "Рада познакомиться.", "Очень хорошо.", "Как дела?"],
+        "answer": "Рада познакомиться.",
+        "grammarPoint": "adjective-gender-agreement"
+      },
+      {
+        "prompt": "How do you say 'where are you from?' (formal)?",
+        "type": "text-input",
+        "answer": "Откуда вы?",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does вы mean?",
+        "type": "multiple-choice",
+        "options": ["I", "he", "you (formal/plural)", "they"],
+        "answer": "you (formal/plural)",
+        "grammarPoint": "pronouns-nominative"
+      },
+      {
+        "prompt": "Complete: Я ___ России.",
+        "type": "text-input",
+        "answer": "из",
+        "grammarPoint": "preposition-iz"
+      },
+      {
+        "prompt": "What is missing from Russian present-tense sentences?",
+        "type": "multiple-choice",
+        "options": ["Subject pronouns", "The verb 'to be'", "Object nouns", "Question words"],
+        "answer": "The verb 'to be'",
+        "grammarPoint": "zero-copula"
+      },
+      {
+        "prompt": "What does откуда mean?",
+        "type": "text-input",
+        "answer": "from where",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

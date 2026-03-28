@@ -1,0 +1,266 @@
+{
+  "id": "1-6",
+  "unit": 1,
+  "lesson": 6,
+  "block": "foundation",
+  "title": "Full alphabet",
+  "subtitle": "Reading consolidation — all 33 letters",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "буква",
+      "transliteration": "bukva",
+      "gender": "feminine",
+      "meaning": "letter (of the alphabet)",
+      "exampleCyrillic": "Это буква А.",
+      "exampleTransliteration": "Eto bukva A.",
+      "exampleMeaning": "This is the letter A."
+    },
+    {
+      "cyrillic": "алфавит",
+      "transliteration": "alfavit",
+      "gender": "masculine",
+      "meaning": "alphabet",
+      "exampleCyrillic": "Русский алфавит.",
+      "exampleTransliteration": "Russkiy alfavit.",
+      "exampleMeaning": "The Russian alphabet."
+    },
+    {
+      "cyrillic": "урок",
+      "transliteration": "urok",
+      "gender": "masculine",
+      "meaning": "lesson",
+      "exampleCyrillic": "Это урок.",
+      "exampleTransliteration": "Eto urok.",
+      "exampleMeaning": "This is a lesson."
+    },
+    {
+      "cyrillic": "книга",
+      "transliteration": "kniga",
+      "gender": "feminine",
+      "meaning": "book",
+      "exampleCyrillic": "Это книга.",
+      "exampleTransliteration": "Eto kniga.",
+      "exampleMeaning": "This is a book."
+    },
+    {
+      "cyrillic": "школа",
+      "transliteration": "shkola",
+      "gender": "feminine",
+      "meaning": "school",
+      "exampleCyrillic": "Это школа.",
+      "exampleTransliteration": "Eto shkola.",
+      "exampleMeaning": "This is a school."
+    },
+    {
+      "cyrillic": "язык",
+      "transliteration": "yazyk",
+      "gender": "masculine",
+      "meaning": "language / tongue",
+      "exampleCyrillic": "Русский язык.",
+      "exampleTransliteration": "Russkiy yazyk.",
+      "exampleMeaning": "The Russian language."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You now know all 33 letters of the Cyrillic alphabet. This lesson is a consolidation sprint — no new letters, just reading real Russian words and sentences. The goal: by the end, you can look at any Russian word and sound it out, even if you don't know what it means."
+    },
+    "why": {
+      "text": "Knowing letters individually is not the same as reading fluently. Your brain needs practice combining them into words without pausing on each letter. This lesson bridges that gap — it's the difference between spelling out 'c-a-t' and reading 'cat' as a unit."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "The full alphabet at a glance",
+          "body": "All 33 Cyrillic letters, grouped by type. Use this as a mental checklist — if any letter trips you up, that's the one to review.",
+          "examples": [
+            { "cyrillic": "А Е Ё И Й О У Ы Э Ю Я", "transliteration": "vowels + й", "meaning": "11 vowels/semi-vowels" },
+            { "cyrillic": "Б В Г Д Ж З К Л М Н П Р С Т Ф Х Ц Ч Ш Щ", "transliteration": "consonants", "meaning": "20 consonants" },
+            { "cyrillic": "Ь Ъ", "transliteration": "signs", "meaning": "2 signs (no sound of their own)" }
+          ]
+        },
+        {
+          "title": "Reading real words",
+          "body": "Sound out each word letter by letter, then say it as a unit. Apply what you know: reduce unstressed vowels, devoice final consonants, soften consonants before Ь and iotated vowels.",
+          "examples": [
+            { "cyrillic": "книга", "transliteration": "KNI-ga", "meaning": "book — К+Н+И+Г+А" },
+            { "cyrillic": "школа", "transliteration": "SHKO-la", "meaning": "school — Ш+К+О+Л+А" },
+            { "cyrillic": "алфавит", "transliteration": "al-fa-VIT", "meaning": "alphabet — А+Л+Ф+А+В+И+Т" },
+            { "cyrillic": "язык", "transliteration": "ya-ZYK", "meaning": "language — Я+З+Ы+К" }
+          ]
+        },
+        {
+          "title": "Consonant clusters",
+          "body": "Russian words often have multiple consonants in a row — something English avoids. Don't panic: just sound each one out. With practice, clusters like КН, СТ, ШК become natural.",
+          "examples": [
+            { "cyrillic": "встреча", "transliteration": "VSTRE-cha", "meaning": "meeting — starts with В+С+Т+Р" },
+            { "cyrillic": "здравствуйте", "transliteration": "ZDRA-stvuy-tye", "meaning": "hello (formal) — a famous cluster" },
+            { "cyrillic": "страна", "transliteration": "stra-NA", "meaning": "country — С+Т+Р cluster" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Sound out this word and type its meaning: книга",
+          "type": "text-input",
+          "answer": "book",
+          "explanation": "книга (KNI-ga) = book. К+Н+И+Г+А — a KN cluster at the start."
+        },
+        {
+          "prompt": "Sound out this word and type its meaning: урок",
+          "type": "text-input",
+          "answer": "lesson",
+          "explanation": "урок (u-ROK) = lesson. У+Р+О+К — stress on the second syllable."
+        },
+        {
+          "prompt": "How many letters does the Russian alphabet have?",
+          "type": "multiple-choice",
+          "options": ["26", "30", "33", "36"],
+          "answer": "33",
+          "explanation": "The Russian Cyrillic alphabet has 33 letters: 10 vowels, 1 semi-vowel (Й), 20 consonants, and 2 signs (Ь, Ъ)."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "International words in Russian",
+          "body": "Russian has absorbed many international words, especially from English and French. Once you can read Cyrillic, you'll recognise many of them instantly. They're great practice because you already know what they mean.",
+          "examples": [
+            { "cyrillic": "банк", "transliteration": "bank", "meaning": "bank" },
+            { "cyrillic": "такси", "transliteration": "taksi", "meaning": "taxi" },
+            { "cyrillic": "кофе", "transliteration": "kofe", "meaning": "coffee" },
+            { "cyrillic": "интернет", "transliteration": "internet", "meaning": "internet" },
+            { "cyrillic": "телефон", "transliteration": "telefon", "meaning": "telephone" }
+          ]
+        },
+        {
+          "title": "Reading speed — the next level",
+          "body": "At this stage, reading letter by letter is normal and correct. The goal of this unit was decoding — being able to look at any Cyrillic word and produce a sound. Reading speed comes from vocabulary, not from more alphabet practice. As you learn words in the coming units, reading will naturally accelerate.",
+          "examples": [
+            { "cyrillic": "Москва", "transliteration": "ma-SKVA", "meaning": "Moscow — a word you can now read and stress correctly" },
+            { "cyrillic": "Россия", "transliteration": "ra-SSI-ya", "meaning": "Russia — reads exactly as written" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Sound out this word and type its meaning: школа",
+          "type": "text-input",
+          "answer": "school",
+          "explanation": "школа (SHKO-la) = school. Ш=sh, К=k, О=o, Л=l, А=a."
+        },
+        {
+          "prompt": "Sound out this word and type its meaning: язык",
+          "type": "text-input",
+          "answer": "language",
+          "explanation": "язык (ya-ZYK) = language / tongue. Я=ya, З=z, Ы=back-ee, К=k. Stress on second syllable."
+        },
+        {
+          "prompt": "What does алфавит mean?",
+          "type": "text-input",
+          "answer": "alphabet",
+          "explanation": "алфавит (al-fa-VIT) = alphabet. Notice the Russian word borrowed the concept from Greek 'alpha' + 'vita'."
+        },
+        {
+          "prompt": "Which category do Ь and Ъ belong to?",
+          "type": "multiple-choice",
+          "options": ["Vowels", "Consonants", "Signs (no sound of their own)", "Semi-vowels"],
+          "answer": "Signs (no sound of their own)",
+          "explanation": "Ь and Ъ are signs — they modify pronunciation but produce no sound themselves."
+        },
+        {
+          "prompt": "Sound out this word and type its meaning: буква",
+          "type": "text-input",
+          "answer": "letter",
+          "explanation": "буква (BUK-va) = letter (of the alphabet). Б=b, У=oo, К=k, В=v, А=a."
+        },
+        {
+          "prompt": "Read this international word — what does it mean? банк",
+          "type": "text-input",
+          "answer": "bank",
+          "explanation": "банк (bank) = bank. Б=b, А=a, Н=n, К=k — a direct borrowing."
+        },
+        {
+          "prompt": "How many vowels does Russian have (including Й)?",
+          "type": "multiple-choice",
+          "options": ["5", "6", "10", "11"],
+          "answer": "11",
+          "explanation": "Russian has 10 vowels (А Е Ё И О У Ы Э Ю Я) plus Й (semi-vowel) = 11 vowel/semi-vowel letters."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "The Russian alphabet has 33 letters: 10 vowels, 1 semi-vowel (Й), 20 consonants, 2 signs (Ь Ъ)",
+        "Consonant clusters are normal in Russian — read each letter in sequence",
+        "International borrowings are widespread — recognising them accelerates vocabulary growth",
+        "Reading fluency comes from vocabulary exposure, not from more alphabet drilling"
+      ],
+      "vocabulary": ["буква", "алфавит", "урок", "книга", "школа", "язык"],
+      "nextLesson": "Next: stress rules and vowel reduction — the most important pronunciation skill, and the one that will make you sound most natural."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What does книга mean?",
+        "type": "multiple-choice",
+        "options": ["letter", "alphabet", "book", "school"],
+        "answer": "book",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "How many letters does the Russian alphabet have?",
+        "type": "multiple-choice",
+        "options": ["26", "30", "33", "36"],
+        "answer": "33",
+        "grammarPoint": "cyrillic-alphabet"
+      },
+      {
+        "prompt": "Type the Russian word for 'school':",
+        "type": "text-input",
+        "answer": "школа",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does язык mean?",
+        "type": "multiple-choice",
+        "options": ["letter", "language", "lesson", "alphabet"],
+        "answer": "language",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Ь and Ъ are classified as:",
+        "type": "multiple-choice",
+        "options": ["Vowels", "Consonants", "Signs with no sound of their own", "Semi-vowels"],
+        "answer": "Signs with no sound of their own",
+        "grammarPoint": "cyrillic-alphabet"
+      },
+      {
+        "prompt": "What does урок mean?",
+        "type": "text-input",
+        "answer": "lesson",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does буква mean?",
+        "type": "text-input",
+        "answer": "letter",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Read and recognise: банк means:",
+        "type": "multiple-choice",
+        "options": ["school", "bank", "book", "lesson"],
+        "answer": "bank",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

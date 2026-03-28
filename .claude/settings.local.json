@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find 'C:/Users/ORfan/Desktop/ya ne Panimayu' -type f -name *.json)",
+      "Bash(git --version)"
+    ]
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "id": "3-3",
+  "unit": 3,
+  "lesson": 3,
+  "block": "grammar",
+  "title": "Numbers and nouns",
+  "subtitle": "Why the noun changes after 1, 2, and 5",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "сколько",
+      "transliteration": "skolko",
+      "gender": null,
+      "meaning": "how many / how much",
+      "exampleCyrillic": "Сколько у вас книг?",
+      "exampleTransliteration": "Skolko u vas knig?",
+      "exampleMeaning": "How many books do you have?"
+    },
+    {
+      "cyrillic": "много",
+      "transliteration": "mnogo",
+      "gender": null,
+      "meaning": "many / a lot",
+      "exampleCyrillic": "Здесь много людей.",
+      "exampleTransliteration": "Zdes' mnogo lyudey.",
+      "exampleMeaning": "There are many people here."
+    },
+    {
+      "cyrillic": "мало",
+      "transliteration": "malo",
+      "gender": null,
+      "meaning": "few / little",
+      "exampleCyrillic": "У меня мало денег.",
+      "exampleTransliteration": "U menya malo deneg.",
+      "exampleMeaning": "I have little money."
+    },
+    {
+      "cyrillic": "несколько",
+      "transliteration": "neskolko",
+      "gender": null,
+      "meaning": "several / a few",
+      "exampleCyrillic": "Несколько минут.",
+      "exampleTransliteration": "Neskolko minut.",
+      "exampleMeaning": "Several minutes."
+    },
+    {
+      "cyrillic": "раз",
+      "transliteration": "raz",
+      "gender": "masculine",
+      "meaning": "time / once (counting occurrences)",
+      "exampleCyrillic": "Один раз.",
+      "exampleTransliteration": "Odin raz.",
+      "exampleMeaning": "Once / one time."
+    },
+    {
+      "cyrillic": "минута",
+      "transliteration": "minuta",
+      "gender": "feminine",
+      "meaning": "minute",
+      "exampleCyrillic": "Пять минут.",
+      "exampleTransliteration": "Pyat' minut.",
+      "exampleMeaning": "Five minutes."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You know the numbers. You know the nouns. Now comes the rule that every Russian learner has to learn eventually: the noun after a number doesn't stay in the same form. один дом, два дома, пять домов — three different noun forms for three different numbers. The rule is logical once you see it."
+    },
+    "why": {
+      "text": "This rule comes from the historical case system — 'two houses' was originally 'two of house' (genitive singular), and 'five houses' was 'five of houses' (genitive plural). The logic is there even if the surface forms look arbitrary. Once you understand the three zones (1 / 2-4 / 5+), you can apply the rule to any noun."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "The three counting zones",
+          "body": "Russian divides numbers into three zones, each requiring a different noun form. Zone 1: the number ends in 1 → nominative singular. Zone 2: the number ends in 2, 3, or 4 → genitive singular. Zone 3: the number ends in 5–20 (or 0) → genitive plural.",
+          "examples": [
+            { "cyrillic": "1 дом", "transliteration": "1 dom", "meaning": "1 house — nominative singular" },
+            { "cyrillic": "2, 3, 4 дома", "transliteration": "2, 3, 4 doma", "meaning": "2/3/4 houses — genitive singular" },
+            { "cyrillic": "5, 6...20 домов", "transliteration": "5, 6...20 domov", "meaning": "5–20 houses — genitive plural" }
+          ]
+        },
+        {
+          "title": "The teens exception",
+          "body": "Numbers 11–19 all take genitive plural, even though they end in 1, 2, 3, 4. This is the one exception to the 'ends in' rule. 11 домов (not 11 дома), 14 книг (not 14 книги).",
+          "examples": [
+            { "cyrillic": "11 домов", "transliteration": "11 domov", "meaning": "11 houses — genitive plural (not singular)" },
+            { "cyrillic": "21 дом", "transliteration": "21 dom", "meaning": "21 houses — ends in 1 → nominative singular" },
+            { "cyrillic": "22 дома", "transliteration": "22 doma", "meaning": "22 houses — ends in 2 → genitive singular" }
+          ]
+        },
+        {
+          "title": "Genitive singular — how to form it",
+          "body": "You need to know the genitive singular because 2, 3, 4 require it. Masculine nouns add -А/-Я. Feminine -А nouns replace А with -Ы/-И. Neuter -О/-Е nouns replace the ending with -А/-Я.",
+          "examples": [
+            { "cyrillic": "дом → дома", "transliteration": "dom → doma", "meaning": "house → of house (gen. sg.) — add -А" },
+            { "cyrillic": "книга → книги", "transliteration": "kniga → knigi", "meaning": "book → of book (gen. sg.) — А→И" },
+            { "cyrillic": "слово → слова", "transliteration": "slovo → slova", "meaning": "word → of word (gen. sg.) — О→А" }
+          ]
+        },
+        {
+          "title": "Genitive plural — how to form it",
+          "body": "Genitive plural is the most complex form. For many masculine nouns: add -ОВ/-ЕВ. Feminine and neuter nouns: remove the final vowel (zero ending). There are many exceptions — this is an area to approach with drilling rather than memorisation of every rule.",
+          "examples": [
+            { "cyrillic": "дом → домов", "transliteration": "dom → domov", "meaning": "house → of houses (gen. pl.) — add -ОВ" },
+            { "cyrillic": "книга → книг", "transliteration": "kniga → knig", "meaning": "book → of books (gen. pl.) — zero ending" },
+            { "cyrillic": "слово → слов", "transliteration": "slovo → slov", "meaning": "word → of words (gen. pl.) — zero ending" },
+            { "cyrillic": "минута → минут", "transliteration": "minuta → minut", "meaning": "minute → of minutes — zero ending" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What noun form follows 3 (три)?",
+          "type": "multiple-choice",
+          "options": ["nominative singular", "genitive singular", "genitive plural"],
+          "answer": "genitive singular",
+          "explanation": "2, 3, 4 → genitive singular. So: три дома (three houses)."
+        },
+        {
+          "prompt": "What noun form follows 7 (семь)?",
+          "type": "multiple-choice",
+          "options": ["nominative singular", "genitive singular", "genitive plural"],
+          "answer": "genitive plural",
+          "explanation": "5 and above (except the teen-ending numbers 21, 31...) → genitive plural. семь домов."
+        },
+        {
+          "prompt": "11 takes which noun form?",
+          "type": "multiple-choice",
+          "options": [
+            "Nominative singular (ends in 1)",
+            "Genitive singular (ends in 1 in teens)",
+            "Genitive plural (teens exception)"
+          ],
+          "answer": "Genitive plural (teens exception)",
+          "explanation": "11–19 always take genitive plural regardless of the last digit. 11 домов."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "много, мало, сколько + genitive plural",
+          "body": "The quantifying words много (many), мало (few), and сколько (how many) all require the genitive plural — same as 5+. So: много книг (many books), мало денег (little money), сколько уроков (how many lessons). Learn this alongside the number rule — it's the same underlying logic.",
+          "examples": [
+            { "cyrillic": "много книг", "transliteration": "mnogo knig", "meaning": "many books (gen. plural)" },
+            { "cyrillic": "мало денег", "transliteration": "malo deneg", "meaning": "little money (gen. plural)" },
+            { "cyrillic": "сколько уроков", "transliteration": "skolko urokov", "meaning": "how many lessons (gen. plural)" }
+          ]
+        },
+        {
+          "title": "Practical priority",
+          "body": "Cases are your declared weak point — so let's be direct. The counting rule is one of the most drilled items in Russian because it comes up in every quantity expression. Don't try to derive it in real time — drill the three zones until they're automatic: one → bare noun; two/three/four → add А; five-plus → add ОВ (for masculine). Exceptions come with exposure.",
+          "examples": [
+            { "cyrillic": "один урок", "transliteration": "odin urok", "meaning": "one lesson" },
+            { "cyrillic": "два урока", "transliteration": "dva uroka", "meaning": "two lessons" },
+            { "cyrillic": "пять уроков", "transliteration": "pyat' urokov", "meaning": "five lessons" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Complete: один ___ (дом)",
+          "type": "text-input",
+          "answer": "дом",
+          "explanation": "один дом — '1' ends in 1: nominative singular."
+        },
+        {
+          "prompt": "Complete: три ___ (дом)",
+          "type": "text-input",
+          "answer": "дома",
+          "explanation": "три дома — '3' is in zone 2-4: genitive singular. дом → дома."
+        },
+        {
+          "prompt": "Complete: семь ___ (дом)",
+          "type": "text-input",
+          "answer": "домов",
+          "explanation": "семь домов — '7' is in zone 5+: genitive plural. дом → домов."
+        },
+        {
+          "prompt": "Complete: две ___ (книга)",
+          "type": "text-input",
+          "answer": "книги",
+          "explanation": "две книги — '2' is in zone 2-4: genitive singular. книга → книги."
+        },
+        {
+          "prompt": "Complete: десять ___ (книга)",
+          "type": "text-input",
+          "answer": "книг",
+          "explanation": "десять книг — '10' is in zone 5+: genitive plural. книга → книг (zero ending)."
+        },
+        {
+          "prompt": "Complete: много ___ (урок)",
+          "type": "text-input",
+          "answer": "уроков",
+          "explanation": "много уроков — много takes genitive plural, same as 5+. урок → уроков."
+        },
+        {
+          "prompt": "11 домов or 11 дома?",
+          "type": "multiple-choice",
+          "options": ["11 дома (ends in 1)", "11 домов (teens exception)"],
+          "answer": "11 домов (teens exception)",
+          "explanation": "11–19 always take genitive plural. The 'ends in 1' rule does NOT apply to teens."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "After 1 (and 21, 31...): nominative singular — один дом",
+        "After 2, 3, 4 (and 22, 23, 24...): genitive singular — два дома",
+        "After 5–20 and 0 (and 25, 26...): genitive plural — пять домов",
+        "11–19 always take genitive plural — the teens exception",
+        "много / мало / сколько / несколько all take genitive plural"
+      ],
+      "vocabulary": ["сколько", "много", "мало", "несколько", "раз", "минута"],
+      "nextLesson": "Next: Unit 4 — present tense verb conjugation. The two conjugation classes and the six personal endings."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "один ___ (дом)",
+        "type": "multiple-choice",
+        "options": ["дом", "дома", "домов"],
+        "answer": "дом",
+        "grammarPoint": "number-noun-agreement"
+      },
+      {
+        "prompt": "четыре ___ (книга)",
+        "type": "multiple-choice",
+        "options": ["книга", "книги", "книг"],
+        "answer": "книги",
+        "grammarPoint": "number-noun-agreement"
+      },
+      {
+        "prompt": "восемь ___ (урок)",
+        "type": "multiple-choice",
+        "options": ["урок", "урока", "уроков"],
+        "answer": "уроков",
+        "grammarPoint": "number-noun-agreement"
+      },
+      {
+        "prompt": "11 домов or 11 дома?",
+        "type": "multiple-choice",
+        "options": ["11 дома", "11 домов"],
+        "answer": "11 домов",
+        "grammarPoint": "number-noun-agreement-teens"
+      },
+      {
+        "prompt": "много + what form?",
+        "type": "multiple-choice",
+        "options": ["nominative singular", "genitive singular", "genitive plural"],
+        "answer": "genitive plural",
+        "grammarPoint": "quantifier-noun-agreement"
+      },
+      {
+        "prompt": "пять ___ (минута)",
+        "type": "text-input",
+        "answer": "минут",
+        "grammarPoint": "number-noun-agreement"
+      },
+      {
+        "prompt": "What does сколько mean?",
+        "type": "text-input",
+        "answer": "how many",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "два ___ (слово)",
+        "type": "multiple-choice",
+        "options": ["слово", "слова", "слов"],
+        "answer": "слова",
+        "grammarPoint": "number-noun-agreement"
+      }
+    ]
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "version": "1.0",
+  "level": "A1-A2",
+  "units": [
+    {
+      "unit": 1,
+      "title": "Cyrillic Alphabet",
+      "block": "foundation",
+      "lessons": [
+        { "id": "1-1", "title": "Familiar letters", "subtitle": "Letters А К М О С Т", "estimatedMinutes": 15 },
+        { "id": "1-2", "title": "False friends", "subtitle": "Letters В Е Н Р У Х", "estimatedMinutes": 15 },
+        { "id": "1-3", "title": "New shapes", "subtitle": "Letters Б Г Д З И Л", "estimatedMinutes": 20 },
+        { "id": "1-4", "title": "More new shapes", "subtitle": "Letters П Ф Э Ц Ч Ш Щ", "estimatedMinutes": 20 },
+        { "id": "1-5", "title": "Soft and hard signs", "subtitle": "Ъ and Ь — the silent modifiers", "estimatedMinutes": 15 },
+        { "id": "1-6", "title": "Vowel pairs", "subtitle": "Я Ё Ю and their hard counterparts", "estimatedMinutes": 15 },
+        { "id": "1-7", "title": "Reading practice", "subtitle": "Stress rules and reading real words", "estimatedMinutes": 20 }
+      ]
+    },
+    {
+      "unit": 2,
+      "title": "First Words & Survival Phrases",
+      "block": "foundation",
+      "lessons": [
+        { "id": "2-1", "title": "Greetings", "subtitle": "Hello, goodbye, and polite basics", "estimatedMinutes": 15 },
+        { "id": "2-2", "title": "Introductions", "subtitle": "Name, nationality, and where you live", "estimatedMinutes": 15 },
+        { "id": "2-3", "title": "Essential questions", "subtitle": "What, where, how much, and yes/no", "estimatedMinutes": 20 },
+        { "id": "2-4", "title": "Numbers 1–20", "subtitle": "Counting and basic prices", "estimatedMinutes": 15 },
+        { "id": "2-5", "title": "At a café", "subtitle": "Ordering food and drinks", "estimatedMinutes": 20 }
+      ]
+    },
+    {
+      "unit": 3,
+      "title": "Noun Gender & Plurality",
+      "block": "grammar",
+      "lessons": [
+        { "id": "3-1", "title": "Masculine, feminine, neuter", "subtitle": "How to tell gender from the ending", "estimatedMinutes": 20 },
+        { "id": "3-2", "title": "Plural nouns", "subtitle": "Regular plural endings", "estimatedMinutes": 20 },
+        { "id": "3-3", "title": "Irregular plurals", "subtitle": "Common exceptions and patterns", "estimatedMinutes": 20 }
+      ]
+    },
+    {
+      "unit": 4,
+      "title": "Present Tense Verbs",
+      "block": "grammar",
+      "lessons": [
+        { "id": "4-1", "title": "First conjugation", "subtitle": "-ать and -ять verbs", "estimatedMinutes": 25 },
+        { "id": "4-2", "title": "Second conjugation", "subtitle": "-ить verbs", "estimatedMinutes": 25 },
+        { "id": "4-3", "title": "Irregular verbs", "subtitle": "быть, хотеть, есть, дать", "estimatedMinutes": 25 },
+        { "id": "4-4", "title": "Negation", "subtitle": "не + verb and нет", "estimatedMinutes": 20 }
+      ]
+    },
+    {
+      "unit": 5,
+      "title": "The Case System",
+      "block": "grammar",
+      "lessons": [
+        { "id": "5-1", "title": "Nominative case", "subtitle": "The subject — who or what", "estimatedMinutes": 20 },
+        { "id": "5-2", "title": "Accusative case", "subtitle": "The direct object — what you see, want, have", "estimatedMinutes": 25 },
+        { "id": "5-3", "title": "Genitive case", "subtitle": "Possession, absence, and quantities", "estimatedMinutes": 25 },
+        { "id": "5-4", "title": "Dative case", "subtitle": "The indirect object — to whom, for whom", "estimatedMinutes": 25 },
+        { "id": "5-5", "title": "Instrumental case", "subtitle": "With what, by what means", "estimatedMinutes": 25 },
+        { "id": "5-6", "title": "Prepositional case", "subtitle": "About what, where (location)", "estimatedMinutes": 25 },
+        { "id": "5-7", "title": "Cases in action", "subtitle": "Combined practice across all six cases", "estimatedMinutes": 30 }
+      ]
+    },
+    {
+      "unit": 6,
+      "title": "Adjectives",
+      "block": "grammar",
+      "lessons": [
+        { "id": "6-1", "title": "Adjective agreement", "subtitle": "Gender and number matching", "estimatedMinutes": 25 },
+        { "id": "6-2", "title": "Adjective endings by case", "subtitle": "How adjectives change with cases", "estimatedMinutes": 25 },
+        { "id": "6-3", "title": "Common adjectives", "subtitle": "Colours, sizes, and descriptions", "estimatedMinutes": 20 }
+      ]
+    },
+    {
+      "unit": 7,
+      "title": "Family, People, Descriptions",
+      "block": "everyday",
+      "lessons": [
+        { "id": "7-1", "title": "Family members", "subtitle": "Mother, father, siblings, and more", "estimatedMinutes": 20 },
+        { "id": "7-2", "title": "Describing people", "subtitle": "Appearance and personality", "estimatedMinutes": 20 },
+        { "id": "7-3", "title": "Possessives", "subtitle": "My, your, his, her, our, their", "estimatedMinutes": 20 }
+      ]
+    },
+    {
+      "unit": 8,
+      "title": "Time, Days, Dates, Numbers",
+      "block": "everyday",
+      "lessons": [
+        { "id": "8-1", "title": "Days and months", "subtitle": "The calendar in Russian", "estimatedMinutes": 20 },
+        { "id": "8-2", "title": "Telling time", "subtitle": "Hours, minutes, and time expressions", "estimatedMinutes": 25 },
+        { "id": "8-3", "title": "Numbers 20–1000", "subtitle": "Larger numbers and counting", "estimatedMinutes": 20 },
+        { "id": "8-4", "title": "Dates and years", "subtitle": "Ordinal numbers and date formats", "estimatedMinutes": 20 }
+      ]
+    },
+    {
+      "unit": 9,
+      "title": "Verb Aspects",
+      "block": "everyday",
+      "lessons": [
+        { "id": "9-1", "title": "Imperfective aspect", "subtitle": "Ongoing, repeated, and habitual actions", "estimatedMinutes": 25 },
+        { "id": "9-2", "title": "Perfective aspect", "subtitle": "Completed, one-time actions", "estimatedMinutes": 25 },
+        { "id": "9-3", "title": "Aspect pairs in context", "subtitle": "Choosing the right aspect", "estimatedMinutes": 30 }
+      ]
+    },
+    {
+      "unit": 10,
+      "title": "Everyday Situations",
+      "block": "everyday",
+      "lessons": [
+        { "id": "10-1", "title": "At the shop", "subtitle": "Buying things and asking prices", "estimatedMinutes": 20 },
+        { "id": "10-2", "title": "Getting around", "subtitle": "Directions, transport, and places", "estimatedMinutes": 20 },
+        { "id": "10-3", "title": "At the doctor", "subtitle": "Health, body parts, and symptoms", "estimatedMinutes": 25 },
+        { "id": "10-4", "title": "Making plans", "subtitle": "Invitations, schedules, and future tense", "estimatedMinutes": 25 }
+      ]
+    }
+  ]
+}
