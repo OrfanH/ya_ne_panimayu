@@ -9,7 +9,7 @@
 ### TASK-017
 **title:** Market location — quantities, colours, numbers 10-100, 3+ NPCs
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-016, TASK-002, TASK-012]
 **assigned_agents:** [architect, designer, composer, coder, curriculum-designer, content-writer, dialogue-writer, linguist, reviewer, ux-reviewer, git]
 **reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-VISION.md, STORY.md, WORLD.md, .claude/curriculum-map.md, .claude/music-spec.md]

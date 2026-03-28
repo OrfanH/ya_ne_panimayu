@@ -137,6 +137,8 @@ class WorldScene extends Phaser.Scene {
         this.scene.start('Park');
       } else if (id === 'cafe') {
         this.scene.start('Cafe');
+      } else if (id === 'market') {
+        this.scene.start('Market');
       }
     });
   }
