@@ -8,19 +8,6 @@
 
 ---
 
-### TASK-022
-**title:** Onboarding intro sequence — scripted arrival, walk to apartment, meet Galina
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-013]
-**assigned_agents:** [architect, designer, content-writer, coder, reviewer, tester, ux-reviewer, git]
-**reads:** [STORY.md, WORLD.md, app/game/scenes/WorldScene.js, app/game/scenes/ApartmentScene.js, app/game/content/apartment-dialogue.js, app/ui/dialogue.js, app/storage.js, app/config.js]
-**writes:** [app/ui/onboarding.js, app/game/scenes/WorldScene.js, app/storage.js, app/style.css, app/tokens.css, app/config.js]
-**done_when:** First-time players see a brief intro overlay (arrival text, walk prompt), then WorldScene auto-walks player toward apartment. On entering apartment, Galina's first dialogue triggers automatically. A `hasSeenIntro` flag in progress prevents replay. Returning players skip straight to WorldScene.
-**notes:** Keep it short — 3-4 text panels max. No cutscene engine. Use CSS animations for text fade. The intro should feel like STORY.md Chapter 1 opening.
-
----
-
 ### TASK-023
 **title:** Settings menu UI — script mode, theme, volume controls
 **track:** BUILD
@@ -86,6 +73,7 @@
 - TASK-020 | DONE | 2026-03-28 | Chapter test rooms — professor's apartment quiz, 70%+ unlock | c539348
 - TASK-021 | DONE | 2026-03-28 | Targeted missions — MistakeLogger-driven, NPC story hooks | 107ea83
 - TASK-024 | DONE | 2026-03-29 | Scene transitions & cleanup — fade effects, fix legacy refs | 2bddef3
+- TASK-022 | DONE | 2026-03-29 | Onboarding intro sequence — 4 panels, auto-walk, Galina auto-trigger | 885e8ac
 
 ## Session log
 
@@ -112,3 +100,4 @@
 - 2026-03-28 · TASK-020 Chapter test rooms — TestScene + TestUI, 4 chapters, vocab quiz, unlock logic · c539348
 - 2026-03-28 · TASK-021 Targeted missions — MissionGenerator.js, mistake→NPC mapping, story reasons · 107ea83
 - 2026-03-29 · TASK-024 Scene transitions & cleanup — fadeOut/fadeIn, fix legacy refs, remove placeholders · 2bddef3
+- 2026-03-29 · TASK-022 Onboarding — 4-panel intro, auto-walk to apartment, Galina auto-dialogue · 885e8ac
