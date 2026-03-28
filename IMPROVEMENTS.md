@@ -9,7 +9,7 @@
 ### TASK-020
 **title:** Chapter test rooms — professor's apartment, one per chapter, 70%+ unlocks next
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-013]
 **assigned_agents:** [architect, designer, coder, curriculum-designer, reviewer, ux-reviewer, git]
 **reads:** [CLAUDE-RULES.md, CLAUDE-VISION.md, STORY.md, .claude/curriculum-map.md]

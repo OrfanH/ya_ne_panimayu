@@ -1,92 +1,168 @@
 PASS
 
-## Design spec: Journal UI (TASK-010)
+## Design spec: TASK-020 — Test UI Overlay
 
 ### Layout structure
 
-**Mobile (default):** Full-screen overlay, fixed position inset 0. Flexbox column.
-- Header: flex row, space-between, border-bottom
-- Tab bar: flex row, gap --space-1, border-bottom
-- Content area: flex 1, overflow-y auto, padding --space-4
+The test overlay (`#test-overlay`) sits inside `#ui-overlay` and spans the full viewport. It is hidden by default and revealed by adding `is-active`.
 
-**Desktop (min-width: 768px):** Centered modal with inset --space-8, border-radius --radius-lg, shadow --shadow-lg.
+- Outer container: full-width, full-height flex column, centered horizontally, aligned to start vertically on mobile (scrollable if content overflows)
+- Inner card: centered column, max-width 480px, fills width on mobile with horizontal padding --space-5 (20px)
+- Card has top padding --space-8 (32px), bottom padding --space-6 (24px)
+- Card background: --bg-surface, radius --radius-md, shadow --shadow-md
+- On mobile: card is flush to viewport sides (no gap left/right), radius applies only on desktop (min-width 768px)
+- On desktop (min-width 768px): card floats centered with horizontal auto margins, vertical margin --space-8 from top
 
-### Components
+---
 
-**Journal container** (`.journal`):
-- Background: var(--bg-base)
-- z-index: 20
-- Hidden by default, shown via `.is-open` class
-- No layout shift: position fixed, not in document flow
+**Question phase layout (top to bottom):**
 
-**Header** (`.journal-header`):
-- Title "Дневник" (Diary) — font-size: --text-lg, weight: --font-weight-medium, color: --text-primary
-- Close button (X): 44x44px min tap target, --radius-md, icon only
+1. Progress row — single line, right-aligned
+2. Russian word block — centered, prominent
+3. Answer buttons column — 4 buttons stacked, full width, gap --space-3 (12px) between each
 
-**Tab bar** (`.journal-tabs`):
-- Two tabs: "Словарь" (Vocabulary) and "Задания" (Missions)
-- Tab: padding --space-2 --space-3, font-size --text-sm, color --text-secondary
-- Active tab: background --accent-light, color --accent-text
-- Hover: background --bg-hover
+**Result phase layout (top to bottom):**
 
-**Vocabulary tab content**:
-- List of vocabulary cards, each card:
-  - Russian word: font-size --text-md, color --text-primary, font-weight --font-weight-medium
-  - Transliteration: font-size --text-sm, color --text-tertiary, italic
-  - Meaning: font-size --text-base, color --text-secondary
-  - Card spacing: margin-bottom --space-3
-  - Divider: 0.5px solid var(--border) between cards
-- Empty state: "No words yet. Talk to NPCs to learn Russian!" — centered, color --text-tertiary
+1. Score block — centered, large
+2. Outcome text — centered, one line
+3. Continue button — full width
 
-**Mission tab content**:
-- Active mission card: background --accent-light, border 1px --border, radius --radius-md, padding --space-3
-- Completed missions: text-secondary, with checkmark prefix
-- Empty state: "No missions yet." — centered, color --text-tertiary
+---
 
 ### Token assignments
 
-| Property | Token |
-|---|---|
-| Journal bg | --bg-base |
-| Header border | --border |
-| Tab text default | --text-secondary |
-| Tab text active | --accent-text |
-| Tab bg active | --accent-light |
-| Tab hover | --bg-hover |
-| Close button hover bg | --bg-hover |
-| Close button focus | box-shadow 0 0 0 3px var(--accent-light) |
-| Card word | --text-primary |
-| Card meaning | --text-secondary |
-| Card transliteration | --text-tertiary |
-| Divider | --border |
-| Empty state text | --text-tertiary |
-| Desktop shadow | --shadow-lg |
-| Desktop radius | --radius-lg |
+**Overlay backdrop**
+- Background: --bg-base at 90% opacity (semi-transparent so world peeks through — student notebook feel, not a hard block)
+- No blur. Flat, calm layer.
+
+**Inner card**
+- Background: --bg-surface
+- Border: 1px solid --border
+- Radius: --radius-md
+- Shadow: --shadow-md
+
+**Progress indicator (e.g. "3 / 10")**
+- Font size: --text-sm (13px)
+- Font weight: --font-weight-regular
+- Color: --text-tertiary
+- Alignment: right within the card header row
+- Margin bottom: --space-4 (16px)
+
+**Russian word (question prompt)**
+- Font family: --font-family-prose (notebook feel for Cyrillic)
+- Font size: --text-xl (20px)
+- Font weight: --font-weight-medium
+- Color: --text-primary
+- Text align: center
+- Padding vertical: --space-6 (24px) top and bottom
+- Background: none (inherits card surface)
+
+**Answer buttons (4 stacked)**
+- Width: 100% of card
+- Min height: 48px (satisfies 44px touch target rule with 2px headroom, matches dialogue-choice rule)
+- Padding: --space-3 (12px) vertical, --space-4 (16px) horizontal
+- Font family: --font-family-ui
+- Font size: --text-base (15px)
+- Font weight: --font-weight-regular
+- Color: --text-primary
+- Background: --bg-subtle
+- Border: 1px solid --border
+- Radius: --radius-sm
+- Text align: left (natural reading for English meanings)
+- Gap between buttons: --space-3 (12px)
+
+**Answer button — correct state (after selection)**
+- Background: --success-light
+- Border color: --success
+- Color: --text-primary (keep legible)
+
+**Answer button — incorrect state (after wrong selection)**
+- Background: --error-light
+- Border color: --error
+- Color: --text-primary
+
+**Answer button — disabled (after any selection, non-chosen options)**
+- Color: --text-disabled
+- Background: --bg-subtle
+- Border color: --border
+- Cursor: not-allowed (via disabled attribute, no extra token needed)
+
+**Score display ("7 / 10")**
+- Font family: --font-family-prose
+- Font size: --text-xl (20px)
+- Font weight: --font-weight-medium
+- Color: --text-primary
+- Text align: center
+- Margin bottom: --space-3 (12px)
+
+**Outcome text (passed / not passed)**
+- Font family: --font-family-ui
+- Font size: --text-base (15px)
+- Font weight: --font-weight-regular
+- Color: --text-secondary
+- Text align: center
+- Margin bottom: --space-6 (24px)
+
+**Continue button**
+- Width: 100%
+- Min height: 48px
+- Padding: --space-3 (12px) vertical, --space-4 (16px) horizontal
+- Font family: --font-family-ui
+- Font size: --text-base (15px)
+- Font weight: --font-weight-medium
+- Color: --accent-text
+- Background: --accent
+- Border: none (accent fill is the affordance)
+- Radius: --radius-sm
+- Text align: center
+
+---
 
 ### States
 
-- **Journal closed**: display none (or hidden class)
-- **Journal open**: `.is-open` class added, display flex
-- **Tab default**: transparent bg, secondary text
-- **Tab hover**: --bg-hover
-- **Tab active/selected**: --accent-light bg, --accent-text color
-- **Close button hover**: --bg-hover, --text-primary
-- **Close button focus**: accent-light ring
+**Answer button**
+- Default: --bg-subtle fill, --border border, --text-primary text
+- Hover (pointer device only): --bg-hover fill, --border-strong border
+- Focus: --border-focus border (2px outline offset 2px — visible keyboard focus ring)
+- Active (tap/click): --bg-active fill
+- Correct (post-answer): --success-light fill, --success border
+- Incorrect (post-answer): --error-light fill, --error border
+- Disabled (post-answer, non-selected): --bg-subtle fill, --border border, --text-disabled text, pointer events none
+
+**Continue button**
+- Default: --accent fill, --accent-text text
+- Hover: --accent-hover fill
+- Focus: --border-focus outline ring (2px, offset 2px)
+- Active: --accent-hover fill (same as hover — touch devices share this)
+- Disabled: not applicable (button only shown when result is ready)
+
+**Overlay container**
+- Default (not active): display none or visibility hidden (controlled by `is-active` class toggle)
+- Active: displayed, fade in via opacity transition
+
+---
 
 ### Transitions and animation
 
-- Journal open: opacity 0→1, transform translateY(8px)→translateY(0), duration 200ms ease
-- Journal close: opacity 1→0, transform translateY(0)→translateY(8px), duration 150ms ease
-- Tab switch: no animation, instant content swap
-- Close button: background transition --transition-fast
+- Overlay appear: opacity 0 to 1, duration --transition-phase (200ms), easing ease-out
+  Apply on `.is-active` class addition via CSS transition on the overlay element.
 
-### Keyboard
+- Answer button hover/active fill change: background-color transition, duration --transition-fast (150ms), easing ease-out
 
-- J key: toggle open/close (HUD already dispatches EVENTS.JOURNAL_OPEN)
-- Escape: close journal
-- Tab/Shift+Tab: navigate interactive elements within journal
+- Answer button correct/incorrect reveal: background-color and border-color transition, duration --transition-phase (200ms), easing ease-out
+  Both fire simultaneously when the result class is toggled on the button.
 
-### Events
+- Continue button hover: background-color transition, duration --transition-fast (150ms), easing ease-out
 
-- Listen: EVENTS.JOURNAL_OPEN — open journal
-- Dispatch: EVENTS.JOURNAL_CLOSE — when journal closes (so game can resume)
+- Phase switch (question -> result): no slide or wipe animation. Swap display states instantly (or with a single --transition-phase opacity cross-fade if the coder wraps each phase in its own container). Keeping it flat honors the notebook feel — no game-show theatrics.
+
+---
+
+### Notes for the coder
+
+- The overlay uses `is-active` class on `#test-overlay` — no inline style toggling.
+- All button result states (correct/incorrect/disabled) are applied via class names on the button elements, not inline styles.
+- The progress indicator ("3 / 10") and score ("7 / 10") use the same slash-separated fraction format — no stars, bars, or icons.
+- Outcome text is plain prose: e.g. "Passed" or "Not passed" — one line, no decoration.
+- No icons anywhere in this component.
+- Font weight --font-weight-semibold (600) is listed in available tokens but CLAUDE-RULES.md restricts typography to weights 400 and 500 only — do not use 600.

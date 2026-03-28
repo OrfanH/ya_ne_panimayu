@@ -77,4 +77,8 @@ const EVENTS = {
   VOCABULARY_NEW: 'vocabulary:new',
   ZONE_ENTER:     'zone:enter',
   MISTAKE_LOG:    'mistake:log',
+  TEST_START:     'test:start',
+  TEST_END:       'test:end',
+  TEST_RESULT:    'test:result',
+  TEST_DISMISS:   'test:dismiss',
 };
