@@ -265,5 +265,6 @@
 
 ## Session log
 
+- 2026-03-28 · Agent files — 17 agents created/overwritten for RPG system · faafffe
 - 2026-03-28 · Infrastructure setup — scoped CLAUDE files, backlog schema, token rules · 2797d6d
 - 2026-03-28 · Project scaffold · 39badb6
