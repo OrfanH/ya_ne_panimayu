@@ -1,0 +1,266 @@
+{
+  "id": "8-2",
+  "unit": 8,
+  "lesson": 2,
+  "block": "everyday",
+  "title": "Months and seasons",
+  "subtitle": "Talking about dates and times of year",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "январь",
+      "transliteration": "yanvar'",
+      "gender": "masculine",
+      "meaning": "January",
+      "exampleCyrillic": "Я родился в январе.",
+      "exampleTransliteration": "Ya rodilsya v yanvare.",
+      "exampleMeaning": "I was born in January."
+    },
+    {
+      "cyrillic": "июль",
+      "transliteration": "iyul'",
+      "gender": "masculine",
+      "meaning": "July",
+      "exampleCyrillic": "В июле жарко.",
+      "exampleTransliteration": "V iyule zharko.",
+      "exampleMeaning": "In July it is hot."
+    },
+    {
+      "cyrillic": "зима",
+      "transliteration": "zima",
+      "gender": "feminine",
+      "meaning": "winter",
+      "exampleCyrillic": "Зима холодная.",
+      "exampleTransliteration": "Zima kholodnaya.",
+      "exampleMeaning": "Winter is cold."
+    },
+    {
+      "cyrillic": "лето",
+      "transliteration": "leto",
+      "gender": "neuter",
+      "meaning": "summer",
+      "exampleCyrillic": "Летом я отдыхаю.",
+      "exampleTransliteration": "Letom ya otdykhayu.",
+      "exampleMeaning": "In summer I rest."
+    },
+    {
+      "cyrillic": "весна",
+      "transliteration": "vesna",
+      "gender": "feminine",
+      "meaning": "spring",
+      "exampleCyrillic": "Весной тепло.",
+      "exampleTransliteration": "Vesnoy teplo.",
+      "exampleMeaning": "In spring it is warm."
+    },
+    {
+      "cyrillic": "осень",
+      "transliteration": "osen'",
+      "gender": "feminine",
+      "meaning": "autumn / fall",
+      "exampleCyrillic": "Осенью идёт дождь.",
+      "exampleTransliteration": "Osen'yu idyot dozhd'.",
+      "exampleMeaning": "In autumn it rains."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Months and seasons unlock a whole new range of practical sentences: 'I was born in March', 'It's cold in December', 'We go on holiday in August'. Two patterns cover everything: в + prepositional for months, and the instrumental for seasons."
+    },
+    "why": {
+      "text": "Months use в + prepositional (в январе, в марте). Seasons use the instrumental without a preposition (зимой, летом). This instrumental of time is the same instrumental you learned for accompaniment and means — here it expresses 'in the season of'. Two patterns, two different cases."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "The twelve months",
+          "body": "All months in Russian are masculine. They are all written in lowercase. 'In [month]' uses в + prepositional: month stem + -е (soft-stem months like июнь → июне, add -е to the stem).",
+          "examples": [
+            { "cyrillic": "январь → в январе", "transliteration": "yanvar' → v yanvare", "meaning": "January → in January" },
+            { "cyrillic": "февраль → в феврале", "transliteration": "fevral' → v fevrale", "meaning": "February → in February" },
+            { "cyrillic": "март → в марте", "transliteration": "mart → v marte", "meaning": "March → in March" },
+            { "cyrillic": "апрель → в апреле", "transliteration": "aprel' → v aprele", "meaning": "April → in April" },
+            { "cyrillic": "май → в мае", "transliteration": "may → v maye", "meaning": "May → in May" },
+            { "cyrillic": "июнь → в июне", "transliteration": "iyun' → v iyune", "meaning": "June → in June" }
+          ]
+        },
+        {
+          "title": "Months July through December",
+          "body": "The second half of the year — same pattern: в + prepositional. All months are masculine, all lowercase.",
+          "examples": [
+            { "cyrillic": "июль → в июле", "transliteration": "iyul' → v iyule", "meaning": "July → in July" },
+            { "cyrillic": "август → в августе", "transliteration": "avgust → v avguste", "meaning": "August → in August" },
+            { "cyrillic": "сентябрь → в сентябре", "transliteration": "sentyabr' → v sentyabre", "meaning": "September → in September" },
+            { "cyrillic": "октябрь → в октябре", "transliteration": "oktyabr' → v oktyabre", "meaning": "October → in October" },
+            { "cyrillic": "ноябрь → в ноябре", "transliteration": "noyabr' → v noyabre", "meaning": "November → in November" },
+            { "cyrillic": "декабрь → в декабре", "transliteration": "dekabr' → v dekabre", "meaning": "December → in December" }
+          ]
+        },
+        {
+          "title": "Seasons — instrumental of time",
+          "body": "The four seasons use the instrumental case without a preposition to express 'in [season]'. This is a fixed pattern: season noun + instrumental ending. зима (f) → зимой, весна (f) → весной, лето (n) → летом, осень (f) → осенью.",
+          "examples": [
+            { "cyrillic": "зимой", "transliteration": "zimoy", "meaning": "in winter (зима → зимой)" },
+            { "cyrillic": "весной", "transliteration": "vesnoy", "meaning": "in spring (весна → весной)" },
+            { "cyrillic": "летом", "transliteration": "letom", "meaning": "in summer (лето → летом)" },
+            { "cyrillic": "осенью", "transliteration": "osen'yu", "meaning": "in autumn (осень → осенью)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'in January'?",
+          "type": "text-input",
+          "answer": "в январе",
+          "explanation": "в + prepositional. январь → январе. в январе."
+        },
+        {
+          "prompt": "How do you say 'in summer'?",
+          "type": "text-input",
+          "answer": "летом",
+          "explanation": "Season = instrumental without preposition. лето → летом."
+        },
+        {
+          "prompt": "How do you say 'in autumn'?",
+          "type": "text-input",
+          "answer": "осенью",
+          "explanation": "осень → осенью (feminine soft: -ью). No preposition."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Saying which season a month is in",
+          "body": "You can combine both patterns: 'In July, it is hot in summer.' Note that months and seasons use different case constructions. Do not mix them.",
+          "examples": [
+            { "cyrillic": "В июле жарко — это летний месяц.", "transliteration": "V iyule zharko — eto letniy mesyats.", "meaning": "In July it is hot — it is a summer month." },
+            { "cyrillic": "Декабрь — зимний месяц.", "transliteration": "Dekabr' — zimniy mesyats.", "meaning": "December is a winter month." }
+          ]
+        },
+        {
+          "title": "Weather vocabulary",
+          "body": "Pair seasons with weather. These adjectives are neuter predicates (used with the implied neuter subject 'it'): холодно, тепло, жарко, хорошо. They are invariable — no agreement needed.",
+          "examples": [
+            { "cyrillic": "Зимой холодно.", "transliteration": "Zimoy kholodno.", "meaning": "In winter it is cold." },
+            { "cyrillic": "Летом жарко.", "transliteration": "Letom zharko.", "meaning": "In summer it is hot." },
+            { "cyrillic": "Весной тепло.", "transliteration": "Vesnoy teplo.", "meaning": "In spring it is warm." },
+            { "cyrillic": "Осенью идёт дождь.", "transliteration": "Osen'yu idyot dozhd'.", "meaning": "In autumn it rains." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is 'in March'?",
+          "type": "text-input",
+          "answer": "в марте",
+          "explanation": "март → марте (hard-stem masculine: add -е). в марте."
+        },
+        {
+          "prompt": "What is 'in winter'?",
+          "type": "text-input",
+          "answer": "зимой",
+          "explanation": "зима → зимой (instrumental). No preposition for seasons."
+        },
+        {
+          "prompt": "What is 'in August'?",
+          "type": "text-input",
+          "answer": "в августе",
+          "explanation": "август → августе. в августе."
+        },
+        {
+          "prompt": "What does весна mean?",
+          "type": "text-input",
+          "answer": "spring",
+          "explanation": "весна (vesna) = spring. Feminine."
+        },
+        {
+          "prompt": "How do you say 'in spring'?",
+          "type": "text-input",
+          "answer": "весной",
+          "explanation": "весна → весной (instrumental). весной."
+        },
+        {
+          "prompt": "What is 'in December'?",
+          "type": "text-input",
+          "answer": "в декабре",
+          "explanation": "декабрь → декабре. в декабре."
+        },
+        {
+          "prompt": "Months use в + prepositional. Seasons use ___.",
+          "type": "multiple-choice",
+          "options": ["в + prepositional", "instrumental (no preposition)", "accusative", "genitive"],
+          "answer": "instrumental (no preposition)",
+          "explanation": "Seasons: зимой, весной, летом, осенью — instrumental, no preposition."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "'In [month]': в + prepositional. All months are masculine and lowercase.",
+        "'In [season]': instrumental without preposition — зимой / весной / летом / осенью",
+        "Weather predicates (холодно, тепло, жарко) are invariable neuter forms",
+        "Do not use в with seasons — seasons take the instrumental directly"
+      ],
+      "vocabulary": ["январь", "июль", "зима", "лето", "весна", "осень"],
+      "nextLesson": "Next: telling the time — hours, minutes, and asking what time it is."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "In January: ___ январе.",
+        "type": "text-input",
+        "answer": "в",
+        "grammarPoint": "months-prepositional"
+      },
+      {
+        "prompt": "In summer:",
+        "type": "text-input",
+        "answer": "летом",
+        "grammarPoint": "seasons-instrumental"
+      },
+      {
+        "prompt": "What does осень mean?",
+        "type": "multiple-choice",
+        "options": ["winter", "spring", "summer", "autumn"],
+        "answer": "autumn",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "In March: в ___.",
+        "type": "text-input",
+        "answer": "марте",
+        "grammarPoint": "months-prepositional"
+      },
+      {
+        "prompt": "In winter it is cold: ___ холодно.",
+        "type": "text-input",
+        "answer": "зимой",
+        "grammarPoint": "seasons-instrumental"
+      },
+      {
+        "prompt": "In autumn: ___.",
+        "type": "text-input",
+        "answer": "осенью",
+        "grammarPoint": "seasons-instrumental"
+      },
+      {
+        "prompt": "What month is июль?",
+        "type": "multiple-choice",
+        "options": ["June", "July", "August", "January"],
+        "answer": "July",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "In December: в ___.",
+        "type": "text-input",
+        "answer": "декабре",
+        "grammarPoint": "months-prepositional"
+      }
+    ]
+  }
+}

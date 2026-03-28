@@ -1,0 +1,280 @@
+{
+  "id": "7-1",
+  "unit": 7,
+  "lesson": 1,
+  "block": "everyday",
+  "title": "Family",
+  "subtitle": "Family members and relationships",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "семья",
+      "transliteration": "sem'ya",
+      "gender": "feminine",
+      "meaning": "family",
+      "exampleCyrillic": "Моя семья большая.",
+      "exampleTransliteration": "Moya sem'ya bolshaya.",
+      "exampleMeaning": "My family is big."
+    },
+    {
+      "cyrillic": "отец",
+      "transliteration": "otets",
+      "gender": "masculine",
+      "meaning": "father",
+      "exampleCyrillic": "Мой отец работает врачом.",
+      "exampleTransliteration": "Moy otets rabotayet vrachom.",
+      "exampleMeaning": "My father works as a doctor."
+    },
+    {
+      "cyrillic": "мама",
+      "transliteration": "mama",
+      "gender": "feminine",
+      "meaning": "mum / mom",
+      "exampleCyrillic": "Мама дома.",
+      "exampleTransliteration": "Mama doma.",
+      "exampleMeaning": "Mum is at home."
+    },
+    {
+      "cyrillic": "брат",
+      "transliteration": "brat",
+      "gender": "masculine",
+      "meaning": "brother",
+      "exampleCyrillic": "У меня есть брат.",
+      "exampleTransliteration": "U menya yest' brat.",
+      "exampleMeaning": "I have a brother."
+    },
+    {
+      "cyrillic": "сестра",
+      "transliteration": "sestra",
+      "gender": "feminine",
+      "meaning": "sister",
+      "exampleCyrillic": "Моя сестра студентка.",
+      "exampleTransliteration": "Moya sestra studentka.",
+      "exampleMeaning": "My sister is a student."
+    },
+    {
+      "cyrillic": "муж",
+      "transliteration": "muzh",
+      "gender": "masculine",
+      "meaning": "husband",
+      "exampleCyrillic": "Её муж дома.",
+      "exampleTransliteration": "Yeyo muzh doma.",
+      "exampleMeaning": "Her husband is at home."
+    },
+    {
+      "cyrillic": "жена",
+      "transliteration": "zhena",
+      "gender": "feminine",
+      "meaning": "wife",
+      "exampleCyrillic": "Его жена работает.",
+      "exampleTransliteration": "Yego zhena rabotayet.",
+      "exampleMeaning": "His wife works."
+    },
+    {
+      "cyrillic": "ребёнок",
+      "transliteration": "ryobonok",
+      "gender": "masculine",
+      "meaning": "child",
+      "exampleCyrillic": "У них двое детей.",
+      "exampleTransliteration": "U nikh dvoye detey.",
+      "exampleMeaning": "They have two children."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Family is one of the first topics in any conversation. People ask about your family, describe their own, and use family vocabulary constantly. Today you'll learn the core family words and practice the У меня есть construction you already know — now applied to people."
+    },
+    "why": {
+      "text": "Family vocabulary exposes you to a cluster of grammatical patterns: possessive pronouns agreeing in gender, the его/её/их possessives (which don't change form), and the У + genitive + есть construction for expressing relationships. These patterns are used identically across all other vocabulary domains."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Core family vocabulary",
+          "body": "Learn these with their gender — it affects possessives and adjectives that describe them.",
+          "examples": [
+            { "cyrillic": "отец / папа (м)", "transliteration": "otets / papa", "meaning": "father / dad (both masculine)" },
+            { "cyrillic": "мать / мама (ж)", "transliteration": "mat' / mama", "meaning": "mother / mum (both feminine)" },
+            { "cyrillic": "брат (м) / сестра (ж)", "transliteration": "brat / sestra", "meaning": "brother / sister" },
+            { "cyrillic": "муж (м) / жена (ж)", "transliteration": "muzh / zhena", "meaning": "husband / wife" },
+            { "cyrillic": "дедушка (м) / бабушка (ж)", "transliteration": "dedushka / babushka", "meaning": "grandfather / grandmother" },
+            { "cyrillic": "ребёнок (м) / дети (мн.)", "transliteration": "ryobonok / deti", "meaning": "child / children" }
+          ]
+        },
+        {
+          "title": "His/her/their — его/её/их",
+          "body": "The third-person possessives его (his), её (her), их (their) are invariable — they never change form regardless of the gender or case of the noun they modify. This is different from мой/моя/моё. Learn this distinction early.",
+          "examples": [
+            { "cyrillic": "его отец / его мать", "transliteration": "yego otets / yego mat'", "meaning": "his father / his mother (его never changes)" },
+            { "cyrillic": "её муж / её дети", "transliteration": "yeyo muzh / yeyo deti", "meaning": "her husband / her children (её never changes)" },
+            { "cyrillic": "их семья / их дом", "transliteration": "ikh sem'ya / ikh dom", "meaning": "their family / their house (их never changes)" }
+          ]
+        },
+        {
+          "title": "Talking about family with У меня есть",
+          "body": "Use У + genitive pronoun + есть to say you have a family member. You already know this construction. For asking: У тебя есть...? or У вас есть...?",
+          "examples": [
+            { "cyrillic": "У меня есть брат.", "transliteration": "U menya yest' brat.", "meaning": "I have a brother." },
+            { "cyrillic": "У меня нет сестры.", "transliteration": "U menya net sestry.", "meaning": "I don't have a sister. (нет + genitive)" },
+            { "cyrillic": "У тебя есть дети?", "transliteration": "U tebya yest' deti?", "meaning": "Do you have children?" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'I have a sister'?",
+          "type": "text-input",
+          "answer": "У меня есть сестра.",
+          "explanation": "У меня есть сестра. = at me there is a sister."
+        },
+        {
+          "prompt": "How do you say 'I don't have a brother'?",
+          "type": "text-input",
+          "answer": "У меня нет брата.",
+          "explanation": "нет + genitive. брат → брата. У меня нет брата."
+        },
+        {
+          "prompt": "его (his) changes form for gender of the following noun.",
+          "type": "multiple-choice",
+          "options": ["True", "False — его never changes"],
+          "answer": "False — его never changes",
+          "explanation": "его/её/их are invariable — they never agree with the following noun."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "дедушка and папа — masculine despite А ending",
+          "body": "дедушка (grandfather) and папа (dad) both end in А but are masculine — like мужчина. This is the biological gender rule: people words follow biological gender regardless of spelling. дедушка requires мой (not моя), and adjectives agree in masculine.",
+          "examples": [
+            { "cyrillic": "мой дедушка", "transliteration": "moy dedushka", "meaning": "my grandfather (мой, not моя, despite -А ending)" },
+            { "cyrillic": "мой папа", "transliteration": "moy papa", "meaning": "my dad (masculine)" }
+          ]
+        },
+        {
+          "title": "Talking about someone's age using dative",
+          "body": "You already know the dative age construction: Мне ... лет. It works for any family member too — use the dative of the family noun or the corresponding pronoun.",
+          "examples": [
+            { "cyrillic": "Моему брату 25 лет.", "transliteration": "Moyemu bratu 25 let.", "meaning": "My brother is 25. (брат → брату, dative)" },
+            { "cyrillic": "Её маме 50 лет.", "transliteration": "Yeyo mame 50 let.", "meaning": "Her mum is 50. (мама → маме, dative)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What does муж mean?",
+          "type": "text-input",
+          "answer": "husband",
+          "explanation": "муж (muzh) = husband. Masculine."
+        },
+        {
+          "prompt": "How do you say 'his wife'?",
+          "type": "text-input",
+          "answer": "его жена",
+          "explanation": "его = his (invariable). его жена."
+        },
+        {
+          "prompt": "What is 'my grandmother' in Russian?",
+          "type": "text-input",
+          "answer": "моя бабушка",
+          "explanation": "бабушка is feminine. моя бабушка."
+        },
+        {
+          "prompt": "I don't have children: У меня нет ___.",
+          "type": "text-input",
+          "answer": "детей",
+          "explanation": "нет + genitive plural. дети → детей."
+        },
+        {
+          "prompt": "What does семья mean?",
+          "type": "text-input",
+          "answer": "family",
+          "explanation": "семья (sem'ya) = family."
+        },
+        {
+          "prompt": "Do you have a brother? (informal):",
+          "type": "text-input",
+          "answer": "У тебя есть брат?",
+          "explanation": "У тебя (at you, informal) есть брат?"
+        },
+        {
+          "prompt": "What is the possessive for 'their'?",
+          "type": "multiple-choice",
+          "options": ["их", "ей", "его", "им"],
+          "answer": "их",
+          "explanation": "их = their. Invariable — doesn't change form."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Core family words: отец/мать, брат/сестра, муж/жена, дедушка/бабушка, ребёнок/дети",
+        "его/её/их are invariable — they never change form",
+        "мой/моя/моё DO agree — unlike его/её/их",
+        "дедушка/папа: masculine despite -А ending",
+        "I have X: У меня есть X (nom.) / I don't have X: У меня нет X (gen.)"
+      ],
+      "vocabulary": ["семья", "отец", "мама", "брат", "сестра", "муж", "жена", "ребёнок"],
+      "nextLesson": "Next: describing people — appearance, character, and common descriptive adjectives."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What does семья mean?",
+        "type": "multiple-choice",
+        "options": ["house", "friend", "family", "child"],
+        "answer": "family",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "I have a brother: У меня ___ брат.",
+        "type": "text-input",
+        "answer": "есть",
+        "grammarPoint": "possession-u-menya-est"
+      },
+      {
+        "prompt": "I don't have a sister: У меня нет ___.",
+        "type": "text-input",
+        "answer": "сестры",
+        "grammarPoint": "negation-net-genitive"
+      },
+      {
+        "prompt": "его changes form for the noun's gender.",
+        "type": "multiple-choice",
+        "options": ["True", "False — его is invariable"],
+        "answer": "False — его is invariable",
+        "grammarPoint": "possessive-invariable"
+      },
+      {
+        "prompt": "What does муж mean?",
+        "type": "text-input",
+        "answer": "husband",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "my grandfather (дедушка — masculine despite -А):",
+        "type": "text-input",
+        "answer": "мой дедушка",
+        "grammarPoint": "possessive-gender-agreement"
+      },
+      {
+        "prompt": "Do you have children? (informal):",
+        "type": "text-input",
+        "answer": "У тебя есть дети?",
+        "grammarPoint": "possession-question"
+      },
+      {
+        "prompt": "What is the plural of ребёнок?",
+        "type": "text-input",
+        "answer": "дети",
+        "grammarPoint": "supletive-plural"
+      }
+    ]
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "id": "10-1",
+  "unit": 10,
+  "lesson": 1,
+  "block": "everyday",
+  "title": "Ordering food and drink",
+  "subtitle": "Café, restaurant, and shop vocabulary in context",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "меню",
+      "transliteration": "menyu",
+      "gender": "neuter",
+      "meaning": "menu",
+      "exampleCyrillic": "Можно меню?",
+      "exampleTransliteration": "Mozhno menyu?",
+      "exampleMeaning": "Can I have the menu?"
+    },
+    {
+      "cyrillic": "хочу заказать",
+      "transliteration": "khochu zakazat'",
+      "gender": null,
+      "meaning": "I would like to order",
+      "exampleCyrillic": "Я хочу заказать кофе.",
+      "exampleTransliteration": "Ya khochu zakazat' kofe.",
+      "exampleMeaning": "I would like to order a coffee."
+    },
+    {
+      "cyrillic": "принесите",
+      "transliteration": "prinesite",
+      "gender": null,
+      "meaning": "bring (please) — formal imperative of принести",
+      "exampleCyrillic": "Принесите счёт, пожалуйста.",
+      "exampleTransliteration": "Prinesite schyot, pozhaluysta.",
+      "exampleMeaning": "Bring the bill, please."
+    },
+    {
+      "cyrillic": "счёт",
+      "transliteration": "schyot",
+      "gender": "masculine",
+      "meaning": "bill / check",
+      "exampleCyrillic": "Можно счёт?",
+      "exampleTransliteration": "Mozhno schyot?",
+      "exampleMeaning": "Can I have the bill?"
+    },
+    {
+      "cyrillic": "стакан",
+      "transliteration": "stakan",
+      "gender": "masculine",
+      "meaning": "glass (for drinks)",
+      "exampleCyrillic": "Стакан воды, пожалуйста.",
+      "exampleTransliteration": "Stakan vody, pozhaluysta.",
+      "exampleMeaning": "A glass of water, please."
+    },
+    {
+      "cyrillic": "вкусно",
+      "transliteration": "vkusno",
+      "gender": null,
+      "meaning": "delicious / tasty",
+      "exampleCyrillic": "Это очень вкусно.",
+      "exampleTransliteration": "Eto ochen' vkusno.",
+      "exampleMeaning": "This is very delicious."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Everything you've built — vocabulary, cases, verbs — now gets applied to a real situation: ordering in a café or restaurant. You'll see accusative (I want coffee), genitive (a glass of water), and imperatives (bring the bill) all in the same conversation. This is what grammar looks like in action."
+    },
+    "why": {
+      "text": "Café and restaurant interactions are high-frequency in travel and daily life, and they concentrate several grammar patterns in a short space. можно + infinitive (polite request), хочу заказать + accusative (ordering), принесите (imperative), счёт (bill). Getting these right makes you sound genuinely functional in Russian."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Polite requests — можно",
+          "body": "можно + infinitive is a versatile polite request: 'may I...', 'can I have...'. It's impersonal — no subject needed. можно can also be followed directly by a noun in accusative for 'can I have [thing]?'. Extremely common in service situations.",
+          "examples": [
+            { "cyrillic": "Можно меню?", "transliteration": "Mozhno menyu?", "meaning": "Can I have the menu?" },
+            { "cyrillic": "Можно счёт?", "transliteration": "Mozhno schyot?", "meaning": "Can I have the bill?" },
+            { "cyrillic": "Можно воды?", "transliteration": "Mozhno vody?", "meaning": "Could I have some water? (воды = genitive, 'some of')" },
+            { "cyrillic": "Можно посмотреть?", "transliteration": "Mozhno posmotret'?", "meaning": "May I look?" }
+          ]
+        },
+        {
+          "title": "Ordering — хочу заказать + accusative",
+          "body": "The most direct way to order: Я хочу заказать + what you want (accusative). хотеть conjugation: я хочу, ты хочешь, он/она хочет. What you order goes into the accusative. Alternatively: just name the item in accusative.",
+          "examples": [
+            { "cyrillic": "Я хочу заказать кофе.", "transliteration": "Ya khochu zakazat' kofe.", "meaning": "I would like to order a coffee." },
+            { "cyrillic": "Дайте мне чай, пожалуйста.", "transliteration": "Dayte mne chay, pozhaluysta.", "meaning": "Give me tea, please. (дайте = give, formal imperative)" },
+            { "cyrillic": "Стакан воды, пожалуйста.", "transliteration": "Stakan vody, pozhaluysta.", "meaning": "A glass of water, please. (воды = genitive: 'of water')" }
+          ]
+        },
+        {
+          "title": "Useful café phrases",
+          "body": "A practical set of phrases that cover most café interactions. Note: принесите (bring) is a perfective imperative — you want the action completed. счёт (bill) is what you ask for at the end.",
+          "examples": [
+            { "cyrillic": "Принесите счёт, пожалуйста.", "transliteration": "Prinesite schyot, pozhaluysta.", "meaning": "Bring the bill, please." },
+            { "cyrillic": "Это всё.", "transliteration": "Eto vsyo.", "meaning": "That's all. (when finished ordering)" },
+            { "cyrillic": "Это очень вкусно.", "transliteration": "Eto ochen' vkusno.", "meaning": "This is very delicious." },
+            { "cyrillic": "У вас есть...?", "transliteration": "U vas yest'...?", "meaning": "Do you have...? (у вас = at you, formal)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you ask for the menu politely?",
+          "type": "text-input",
+          "answer": "Можно меню?",
+          "explanation": "можно + noun in accusative. меню is indeclinable (no change). Можно меню?"
+        },
+        {
+          "prompt": "How do you say 'I would like to order a coffee'?",
+          "type": "text-input",
+          "answer": "Я хочу заказать кофе.",
+          "explanation": "хочу заказать + accusative. кофе is indeclinable. Я хочу заказать кофе."
+        },
+        {
+          "prompt": "How do you ask for the bill?",
+          "type": "text-input",
+          "answer": "Можно счёт?",
+          "explanation": "Можно счёт? or Принесите счёт, пожалуйста. Both are correct."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Food vocabulary — a core set",
+          "body": "Basic food items you'll encounter ordering. Note the genders — they matter for adjective agreement and the possessive constructions you know.",
+          "examples": [
+            { "cyrillic": "суп (м) / борщ (м)", "transliteration": "sup / borshch", "meaning": "soup / borscht" },
+            { "cyrillic": "хлеб (м) / салат (м)", "transliteration": "khleb / salat", "meaning": "bread / salad" },
+            { "cyrillic": "мясо (ср) / рыба (ж)", "transliteration": "myaso / ryba", "meaning": "meat / fish" },
+            { "cyrillic": "кофе (м, нескл.) / чай (м) / вода (ж)", "transliteration": "kofe / chay / voda", "meaning": "coffee (indeclinable) / tea / water" }
+          ]
+        },
+        {
+          "title": "Prices — сколько стоит?",
+          "body": "To ask the price: Сколько стоит [item]? (How much does it cost?). стоит = costs (3rd person singular of стоить). The answer gives a number + рублей/рубля/рубль — counting zones apply.",
+          "examples": [
+            { "cyrillic": "Сколько стоит кофе?", "transliteration": "Skolko stoit kofe?", "meaning": "How much does the coffee cost?" },
+            { "cyrillic": "Это стоит двести рублей.", "transliteration": "Eto stoit dvesti rubley.", "meaning": "This costs 200 roubles." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What does счёт mean?",
+          "type": "text-input",
+          "answer": "bill",
+          "explanation": "счёт (schyot) = bill / check. Masculine."
+        },
+        {
+          "prompt": "A glass of water please: ___ воды, пожалуйста.",
+          "type": "text-input",
+          "answer": "Стакан",
+          "explanation": "стакан = glass (for drinks). стакан воды = glass of water (воды = genitive)."
+        },
+        {
+          "prompt": "How do you say 'this is very delicious'?",
+          "type": "text-input",
+          "answer": "Это очень вкусно.",
+          "explanation": "вкусно = delicious (invariable predicate). Это очень вкусно."
+        },
+        {
+          "prompt": "Bring the bill please: ___ счёт, пожалуйста.",
+          "type": "text-input",
+          "answer": "Принесите",
+          "explanation": "принести → imperative formal = принесите."
+        },
+        {
+          "prompt": "Do you have tea? У вас ___?",
+          "type": "text-input",
+          "answer": "есть чай",
+          "explanation": "У вас есть + nominative. У вас есть чай?"
+        },
+        {
+          "prompt": "That's all (when finished ordering):",
+          "type": "text-input",
+          "answer": "Это всё.",
+          "explanation": "Это всё. = That's all. Common phrase when finishing an order."
+        },
+        {
+          "prompt": "How much does the coffee cost?",
+          "type": "text-input",
+          "answer": "Сколько стоит кофе?",
+          "explanation": "сколько стоит + item. кофе is indeclinable."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "можно + noun/infinitive = polite request ('can I have', 'may I')",
+        "Ordering: Я хочу заказать + accusative",
+        "принесите = bring please (formal imperative of принести)",
+        "стакан воды = a glass of water (воды = genitive — 'of water')",
+        "Сколько стоит? = How much does it cost? (стоит = 3rd sg. of стоить)"
+      ],
+      "vocabulary": ["меню", "хочу заказать", "принесите", "счёт", "стакан", "вкусно"],
+      "nextLesson": "Next: asking for directions — getting around with the grammar you know."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Can I have the menu?",
+        "type": "text-input",
+        "answer": "Можно меню?",
+        "grammarPoint": "mozhno-request"
+      },
+      {
+        "prompt": "What does счёт mean?",
+        "type": "text-input",
+        "answer": "bill",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Bring the bill please (formal): ___ счёт, пожалуйста.",
+        "type": "text-input",
+        "answer": "Принесите",
+        "grammarPoint": "imperative-prinesite"
+      },
+      {
+        "prompt": "A glass of water: стакан ___.",
+        "type": "text-input",
+        "answer": "воды",
+        "grammarPoint": "genitive-partitive"
+      },
+      {
+        "prompt": "I would like to order tea: Я хочу заказать ___.",
+        "type": "text-input",
+        "answer": "чай",
+        "grammarPoint": "accusative-ordering"
+      },
+      {
+        "prompt": "How much does it cost?",
+        "type": "text-input",
+        "answer": "Сколько стоит?",
+        "grammarPoint": "price-question"
+      },
+      {
+        "prompt": "What does вкусно mean?",
+        "type": "multiple-choice",
+        "options": ["cheap", "expensive", "delicious", "fresh"],
+        "answer": "delicious",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "That's all (finishing an order): ___ всё.",
+        "type": "text-input",
+        "answer": "Это",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

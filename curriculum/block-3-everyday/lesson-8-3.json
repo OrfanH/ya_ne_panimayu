@@ -1,0 +1,260 @@
+{
+  "id": "8-3",
+  "unit": 8,
+  "lesson": 3,
+  "block": "everyday",
+  "title": "Telling the time",
+  "subtitle": "Hours, minutes, and asking what time it is",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "час",
+      "transliteration": "chas",
+      "gender": "masculine",
+      "meaning": "hour / o'clock",
+      "exampleCyrillic": "Сейчас час.",
+      "exampleTransliteration": "Seychas chas.",
+      "exampleMeaning": "It is one o'clock now."
+    },
+    {
+      "cyrillic": "минута",
+      "transliteration": "minuta",
+      "gender": "feminine",
+      "meaning": "minute",
+      "exampleCyrillic": "Пять минут.",
+      "exampleTransliteration": "Pyat' minut.",
+      "exampleMeaning": "Five minutes."
+    },
+    {
+      "cyrillic": "сейчас",
+      "transliteration": "seychas",
+      "gender": null,
+      "meaning": "now / right now",
+      "exampleCyrillic": "Сейчас три часа.",
+      "exampleTransliteration": "Seychas tri chasa.",
+      "exampleMeaning": "It is three o'clock now."
+    },
+    {
+      "cyrillic": "утро",
+      "transliteration": "utro",
+      "gender": "neuter",
+      "meaning": "morning",
+      "exampleCyrillic": "Девять часов утра.",
+      "exampleTransliteration": "Devyat' chasov utra.",
+      "exampleMeaning": "Nine o'clock in the morning."
+    },
+    {
+      "cyrillic": "вечер",
+      "transliteration": "vecher",
+      "gender": "masculine",
+      "meaning": "evening",
+      "exampleCyrillic": "В семь часов вечера.",
+      "exampleTransliteration": "V sem' chasov vechera.",
+      "exampleMeaning": "At seven o'clock in the evening."
+    },
+    {
+      "cyrillic": "день",
+      "transliteration": "den'",
+      "gender": "masculine",
+      "meaning": "day / afternoon",
+      "exampleCyrillic": "Два часа дня.",
+      "exampleTransliteration": "Dva chasa dnya.",
+      "exampleMeaning": "Two o'clock in the afternoon."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Telling the time is one of the most practical things you can do in any language. In Russian it requires the counting zones you learned in Unit 3 — один час, два часа, пять часов — so time-telling is also a case drill. One pattern, applied with numbers you already know."
+    },
+    "why": {
+      "text": "The word час (hour/o'clock) follows the standard counting zone rule: 1 → час (nominative), 2-4 → часа (genitive singular), 5+ → часов (genitive plural). This is exactly the same rule as all other nouns with numbers. Time-telling is not a special grammar area — it's the number-noun system applied to hours."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Asking and saying the time",
+          "body": "To ask the time: Который час? (Which hour? = What time is it?). To answer: use the number + the correct form of час. Сейчас (now) is optional but common at the start of the answer.",
+          "examples": [
+            { "cyrillic": "Который час?", "transliteration": "Kotoriy chas?", "meaning": "What time is it?" },
+            { "cyrillic": "Сейчас час.", "transliteration": "Seychas chas.", "meaning": "It is one o'clock. (1 → час)" },
+            { "cyrillic": "Сейчас два часа.", "transliteration": "Seychas dva chasa.", "meaning": "It is two o'clock. (2 → часа)" },
+            { "cyrillic": "Сейчас пять часов.", "transliteration": "Seychas pyat' chasov.", "meaning": "It is five o'clock. (5 → часов)" }
+          ]
+        },
+        {
+          "title": "AM and PM — утра, дня, вечера, ночи",
+          "body": "Russian uses genitive nouns after the hour to specify time of day — not AM/PM. утро (morning) → утра, день (day/afternoon) → дня, вечер (evening) → вечера, ночь (night) → ночи. These go after the full time expression.",
+          "examples": [
+            { "cyrillic": "девять часов утра", "transliteration": "devyat' chasov utra", "meaning": "9 AM (nine in the morning)" },
+            { "cyrillic": "два часа дня", "transliteration": "dva chasa dnya", "meaning": "2 PM (two in the afternoon)" },
+            { "cyrillic": "семь часов вечера", "transliteration": "sem' chasov vechera", "meaning": "7 PM (seven in the evening)" },
+            { "cyrillic": "два часа ночи", "transliteration": "dva chasa nochi", "meaning": "2 AM (two at night)" }
+          ]
+        },
+        {
+          "title": "Saying 'at' a time — в + accusative",
+          "body": "To say an event happens AT a certain time, use в + the accusative of the time expression. For hours, this means в + [number] + час/часа/часов (the form stays the same as nominative in this context for most numbers).",
+          "examples": [
+            { "cyrillic": "Встреча в час.", "transliteration": "Vstrecha v chas.", "meaning": "The meeting is at one o'clock." },
+            { "cyrillic": "Урок в три часа.", "transliteration": "Urok v tri chasa.", "meaning": "The lesson is at three o'clock." },
+            { "cyrillic": "Работа в девять часов.", "transliteration": "Rabota v devyat' chasov.", "meaning": "Work is at nine o'clock." }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'it is five o'clock'?",
+          "type": "text-input",
+          "answer": "Сейчас пять часов.",
+          "explanation": "5 → часов (genitive plural). Сейчас пять часов."
+        },
+        {
+          "prompt": "How do you say 'it is two o'clock'?",
+          "type": "text-input",
+          "answer": "Сейчас два часа.",
+          "explanation": "2 → часа (genitive singular). Сейчас два часа."
+        },
+        {
+          "prompt": "How do you ask 'what time is it?'",
+          "type": "text-input",
+          "answer": "Который час?",
+          "explanation": "Который час? = lit. 'which hour?' — the standard question."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Minutes — полчаса and простые минуты",
+          "body": "For half past: полчаса (half an hour, lit. 'half of an hour'). For simple minute expressions at A1 level, stating the hour is enough. полчаса after the hour: три с половиной часа (three and a half hours) — a slightly advanced structure to recognise.",
+          "examples": [
+            { "cyrillic": "полчаса", "transliteration": "polchasa", "meaning": "half an hour" },
+            { "cyrillic": "Сейчас половина второго.", "transliteration": "Seychas polovina vtorogo.", "meaning": "It is half past one. (lit. half of the second)" }
+          ]
+        },
+        {
+          "title": "Useful time expressions",
+          "body": "These expressions work with the time vocabulary you know. ночью (at night) = instrumental of ночь. утром (in the morning) = instrumental of утро.",
+          "examples": [
+            { "cyrillic": "утром", "transliteration": "utrom", "meaning": "in the morning (instrumental of утро)" },
+            { "cyrillic": "днём", "transliteration": "dnyom", "meaning": "in the afternoon (instrumental of день)" },
+            { "cyrillic": "вечером", "transliteration": "vecherom", "meaning": "in the evening (instrumental of вечер)" },
+            { "cyrillic": "ночью", "transliteration": "noch'yu", "meaning": "at night (instrumental of ночь)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "It is one o'clock: Сейчас ___.",
+          "type": "text-input",
+          "answer": "час",
+          "explanation": "1 → час (nominative). Сейчас час."
+        },
+        {
+          "prompt": "It is three o'clock: Сейчас три ___.",
+          "type": "text-input",
+          "answer": "часа",
+          "explanation": "3 → часа (genitive singular). Сейчас три часа."
+        },
+        {
+          "prompt": "What does сейчас mean?",
+          "type": "text-input",
+          "answer": "now",
+          "explanation": "сейчас (seychas) = now / right now."
+        },
+        {
+          "prompt": "The meeting is at five: Встреча в пять ___.",
+          "type": "text-input",
+          "answer": "часов",
+          "explanation": "5 → часов (genitive plural). в пять часов."
+        },
+        {
+          "prompt": "9 AM: девять часов ___.",
+          "type": "text-input",
+          "answer": "утра",
+          "explanation": "утро → утра (genitive). девять часов утра."
+        },
+        {
+          "prompt": "What does вечер mean?",
+          "type": "text-input",
+          "answer": "evening",
+          "explanation": "вечер (vecher) = evening."
+        },
+        {
+          "prompt": "In the evening (instrumental):",
+          "type": "text-input",
+          "answer": "вечером",
+          "explanation": "вечер → вечером (instrumental). Used to say 'in the evening'."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "1 о'clock: час | 2-4 о'clock: часа | 5+ о'clock: часов — counting zone rule applies to час",
+        "Asking time: Который час?",
+        "'At [time]': в + [number] + час/часа/часов",
+        "AM/PM: утра (morning), дня (afternoon), вечера (evening), ночи (night) — all genitive",
+        "Time of day instrumentals: утром, днём, вечером, ночью — no preposition"
+      ],
+      "vocabulary": ["час", "минута", "сейчас", "утро", "вечер", "день"],
+      "nextLesson": "Next: numbers 11–100 — completing the number system for dates, prices, and ages."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "It is five o'clock: Сейчас пять ___.",
+        "type": "text-input",
+        "answer": "часов",
+        "grammarPoint": "time-counting-zone"
+      },
+      {
+        "prompt": "It is two o'clock: Сейчас два ___.",
+        "type": "text-input",
+        "answer": "часа",
+        "grammarPoint": "time-counting-zone"
+      },
+      {
+        "prompt": "How do you ask 'what time is it?'",
+        "type": "multiple-choice",
+        "options": ["Который час?", "Сколько часов?", "Что время?", "Когда?"],
+        "answer": "Который час?",
+        "grammarPoint": "time-question"
+      },
+      {
+        "prompt": "9 AM: девять часов ___.",
+        "type": "text-input",
+        "answer": "утра",
+        "grammarPoint": "time-of-day-genitive"
+      },
+      {
+        "prompt": "The lesson is at three: Урок в три ___.",
+        "type": "text-input",
+        "answer": "часа",
+        "grammarPoint": "time-at-preposition"
+      },
+      {
+        "prompt": "What does сейчас mean?",
+        "type": "text-input",
+        "answer": "now",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "In the evening (instrumental):",
+        "type": "text-input",
+        "answer": "вечером",
+        "grammarPoint": "time-instrumental"
+      },
+      {
+        "prompt": "7 PM: семь часов ___.",
+        "type": "text-input",
+        "answer": "вечера",
+        "grammarPoint": "time-of-day-genitive"
+      }
+    ]
+  }
+}

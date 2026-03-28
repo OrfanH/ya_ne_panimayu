@@ -1,0 +1,274 @@
+{
+  "id": "5-7",
+  "unit": 5,
+  "lesson": 7,
+  "block": "grammar",
+  "title": "Case review",
+  "subtitle": "All six cases compared — mixed drills across the full paradigm",
+  "estimatedMinutes": 30,
+  "vocabulary": [
+    {
+      "cyrillic": "падеж",
+      "transliteration": "padezh",
+      "gender": "masculine",
+      "meaning": "grammatical case",
+      "exampleCyrillic": "Какой это падеж?",
+      "exampleTransliteration": "Kakoy eto padezh?",
+      "exampleMeaning": "Which case is this?"
+    },
+    {
+      "cyrillic": "форма",
+      "transliteration": "forma",
+      "gender": "feminine",
+      "meaning": "form (grammatical)",
+      "exampleCyrillic": "Какая это форма?",
+      "exampleTransliteration": "Kakaya eto forma?",
+      "exampleMeaning": "Which form is this?"
+    },
+    {
+      "cyrillic": "правило",
+      "transliteration": "pravilo",
+      "gender": "neuter",
+      "meaning": "rule",
+      "exampleCyrillic": "Это важное правило.",
+      "exampleTransliteration": "Eto vazhnoye pravilo.",
+      "exampleMeaning": "This is an important rule."
+    },
+    {
+      "cyrillic": "ошибка",
+      "transliteration": "oshibka",
+      "gender": "feminine",
+      "meaning": "mistake / error",
+      "exampleCyrillic": "Это ошибка.",
+      "exampleTransliteration": "Eto oshibka.",
+      "exampleMeaning": "This is a mistake."
+    },
+    {
+      "cyrillic": "повторение",
+      "transliteration": "povtoreniye",
+      "gender": "neuter",
+      "meaning": "repetition / review",
+      "exampleCyrillic": "Повторение — мать учения.",
+      "exampleTransliteration": "Povtoreniye — mat' ucheniya.",
+      "exampleMeaning": "Repetition is the mother of learning."
+    },
+    {
+      "cyrillic": "правда",
+      "transliteration": "pravda",
+      "gender": "feminine",
+      "meaning": "truth",
+      "exampleCyrillic": "Скажи правду.",
+      "exampleTransliteration": "Skazhi pravdu.",
+      "exampleMeaning": "Tell the truth."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You've learned all six cases. Now comes the hard part: using them correctly in mixed contexts, where you have to choose the right case rather than just applying the one you just studied. This lesson is a consolidation drill — one noun, six cases, and a set of sentences where you must identify and produce the correct form."
+    },
+    "why": {
+      "text": "⚠ Cases are your weak area, and this lesson exists specifically to address that. Real Russian doesn't present cases one at a time — it mixes them in every paragraph. The goal here is to build the reflex of asking 'what role is this noun playing?' before choosing an ending. That reflex is what separates learners who are aware of cases from learners who can use them automatically."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "All six cases — the full summary table",
+          "body": "Use this as a reference. Question → case → main uses → when to use it.",
+          "examples": [
+            { "cyrillic": "Именительный (Nom.): кто/что?", "transliteration": "Subject", "meaning": "Кот спит. — the subject doing the action" },
+            { "cyrillic": "Родительный (Gen.): кого/чего?", "transliteration": "Possession, absence, quantity", "meaning": "нет кота / книга брата / много котов" },
+            { "cyrillic": "Дательный (Dat.): кому/чему?", "transliteration": "Indirect object, age, нравиться", "meaning": "Даю коту / Мне 20 лет / Мне нравится" },
+            { "cyrillic": "Винительный (Acc.): кого/что?", "transliteration": "Direct object, direction", "meaning": "Вижу кота / Иду в школу" },
+            { "cyrillic": "Творительный (Instr.): кем/чем?", "transliteration": "Instrument, with, profession", "meaning": "Пишу ручкой / с другом / работаю врачом" },
+            { "cyrillic": "Предложный (Prep.): о ком/о чём?", "transliteration": "Location, topic (в/на/о)", "meaning": "В школе / на столе / думаю о работе" }
+          ]
+        },
+        {
+          "title": "Одно слово — шесть падежей (one word, six cases)",
+          "body": "Here is the noun стол through all six cases. Study this pattern — it's a template for any hard masculine noun.",
+          "examples": [
+            { "cyrillic": "стол (Nom.)", "transliteration": "stol", "meaning": "The table is here." },
+            { "cyrillic": "стола (Gen.)", "transliteration": "stola", "meaning": "No table / of the table / two tables" },
+            { "cyrillic": "столу (Dat.)", "transliteration": "stolu", "meaning": "To the table (rare — verbs that take dative)" },
+            { "cyrillic": "стол (Acc.)", "transliteration": "stol", "meaning": "I see the table (inanimate = nom.)" },
+            { "cyrillic": "столом (Instr.)", "transliteration": "stolom", "meaning": "With the table / under the table" },
+            { "cyrillic": "столе (Prep.)", "transliteration": "stole", "meaning": "On the table / about the table" }
+          ]
+        },
+        {
+          "title": "книга — a feminine noun through all six cases",
+          "body": "The same pattern for книга (book, feminine). The changes here are more visible than masculine inanimate.",
+          "examples": [
+            { "cyrillic": "книга (Nom.)", "transliteration": "kniga", "meaning": "The book is here." },
+            { "cyrillic": "книги (Gen.)", "transliteration": "knigi", "meaning": "No book / of the book / two books" },
+            { "cyrillic": "книге (Dat.)", "transliteration": "knige", "meaning": "To the book" },
+            { "cyrillic": "книгу (Acc.)", "transliteration": "knigu", "meaning": "I read the book" },
+            { "cyrillic": "книгой (Instr.)", "transliteration": "knigoy", "meaning": "With the book" },
+            { "cyrillic": "книге (Prep.)", "transliteration": "knige", "meaning": "About the book" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What case is used in: Я вижу кота? (I see the cat)",
+          "type": "multiple-choice",
+          "options": ["nominative", "accusative", "genitive", "dative"],
+          "answer": "accusative",
+          "explanation": "кота is the direct object → accusative. кот (animate masculine) → кота."
+        },
+        {
+          "prompt": "What case follows нет?",
+          "type": "multiple-choice",
+          "options": ["nominative", "accusative", "genitive", "dative"],
+          "answer": "genitive",
+          "explanation": "нет + genitive. У меня нет книги (I don't have a book)."
+        },
+        {
+          "prompt": "What case is used in: Я в школе?",
+          "type": "multiple-choice",
+          "options": ["nominative", "accusative", "dative", "prepositional"],
+          "answer": "prepositional",
+          "explanation": "в + prepositional for location. школа → школе."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "The decision flowchart",
+          "body": "When choosing a case, ask in this order: (1) Is this the subject? → Nominative. (2) Is this the direct object? → Accusative. (3) Is there a preposition? → Look it up (each preposition takes a specific case). (4) Is this about possession/absence? → Genitive. (5) Is this a recipient/indirect object? → Dative. (6) Is this a means, instrument, or accompaniment? → Instrumental.",
+          "examples": [
+            { "cyrillic": "Кот (nom.) пьёт молоко (acc.).", "transliteration": "Kot p'yot moloko.", "meaning": "The cat drinks milk. (subject + direct object)" },
+            { "cyrillic": "Дай коту (dat.) молоко (acc.).", "transliteration": "Day kotu moloko.", "meaning": "Give the cat milk. (indirect + direct object)" }
+          ]
+        },
+        {
+          "title": "Commonly confused pairs to drill",
+          "body": "These pairs produce the most errors. Drill each explicitly: (1) есть + nominative vs нет + genitive; (2) в/на + accusative (direction) vs в/на + prepositional (location); (3) masculine inanimate accusative = nominative vs masculine animate accusative = genitive.",
+          "examples": [
+            { "cyrillic": "У меня есть книга. / У меня нет книги.", "transliteration": "yest' nom. / net gen.", "meaning": "I have a book. / I don't have a book." },
+            { "cyrillic": "Я в школе. / Я иду в школу.", "transliteration": "prep. location / acc. direction", "meaning": "I am in school. / I am going to school." },
+            { "cyrillic": "Вижу стол. / Вижу студента.", "transliteration": "inanimate = nom. / animate = gen.", "meaning": "I see the table. / I see the student." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Я вижу ___. (книга — direct object, feminine)",
+          "type": "text-input",
+          "answer": "книгу",
+          "explanation": "Direct object = accusative. книга → книгу (feminine: А→У)."
+        },
+        {
+          "prompt": "У меня нет ___. (книга — no book)",
+          "type": "text-input",
+          "answer": "книги",
+          "explanation": "нет + genitive. книга → книги."
+        },
+        {
+          "prompt": "Я даю ___. (сестра — to my sister)",
+          "type": "text-input",
+          "answer": "сестре",
+          "explanation": "Indirect object = dative. сестра → сестре."
+        },
+        {
+          "prompt": "Кот ___ столом. (under the table)",
+          "type": "text-input",
+          "answer": "под",
+          "explanation": "под + instrumental = under (location). Кот под столом."
+        },
+        {
+          "prompt": "Я думаю ___ работе. (about work)",
+          "type": "text-input",
+          "answer": "о",
+          "explanation": "о + prepositional = about. работа → работе."
+        },
+        {
+          "prompt": "Я иду ___ школу. (going to school — direction)",
+          "type": "text-input",
+          "answer": "в",
+          "explanation": "в + accusative = direction to enclosed space. школа → школу."
+        },
+        {
+          "prompt": "Я пишу ___. (ручка — with a pen, instrument)",
+          "type": "text-input",
+          "answer": "ручкой",
+          "explanation": "Instrument without preposition = instrumental. ручка → ручкой."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Nominative = subject; Accusative = direct object + direction; Genitive = possession/absence/quantity",
+        "Dative = indirect object/recipient + age + нравиться; Instrumental = with/instrument/profession; Prepositional = location/topic",
+        "⚠ Top error pairs: нет+gen, есть+nom; в/на direction (acc.) vs location (prep.); animate masc. acc. = gen.",
+        "Decision order: subject? → Nom. | direct object? → Acc. | preposition? → check the preposition | recipient? → Dat. | instrument? → Instr."
+      ],
+      "vocabulary": ["падеж", "форма", "правило", "ошибка", "повторение", "правда"],
+      "nextLesson": "Next: Unit 6 — Adjectives. How adjective endings agree with the noun they modify across gender, number, and case."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Я читаю ___. (газета — direct object)",
+        "type": "text-input",
+        "answer": "газету",
+        "grammarPoint": "accusative-feminine"
+      },
+      {
+        "prompt": "У меня нет ___. (деньги — no money)",
+        "type": "text-input",
+        "answer": "денег",
+        "grammarPoint": "genitive-plural-negation"
+      },
+      {
+        "prompt": "Я в ___. (школа — location in school)",
+        "type": "text-input",
+        "answer": "школе",
+        "grammarPoint": "prepositional-location"
+      },
+      {
+        "prompt": "Я иду в ___. (школа — direction to school)",
+        "type": "text-input",
+        "answer": "школу",
+        "grammarPoint": "accusative-direction"
+      },
+      {
+        "prompt": "Я пишу ___. (ручка — with a pen)",
+        "type": "text-input",
+        "answer": "ручкой",
+        "grammarPoint": "instrumental-means"
+      },
+      {
+        "prompt": "Я даю ___. (друг — to a friend)",
+        "type": "text-input",
+        "answer": "другу",
+        "grammarPoint": "dative-singular-masculine"
+      },
+      {
+        "prompt": "Я вижу ___. (врач — animate masculine, direct object)",
+        "type": "text-input",
+        "answer": "врача",
+        "grammarPoint": "accusative-masculine-animate"
+      },
+      {
+        "prompt": "Мне ___ (нравиться) книга.",
+        "type": "text-input",
+        "answer": "нравится",
+        "grammarPoint": "dative-nravitsya"
+      },
+      {
+        "prompt": "What case follows о (about)?",
+        "type": "multiple-choice",
+        "options": ["accusative", "genitive", "dative", "prepositional"],
+        "answer": "prepositional",
+        "grammarPoint": "preposition-o-prepositional"
+      }
+    ]
+  }
+}

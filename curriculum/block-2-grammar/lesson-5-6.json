@@ -1,0 +1,275 @@
+{
+  "id": "5-6",
+  "unit": 5,
+  "lesson": 6,
+  "block": "grammar",
+  "title": "Prepositional case",
+  "subtitle": "Location and topics — в/на/о + prepositional",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "в",
+      "transliteration": "v",
+      "gender": null,
+      "meaning": "in / at (location, + prepositional) / to (direction, + accusative)",
+      "exampleCyrillic": "Я в школе.",
+      "exampleTransliteration": "Ya v shkole.",
+      "exampleMeaning": "I am in school."
+    },
+    {
+      "cyrillic": "на",
+      "transliteration": "na",
+      "gender": null,
+      "meaning": "on / at (surface or event, + prepositional) / to (+ accusative)",
+      "exampleCyrillic": "Книга на столе.",
+      "exampleTransliteration": "Kniga na stole.",
+      "exampleMeaning": "The book is on the table."
+    },
+    {
+      "cyrillic": "о",
+      "transliteration": "o",
+      "gender": null,
+      "meaning": "about / of (+ prepositional)",
+      "exampleCyrillic": "Я думаю о тебе.",
+      "exampleTransliteration": "Ya dumayu o tebe.",
+      "exampleMeaning": "I am thinking about you."
+    },
+    {
+      "cyrillic": "работа",
+      "transliteration": "rabota",
+      "gender": "feminine",
+      "meaning": "work / job",
+      "exampleCyrillic": "Он на работе.",
+      "exampleTransliteration": "On na rabote.",
+      "exampleMeaning": "He is at work."
+    },
+    {
+      "cyrillic": "улица",
+      "transliteration": "ulitsa",
+      "gender": "feminine",
+      "meaning": "street",
+      "exampleCyrillic": "Я на улице.",
+      "exampleTransliteration": "Ya na ulitse.",
+      "exampleMeaning": "I am outside (on the street)."
+    },
+    {
+      "cyrillic": "урок",
+      "transliteration": "urok",
+      "gender": "masculine",
+      "meaning": "lesson",
+      "exampleCyrillic": "Мы на уроке.",
+      "exampleTransliteration": "My na uroke.",
+      "exampleMeaning": "We are in (the) lesson."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Prepositional is the only case that never appears without a preposition — the name says it all. Its two main jobs: location (в/на + where you are) and topic (о + what you're talking about). The endings are consistent and the context is clear. Prepositional is one of the easier cases to use correctly once you know the endings."
+    },
+    "why": {
+      "text": "The confusion with в and на is that the same prepositions take accusative for direction and prepositional for location. в школу = going to school (accusative, movement); в школе = at school (prepositional, location). This в/на alternation is tested constantly because it's used in almost every sentence describing where you are or where you're going."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Prepositional singular endings",
+          "body": "Prepositional singular has very regular endings. Masculine and neuter: add -Е (replace О/Е). Feminine А/Я: А→Е, Я→Е. Feminine Ь: Ь→И.",
+          "examples": [
+            { "cyrillic": "Masculine: стол → столе", "transliteration": "stol → stole", "meaning": "table → on the table" },
+            { "cyrillic": "Masculine: словарь → словаре", "transliteration": "slovar' → slovare", "meaning": "dictionary → in the dictionary" },
+            { "cyrillic": "Neuter: слово → слове", "transliteration": "slovo → slove", "meaning": "word → about the word" },
+            { "cyrillic": "Feminine: школа → школе", "transliteration": "shkola → shkole", "meaning": "school → in school" },
+            { "cyrillic": "Feminine: дверь → двери", "transliteration": "dver' → dveri", "meaning": "door → at the door" }
+          ]
+        },
+        {
+          "title": "в vs на — which to use for location",
+          "body": "в (in) is used for enclosed spaces and countries. на (on) is used for surfaces, open areas, events, and some fixed expressions. The choice depends on convention — some words always take на (урок, работа, улица, почта). When in doubt: в for buildings/countries, на for surfaces/events.",
+          "examples": [
+            { "cyrillic": "в школе / в магазине / в России", "transliteration": "v shkole / v magazine / v Rossii", "meaning": "in school / in the shop / in Russia (enclosed, country)" },
+            { "cyrillic": "на столе / на улице / на уроке", "transliteration": "na stole / na ulitse / na uroke", "meaning": "on the table / outside / in the lesson (surface, open, fixed)" },
+            { "cyrillic": "на работе / на почте", "transliteration": "na rabote / na pochte", "meaning": "at work / at the post office (fixed expressions)" }
+          ]
+        },
+        {
+          "title": "в/на + location vs в/на + direction",
+          "body": "The same prepositions в and на take different cases for location vs direction. Location = prepositional. Direction = accusative. This is one of the most drilled pairs in Russian.",
+          "examples": [
+            { "cyrillic": "Я в школе. (prep. — location)", "transliteration": "Ya v shkole.", "meaning": "I am in school." },
+            { "cyrillic": "Я иду в школу. (acc. — direction)", "transliteration": "Ya idu v shkolu.", "meaning": "I am going to school." },
+            { "cyrillic": "Книга на столе. (prep. — location)", "transliteration": "Kniga na stole.", "meaning": "The book is on the table." },
+            { "cyrillic": "Положи книгу на стол. (acc. — direction)", "transliteration": "Polozhи knigu na stol.", "meaning": "Put the book on the table." }
+          ]
+        },
+        {
+          "title": "о + prepositional — about",
+          "body": "о (about / concerning) always takes the prepositional case. It introduces the topic of speech, thought, or concern.",
+          "examples": [
+            { "cyrillic": "Я думаю о работе.", "transliteration": "Ya dumayu o rabote.", "meaning": "I am thinking about work." },
+            { "cyrillic": "Он говорит о книге.", "transliteration": "On govorit o knige.", "meaning": "He is talking about the book." },
+            { "cyrillic": "Расскажи мне о себе.", "transliteration": "Rasskazhi mne o sebe.", "meaning": "Tell me about yourself." }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Prepositional of школа:",
+          "type": "text-input",
+          "answer": "школе",
+          "explanation": "школа → школе. Feminine А→Е in prepositional."
+        },
+        {
+          "prompt": "I am in school: Я ___ школе.",
+          "type": "text-input",
+          "answer": "в",
+          "explanation": "в + prepositional = location in an enclosed space. Я в школе."
+        },
+        {
+          "prompt": "The book is on the table: Книга ___ столе.",
+          "type": "text-input",
+          "answer": "на",
+          "explanation": "на + prepositional = on a surface. Книга на столе."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "⚠ Location vs direction — the most tested pair",
+          "body": "The в/на location (prepositional) vs в/на direction (accusative) distinction is one of the most common error types in Russian. The test: is there movement toward? → accusative. Is someone/something already there? → prepositional. Practise both sides of each pair together.",
+          "examples": [
+            { "cyrillic": "Я в офисе. vs Я иду в офис.", "transliteration": "Ya v ofise / Ya idu v ofis.", "meaning": "I am in the office (prep.) / I'm going to the office (acc.)" },
+            { "cyrillic": "Он на работе. vs Он идёт на работу.", "transliteration": "On na rabote / On idyot na rabotu.", "meaning": "He is at work (prep.) / He is going to work (acc.)" }
+          ]
+        },
+        {
+          "title": "Fixed expressions with на",
+          "body": "Some location words always use на rather than в — this must be memorised as vocabulary. The most important: работа (work), улица (street), урок (lesson), почта (post office), рынок (market), концерт (concert), собрание (meeting).",
+          "examples": [
+            { "cyrillic": "на работе", "transliteration": "na rabote", "meaning": "at work (not в работе)" },
+            { "cyrillic": "на улице", "transliteration": "na ulitse", "meaning": "outside / on the street" },
+            { "cyrillic": "на уроке", "transliteration": "na uroke", "meaning": "in the lesson" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Prepositional of стол:",
+          "type": "text-input",
+          "answer": "столе",
+          "explanation": "стол → столе. Masculine: add -Е."
+        },
+        {
+          "prompt": "I am at work: Я ___ работе.",
+          "type": "multiple-choice",
+          "options": ["в", "на"],
+          "answer": "на",
+          "explanation": "работа is one of the fixed на-words. Я на работе."
+        },
+        {
+          "prompt": "He is in Russia: Он ___ России.",
+          "type": "multiple-choice",
+          "options": ["в", "на"],
+          "answer": "в",
+          "explanation": "Countries always use в for location. Он в России."
+        },
+        {
+          "prompt": "I am thinking about work: Я думаю ___ работе.",
+          "type": "text-input",
+          "answer": "о",
+          "explanation": "о + prepositional = about. Я думаю о работе."
+        },
+        {
+          "prompt": "Prepositional of книга:",
+          "type": "text-input",
+          "answer": "книге",
+          "explanation": "книга → книге. Feminine А→Е."
+        },
+        {
+          "prompt": "He is going to work (direction): Он идёт ___ работу.",
+          "type": "multiple-choice",
+          "options": ["на (accusative)", "на (prepositional)", "в (accusative)"],
+          "answer": "на (accusative)",
+          "explanation": "Direction uses accusative. работа → работу. на работу = going to work."
+        },
+        {
+          "prompt": "We are in the lesson: Мы ___ уроке.",
+          "type": "multiple-choice",
+          "options": ["в", "на"],
+          "answer": "на",
+          "explanation": "урок is a fixed на-word. Мы на уроке."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Prepositional singular: masculine/neuter +Е, feminine А→Е, feminine Ь→И",
+        "в + prepositional = location in enclosed space/country; на + prepositional = on surface or fixed expressions",
+        "⚠ в/на + accusative = direction; в/на + prepositional = location",
+        "о + prepositional = about/concerning (topic)",
+        "Fixed на-words: работа, улица, урок, почта, рынок, концерт"
+      ],
+      "vocabulary": ["в", "на", "о", "работа", "улица", "урок"],
+      "nextLesson": "Next: Case review — all six cases compared in parallel, with mixed drills across the full paradigm."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Prepositional of стол:",
+        "type": "text-input",
+        "answer": "столе",
+        "grammarPoint": "prepositional-singular-masculine"
+      },
+      {
+        "prompt": "Prepositional of школа:",
+        "type": "text-input",
+        "answer": "школе",
+        "grammarPoint": "prepositional-singular-feminine"
+      },
+      {
+        "prompt": "I am in school: Я в ___.",
+        "type": "text-input",
+        "answer": "школе",
+        "grammarPoint": "prepositional-location"
+      },
+      {
+        "prompt": "I am going to school: Я иду в ___.",
+        "type": "text-input",
+        "answer": "школу",
+        "grammarPoint": "accusative-direction"
+      },
+      {
+        "prompt": "He is at work uses which preposition?",
+        "type": "multiple-choice",
+        "options": ["в", "на"],
+        "answer": "на",
+        "grammarPoint": "prepositional-na-fixed"
+      },
+      {
+        "prompt": "I am thinking about the book: Я думаю о ___. (книга)",
+        "type": "text-input",
+        "answer": "книге",
+        "grammarPoint": "prepositional-o-about"
+      },
+      {
+        "prompt": "Location uses which case with в/на?",
+        "type": "multiple-choice",
+        "options": ["accusative", "genitive", "prepositional", "dative"],
+        "answer": "prepositional",
+        "grammarPoint": "prepositional-vs-accusative"
+      },
+      {
+        "prompt": "What does о + prepositional express?",
+        "type": "multiple-choice",
+        "options": ["direction", "possession", "about / topic", "instrument"],
+        "answer": "about / topic",
+        "grammarPoint": "preposition-o-prepositional"
+      }
+    ]
+  }
+}

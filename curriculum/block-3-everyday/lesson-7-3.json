@@ -1,0 +1,257 @@
+{
+  "id": "7-3",
+  "unit": 7,
+  "lesson": 3,
+  "block": "everyday",
+  "title": "Talking about people",
+  "subtitle": "Combining family, description, and profession",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "профессия",
+      "transliteration": "professiya",
+      "gender": "feminine",
+      "meaning": "profession / occupation",
+      "exampleCyrillic": "Какая у вас профессия?",
+      "exampleTransliteration": "Kakaya u vas professiya?",
+      "exampleMeaning": "What is your profession?"
+    },
+    {
+      "cyrillic": "учитель",
+      "transliteration": "uchitel'",
+      "gender": "masculine",
+      "meaning": "teacher (male)",
+      "exampleCyrillic": "Он учитель.",
+      "exampleTransliteration": "On uchitel'.",
+      "exampleMeaning": "He is a teacher."
+    },
+    {
+      "cyrillic": "инженер",
+      "transliteration": "inzhener",
+      "gender": "masculine",
+      "meaning": "engineer",
+      "exampleCyrillic": "Мой отец инженер.",
+      "exampleTransliteration": "Moy otets inzhener.",
+      "exampleMeaning": "My father is an engineer."
+    },
+    {
+      "cyrillic": "живёт",
+      "transliteration": "zhivyot",
+      "gender": null,
+      "meaning": "lives (3rd person singular of жить)",
+      "exampleCyrillic": "Он живёт в Москве.",
+      "exampleTransliteration": "On zhivyot v Moskve.",
+      "exampleMeaning": "He lives in Moscow."
+    },
+    {
+      "cyrillic": "тоже",
+      "transliteration": "tozhe",
+      "gender": null,
+      "meaning": "also / too",
+      "exampleCyrillic": "Я тоже студент.",
+      "exampleTransliteration": "Ya tozhe student.",
+      "exampleMeaning": "I am also a student."
+    },
+    {
+      "cyrillic": "сколько лет",
+      "transliteration": "skolko let",
+      "gender": null,
+      "meaning": "how old (how many years)",
+      "exampleCyrillic": "Сколько вам лет?",
+      "exampleTransliteration": "Skolko vam let?",
+      "exampleMeaning": "How old are you? (formal)"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "This lesson is a production lesson. The grammar foundation is in place — now put it together. By the end you'll be able to describe a person completely: who they are, what they look like, what they do, how old they are, and where they live. A paragraph about a person in Russian."
+    },
+    "why": {
+      "text": "Combining structures is harder than drilling them separately. Switching between adjective agreement, the У меня есть construction, and dative age — all in one paragraph — is where learners slow down. This lesson forces that combination in a controlled way, so the transitions become smooth."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Talking about profession",
+          "body": "To state a profession, use: Он/Она + profession noun (no verb, no article). This uses the zero copula (no 'is'). For working AS something, use работает + instrumental (as covered in Unit 5). The same word can appear in both constructions.",
+          "examples": [
+            { "cyrillic": "Он врач.", "transliteration": "On vrach.", "meaning": "He is a doctor. (identity — nominative)" },
+            { "cyrillic": "Он работает врачом.", "transliteration": "On rabotayet vrachom.", "meaning": "He works as a doctor. (role — instrumental)" },
+            { "cyrillic": "Моя мама учительница.", "transliteration": "Moya mama uchitel'nitsa.", "meaning": "My mum is a teacher." }
+          ]
+        },
+        {
+          "title": "Describing where someone lives",
+          "body": "You already know жить and the prepositional case. Living somewhere: жить + в/на + prepositional. The verb agrees with the subject.",
+          "examples": [
+            { "cyrillic": "Я живу в Москве.", "transliteration": "Ya zhivu v Moskve.", "meaning": "I live in Moscow." },
+            { "cyrillic": "Он живёт в Лондоне.", "transliteration": "On zhivyot v Londone.", "meaning": "He lives in London." },
+            { "cyrillic": "Они живут в России.", "transliteration": "Oni zhivut v Rossii.", "meaning": "They live in Russia." }
+          ]
+        },
+        {
+          "title": "A complete person description",
+          "body": "Here is a model paragraph describing a person. Notice how the structures you know combine. Use this as a template.",
+          "examples": [
+            { "cyrillic": "Это мой брат Антон.", "transliteration": "Eto moy brat Anton.", "meaning": "This is my brother Anton." },
+            { "cyrillic": "Ему 28 лет.", "transliteration": "Yemu 28 let.", "meaning": "He is 28 years old." },
+            { "cyrillic": "Он высокий и умный.", "transliteration": "On visokiy i umniy.", "meaning": "He is tall and clever." },
+            { "cyrillic": "Антон инженер. Он работает инженером.", "transliteration": "Anton inzhener. On rabotayet inzhenerom.", "meaning": "Anton is an engineer. He works as an engineer." },
+            { "cyrillic": "Он живёт в Москве.", "transliteration": "On zhivyot v Moskve.", "meaning": "He lives in Moscow." }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'he is an engineer'?",
+          "type": "text-input",
+          "answer": "Он инженер.",
+          "explanation": "Zero copula: Он инженер. No verb 'to be' needed."
+        },
+        {
+          "prompt": "How do you say 'she lives in Russia'?",
+          "type": "text-input",
+          "answer": "Она живёт в России.",
+          "explanation": "жить conjugation: она живёт. в + prepositional: Россия → России."
+        },
+        {
+          "prompt": "How do you ask 'how old are you?' (formal)?",
+          "type": "text-input",
+          "answer": "Сколько вам лет?",
+          "explanation": "сколько лет + dative. вам = dative of вы (formal you)."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "The word и — and",
+          "body": "и (i) = and. It connects nouns, adjectives, and clauses. Used extensively in descriptions. Sometimes it doubles: и...и... = both...and...",
+          "examples": [
+            { "cyrillic": "Он высокий и красивый.", "transliteration": "On visokiy i krasiviy.", "meaning": "He is tall and handsome." },
+            { "cyrillic": "И умный, и добрый.", "transliteration": "I umniy, i dobriy.", "meaning": "Both clever and kind." }
+          ]
+        },
+        {
+          "title": "тоже vs тоже — also / too",
+          "body": "тоже means 'also' or 'too' and is placed after the subject or before the predicate. Я тоже студент = I am also a student. Don't confuse with тот (that).",
+          "examples": [
+            { "cyrillic": "Я тоже живу в Москве.", "transliteration": "Ya tozhe zhivu v Moskve.", "meaning": "I also live in Moscow." },
+            { "cyrillic": "Она тоже умная.", "transliteration": "Ona tozhe umnaya.", "meaning": "She is also clever." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "How do you say 'my mother is a teacher'?",
+          "type": "text-input",
+          "answer": "Моя мама учительница.",
+          "explanation": "Zero copula: Моя мама учительница."
+        },
+        {
+          "prompt": "How do you say 'he is 35 years old'?",
+          "type": "text-input",
+          "answer": "Ему тридцать пять лет.",
+          "explanation": "Ему (dative of он) + тридцать пять лет."
+        },
+        {
+          "prompt": "How do you say 'I also live in London'?",
+          "type": "text-input",
+          "answer": "Я тоже живу в Лондоне.",
+          "explanation": "тоже = also. жить: я живу. Лондон → Лондоне (prepositional)."
+        },
+        {
+          "prompt": "What does профессия mean?",
+          "type": "text-input",
+          "answer": "profession",
+          "explanation": "профессия (professiya) = profession / occupation."
+        },
+        {
+          "prompt": "What does инженер mean?",
+          "type": "text-input",
+          "answer": "engineer",
+          "explanation": "инженер (inzhener) = engineer."
+        },
+        {
+          "prompt": "I work as an engineer: Я работаю ___.",
+          "type": "text-input",
+          "answer": "инженером",
+          "explanation": "работать + instrumental. инженер → инженером."
+        },
+        {
+          "prompt": "Connect: 'He is tall AND clever': Он высокий ___ умный.",
+          "type": "text-input",
+          "answer": "и",
+          "explanation": "и = and. Он высокий и умный."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Profession identity: Он врач (nominative, zero copula)",
+        "Working AS: Он работает врачом (instrumental)",
+        "Living somewhere: живёт в/на + prepositional",
+        "Age: Ему/Ей ... лет (dative + number + лет)",
+        "и = and; тоже = also/too"
+      ],
+      "vocabulary": ["профессия", "учитель", "инженер", "живёт", "тоже", "сколько лет"],
+      "nextLesson": "Next: Unit 8 — Time. Days of the week, months, and telling the time."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "He is a doctor:",
+        "type": "text-input",
+        "answer": "Он врач.",
+        "grammarPoint": "zero-copula-profession"
+      },
+      {
+        "prompt": "She lives in Russia: Она живёт ___ России.",
+        "type": "text-input",
+        "answer": "в",
+        "grammarPoint": "preposition-location"
+      },
+      {
+        "prompt": "How old are you? (formal):",
+        "type": "text-input",
+        "answer": "Сколько вам лет?",
+        "grammarPoint": "dative-age-question"
+      },
+      {
+        "prompt": "He works as a teacher: Он работает ___.",
+        "type": "text-input",
+        "answer": "учителем",
+        "grammarPoint": "instrumental-profession"
+      },
+      {
+        "prompt": "What does тоже mean?",
+        "type": "text-input",
+        "answer": "also",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "She is 30: Ей ___ лет.",
+        "type": "text-input",
+        "answer": "тридцать",
+        "grammarPoint": "dative-age"
+      },
+      {
+        "prompt": "He is tall AND handsome: Он высокий ___ красивый.",
+        "type": "text-input",
+        "answer": "и",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does инженер mean?",
+        "type": "text-input",
+        "answer": "engineer",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

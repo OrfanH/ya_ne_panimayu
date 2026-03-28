@@ -1,0 +1,265 @@
+{
+  "id": "10-4",
+  "unit": 10,
+  "lesson": 4,
+  "block": "everyday",
+  "title": "Putting it all together",
+  "subtitle": "A practical review across the full curriculum",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "расскажи / расскажите",
+      "transliteration": "rasskazhi / rasskazhite",
+      "gender": null,
+      "meaning": "tell (me about) — imperative of рассказать",
+      "exampleCyrillic": "Расскажите о себе.",
+      "exampleTransliteration": "Rasskazhite o sebe.",
+      "exampleMeaning": "Tell me about yourself."
+    },
+    {
+      "cyrillic": "о себе",
+      "transliteration": "o sebe",
+      "gender": null,
+      "meaning": "about yourself / about oneself",
+      "exampleCyrillic": "Расскажите о себе.",
+      "exampleTransliteration": "Rasskazhite o sebe.",
+      "exampleMeaning": "Tell me about yourself."
+    },
+    {
+      "cyrillic": "свободный",
+      "transliteration": "svobodniy",
+      "gender": "masculine",
+      "meaning": "free / available",
+      "exampleCyrillic": "В пятницу я свободен.",
+      "exampleTransliteration": "V pyatnitsu ya svoboden.",
+      "exampleMeaning": "On Friday I am free."
+    },
+    {
+      "cyrillic": "планы",
+      "transliteration": "plany",
+      "gender": null,
+      "meaning": "plans (plural of план)",
+      "exampleCyrillic": "Какие у вас планы на выходные?",
+      "exampleTransliteration": "Kakiye u vas plany na vikhodnyye?",
+      "exampleMeaning": "What are your plans for the weekend?"
+    },
+    {
+      "cyrillic": "встреча",
+      "transliteration": "vstrecha",
+      "gender": "feminine",
+      "meaning": "meeting / get-together",
+      "exampleCyrillic": "У меня встреча в среду.",
+      "exampleTransliteration": "U menya vstrecha v sredu.",
+      "exampleMeaning": "I have a meeting on Wednesday."
+    },
+    {
+      "cyrillic": "расписание",
+      "transliteration": "raspisaniye",
+      "gender": "neuter",
+      "meaning": "schedule / timetable",
+      "exampleCyrillic": "Какое у вас расписание?",
+      "exampleTransliteration": "Kakoye u vas raspisaniye?",
+      "exampleMeaning": "What is your schedule?"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "This is the final lesson of the curriculum. You've covered the full Russian A1 system: the alphabet, core grammar (cases, aspect, verbs, adjectives), and everyday language. This lesson doesn't introduce new grammar — it integrates everything into realistic, multi-structure communication. The goal: produce connected Russian sentences about your life without thinking about individual rules."
+    },
+    "why": {
+      "text": "Language production is harder than recognition. Each previous lesson drilled one structure at a time. Real speech mixes them: introducing yourself requires zero copula, possessives, adjective agreement, and prepositional case in the same paragraph. This lesson forces that integration deliberately, across the areas where combination is hardest."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Self-introduction — a complete template",
+          "body": "Here is a full self-introduction paragraph combining vocabulary and structures from across the curriculum. Every sentence draws on a different unit. Study this as a model — then adapt it to your own details.",
+          "examples": [
+            { "cyrillic": "Меня зовут Орфан.", "transliteration": "Menya zovut Orfan.", "meaning": "My name is Orfan. (Unit 2)" },
+            { "cyrillic": "Я из Лондона.", "transliteration": "Ya iz Londona.", "meaning": "I am from London. (из + genitive, Unit 5)" },
+            { "cyrillic": "Мне двадцать пять лет.", "transliteration": "Mne dvadtsat' pyat' let.", "meaning": "I am 25 years old. (dative age, Units 5 + 8)" },
+            { "cyrillic": "Я студент. Я изучаю русский язык.", "transliteration": "Ya student. Ya izuchayu russkiy yazyk.", "meaning": "I am a student. I study Russian. (zero copula; verb + accusative, Units 2 + 4)" },
+            { "cyrillic": "Я живу в Лондоне.", "transliteration": "Ya zhivu v Londone.", "meaning": "I live in London. (жить + prepositional, Units 4 + 5)" }
+          ]
+        },
+        {
+          "title": "Talking about your week",
+          "body": "Combining days of the week, time expressions, and event vocabulary into a connected description of your schedule. Each sentence uses a different case or construction.",
+          "examples": [
+            { "cyrillic": "В понедельник у меня урок.", "transliteration": "V ponedel'nik u menya urok.", "meaning": "On Monday I have a lesson. (в + acc. day; у меня есть)" },
+            { "cyrillic": "Во вторник и в среду я работаю.", "transliteration": "Vo vtornik i v sredu ya rabotayu.", "meaning": "On Tuesday and Wednesday I work. (two days + verb)" },
+            { "cyrillic": "В четверг встреча в три часа.", "transliteration": "V chetverg vstrecha v tri chasa.", "meaning": "On Thursday there's a meeting at three o'clock. (day + time)" },
+            { "cyrillic": "В пятницу я свободен.", "transliteration": "V pyatnitsu ya svoboden.", "meaning": "On Friday I am free. (short-form adjective)" },
+            { "cyrillic": "В выходные я отдыхаю.", "transliteration": "V vikhodnyye ya otdykhayu.", "meaning": "On weekends I rest." }
+          ]
+        },
+        {
+          "title": "Describing someone — a complete paragraph",
+          "body": "A model paragraph about another person, integrating family vocabulary, adjective agreement, profession, location, and age from Units 7-8.",
+          "examples": [
+            { "cyrillic": "Это моя сестра Анна.", "transliteration": "Eto moya sestra Anna.", "meaning": "This is my sister Anna. (possessive + noun)" },
+            { "cyrillic": "Ей тридцать два года.", "transliteration": "Yey tridtsat' dva goda.", "meaning": "She is 32. (dative age: ей + number + год zone)" },
+            { "cyrillic": "Она умная и весёлая.", "transliteration": "Ona umnaya i vesyolaya.", "meaning": "She is clever and cheerful. (adjective agreement: feminine)" },
+            { "cyrillic": "Анна врач. Она работает врачом.", "transliteration": "Anna vrach. Ona rabotayet vrachom.", "meaning": "Anna is a doctor. She works as a doctor. (identity vs role)" },
+            { "cyrillic": "Она живёт в Москве.", "transliteration": "Ona zhivyot v Moskve.", "meaning": "She lives in Moscow. (prepositional)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'tell me about yourself' (formal)?",
+          "type": "text-input",
+          "answer": "Расскажите о себе.",
+          "explanation": "рассказать → formal imperative = расскажите. о себе = about yourself (prepositional of себя)."
+        },
+        {
+          "prompt": "On Wednesday I have a meeting: В ___ у меня встреча.",
+          "type": "text-input",
+          "answer": "среду",
+          "explanation": "среда → среду (feminine accusative: А→У). В среду."
+        },
+        {
+          "prompt": "She is 32: Ей тридцать два ___.",
+          "type": "text-input",
+          "answer": "года",
+          "explanation": "Last digit 2 → года (genitive singular). Ей тридцать два года."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Common combination errors — to watch for",
+          "body": "These are the errors most likely to occur when combining structures. Review them carefully — the tutor has tracked these throughout your lessons.",
+          "examples": [
+            { "cyrillic": "У меня есть сестра. / У меня нет сестры.", "transliteration": "U menya yest' sestra / net sestry.", "meaning": "есть + nominative / нет + genitive — don't mix these." },
+            { "cyrillic": "Я иду в магазин. / Я в магазине.", "transliteration": "Ya idu v magazin. / Ya v magazine.", "meaning": "Direction: в + accusative. Location: в + prepositional. Same preposition, different case." },
+            { "cyrillic": "Он врач. / Он работает врачом.", "transliteration": "On vrach. / On rabotayet vrachom.", "meaning": "Identity: nominative. Role/manner: instrumental." },
+            { "cyrillic": "Я читал книгу. / Я прочитал книгу.", "transliteration": "Ya chital knigu. / Ya prochital knigu.", "meaning": "Was reading (process) vs read and finished. Aspect matters." }
+          ]
+        },
+        {
+          "title": "Where to go from here",
+          "body": "You have completed A1 and are entering solid A2 territory. The next priorities: (1) expand vocabulary in domains you care about, (2) work on declension fluency — all six cases without stopping to think, (3) aspect in speech — choosing automatically. Use this app's tutor for any questions that come up in conversation.",
+          "examples": [
+            { "cyrillic": "Продолжай учиться!", "transliteration": "Prodolzhay uchit'sya!", "meaning": "Keep studying! (imperfective imperative — ongoing action)" },
+            { "cyrillic": "Ты уже многое знаешь.", "transliteration": "Ty uzhe mnogoye znayesh'.", "meaning": "You already know a lot." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "I am from London: Я ___ Лондона.",
+          "type": "text-input",
+          "answer": "из",
+          "explanation": "из + genitive = from. Я из Лондона."
+        },
+        {
+          "prompt": "She is clever and cheerful (feminine adjectives): Она умная и ___.",
+          "type": "text-input",
+          "answer": "весёлая",
+          "explanation": "весёлый → весёлая (feminine). Она умная и весёлая."
+        },
+        {
+          "prompt": "On Friday I am free (masculine short form): В пятницу я ___.",
+          "type": "text-input",
+          "answer": "свободен",
+          "explanation": "свободный → short form masculine = свободен."
+        },
+        {
+          "prompt": "What are your plans?: Какие у вас ___?",
+          "type": "text-input",
+          "answer": "планы",
+          "explanation": "планы = plans (plural of план). Какие у вас планы?"
+        },
+        {
+          "prompt": "I have a meeting on Wednesday: У меня ___ в среду.",
+          "type": "text-input",
+          "answer": "встреча",
+          "explanation": "встреча = meeting. У меня встреча в среду."
+        },
+        {
+          "prompt": "She works as a doctor: Она работает ___.",
+          "type": "text-input",
+          "answer": "врачом",
+          "explanation": "работать + instrumental. врач → врачом."
+        },
+        {
+          "prompt": "I read (process, yesterday): Вчера я ___ книгу.",
+          "type": "multiple-choice",
+          "options": ["читал", "прочитал"],
+          "answer": "читал",
+          "explanation": "Context: process, all day. But 'yesterday I read all day' = ongoing process → imperfective (читал). If 'finished it' → прочитал."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Zero copula: Я студент. Он врач. — no 'is' in present tense",
+        "есть + nominative (have) / нет + genitive (don't have)",
+        "в + accusative (direction/time) / в + prepositional (location/month) — same preposition, different case",
+        "Identity (nominative) vs role (instrumental): Он врач / Он работает врачом",
+        "Aspect: imperfective = process/habit; perfective = completed single event"
+      ],
+      "vocabulary": ["расскажи / расскажите", "о себе", "свободный", "планы", "встреча", "расписание"],
+      "nextLesson": "Curriculum complete. You have covered A1 → solid A2. Use the tutor for conversation practice and explore the vocabulary list to consolidate what you've learned."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "I am from Moscow: Я ___ Москвы.",
+        "type": "text-input",
+        "answer": "из",
+        "grammarPoint": "preposition-iz-genitive"
+      },
+      {
+        "prompt": "She works as a teacher: Она работает ___.",
+        "type": "text-input",
+        "answer": "учительницей",
+        "grammarPoint": "instrumental-profession"
+      },
+      {
+        "prompt": "I don't have a sister: У меня нет ___.",
+        "type": "text-input",
+        "answer": "сестры",
+        "grammarPoint": "net-genitive"
+      },
+      {
+        "prompt": "On Wednesday (в + accusative of среда):",
+        "type": "text-input",
+        "answer": "в среду",
+        "grammarPoint": "days-accusative-feminine"
+      },
+      {
+        "prompt": "She is 32: Ей тридцать два ___.",
+        "type": "text-input",
+        "answer": "года",
+        "grammarPoint": "age-counting-zone"
+      },
+      {
+        "prompt": "I was reading yesterday (process): Вчера я ___.",
+        "type": "multiple-choice",
+        "options": ["читал", "прочитал"],
+        "answer": "читал",
+        "grammarPoint": "aspect-imperfective-past"
+      },
+      {
+        "prompt": "He is a doctor (identity): Он ___.",
+        "type": "text-input",
+        "answer": "врач",
+        "grammarPoint": "zero-copula-profession"
+      },
+      {
+        "prompt": "Tell me about yourself (formal):",
+        "type": "text-input",
+        "answer": "Расскажите о себе.",
+        "grammarPoint": "imperative-reflexive"
+      }
+    ]
+  }
+}

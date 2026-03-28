@@ -1,0 +1,261 @@
+{
+  "id": "10-3",
+  "unit": 10,
+  "lesson": 3,
+  "block": "everyday",
+  "title": "Shopping and transactions",
+  "subtitle": "Buying things, asking prices, and practical number use",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "магазин",
+      "transliteration": "magazin",
+      "gender": "masculine",
+      "meaning": "shop / store",
+      "exampleCyrillic": "Где ближайший магазин?",
+      "exampleTransliteration": "Gde blizhayshiy magazin?",
+      "exampleMeaning": "Where is the nearest shop?"
+    },
+    {
+      "cyrillic": "сколько стоит",
+      "transliteration": "skolko stoit",
+      "gender": null,
+      "meaning": "how much does it cost",
+      "exampleCyrillic": "Сколько стоит это?",
+      "exampleTransliteration": "Skolko stoit eto?",
+      "exampleMeaning": "How much does this cost?"
+    },
+    {
+      "cyrillic": "дорогой / дешёвый",
+      "transliteration": "dorogoy / deshyoviy",
+      "gender": null,
+      "meaning": "expensive / cheap",
+      "exampleCyrillic": "Это слишком дорого.",
+      "exampleTransliteration": "Eto slishkom dorogo.",
+      "exampleMeaning": "This is too expensive."
+    },
+    {
+      "cyrillic": "слишком",
+      "transliteration": "slishkom",
+      "gender": null,
+      "meaning": "too (much) / excessively",
+      "exampleCyrillic": "Это слишком дорого.",
+      "exampleTransliteration": "Eto slishkom dorogo.",
+      "exampleMeaning": "This is too expensive."
+    },
+    {
+      "cyrillic": "возьму",
+      "transliteration": "voz'mu",
+      "gender": null,
+      "meaning": "I'll take (1st sg. future perfective of взять)",
+      "exampleCyrillic": "Я возьму это.",
+      "exampleTransliteration": "Ya voz'mu eto.",
+      "exampleMeaning": "I'll take this."
+    },
+    {
+      "cyrillic": "сдача",
+      "transliteration": "sdacha",
+      "gender": "feminine",
+      "meaning": "change (money returned)",
+      "exampleCyrillic": "Вот ваша сдача.",
+      "exampleTransliteration": "Vot vasha sdacha.",
+      "exampleMeaning": "Here is your change."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Shopping is where numbers, cases, and practical phrases all come together at once. You'll use the numbers from Unit 8, the genitive for prices, the accusative for what you're buying, and comparatives to evaluate. This is a full integration lesson — you have all the pieces, now put them together."
+    },
+    "why": {
+      "text": "In a shop, you ask Сколько стоит? (How much does it cost?), get an answer with a number + genitive (сто рублей), evaluate with comparatives (слишком дорого, дешевле), and decide with a perfective future (я возьму = I'll take). This sequence draws on five different grammar areas — cases, numbers, comparatives, aspect, and imperatives — all in one short interaction."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Asking and discussing prices",
+          "body": "The price question: Сколько стоит [item]? or just Сколько стоит? The answer gives a number + the correct form of рублей/рубля/рубль. To evaluate: используйте comparatives you know.",
+          "examples": [
+            { "cyrillic": "Сколько стоит эта сумка?", "transliteration": "Skolko stoit eta sumka?", "meaning": "How much does this bag cost?" },
+            { "cyrillic": "Это стоит двести рублей.", "transliteration": "Eto stoit dvesti rubley.", "meaning": "This costs 200 roubles." },
+            { "cyrillic": "Это слишком дорого.", "transliteration": "Eto slishkom dorogo.", "meaning": "This is too expensive." },
+            { "cyrillic": "Есть что-нибудь дешевле?", "transliteration": "Yest' chto-nibud' deshevle?", "meaning": "Is there something cheaper?" }
+          ]
+        },
+        {
+          "title": "Buying — я возьму and я хочу купить",
+          "body": "Two ways to say you'll buy something. Я возьму (I'll take it) is perfective future — you've decided, one action, done. Я хочу купить (I want to buy) uses the infinitive pair купить (pf.) / покупать (impf.). возьму is the most natural in-shop phrase.",
+          "examples": [
+            { "cyrillic": "Я возьму это.", "transliteration": "Ya voz'mu eto.", "meaning": "I'll take this. (natural in-shop phrase)" },
+            { "cyrillic": "Я хочу купить эту книгу.", "transliteration": "Ya khochu kupit' etu knigu.", "meaning": "I want to buy this book. (эту = feminine accusative of эта)" },
+            { "cyrillic": "Можно посмотреть?", "transliteration": "Mozhno posmotret'?", "meaning": "Can I look at it / have a look?" }
+          ]
+        },
+        {
+          "title": "Completing the transaction",
+          "body": "Paying and receiving change. наличные (cash) / карта (card). вот (here is) is used when handing something over. Ваша сдача (your change) — ваша agrees with сдача (feminine).",
+          "examples": [
+            { "cyrillic": "Вот, пожалуйста.", "transliteration": "Vot, pozhaluysta.", "meaning": "Here you are. (handing something over)" },
+            { "cyrillic": "Вот ваша сдача.", "transliteration": "Vot vasha sdacha.", "meaning": "Here is your change." },
+            { "cyrillic": "Можно платить картой?", "transliteration": "Mozhno platit' kartoy?", "meaning": "Can I pay by card? (картой = instrumental of карта)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you ask 'how much does this cost?'",
+          "type": "text-input",
+          "answer": "Сколько стоит это?",
+          "explanation": "Сколько стоит + subject. Сколько стоит это?"
+        },
+        {
+          "prompt": "How do you say 'I'll take this'?",
+          "type": "text-input",
+          "answer": "Я возьму это.",
+          "explanation": "возьму = 1st sg. perfective future of взять (to take). Я возьму это."
+        },
+        {
+          "prompt": "What does слишком mean?",
+          "type": "text-input",
+          "answer": "too / too much",
+          "explanation": "слишком (slishkom) = too / excessively. Это слишком дорого."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Demonstratives in the shop — этот/эта/это/эти",
+          "body": "When pointing at items in a shop, you'll use этот/эта/это (this) and тот/та/то (that). They agree in gender. In accusative: masculine inanimate = no change, feminine = эту/ту. You've seen эта → эту before.",
+          "examples": [
+            { "cyrillic": "Я хочу этот.", "transliteration": "Ya khochu etot.", "meaning": "I want this one. (masculine)" },
+            { "cyrillic": "Я возьму эту сумку.", "transliteration": "Ya voz'mu etu sumku.", "meaning": "I'll take this bag. (feminine accusative: эту)" },
+            { "cyrillic": "Покажите мне то.", "transliteration": "Pokazhite mne to.", "meaning": "Show me that one. (neuter)" }
+          ]
+        },
+        {
+          "title": "A complete shopping interaction",
+          "body": "A model conversation combining price inquiry, evaluation, and purchase.",
+          "examples": [
+            { "cyrillic": "— Сколько стоит эта сумка?", "transliteration": "— Skolko stoit eta sumka?", "meaning": "— How much is this bag?" },
+            { "cyrillic": "— Три тысячи рублей.", "transliteration": "— Tri tysyachi rubley.", "meaning": "— Three thousand roubles." },
+            { "cyrillic": "— Это слишком дорого. Есть дешевле?", "transliteration": "— Eto slishkom dorogo. Yest' deshevle?", "meaning": "— That's too expensive. Is there something cheaper?" },
+            { "cyrillic": "— Да, вот эта — тысяча пятьсот.", "transliteration": "— Da, vot eta — tysyacha pyat'sot.", "meaning": "— Yes, this one — 1500." },
+            { "cyrillic": "— Хорошо, я возьму её.", "transliteration": "— Khorosho, ya voz'mu yeyo.", "meaning": "— Good, I'll take it." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What does магазин mean?",
+          "type": "text-input",
+          "answer": "shop / store",
+          "explanation": "магазин (magazin) = shop / store. Masculine."
+        },
+        {
+          "prompt": "This is too expensive: Это слишком ___.",
+          "type": "text-input",
+          "answer": "дорого",
+          "explanation": "дорогой → дорого (short predicate form). Это слишком дорого."
+        },
+        {
+          "prompt": "Can I pay by card?: Можно платить ___?",
+          "type": "text-input",
+          "answer": "картой",
+          "explanation": "карта → картой (instrumental). Можно платить картой?"
+        },
+        {
+          "prompt": "What does сдача mean?",
+          "type": "text-input",
+          "answer": "change (money returned)",
+          "explanation": "сдача (sdacha) = change (money returned after payment)."
+        },
+        {
+          "prompt": "I want to buy this book: Я хочу купить ___ книгу.",
+          "type": "text-input",
+          "answer": "эту",
+          "explanation": "эта → эту (feminine accusative). Я хочу купить эту книгу."
+        },
+        {
+          "prompt": "Here is your change: Вот ___ сдача.",
+          "type": "text-input",
+          "answer": "ваша",
+          "explanation": "ваш agrees with сдача (feminine). Вот ваша сдача."
+        },
+        {
+          "prompt": "Is there something cheaper?: Есть что-нибудь ___?",
+          "type": "text-input",
+          "answer": "дешевле",
+          "explanation": "дешевле = cheaper (comparative of дешёвый). Есть что-нибудь дешевле?"
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Price question: Сколько стоит [item]? — answer: number + рублей/рубля/рубль",
+        "Buying: Я возьму это (I'll take it) — perfective future, one completed purchase",
+        "Evaluation: слишком дорого (too expensive), дешевле (cheaper) — comparatives apply",
+        "Payment: Можно платить картой? (card) / наличными? (cash) — instrumental",
+        "Demonstratives in shop: эту сумку (f. acc.), этот (m. nom./acc.)"
+      ],
+      "vocabulary": ["магазин", "сколько стоит", "дорогой / дешёвый", "слишком", "возьму", "сдача"],
+      "nextLesson": "Next: Final lesson — putting it all together. A practical review across all 10 units."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "How much does this cost?",
+        "type": "text-input",
+        "answer": "Сколько стоит это?",
+        "grammarPoint": "price-question"
+      },
+      {
+        "prompt": "What does слишком mean?",
+        "type": "text-input",
+        "answer": "too / too much",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "I'll take this: Я ___ это.",
+        "type": "text-input",
+        "answer": "возьму",
+        "grammarPoint": "perfective-future-transaction"
+      },
+      {
+        "prompt": "Can I pay by card?: Можно платить ___?",
+        "type": "text-input",
+        "answer": "картой",
+        "grammarPoint": "instrumental-payment"
+      },
+      {
+        "prompt": "I want to buy this bag (feminine): Я хочу купить ___ сумку.",
+        "type": "text-input",
+        "answer": "эту",
+        "grammarPoint": "demonstrative-accusative-feminine"
+      },
+      {
+        "prompt": "What does сдача mean?",
+        "type": "multiple-choice",
+        "options": ["price", "discount", "change (money returned)", "receipt"],
+        "answer": "change (money returned)",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "This is too expensive: Это слишком ___.",
+        "type": "text-input",
+        "answer": "дорого",
+        "grammarPoint": "predicate-adjective-short-form"
+      },
+      {
+        "prompt": "Is there something cheaper?: Есть что-нибудь ___?",
+        "type": "text-input",
+        "answer": "дешевле",
+        "grammarPoint": "comparative-shopping"
+      }
+    ]
+  }
+}

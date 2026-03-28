@@ -1,0 +1,268 @@
+{
+  "id": "9-3",
+  "unit": 9,
+  "lesson": 3,
+  "block": "everyday",
+  "title": "Aspect in future and imperatives",
+  "subtitle": "Commands, requests, and talking about what you will do",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "буду / будешь / будет",
+      "transliteration": "budu / budesh' / budet",
+      "gender": null,
+      "meaning": "I will be / you will be / he/she will be",
+      "exampleCyrillic": "Я буду читать.",
+      "exampleTransliteration": "Ya budu chitat'.",
+      "exampleMeaning": "I will be reading / I will read."
+    },
+    {
+      "cyrillic": "скоро",
+      "transliteration": "skoro",
+      "gender": null,
+      "meaning": "soon",
+      "exampleCyrillic": "Я скоро приду.",
+      "exampleTransliteration": "Ya skoro pridu.",
+      "exampleMeaning": "I will come soon."
+    },
+    {
+      "cyrillic": "пожалуйста",
+      "transliteration": "pozhaluysta",
+      "gender": null,
+      "meaning": "please (also: you're welcome)",
+      "exampleCyrillic": "Повторите, пожалуйста.",
+      "exampleTransliteration": "Povtorite, pozhaluysta.",
+      "exampleMeaning": "Please repeat."
+    },
+    {
+      "cyrillic": "скажи / скажите",
+      "transliteration": "skazhi / skazhite",
+      "gender": null,
+      "meaning": "tell me / say (imperative of сказать, informal/formal)",
+      "exampleCyrillic": "Скажите, пожалуйста, где вокзал?",
+      "exampleTransliteration": "Skazhite, pozhaluysta, gde vokzal?",
+      "exampleMeaning": "Tell me please, where is the station?"
+    },
+    {
+      "cyrillic": "читай / читайте",
+      "transliteration": "chitay / chitayte",
+      "gender": null,
+      "meaning": "read! (imperative of читать, informal/formal)",
+      "exampleCyrillic": "Читайте текст.",
+      "exampleTransliteration": "Chitayte tekst.",
+      "exampleMeaning": "Read the text."
+    },
+    {
+      "cyrillic": "вокзал",
+      "transliteration": "vokzal",
+      "gender": "masculine",
+      "meaning": "train station",
+      "exampleCyrillic": "Где вокзал?",
+      "exampleTransliteration": "Gde vokzal?",
+      "exampleMeaning": "Where is the train station?"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Two topics remain for aspect: future tense and commands. The future is where you'll finally see perfective conjugations in use. Commands (imperatives) need aspect too — 'read it!' vs 'read!' are different in Russian. Once you understand this, you have the complete aspect system."
+    },
+    "why": {
+      "text": "The imperfective future uses быть (to be) as an auxiliary verb: я буду читать (I will be reading / I will read habitually). The perfective future conjugates like a present tense verb but means future: я прочитаю (I will read it through, I will finish reading). Aspect in commands: imperfective = ongoing/general request; perfective = specific one-time action."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Imperfective future — буду + infinitive",
+          "body": "The imperfective future is formed with the future forms of быть + the imperfective infinitive. It expresses future habit, future process, or ongoing future activity. Use when the action is general or repeated.",
+          "examples": [
+            { "cyrillic": "я буду читать", "transliteration": "ya budu chitat'", "meaning": "I will read (habitually) / I will be reading" },
+            { "cyrillic": "ты будешь работать", "transliteration": "ty budesh' rabotat'", "meaning": "you will work" },
+            { "cyrillic": "он/она будет говорить", "transliteration": "on/ona budet govorit'", "meaning": "he/she will speak" },
+            { "cyrillic": "мы будем учить", "transliteration": "my budem uchit'", "meaning": "we will study" },
+            { "cyrillic": "вы будете делать", "transliteration": "vy budete delat'", "meaning": "you (pl/formal) will do" },
+            { "cyrillic": "они будут писать", "transliteration": "oni budut pisat'", "meaning": "they will write" }
+          ]
+        },
+        {
+          "title": "Perfective future — conjugated like present",
+          "body": "The perfective future uses the same personal endings as the present tense, but conjugated from the perfective stem. It expresses a single completed future action — 'I will finish reading', 'I will write (and be done)'. This is why perfective verbs have no present: their 'present-looking' form IS the future.",
+          "examples": [
+            { "cyrillic": "я прочитаю", "transliteration": "ya prochitayu", "meaning": "I will read it through (finish reading)" },
+            { "cyrillic": "я напишу", "transliteration": "ya napishu", "meaning": "I will write (and finish)" },
+            { "cyrillic": "я сделаю", "transliteration": "ya sdelayu", "meaning": "I will do (and finish)" },
+            { "cyrillic": "я скажу", "transliteration": "ya skazhu", "meaning": "I will say (once, done)" },
+            { "cyrillic": "я приду", "transliteration": "ya pridu", "meaning": "I will come (arrive, once)" }
+          ]
+        },
+        {
+          "title": "Imperative — commands and requests",
+          "body": "To form the imperative: if the stem ends in a vowel, add -й (informal) / -йте (formal/plural). If it ends in a consonant, add -и / -ите. Aspect matters: imperfective imperative = ongoing/general; perfective imperative = one-time specific action.",
+          "examples": [
+            { "cyrillic": "читай / читайте (НСВ)", "transliteration": "chitay / chitayte", "meaning": "read! (general activity)" },
+            { "cyrillic": "прочитай / прочитайте (СВ)", "transliteration": "prochitay / prochitayte", "meaning": "read it (all the way through)!" },
+            { "cyrillic": "скажи / скажите (СВ)", "transliteration": "skazhi / skazhite", "meaning": "say! / tell me! (one specific thing)" },
+            { "cyrillic": "говори / говорите (НСВ)", "transliteration": "govori / govorite", "meaning": "speak! (keep speaking, ongoing)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'I will be reading' (habitual/process, future)?",
+          "type": "text-input",
+          "answer": "Я буду читать.",
+          "explanation": "Imperfective future: буду + infinitive. Я буду читать."
+        },
+        {
+          "prompt": "How do you say 'I will finish writing' (completed future)?",
+          "type": "text-input",
+          "answer": "Я напишу.",
+          "explanation": "Perfective future: conjugate the perfective verb (написать → я напишу)."
+        },
+        {
+          "prompt": "Which imperative asks someone to read the whole text (completed)? читай or прочитай?",
+          "type": "multiple-choice",
+          "options": ["читай", "прочитай"],
+          "answer": "прочитай",
+          "explanation": "прочитай (perfective) = read it all the way through. читай (imperfective) = read (as an ongoing activity)."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Negated imperatives — imperfective only",
+          "body": "Negated commands (don't do X) almost always use the imperfective aspect. не + perfective imperative sounds unnatural. не читай (don't read) not не прочитай. This is a consistent rule.",
+          "examples": [
+            { "cyrillic": "Не читай это. (НСВ)", "transliteration": "Ne chitay eto.", "meaning": "Don't read this. (imperfective — negated command)" },
+            { "cyrillic": "Не говори так. (НСВ)", "transliteration": "Ne govori tak.", "meaning": "Don't speak like that." },
+            { "cyrillic": "Не делай этого. (НСВ)", "transliteration": "Ne delay etogo.", "meaning": "Don't do that." }
+          ]
+        },
+        {
+          "title": "скоро (soon) with perfective future",
+          "body": "скоро (soon) pairs naturally with perfective future — it implies a single upcoming completed event. Contrast with буду + infinitive for ongoing or uncertain future.",
+          "examples": [
+            { "cyrillic": "Я скоро приду. (СВ)", "transliteration": "Ya skoro pridu.", "meaning": "I will come soon. (one arrival, certain)" },
+            { "cyrillic": "Я скоро прочитаю книгу. (СВ)", "transliteration": "Ya skoro prochitayu knigu.", "meaning": "I will finish reading the book soon." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "She will be working (future, imperfective): Она ___ работать.",
+          "type": "text-input",
+          "answer": "будет",
+          "explanation": "Imperfective future: she = она → будет. Она будет работать."
+        },
+        {
+          "prompt": "What does скоро mean?",
+          "type": "text-input",
+          "answer": "soon",
+          "explanation": "скоро (skoro) = soon."
+        },
+        {
+          "prompt": "I will finish doing it: Я ___ это.",
+          "type": "multiple-choice",
+          "options": ["буду делать", "сделаю"],
+          "answer": "сделаю",
+          "explanation": "Completed single future action → perfective future. сделаю."
+        },
+        {
+          "prompt": "Don't read this (negated command): Не ___ это.",
+          "type": "multiple-choice",
+          "options": ["прочитай", "читай"],
+          "answer": "читай",
+          "explanation": "Negated commands use imperfective. Не читай это."
+        },
+        {
+          "prompt": "Tell me please (formal): ___, пожалуйста.",
+          "type": "text-input",
+          "answer": "Скажите",
+          "explanation": "сказать → imperative formal = скажите. Скажите, пожалуйста."
+        },
+        {
+          "prompt": "What does вокзал mean?",
+          "type": "text-input",
+          "answer": "train station",
+          "explanation": "вокзал (vokzal) = train station."
+        },
+        {
+          "prompt": "We will study (imperfective future): Мы ___ учить.",
+          "type": "text-input",
+          "answer": "будем",
+          "explanation": "Imperfective future: we = мы → будем. Мы будем учить."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Imperfective future: буду/будешь/будет/будем/будете/будут + imperfective infinitive",
+        "Perfective future: conjugate the perfective verb (same endings as present tense)",
+        "Imperative: imperfective = ongoing/general command; perfective = one-time specific action",
+        "Negated imperatives: always use imperfective (не читай, не делай, не говори)",
+        "скоро (soon) naturally pairs with perfective future"
+      ],
+      "vocabulary": ["буду / будешь / будет", "скоро", "пожалуйста", "скажи / скажите", "читай / читайте", "вокзал"],
+      "nextLesson": "Next: Unit 10 — Everyday situations. Ordering food, asking for directions, and practical survival Russian."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "She will be reading (imperfective future): Она ___ читать.",
+        "type": "text-input",
+        "answer": "будет",
+        "grammarPoint": "imperfective-future-byt"
+      },
+      {
+        "prompt": "I will finish writing it (perfective future): Я ___.",
+        "type": "multiple-choice",
+        "options": ["буду писать", "напишу"],
+        "answer": "напишу",
+        "grammarPoint": "perfective-future-conjugation"
+      },
+      {
+        "prompt": "Don't speak like that (negated command): Не ___ так.",
+        "type": "multiple-choice",
+        "options": ["скажи", "говори"],
+        "answer": "говори",
+        "grammarPoint": "negated-imperative-imperfective"
+      },
+      {
+        "prompt": "What does скоро mean?",
+        "type": "text-input",
+        "answer": "soon",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Read it all (perfective command, formal): ___ текст.",
+        "type": "multiple-choice",
+        "options": ["Читайте", "Прочитайте"],
+        "answer": "Прочитайте",
+        "grammarPoint": "imperative-perfective"
+      },
+      {
+        "prompt": "I will come soon: Я скоро ___.",
+        "type": "text-input",
+        "answer": "приду",
+        "grammarPoint": "perfective-future-skoro"
+      },
+      {
+        "prompt": "Tell me please (formal): ___, пожалуйста.",
+        "type": "text-input",
+        "answer": "Скажите",
+        "grammarPoint": "imperative-skazat"
+      },
+      {
+        "prompt": "What does вокзал mean?",
+        "type": "text-input",
+        "answer": "train station",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

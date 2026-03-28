@@ -1,0 +1,265 @@
+{
+  "id": "6-1",
+  "unit": 6,
+  "lesson": 1,
+  "block": "grammar",
+  "title": "Adjective agreement",
+  "subtitle": "Gender, number, and nominative forms",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "новый",
+      "transliteration": "noviy",
+      "gender": "masculine",
+      "meaning": "new (masculine)",
+      "exampleCyrillic": "Новый стол.",
+      "exampleTransliteration": "Noviy stol.",
+      "exampleMeaning": "A new table."
+    },
+    {
+      "cyrillic": "большой",
+      "transliteration": "bolshoy",
+      "gender": "masculine",
+      "meaning": "big / large (masculine)",
+      "exampleCyrillic": "Большой город.",
+      "exampleTransliteration": "Bolshoy gorod.",
+      "exampleMeaning": "A big city."
+    },
+    {
+      "cyrillic": "красивый",
+      "transliteration": "krasiviy",
+      "gender": "masculine",
+      "meaning": "beautiful / handsome (masculine)",
+      "exampleCyrillic": "Красивый дом.",
+      "exampleTransliteration": "Krasiviy dom.",
+      "exampleMeaning": "A beautiful house."
+    },
+    {
+      "cyrillic": "хороший",
+      "transliteration": "khoroshiy",
+      "gender": "masculine",
+      "meaning": "good (masculine)",
+      "exampleCyrillic": "Хороший человек.",
+      "exampleTransliteration": "Khoroshiy chelovek.",
+      "exampleMeaning": "A good person."
+    },
+    {
+      "cyrillic": "маленький",
+      "transliteration": "malen'kiy",
+      "gender": "masculine",
+      "meaning": "small / little (masculine)",
+      "exampleCyrillic": "Маленький кот.",
+      "exampleTransliteration": "Malen'kiy kot.",
+      "exampleMeaning": "A small cat."
+    },
+    {
+      "cyrillic": "старый",
+      "transliteration": "stariy",
+      "gender": "masculine",
+      "meaning": "old (masculine, for things)",
+      "exampleCyrillic": "Старый дом.",
+      "exampleTransliteration": "Stariy dom.",
+      "exampleMeaning": "An old house."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Russian adjectives are not fixed — they change their endings to agree with the noun they describe. новый стол (new table), новая книга (new book), новое слово (new word). Same adjective, three different endings. This is agreement, and it applies to gender, number, and case. Today: gender and number in the nominative."
+    },
+    "why": {
+      "text": "Adjective agreement is not optional — you can't leave an adjective in its dictionary form and attach it to any noun. The ending signals which noun it belongs to. Once you know the pattern (which is regular), you can apply it to any adjective you learn. The dictionary form is always masculine nominative — that's your starting point."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Nominative adjective endings",
+          "body": "Dictionary form = masculine nominative singular. To modify a feminine or neuter noun, change the ending. The 'hard' stem adjectives (most adjectives) follow this pattern: -ЫЙ/-ОЙ (m), -АЯ (f), -ОЕ (n), -ЫЕ (pl).",
+          "examples": [
+            { "cyrillic": "новый стол (m)", "transliteration": "noviy stol", "meaning": "new table (masculine)" },
+            { "cyrillic": "новая книга (f)", "transliteration": "novaya kniga", "meaning": "new book (feminine)" },
+            { "cyrillic": "новое слово (n)", "transliteration": "novoye slovo", "meaning": "new word (neuter)" },
+            { "cyrillic": "новые столы (pl)", "transliteration": "noviye stoly", "meaning": "new tables (plural)" }
+          ]
+        },
+        {
+          "title": "Soft-stem adjectives",
+          "body": "Some adjectives have a soft stem — the endings use Е instead of О: -ИЙ (m), -ЯЯ (f), -ЕЕ (n), -ИЕ (pl). хороший (good) and маленький (small) are the key examples.",
+          "examples": [
+            { "cyrillic": "хороший дом (m)", "transliteration": "khoroshiy dom", "meaning": "good house" },
+            { "cyrillic": "хорошая школа (f)", "transliteration": "khoroshaya shkola", "meaning": "good school" },
+            { "cyrillic": "хорошее слово (n)", "transliteration": "khorosheeye slovo", "meaning": "good word" },
+            { "cyrillic": "хорошие дети (pl)", "transliteration": "khoroshiye deti", "meaning": "good children" }
+          ]
+        },
+        {
+          "title": "большой — the stress-shifted adjective",
+          "body": "большой (big) looks like a feminine adjective form but it's masculine. This is because the stress falls on the ending (-ОЙ). This is a common pattern for stressed-ending adjectives: masculine -ОЙ, feminine -АЯ, neuter -ОЕ.",
+          "examples": [
+            { "cyrillic": "большой город (m)", "transliteration": "bolshoy gorod", "meaning": "big city" },
+            { "cyrillic": "большая машина (f)", "transliteration": "bolshaya mashina", "meaning": "big car" },
+            { "cyrillic": "большое море (n)", "transliteration": "bolshoye more", "meaning": "big sea" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What is 'new book' (книга — feminine)?",
+          "type": "text-input",
+          "answer": "новая книга",
+          "explanation": "новый → новая for feminine nouns. новая книга."
+        },
+        {
+          "prompt": "What is 'good lesson' (урок — masculine)?",
+          "type": "text-input",
+          "answer": "хороший урок",
+          "explanation": "хороший is already the masculine form. хороший урок."
+        },
+        {
+          "prompt": "What is 'big city' (город — masculine)?",
+          "type": "text-input",
+          "answer": "большой город",
+          "explanation": "большой is masculine. большой город."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Spelling rules in adjective endings",
+          "body": "The 7-letter spelling rule applies to adjective endings too. After Г К Х Ж Ш Щ Ч, write -ИЙ/-ИЕ, not -ЫЙ/-ЫЕ. This is why хороший ends in -ИЙ (Ш triggers the spelling rule).",
+          "examples": [
+            { "cyrillic": "хороший (not хорошый)", "transliteration": "khoroshiy", "meaning": "good — Ш triggers -ИЙ not -ЫЙ" },
+            { "cyrillic": "маленький (not маленкый)", "transliteration": "malen'kiy", "meaning": "small — К triggers -ИЙ not -ЫЙ" }
+          ]
+        },
+        {
+          "title": "Possessive adjectives — мой/твой/наш/ваш",
+          "body": "Possessives are adjectives and they agree in the same way. You already know мой/моя/моё/мои. наш/наша/наше/наши (our) and ваш/ваша/ваше/ваши (your formal/plural) follow the same pattern.",
+          "examples": [
+            { "cyrillic": "мой новый стол", "transliteration": "moy noviy stol", "meaning": "my new table (both agree: masculine)" },
+            { "cyrillic": "моя новая книга", "transliteration": "moya novaya kniga", "meaning": "my new book (both agree: feminine)" },
+            { "cyrillic": "наш большой город", "transliteration": "nash bolshoy gorod", "meaning": "our big city (both agree: masculine)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is 'beautiful house' (дом — masculine)?",
+          "type": "text-input",
+          "answer": "красивый дом",
+          "explanation": "красивый is the masculine form. красивый дом."
+        },
+        {
+          "prompt": "What is 'new car' (машина — feminine)?",
+          "type": "text-input",
+          "answer": "новая машина",
+          "explanation": "новый → новая for feminine. новая машина."
+        },
+        {
+          "prompt": "What is 'small word' (слово — neuter)?",
+          "type": "text-input",
+          "answer": "маленькое слово",
+          "explanation": "маленький → маленькое for neuter. маленькое слово."
+        },
+        {
+          "prompt": "What is 'old books' (plural)?",
+          "type": "text-input",
+          "answer": "старые книги",
+          "explanation": "старый → старые for plural (all genders). старые книги."
+        },
+        {
+          "prompt": "What is 'big sea' (море — neuter)?",
+          "type": "text-input",
+          "answer": "большое море",
+          "explanation": "большой → большое for neuter. большое море."
+        },
+        {
+          "prompt": "The masculine nominative adjective ending for hard-stem adjectives is:",
+          "type": "multiple-choice",
+          "options": ["-ой/-ый", "-ая", "-ое", "-ые"],
+          "answer": "-ой/-ый",
+          "explanation": "-ЫЙ for unstressed, -ОЙ for stressed endings. Both are masculine nominative."
+        },
+        {
+          "prompt": "What is 'good school' (школа — feminine)?",
+          "type": "text-input",
+          "answer": "хорошая школа",
+          "explanation": "хороший → хорошая for feminine. хорошая школа."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Hard adjectives: -ЫЙ/-ОЙ (m), -АЯ (f), -ОЕ (n), -ЫЕ (pl)",
+        "Soft adjectives (after Г К Х Ж Ш Щ Ч): -ИЙ (m), -АЯ (f), -ЕЕ (n), -ИЕ (pl)",
+        "Dictionary form = masculine nominative — always the starting point",
+        "Possessives мой/наш/ваш also agree in gender and number"
+      ],
+      "vocabulary": ["новый", "большой", "красивый", "хороший", "маленький", "старый"],
+      "nextLesson": "Next: adjective endings in cases — how новый becomes нового in genitive and новому in dative."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What is 'new book' (feminine)?",
+        "type": "text-input",
+        "answer": "новая книга",
+        "grammarPoint": "adjective-agreement-feminine"
+      },
+      {
+        "prompt": "What is 'big sea' (neuter)?",
+        "type": "text-input",
+        "answer": "большое море",
+        "grammarPoint": "adjective-agreement-neuter"
+      },
+      {
+        "prompt": "What is 'small cat' (masculine)?",
+        "type": "text-input",
+        "answer": "маленький кот",
+        "grammarPoint": "adjective-agreement-masculine"
+      },
+      {
+        "prompt": "What is 'old houses' (plural)?",
+        "type": "text-input",
+        "answer": "старые дома",
+        "grammarPoint": "adjective-agreement-plural"
+      },
+      {
+        "prompt": "The feminine adjective ending for hard-stem adjectives is:",
+        "type": "multiple-choice",
+        "options": ["-ый", "-ая", "-ое", "-ие"],
+        "answer": "-ая",
+        "grammarPoint": "adjective-endings"
+      },
+      {
+        "prompt": "What is 'good school' (feminine)?",
+        "type": "text-input",
+        "answer": "хорошая школа",
+        "grammarPoint": "adjective-agreement-feminine"
+      },
+      {
+        "prompt": "What is 'beautiful city' (masculine)?",
+        "type": "text-input",
+        "answer": "красивый город",
+        "grammarPoint": "adjective-agreement-masculine"
+      },
+      {
+        "prompt": "хороший ends in -ИЙ (not -ЫЙ) because:",
+        "type": "multiple-choice",
+        "options": [
+          "It is a feminine adjective",
+          "Ш triggers the spelling rule: use -ИЙ not -ЫЙ after Ш",
+          "It is a soft-stem adjective",
+          "It is irregular"
+        ],
+        "answer": "Ш triggers the spelling rule: use -ИЙ not -ЫЙ after Ш",
+        "grammarPoint": "spelling-rule-adjective"
+      }
+    ]
+  }
+}

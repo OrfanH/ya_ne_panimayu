@@ -1,0 +1,265 @@
+{
+  "id": "6-2",
+  "unit": 6,
+  "lesson": 2,
+  "block": "grammar",
+  "title": "Adjective case endings",
+  "subtitle": "How adjectives change with the noun through cases",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "молодой",
+      "transliteration": "molodoy",
+      "gender": "masculine",
+      "meaning": "young (masculine)",
+      "exampleCyrillic": "Молодой студент.",
+      "exampleTransliteration": "Molodoy student.",
+      "exampleMeaning": "A young student."
+    },
+    {
+      "cyrillic": "интересный",
+      "transliteration": "interesniy",
+      "gender": "masculine",
+      "meaning": "interesting (masculine)",
+      "exampleCyrillic": "Интересный урок.",
+      "exampleTransliteration": "Interesniy urok.",
+      "exampleMeaning": "An interesting lesson."
+    },
+    {
+      "cyrillic": "русский",
+      "transliteration": "russkiy",
+      "gender": "masculine",
+      "meaning": "Russian (masculine adjective)",
+      "exampleCyrillic": "Русский язык.",
+      "exampleTransliteration": "Russkiy yazyk.",
+      "exampleMeaning": "The Russian language."
+    },
+    {
+      "cyrillic": "трудный",
+      "transliteration": "trudniy",
+      "gender": "masculine",
+      "meaning": "difficult / hard (masculine)",
+      "exampleCyrillic": "Трудный вопрос.",
+      "exampleTransliteration": "Trudniy vopros.",
+      "exampleMeaning": "A difficult question."
+    },
+    {
+      "cyrillic": "лёгкий",
+      "transliteration": "lyokhkiy",
+      "gender": "masculine",
+      "meaning": "easy / light (masculine)",
+      "exampleCyrillic": "Лёгкий вопрос.",
+      "exampleTransliteration": "Lyokhkiy vopros.",
+      "exampleMeaning": "An easy question."
+    },
+    {
+      "cyrillic": "последний",
+      "transliteration": "posledniy",
+      "gender": "masculine",
+      "meaning": "last / final (masculine)",
+      "exampleCyrillic": "Последний урок.",
+      "exampleTransliteration": "Posledniy urok.",
+      "exampleMeaning": "The last lesson."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Adjectives in Russian don't just agree in gender — they change ending for every case too. When the noun changes case, its adjective changes with it. нового, новому, новым — these are all forms of новый. This lesson maps out the adjective endings across the cases you've learned, using the masculine as the base."
+    },
+    "why": {
+      "text": "Adjective case endings follow a clear pattern — in fact, they're more regular than noun endings. Once you learn the masculine adjective paradigm, feminine and neuter follow predictable variations. The goal today is to see the full picture, not to memorise every form simultaneously. Recognition before production."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Masculine adjective endings — all cases",
+          "body": "The full masculine adjective paradigm for a hard-stem adjective like новый. Notice: genitive and accusative (animate) share the same ending -ОГО. Dative and prepositional differ by one letter.",
+          "examples": [
+            { "cyrillic": "Nom.: новый", "transliteration": "noviy", "meaning": "a new (table) — subject" },
+            { "cyrillic": "Gen.: нового", "transliteration": "novogo", "meaning": "of a new (table)" },
+            { "cyrillic": "Dat.: новому", "transliteration": "novomu", "meaning": "to a new (table)" },
+            { "cyrillic": "Acc. inanim.: новый (= nom.)", "transliteration": "noviy", "meaning": "a new (table) — direct object, inanimate" },
+            { "cyrillic": "Acc. anim.: нового (= gen.)", "transliteration": "novogo", "meaning": "a new (student) — direct object, animate" },
+            { "cyrillic": "Instr.: новым", "transliteration": "novym", "meaning": "with a new (table)" },
+            { "cyrillic": "Prep.: новом", "transliteration": "novom", "meaning": "about/in a new (table)" }
+          ]
+        },
+        {
+          "title": "Feminine adjective endings — all cases",
+          "body": "Feminine adjectives have a unified accusative ending (-УЮ) — different from both nominative and genitive. This is distinctive and worth noting.",
+          "examples": [
+            { "cyrillic": "Nom.: новая книга", "transliteration": "novaya kniga", "meaning": "a new book" },
+            { "cyrillic": "Gen.: новой книги", "transliteration": "novoy knigi", "meaning": "of a new book" },
+            { "cyrillic": "Dat.: новой книге", "transliteration": "novoy knige", "meaning": "to a new book" },
+            { "cyrillic": "Acc.: новую книгу", "transliteration": "novuyu knigu", "meaning": "a new book (direct object)" },
+            { "cyrillic": "Instr.: новой книгой", "transliteration": "novoy knigoy", "meaning": "with a new book" },
+            { "cyrillic": "Prep.: новой книге", "transliteration": "novoy knige", "meaning": "about a new book" }
+          ]
+        },
+        {
+          "title": "Key observation — genitive and animate accusative",
+          "body": "The rule you learned for animate masculine nouns (accusative = genitive) applies to adjectives too. Я вижу нового студента — both the adjective and noun are in genitive form for animate accusative. This is why genitive matters so much.",
+          "examples": [
+            { "cyrillic": "Я вижу нового студента.", "transliteration": "Ya vizhu novogo studenta.", "meaning": "I see a new student. (adj. нового + noun студента — both animate acc. = gen.)" },
+            { "cyrillic": "Compare: Я вижу новый стол.", "transliteration": "Ya vizhu noviy stol.", "meaning": "I see a new table. (adj. новый + noun стол — inanimate: no change)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What is the genitive of новый стол (new table)?",
+          "type": "text-input",
+          "answer": "нового стола",
+          "explanation": "новый → нового (masculine genitive). стол → стола. нового стола."
+        },
+        {
+          "prompt": "What is 'I see a new book' — accusative?",
+          "type": "text-input",
+          "answer": "Я вижу новую книгу.",
+          "explanation": "Feminine accusative: новая → новую, книга → книгу."
+        },
+        {
+          "prompt": "What is the prepositional of новый урок?",
+          "type": "text-input",
+          "answer": "новом уроке",
+          "explanation": "новый → новом (masculine prepositional). урок → уроке. о новом уроке."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "The Г→В shift in genitive",
+          "body": "In adjective genitive endings, the letter Г is pronounced like В: нового is pronounced 'novovo', своего is 'svoyevo'. This is a pronunciation rule — the spelling keeps Г but the sound is V. It applies to -ОГО/-ЕГО endings.",
+          "examples": [
+            { "cyrillic": "нового", "transliteration": "novogo (pronounced: novova)", "meaning": "of new (masculine genitive)" },
+            { "cyrillic": "хорошего", "transliteration": "khoroshego (pronounced: khorosheva)", "meaning": "of good (masculine genitive)" }
+          ]
+        },
+        {
+          "title": "Practical priority for adjective cases",
+          "body": "At A1 level, focus on: (1) nominative agreement — get the basic form right; (2) feminine accusative -УЮ — appears in every transitive sentence with a feminine object; (3) masculine animate accusative = genitive ending -ОГО. These three cover 80% of adjective case usage at your level.",
+          "examples": [
+            { "cyrillic": "новый стол (nom.)", "transliteration": "noviy stol", "meaning": "new table — basic agreement" },
+            { "cyrillic": "новую машину (fem. acc.)", "transliteration": "novuyu mashinu", "meaning": "new car (direct object)" },
+            { "cyrillic": "нового врача (anim. acc.)", "transliteration": "novogo vracha", "meaning": "new doctor (direct object, animate)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Genitive of трудный вопрос (difficult question):",
+          "type": "text-input",
+          "answer": "трудного вопроса",
+          "explanation": "трудный → трудного (masc. gen.), вопрос → вопроса."
+        },
+        {
+          "prompt": "Accusative of новая машина (new car — direction: I am going to a new shop):",
+          "type": "text-input",
+          "answer": "новую машину",
+          "explanation": "Feminine accusative: новая → новую, машина → машину."
+        },
+        {
+          "prompt": "I see an interesting student: Я вижу ___. (интересный студент)",
+          "type": "text-input",
+          "answer": "интересного студента",
+          "explanation": "Animate masculine accusative = genitive. интересный → интересного, студент → студента."
+        },
+        {
+          "prompt": "About the last lesson: о ___ уроке",
+          "type": "text-input",
+          "answer": "последнем",
+          "explanation": "последний → последнем (soft-stem: masculine prepositional uses -ЕМ)."
+        },
+        {
+          "prompt": "With a young student: с ___ студентом",
+          "type": "text-input",
+          "answer": "молодым",
+          "explanation": "молодой → молодым (masculine instrumental)."
+        },
+        {
+          "prompt": "What is the feminine accusative ending for adjectives?",
+          "type": "multiple-choice",
+          "options": ["-ая", "-ой", "-ую", "-ой"],
+          "answer": "-ую",
+          "explanation": "Feminine accusative: -УЮ. новая → новую."
+        },
+        {
+          "prompt": "I study Russian: Я учу ___ язык.",
+          "type": "text-input",
+          "answer": "русский",
+          "explanation": "язык is inanimate masculine — accusative = nominative. русский язык."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Masculine adj. cases: -ый/-ой (nom.), -ого (gen./anim.acc.), -ому (dat.), -ым (instr.), -ом (prep.)",
+        "Feminine adj. cases: -ая (nom.), -ой (gen./dat./instr./prep.), -ую (acc.)",
+        "Feminine accusative is -УЮ — always different from nominative -АЯ",
+        "⚠ Animate masculine accusative: adjective takes -ОГО (same as genitive)",
+        "Г in -ОГО/-ЕГО is pronounced V"
+      ],
+      "vocabulary": ["молодой", "интересный", "русский", "трудный", "лёгкий", "последний"],
+      "nextLesson": "Next: key adjective vocabulary + comparatives — bigger, better, more difficult."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Accusative of новая книга (I read a new book):",
+        "type": "text-input",
+        "answer": "новую книгу",
+        "grammarPoint": "adjective-accusative-feminine"
+      },
+      {
+        "prompt": "Genitive of трудный урок:",
+        "type": "text-input",
+        "answer": "трудного урока",
+        "grammarPoint": "adjective-genitive-masculine"
+      },
+      {
+        "prompt": "I see a young student (animate): Я вижу ___.",
+        "type": "text-input",
+        "answer": "молодого студента",
+        "grammarPoint": "adjective-accusative-animate"
+      },
+      {
+        "prompt": "Prepositional of интересный урок (about an interesting lesson):",
+        "type": "text-input",
+        "answer": "интересном уроке",
+        "grammarPoint": "adjective-prepositional-masculine"
+      },
+      {
+        "prompt": "The feminine accusative adjective ending is:",
+        "type": "multiple-choice",
+        "options": ["-ую", "-ой", "-ая", "-ую"],
+        "answer": "-ую",
+        "grammarPoint": "adjective-endings"
+      },
+      {
+        "prompt": "Instrumental of новый друг (with a new friend):",
+        "type": "text-input",
+        "answer": "новым другом",
+        "grammarPoint": "adjective-instrumental-masculine"
+      },
+      {
+        "prompt": "I study Russian language: Я учу ___ язык.",
+        "type": "text-input",
+        "answer": "русский",
+        "grammarPoint": "adjective-accusative-inanimate"
+      },
+      {
+        "prompt": "Genitive of -ОГО: how is Г pronounced?",
+        "type": "multiple-choice",
+        "options": ["as G", "as V", "silent", "as K"],
+        "answer": "as V",
+        "grammarPoint": "adjective-pronunciation"
+      }
+    ]
+  }
+}

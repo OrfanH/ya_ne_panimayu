@@ -1,0 +1,276 @@
+{
+  "id": "5-4",
+  "unit": 5,
+  "lesson": 4,
+  "block": "grammar",
+  "title": "Dative case",
+  "subtitle": "Indirect objects, age, and giving",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "давать",
+      "transliteration": "davat'",
+      "gender": null,
+      "meaning": "to give (imperfective)",
+      "exampleCyrillic": "Я даю тебе книгу.",
+      "exampleTransliteration": "Ya dayu tebe knigu.",
+      "exampleMeaning": "I am giving you a book."
+    },
+    {
+      "cyrillic": "говорить",
+      "transliteration": "govorit'",
+      "gender": null,
+      "meaning": "to speak / tell",
+      "exampleCyrillic": "Скажи мне правду.",
+      "exampleTransliteration": "Skazhi mne pravdu.",
+      "exampleMeaning": "Tell me the truth."
+    },
+    {
+      "cyrillic": "нравиться",
+      "transliteration": "nravit'sya",
+      "gender": null,
+      "meaning": "to be pleasing / to like (lit: to please someone)",
+      "exampleCyrillic": "Мне нравится музыка.",
+      "exampleTransliteration": "Mne nravitsya muzyka.",
+      "exampleMeaning": "I like music. (lit: Music is pleasing to me.)"
+    },
+    {
+      "cyrillic": "лет",
+      "transliteration": "let",
+      "gender": null,
+      "meaning": "years (genitive plural of год — used for age)",
+      "exampleCyrillic": "Мне двадцать лет.",
+      "exampleTransliteration": "Mne dvadtsat' let.",
+      "exampleMeaning": "I am twenty years old."
+    },
+    {
+      "cyrillic": "помогать",
+      "transliteration": "pomogat'",
+      "gender": null,
+      "meaning": "to help (+ dative)",
+      "exampleCyrillic": "Я помогаю другу.",
+      "exampleTransliteration": "Ya pomogayu drugu.",
+      "exampleMeaning": "I am helping (my) friend."
+    },
+    {
+      "cyrillic": "по",
+      "transliteration": "po",
+      "gender": null,
+      "meaning": "along / by / according to (+ dative in many uses)",
+      "exampleCyrillic": "Мы идём по улице.",
+      "exampleTransliteration": "My idyom po ulitse.",
+      "exampleMeaning": "We are walking along the street."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "The dative case answers 'to whom?' — it marks the indirect object, the recipient of an action. Give a book to whom? Tell the truth to whom? You also need dative to express age (Мне 20 лет — to me 20 years) and to say you like something (Мне нравится — to me it's pleasing). These three uses alone appear constantly."
+    },
+    "why": {
+      "text": "⚠ Dative is notable because it reverses the English pattern for 'liking'. In Russian, you don't 'like' something — rather, something 'is pleasing to you'. The subject of нравиться is the thing you like, and the person who likes it is in dative. Мне нравится музыка = 'to me music is pleasing'. This structure confuses learners who try to translate literally from English."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Dative singular endings",
+          "body": "Dative singular is regular. Masculine/neuter: add -У/-Ю. Feminine: А→Е, Я→Е, Ь→И.",
+          "examples": [
+            { "cyrillic": "Masculine: друг → другу", "transliteration": "drug → drugu", "meaning": "friend → to (the) friend" },
+            { "cyrillic": "Masculine: словарь → словарю", "transliteration": "slovar' → slovaryu", "meaning": "dictionary → to the dictionary (soft: Ь→Ю)" },
+            { "cyrillic": "Feminine: сестра → сестре", "transliteration": "sestra → sestre", "meaning": "sister → to (the) sister (А→Е)" },
+            { "cyrillic": "Neuter: слово → слову", "transliteration": "slovo → slovu", "meaning": "word → to the word (О→У)" }
+          ]
+        },
+        {
+          "title": "Indirect object — 'to whom'",
+          "body": "When you give, send, show, or tell something to someone, the recipient is in dative. The direct object (what is given) remains in accusative. Two cases in one sentence.",
+          "examples": [
+            { "cyrillic": "Я даю другу книгу.", "transliteration": "Ya dayu drugu knigu.", "meaning": "I give my friend a book. (другу = dative, книгу = accusative)" },
+            { "cyrillic": "Скажи мне правду.", "transliteration": "Skazhi mne pravdu.", "meaning": "Tell me the truth. (мне = to me, dative)" },
+            { "cyrillic": "Я пишу сестре письмо.", "transliteration": "Ya pishu sestre pis'mo.", "meaning": "I write my sister a letter. (сестре = dative)" }
+          ]
+        },
+        {
+          "title": "Age — мне ... лет",
+          "body": "To express age in Russian: dative pronoun + number + лет/год(а). The construction is 'to me X years'. лет is genitive plural of год, required after numbers 5 and above. год (one year), года (2-4), лет (5+).",
+          "examples": [
+            { "cyrillic": "Мне двадцать лет.", "transliteration": "Mne dvadtsat' let.", "meaning": "I am twenty years old. (to me 20 years)" },
+            { "cyrillic": "Ему тридцать лет.", "transliteration": "Yemu tridtsat' let.", "meaning": "He is thirty years old. (to him 30 years)" },
+            { "cyrillic": "Ей пять лет.", "transliteration": "Yey pyat' let.", "meaning": "She is five years old." }
+          ]
+        },
+        {
+          "title": "нравиться — the 'like' structure",
+          "body": "Russian doesn't have a direct equivalent of 'I like X'. Instead: X нравится мне (X is pleasing to me). The thing liked is the grammatical subject (nominative). The person who likes it is dative. For plural subjects: нравятся. You don't conjugate нравиться to 'I' — you conjugate it to the thing.",
+          "examples": [
+            { "cyrillic": "Мне нравится музыка.", "transliteration": "Mne nravitsya muzyka.", "meaning": "I like music. (lit: music is pleasing to me)" },
+            { "cyrillic": "Тебе нравится кофе?", "transliteration": "Tebe nravitsya kofe?", "meaning": "Do you like coffee?" },
+            { "cyrillic": "Им нравятся книги.", "transliteration": "Im nravyatsya knigi.", "meaning": "They like books. (books are pleasing to them)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Я даю ___. (друг — friend). Dative form?",
+          "type": "text-input",
+          "answer": "другу",
+          "explanation": "друг → другу. Masculine dative: add -У."
+        },
+        {
+          "prompt": "How do you say 'I am 25 years old'?",
+          "type": "text-input",
+          "answer": "Мне двадцать пять лет.",
+          "explanation": "Мне (to me, dative) + двадцать пять (25) + лет (genitive plural of год)."
+        },
+        {
+          "prompt": "How does Russian express 'I like music'?",
+          "type": "multiple-choice",
+          "options": [
+            "Я люблю музыку.",
+            "Мне нравится музыка.",
+            "Both are correct",
+            "Музыка мне хорошо."
+          ],
+          "answer": "Both are correct",
+          "explanation": "Both work. Мне нравится = I find it pleasing (dative structure). Я люблю = I love/like (accusative). нравиться is more neutral; любить is stronger."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Dative pronouns",
+          "body": "Personal pronouns have special dative forms that don't follow the noun patterns. Memorise them — they appear in almost every sentence that uses dative.",
+          "examples": [
+            { "cyrillic": "мне", "transliteration": "mne", "meaning": "to me (dative of я)" },
+            { "cyrillic": "тебе", "transliteration": "tebe", "meaning": "to you (dative of ты)" },
+            { "cyrillic": "ему / ей", "transliteration": "yemu / yey", "meaning": "to him / to her" },
+            { "cyrillic": "нам / вам / им", "transliteration": "nam / vam / im", "meaning": "to us / to you (pl.) / to them" }
+          ]
+        },
+        {
+          "title": "Verbs that take dative",
+          "body": "Several common verbs always take a dative object (the person affected). помогать (to help), звонить (to call), говорить/сказать (to tell), верить (to believe), советовать (to advise). Learn these as a set — they're triggered by the verb, not by the meaning of the noun.",
+          "examples": [
+            { "cyrillic": "Я помогаю другу.", "transliteration": "Ya pomogayu drugu.", "meaning": "I help my friend. (другу = dative)" },
+            { "cyrillic": "Позвони мне.", "transliteration": "Pozvoni mne.", "meaning": "Call me. (мне = dative)" },
+            { "cyrillic": "Я верю тебе.", "transliteration": "Ya veryu tebe.", "meaning": "I believe you. (тебе = dative)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Dative of сестра:",
+          "type": "text-input",
+          "answer": "сестре",
+          "explanation": "сестра → сестре. Feminine А→Е in dative."
+        },
+        {
+          "prompt": "How do you say 'tell me' (imperative)?",
+          "type": "text-input",
+          "answer": "скажи мне",
+          "explanation": "сказать (to say) imperative + мне (to me, dative of я). Скажи мне."
+        },
+        {
+          "prompt": "What is 'I like coffee' using нравиться?",
+          "type": "text-input",
+          "answer": "Мне нравится кофе.",
+          "explanation": "Мне (to me) нравится (is pleasing) кофе (nominative subject)."
+        },
+        {
+          "prompt": "How do you say 'He is 30 years old'?",
+          "type": "text-input",
+          "answer": "Ему тридцать лет.",
+          "explanation": "Ему (to him, dative of он) + тридцать лет."
+        },
+        {
+          "prompt": "Dative of друг:",
+          "type": "text-input",
+          "answer": "другу",
+          "explanation": "друг → другу. Masculine: add -У."
+        },
+        {
+          "prompt": "I am helping my friend: Я помогаю ___. (друг)",
+          "type": "text-input",
+          "answer": "другу",
+          "explanation": "помогать takes dative. друг → другу."
+        },
+        {
+          "prompt": "In Мне нравится музыка — what case is мне?",
+          "type": "multiple-choice",
+          "options": ["nominative", "accusative", "genitive", "dative"],
+          "answer": "dative",
+          "explanation": "мне is the dative of я. The structure: [dative person] нравится [nominative thing]."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Dative singular: masculine +У/Ю, neuter +У/Ю, feminine А→Е",
+        "Indirect object (recipient): Я даю другу книгу (I give a book to my friend)",
+        "Age: Мне ... лет (to me X years) — always dative pronoun",
+        "⚠ нравиться: thing is subject (nominative), person is dative — reversed from English 'to like'",
+        "Key dative verbs: помогать, звонить, говорить/сказать, верить"
+      ],
+      "vocabulary": ["давать", "говорить", "нравиться", "лет", "помогать", "по"],
+      "nextLesson": "Next: Instrumental case — with, by means of, and expressing profession."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Dative of друг:",
+        "type": "text-input",
+        "answer": "другу",
+        "grammarPoint": "dative-singular-masculine"
+      },
+      {
+        "prompt": "Dative of сестра:",
+        "type": "text-input",
+        "answer": "сестре",
+        "grammarPoint": "dative-singular-feminine"
+      },
+      {
+        "prompt": "How do you say 'I like coffee' using нравиться?",
+        "type": "text-input",
+        "answer": "Мне нравится кофе.",
+        "grammarPoint": "dative-nravitsya"
+      },
+      {
+        "prompt": "Age construction — 'She is 10': Ей ___ лет.",
+        "type": "text-input",
+        "answer": "десять",
+        "grammarPoint": "dative-age"
+      },
+      {
+        "prompt": "What is the dative of я?",
+        "type": "text-input",
+        "answer": "мне",
+        "grammarPoint": "dative-pronouns"
+      },
+      {
+        "prompt": "I am helping my sister: Я помогаю ___. (сестра)",
+        "type": "text-input",
+        "answer": "сестре",
+        "grammarPoint": "dative-verb-pomogat"
+      },
+      {
+        "prompt": "In Мне нравится музыка, что stands in nominative?",
+        "type": "multiple-choice",
+        "options": ["мне", "нравится", "музыка"],
+        "answer": "музыка",
+        "grammarPoint": "dative-nravitsya"
+      },
+      {
+        "prompt": "What is the dative of он?",
+        "type": "text-input",
+        "answer": "ему",
+        "grammarPoint": "dative-pronouns"
+      }
+    ]
+  }
+}

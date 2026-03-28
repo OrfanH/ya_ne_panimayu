@@ -1,0 +1,270 @@
+{
+  "id": "5-5",
+  "unit": 5,
+  "lesson": 5,
+  "block": "grammar",
+  "title": "Instrumental case",
+  "subtitle": "With, by means of, and expressing profession",
+  "estimatedMinutes": 25,
+  "vocabulary": [
+    {
+      "cyrillic": "с",
+      "transliteration": "s",
+      "gender": null,
+      "meaning": "with (+ instrumental)",
+      "exampleCyrillic": "Кофе с молоком.",
+      "exampleTransliteration": "Kofe s molokom.",
+      "exampleMeaning": "Coffee with milk."
+    },
+    {
+      "cyrillic": "между",
+      "transliteration": "mezhdu",
+      "gender": null,
+      "meaning": "between (+ instrumental)",
+      "exampleCyrillic": "Между нами.",
+      "exampleTransliteration": "Mezhdu nami.",
+      "exampleMeaning": "Between us."
+    },
+    {
+      "cyrillic": "перед",
+      "transliteration": "pered",
+      "gender": null,
+      "meaning": "in front of / before (+ instrumental)",
+      "exampleCyrillic": "Стол перед окном.",
+      "exampleTransliteration": "Stol pered oknom.",
+      "exampleMeaning": "The table is in front of the window."
+    },
+    {
+      "cyrillic": "работать",
+      "transliteration": "rabotat'",
+      "gender": null,
+      "meaning": "to work (as) — + instrumental for profession",
+      "exampleCyrillic": "Она работает врачом.",
+      "exampleTransliteration": "Ona rabotayet vrachom.",
+      "exampleMeaning": "She works as a doctor."
+    },
+    {
+      "cyrillic": "под",
+      "transliteration": "pod",
+      "gender": null,
+      "meaning": "under (+ instrumental for location)",
+      "exampleCyrillic": "Кот под столом.",
+      "exampleTransliteration": "Kot pod stolom.",
+      "exampleMeaning": "The cat is under the table."
+    },
+    {
+      "cyrillic": "ручка",
+      "transliteration": "ruchka",
+      "gender": "feminine",
+      "meaning": "pen / handle",
+      "exampleCyrillic": "Пишу ручкой.",
+      "exampleTransliteration": "Pishu ruchkoy.",
+      "exampleMeaning": "I write with a pen."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "The instrumental case covers two main territories: accompaniment (with someone or something) and means (using something). It's also the case for expressing profession after работать (to work as). The endings are distinctive — -ОМ/-ЕМ for masculine/neuter, -ОЙ/-ЕЙ for feminine — and they appear consistently enough to learn once and recognise everywhere."
+    },
+    "why": {
+      "text": "Instrumental is required by some of the most practical prepositions in Russian: с (with), под (under), над (above), перед (in front of), между (between), за (behind). These prepositions for spatial relationships all take instrumental when describing location. Getting these right matters for giving and understanding directions."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Instrumental singular endings",
+          "body": "Masculine/neuter nouns: add -ОМ (hard) or -ЕМ (soft). Feminine А/Я nouns: А→ОЙ, Я→ЕЙ. Feminine Ь nouns: Ь→ЬЮ.",
+          "examples": [
+            { "cyrillic": "Masculine: стол → столом", "transliteration": "stol → stolom", "meaning": "table → with/by the table" },
+            { "cyrillic": "Masculine: словарь → словарём", "transliteration": "slovar' → slovaryom", "meaning": "dictionary → (instrumental)" },
+            { "cyrillic": "Neuter: слово → словом", "transliteration": "slovo → slovom", "meaning": "word → by means of the word" },
+            { "cyrillic": "Feminine: книга → книгой", "transliteration": "kniga → knigoy", "meaning": "book → (with the book)" },
+            { "cyrillic": "Feminine: ручка → ручкой", "transliteration": "ruchka → ruchkoy", "meaning": "pen → with a pen" }
+          ]
+        },
+        {
+          "title": "с + instrumental — accompaniment",
+          "body": "с (with) is the most common instrumental preposition. It expresses accompaniment (being with someone) or combination (coffee with milk). Note: с reduces to со before some consonant clusters.",
+          "examples": [
+            { "cyrillic": "Кофе с молоком.", "transliteration": "Kofe s molokom.", "meaning": "Coffee with milk. (молоко → молоком)" },
+            { "cyrillic": "Я иду с другом.", "transliteration": "Ya idu s drugom.", "meaning": "I am going with (my) friend. (друг → другом)" },
+            { "cyrillic": "Хлеб с маслом.", "transliteration": "Khleb s maslom.", "meaning": "Bread with butter." }
+          ]
+        },
+        {
+          "title": "Spatial prepositions + instrumental",
+          "body": "When describing location (not movement), the prepositions под, над, за, перед, между all take instrumental.",
+          "examples": [
+            { "cyrillic": "под столом", "transliteration": "pod stolom", "meaning": "under the table (location)" },
+            { "cyrillic": "над городом", "transliteration": "nad gorodom", "meaning": "above the city" },
+            { "cyrillic": "перед школой", "transliteration": "pered shkoloy", "meaning": "in front of the school" },
+            { "cyrillic": "между нами", "transliteration": "mezhdu nami", "meaning": "between us" }
+          ]
+        },
+        {
+          "title": "Profession — работать + instrumental",
+          "body": "After работать (to work), Russian uses instrumental to specify the profession. This is different from the nominative predicate (Она врач = She is a doctor — stating identity). Работать + instrumental states a professional role.",
+          "examples": [
+            { "cyrillic": "Она работает врачом.", "transliteration": "Ona rabotayet vrachom.", "meaning": "She works as a doctor. (profession → instrumental)" },
+            { "cyrillic": "Он работает учителем.", "transliteration": "On rabotayet uchitelem.", "meaning": "He works as a teacher." },
+            { "cyrillic": "Compare: Она врач. (nom.)", "transliteration": "Ona vrach.", "meaning": "She is a doctor. (identity statement — no case change)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Instrumental of стол:",
+          "type": "text-input",
+          "answer": "столом",
+          "explanation": "стол → столом. Masculine: add -ОМ."
+        },
+        {
+          "prompt": "How do you say 'coffee with milk'?",
+          "type": "text-input",
+          "answer": "кофе с молоком",
+          "explanation": "с + instrumental. молоко → молоком. кофе с молоком."
+        },
+        {
+          "prompt": "The cat is under the table: Кот ___ столом.",
+          "type": "text-input",
+          "answer": "под",
+          "explanation": "под + instrumental = under (location). кот под столом."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Instrumental pronouns",
+          "body": "Personal pronouns have special instrumental forms. The third-person pronouns add Н- when used after a preposition.",
+          "examples": [
+            { "cyrillic": "мной / мною", "transliteration": "mnoy / mnoyu", "meaning": "with me" },
+            { "cyrillic": "тобой", "transliteration": "toboy", "meaning": "with you (informal)" },
+            { "cyrillic": "им / ею", "transliteration": "im / yeyu", "meaning": "with him / with her" },
+            { "cyrillic": "нами / вами / ими", "transliteration": "nami / vami / imi", "meaning": "with us / with you (pl.) / with them" }
+          ]
+        },
+        {
+          "title": "Means and instrument",
+          "body": "Instrumental also expresses the means or instrument by which an action is done — without a preposition. Writing with a pen, travelling by train, paying by card. In English, 'with' or 'by' expresses this; in Russian, just the instrumental ending is enough.",
+          "examples": [
+            { "cyrillic": "Пишу ручкой.", "transliteration": "Pishu ruchkoy.", "meaning": "I write with a pen." },
+            { "cyrillic": "Едем поездом.", "transliteration": "Yedim poyezdom.", "meaning": "We travel by train." },
+            { "cyrillic": "Говорить шёпотом.", "transliteration": "Govorit' shopotom.", "meaning": "To speak in a whisper." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Instrumental of книга:",
+          "type": "text-input",
+          "answer": "книгой",
+          "explanation": "книга → книгой. Feminine А→ОЙ."
+        },
+        {
+          "prompt": "I am going with my sister: Я иду с ___. (сестра)",
+          "type": "text-input",
+          "answer": "сестрой",
+          "explanation": "с + instrumental. сестра → сестрой."
+        },
+        {
+          "prompt": "She works as a teacher: Она работает ___. (учитель — teacher)",
+          "type": "text-input",
+          "answer": "учителем",
+          "explanation": "работать + instrumental. учитель → учителем."
+        },
+        {
+          "prompt": "The book is in front of the school: Книга ___ школой.",
+          "type": "text-input",
+          "answer": "перед",
+          "explanation": "перед + instrumental = in front of (location)."
+        },
+        {
+          "prompt": "I write with a pen: Я пишу ___. (ручка)",
+          "type": "text-input",
+          "answer": "ручкой",
+          "explanation": "Instrument without preposition uses instrumental. ручка → ручкой."
+        },
+        {
+          "prompt": "Instrumental of слово:",
+          "type": "text-input",
+          "answer": "словом",
+          "explanation": "слово → словом. Neuter: add -ОМ."
+        },
+        {
+          "prompt": "Coffee with milk — which preposition?",
+          "type": "text-input",
+          "answer": "с",
+          "explanation": "с + instrumental = with. кофе с молоком."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Instrumental singular: masculine/neuter +ОМ/ЕМ, feminine А→ОЙ/Я→ЕЙ",
+        "с + instrumental = with (accompaniment or combination)",
+        "Location prepositions taking instrumental: под, над, перед, за, между",
+        "работать + instrumental = to work as (profession)",
+        "No preposition needed for means/instrument: Пишу ручкой (I write with a pen)"
+      ],
+      "vocabulary": ["с", "между", "перед", "работать", "под", "ручка"],
+      "nextLesson": "Next: Prepositional case — location (в/на), and talking about topics (о)."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Instrumental of стол:",
+        "type": "text-input",
+        "answer": "столом",
+        "grammarPoint": "instrumental-singular-masculine"
+      },
+      {
+        "prompt": "Instrumental of книга:",
+        "type": "text-input",
+        "answer": "книгой",
+        "grammarPoint": "instrumental-singular-feminine"
+      },
+      {
+        "prompt": "Coffee with milk:",
+        "type": "text-input",
+        "answer": "кофе с молоком",
+        "grammarPoint": "preposition-s-instrumental"
+      },
+      {
+        "prompt": "She works as a doctor: Она работает ___. (врач)",
+        "type": "text-input",
+        "answer": "врачом",
+        "grammarPoint": "instrumental-profession"
+      },
+      {
+        "prompt": "The cat is under the table: Кот ___ столом.",
+        "type": "text-input",
+        "answer": "под",
+        "grammarPoint": "preposition-pod-instrumental"
+      },
+      {
+        "prompt": "I write with a pen: Я пишу ___. (ручка)",
+        "type": "text-input",
+        "answer": "ручкой",
+        "grammarPoint": "instrumental-means"
+      },
+      {
+        "prompt": "I am going with my friend: Я иду с ___. (друг)",
+        "type": "text-input",
+        "answer": "другом",
+        "grammarPoint": "preposition-s-instrumental"
+      },
+      {
+        "prompt": "What does между mean?",
+        "type": "text-input",
+        "answer": "between",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

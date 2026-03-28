@@ -1,0 +1,269 @@
+{
+  "id": "9-1",
+  "unit": 9,
+  "lesson": 1,
+  "block": "everyday",
+  "title": "Aspect fundamentals",
+  "subtitle": "What perfective and imperfective really mean",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "делать / сделать",
+      "transliteration": "delat' / sdelat'",
+      "gender": null,
+      "meaning": "to do (impf.) / to do, finish doing (pf.)",
+      "exampleCyrillic": "Я делаю это каждый день. / Я сделал это.",
+      "exampleTransliteration": "Ya delayu eto kazhdiy den'. / Ya sdelal eto.",
+      "exampleMeaning": "I do this every day. / I did this (and finished)."
+    },
+    {
+      "cyrillic": "читать / прочитать",
+      "transliteration": "chitat' / prochitat'",
+      "gender": null,
+      "meaning": "to read (impf.) / to read through, finish reading (pf.)",
+      "exampleCyrillic": "Я читаю книгу. / Я прочитал книгу.",
+      "exampleTransliteration": "Ya chitayu knigu. / Ya prochital knigu.",
+      "exampleMeaning": "I am reading a book. / I read the book (finished it)."
+    },
+    {
+      "cyrillic": "писать / написать",
+      "transliteration": "pisat' / napisat'",
+      "gender": null,
+      "meaning": "to write (impf.) / to write, finish writing (pf.)",
+      "exampleCyrillic": "Я пишу письмо. / Я написал письмо.",
+      "exampleTransliteration": "Ya pishu pis'mo. / Ya napisal pis'mo.",
+      "exampleMeaning": "I am writing a letter. / I wrote the letter (completed)."
+    },
+    {
+      "cyrillic": "говорить / сказать",
+      "transliteration": "govorit' / skazat'",
+      "gender": null,
+      "meaning": "to speak / to say (a single thing, completed)",
+      "exampleCyrillic": "Он говорит по-русски. / Он сказал правду.",
+      "exampleTransliteration": "On govorit po-russki. / On skazal pravdu.",
+      "exampleMeaning": "He speaks Russian. / He said the truth."
+    },
+    {
+      "cyrillic": "каждый день",
+      "transliteration": "kazhdiy den'",
+      "gender": null,
+      "meaning": "every day",
+      "exampleCyrillic": "Я читаю каждый день.",
+      "exampleTransliteration": "Ya chitayu kazhdiy den'.",
+      "exampleMeaning": "I read every day."
+    },
+    {
+      "cyrillic": "уже",
+      "transliteration": "uzhe",
+      "gender": null,
+      "meaning": "already",
+      "exampleCyrillic": "Я уже сделал это.",
+      "exampleTransliteration": "Ya uzhe sdelal eto.",
+      "exampleMeaning": "I already did this."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You already know that Russian verbs come in pairs — imperfective and perfective. You've seen делать/сделать, читать/прочитать. Now you'll understand exactly what the difference means and when to use each. This is one of the most conceptually important topics in Russian — once it clicks, your whole understanding of the verb system shifts."
+    },
+    "why": {
+      "text": "English has one verb form ('read') that covers both 'I was reading' and 'I read it through'. Russian splits this into two separate verbs. The imperfective describes the activity itself — the process, the habit, the ongoing state. The perfective describes the result — the completion, the single event, the moment it was finished. This isn't grammar complexity for its own sake — it's the language encoding something real about how events work."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "The core distinction",
+          "body": "Imperfective (НСВ): describes the action as a process, habit, or repeated event — 'was doing', 'does regularly', 'kept doing'. Perfective (СВ): describes the action as a completed whole — 'did and finished', 'managed to do', 'a single completed event'. The question is not WHEN but HOW you see the action.",
+          "examples": [
+            { "cyrillic": "Я читал книгу. (НСВ)", "transliteration": "Ya chital knigu.", "meaning": "I was reading a book. (process — may not be finished)" },
+            { "cyrillic": "Я прочитал книгу. (СВ)", "transliteration": "Ya prochital knigu.", "meaning": "I read the book. (done — finished it)" },
+            { "cyrillic": "Он писал письмо. (НСВ)", "transliteration": "On pisal pis'mo.", "meaning": "He was writing a letter. (activity in progress)" },
+            { "cyrillic": "Он написал письмо. (СВ)", "transliteration": "On napisal pis'mo.", "meaning": "He wrote the letter. (completed, sent, done)" }
+          ]
+        },
+        {
+          "title": "Present tense = imperfective only",
+          "body": "This is a hard rule: only imperfective verbs have a present tense. Perfective verbs have no present — their 'present-looking' form is actually future. If you see a verb in present tense, it is imperfective. No exception.",
+          "examples": [
+            { "cyrillic": "Я читаю. (НСВ, настоящее)", "transliteration": "Ya chitayu.", "meaning": "I am reading / I read (imperfective present)" },
+            { "cyrillic": "Я прочитаю. (СВ, будущее)", "transliteration": "Ya prochitayu.", "meaning": "I will read / I will finish reading (perfective future)" },
+            { "cyrillic": "Я делаю. (НСВ)", "transliteration": "Ya delayu.", "meaning": "I am doing / I do (imperfective present)" },
+            { "cyrillic": "Я сделаю. (СВ, будущее)", "transliteration": "Ya sdelayu.", "meaning": "I will do / I will finish doing (perfective future)" }
+          ]
+        },
+        {
+          "title": "Key aspect pairs",
+          "body": "Aspect pairs are usually formed by: (1) adding a prefix to the imperfective (читать → прочитать), or (2) a completely different root (говорить → сказать). Some pairs share a root but differ by suffix. Learn them together as a unit, not as separate verbs.",
+          "examples": [
+            { "cyrillic": "делать → сделать", "transliteration": "delat' → sdelat'", "meaning": "do → do (complete)" },
+            { "cyrillic": "читать → прочитать", "transliteration": "chitat' → prochitat'", "meaning": "read → read through" },
+            { "cyrillic": "писать → написать", "transliteration": "pisat' → napisat'", "meaning": "write → write (complete)" },
+            { "cyrillic": "говорить → сказать", "transliteration": "govorit' → skazat'", "meaning": "speak → say (one thing, done)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Which aspect has no present tense — imperfective or perfective?",
+          "type": "multiple-choice",
+          "options": ["imperfective", "perfective"],
+          "answer": "perfective",
+          "explanation": "Perfective verbs have no present tense. A perfective verb in 'present' form is actually future tense."
+        },
+        {
+          "prompt": "I read the book (and finished it): Я ___ книгу.",
+          "type": "multiple-choice",
+          "options": ["читал", "прочитал"],
+          "answer": "прочитал",
+          "explanation": "прочитал (perfective past) = read and finished. читал = was reading (process, may not be done)."
+        },
+        {
+          "prompt": "What does уже mean?",
+          "type": "text-input",
+          "answer": "already",
+          "explanation": "уже (uzhe) = already. Common with perfective verbs: Я уже сделал = I already did it."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Context clues for aspect choice",
+          "body": "Certain adverbs push you toward one aspect. Imperfective triggers: каждый день (every day), всегда (always), часто (often), долго (for a long time), обычно (usually). Perfective triggers: уже (already), наконец (finally), вдруг (suddenly), быстро (quickly, once).",
+          "examples": [
+            { "cyrillic": "Я каждый день читаю газету. (НСВ)", "transliteration": "Ya kazhdiy den' chitayu gazetu.", "meaning": "I read the newspaper every day. (habit → imperfective)" },
+            { "cyrillic": "Я уже прочитал газету. (СВ)", "transliteration": "Ya uzhe prochital gazetu.", "meaning": "I already read the newspaper. (completed → perfective)" }
+          ]
+        },
+        {
+          "title": "говорить vs сказать — a suppletive pair",
+          "body": "говорить/сказать is an unusual pair — completely different roots (suppletive). говорить = to speak (general ability, ongoing). сказать = to say (one specific thing, one moment). This mirrors English 'speak' vs 'say'.",
+          "examples": [
+            { "cyrillic": "Он говорит по-русски. (НСВ)", "transliteration": "On govorit po-russki.", "meaning": "He speaks Russian. (general ability — imperfective)" },
+            { "cyrillic": "Он сказал 'нет'. (СВ)", "transliteration": "On skazal 'net'.", "meaning": "He said 'no'. (one utterance, done — perfective)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "Which sentence means 'I was writing a letter (process)'?",
+          "type": "multiple-choice",
+          "options": ["Я написал письмо.", "Я писал письмо."],
+          "answer": "Я писал письмо.",
+          "explanation": "писал (imperfective past) = was writing, process. написал (perfective past) = wrote and finished."
+        },
+        {
+          "prompt": "What is the perfective of читать?",
+          "type": "text-input",
+          "answer": "прочитать",
+          "explanation": "читать (impf.) / прочитать (pf.) — prefix про- added."
+        },
+        {
+          "prompt": "What does каждый день mean?",
+          "type": "text-input",
+          "answer": "every day",
+          "explanation": "каждый день = every day. Triggers imperfective aspect."
+        },
+        {
+          "prompt": "I already finished doing it: Я уже ___ это.",
+          "type": "multiple-choice",
+          "options": ["делал", "сделал"],
+          "answer": "сделал",
+          "explanation": "уже (already) + completed action → perfective. сделал."
+        },
+        {
+          "prompt": "Does the perfective have a present tense?",
+          "type": "multiple-choice",
+          "options": ["Yes", "No — the perfective has no present tense"],
+          "answer": "No — the perfective has no present tense",
+          "explanation": "Perfective verbs have no present. Their 'present-looking' conjugation is future tense."
+        },
+        {
+          "prompt": "What does уже mean?",
+          "type": "text-input",
+          "answer": "already",
+          "explanation": "уже (uzhe) = already."
+        },
+        {
+          "prompt": "He speaks Russian: Он ___ по-русски.",
+          "type": "multiple-choice",
+          "options": ["говорит", "сказал"],
+          "answer": "говорит",
+          "explanation": "говорить = general ability to speak (imperfective). сказать = say one specific thing (perfective)."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Imperfective (НСВ): process, habit, repeated event — 'was doing', 'does regularly'",
+        "Perfective (СВ): completed whole — 'did and finished', 'managed to do once'",
+        "Present tense = imperfective only. No exceptions.",
+        "Perfective 'present-looking' form is actually future tense",
+        "Context clues: каждый день/всегда → imperfective; уже/наконец → perfective"
+      ],
+      "vocabulary": ["делать / сделать", "читать / прочитать", "писать / написать", "говорить / сказать", "каждый день", "уже"],
+      "nextLesson": "Next: aspect in the past tense — the full past system with both aspects."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Which verb means 'I was reading' (process, not finished)?",
+        "type": "multiple-choice",
+        "options": ["Я прочитал.", "Я читал."],
+        "answer": "Я читал.",
+        "grammarPoint": "aspect-imperfective-past"
+      },
+      {
+        "prompt": "Does the perfective aspect have a present tense?",
+        "type": "multiple-choice",
+        "options": ["Yes", "No — perfective has no present tense"],
+        "answer": "No — perfective has no present tense",
+        "grammarPoint": "aspect-present-tense-rule"
+      },
+      {
+        "prompt": "What is the perfective of писать?",
+        "type": "text-input",
+        "answer": "написать",
+        "grammarPoint": "aspect-pair"
+      },
+      {
+        "prompt": "I already finished it: Я уже ___.",
+        "type": "multiple-choice",
+        "options": ["делал это", "сделал это"],
+        "answer": "сделал это",
+        "grammarPoint": "aspect-context-uzhe"
+      },
+      {
+        "prompt": "What does уже mean?",
+        "type": "text-input",
+        "answer": "already",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "He speaks Russian: Он ___ по-русски.",
+        "type": "multiple-choice",
+        "options": ["говорит", "сказал"],
+        "answer": "говорит",
+        "grammarPoint": "aspect-govorit-skazat"
+      },
+      {
+        "prompt": "Every day I read: Каждый день я ___.",
+        "type": "multiple-choice",
+        "options": ["читаю", "прочитаю"],
+        "answer": "читаю",
+        "grammarPoint": "aspect-context-habit"
+      },
+      {
+        "prompt": "What does каждый день mean?",
+        "type": "text-input",
+        "answer": "every day",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

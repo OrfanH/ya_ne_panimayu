@@ -1,0 +1,265 @@
+{
+  "id": "6-3",
+  "unit": 6,
+  "lesson": 3,
+  "block": "grammar",
+  "title": "Comparatives",
+  "subtitle": "Key adjective vocabulary and comparing things",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "лучше",
+      "transliteration": "luchshe",
+      "gender": null,
+      "meaning": "better (comparative of хороший)",
+      "exampleCyrillic": "Это лучше.",
+      "exampleTransliteration": "Eto luchshe.",
+      "exampleMeaning": "This is better."
+    },
+    {
+      "cyrillic": "хуже",
+      "transliteration": "khuzhe",
+      "gender": null,
+      "meaning": "worse (comparative of плохой)",
+      "exampleCyrillic": "Это намного хуже.",
+      "exampleTransliteration": "Eto namnogo khuzhe.",
+      "exampleMeaning": "This is much worse."
+    },
+    {
+      "cyrillic": "больше",
+      "transliteration": "bol'she",
+      "gender": null,
+      "meaning": "more / bigger (comparative of большой)",
+      "exampleCyrillic": "Дай мне больше.",
+      "exampleTransliteration": "Day mne bol'she.",
+      "exampleMeaning": "Give me more."
+    },
+    {
+      "cyrillic": "меньше",
+      "transliteration": "men'she",
+      "gender": null,
+      "meaning": "less / smaller (comparative of маленький)",
+      "exampleCyrillic": "Меньше слов — больше дела.",
+      "exampleTransliteration": "Men'she slov — bol'she dela.",
+      "exampleMeaning": "Less talk, more action."
+    },
+    {
+      "cyrillic": "дороже",
+      "transliteration": "dorozhe",
+      "gender": null,
+      "meaning": "more expensive (comparative of дорогой)",
+      "exampleCyrillic": "Это дороже.",
+      "exampleTransliteration": "Eto dorozhe.",
+      "exampleMeaning": "This is more expensive."
+    },
+    {
+      "cyrillic": "дешевле",
+      "transliteration": "deshevle",
+      "gender": null,
+      "meaning": "cheaper (comparative of дешёвый)",
+      "exampleCyrillic": "Это дешевле.",
+      "exampleTransliteration": "Eto deshevle.",
+      "exampleMeaning": "This is cheaper."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Comparatives let you express preference, evaluation, and comparison — essential for real conversation. 'This coffee is better.' 'That's more expensive.' 'This lesson is harder than that one.' Russian comparatives are simple: one form, no agreement needed. You just add чем (than) for the comparison."
+    },
+    "why": {
+      "text": "The simple comparative in Russian (лучше, хуже, больше) is invariable — it doesn't change for gender or case. This makes it genuinely easy compared to full adjective agreement. The main thing to know: the comparative is a separate word from the adjective, many are irregular, and comparison uses чем + nominative."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Forming simple comparatives",
+          "body": "Many adjectives form comparatives by replacing the ending with -ЕЕ or -Е. Regular pattern: adjective stem + -ЕЕ. But the most common comparatives are irregular and must be learned as separate words.",
+          "examples": [
+            { "cyrillic": "интересный → интереснее", "transliteration": "interesniy → interesnee", "meaning": "interesting → more interesting (regular: +ЕЕ)" },
+            { "cyrillic": "трудный → труднее", "transliteration": "trudniy → trudneye", "meaning": "difficult → more difficult (regular)" },
+            { "cyrillic": "хороший → лучше", "transliteration": "khoroshiy → luchshe", "meaning": "good → better (irregular)" },
+            { "cyrillic": "плохой → хуже", "transliteration": "plokhoy → khuzhe", "meaning": "bad → worse (irregular)" }
+          ]
+        },
+        {
+          "title": "Key irregular comparatives",
+          "body": "Learn these first — they're the most frequent comparatives you'll encounter.",
+          "examples": [
+            { "cyrillic": "хороший → лучше", "transliteration": "good → better", "meaning": "best: лучший / самый лучший" },
+            { "cyrillic": "плохой → хуже", "transliteration": "bad → worse", "meaning": "worst: худший / самый плохой" },
+            { "cyrillic": "большой → больше", "transliteration": "big → bigger/more", "meaning": "most: больший / самый большой" },
+            { "cyrillic": "маленький → меньше", "transliteration": "small → smaller/less", "meaning": "least: наименьший" },
+            { "cyrillic": "старый → старше", "transliteration": "old → older", "meaning": "oldest: старший" },
+            { "cyrillic": "молодой → моложе", "transliteration": "young → younger", "meaning": "" }
+          ]
+        },
+        {
+          "title": "Making comparisons — чем",
+          "body": "To say 'A is [comparative] than B', use: A [comparative] чем B. Both A and B stay in nominative. Alternatively: A [comparative] + B in genitive (no чем). The чем construction is easier and less ambiguous.",
+          "examples": [
+            { "cyrillic": "Этот урок труднее, чем тот.", "transliteration": "Etot urok trudneye, chem tot.", "meaning": "This lesson is harder than that one." },
+            { "cyrillic": "Кофе лучше, чем чай.", "transliteration": "Kofe luchshe, chem chay.", "meaning": "Coffee is better than tea." },
+            { "cyrillic": "Я старше тебя.", "transliteration": "Ya starshe tebya.", "meaning": "I am older than you. (genitive alternative: тебя)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "What is the comparative of хороший?",
+          "type": "text-input",
+          "answer": "лучше",
+          "explanation": "хороший (good) → лучше (better). Irregular — must be memorised."
+        },
+        {
+          "prompt": "How do you say 'coffee is better than tea'?",
+          "type": "text-input",
+          "answer": "Кофе лучше, чем чай.",
+          "explanation": "Comparative + чем + nominative. Кофе лучше, чем чай."
+        },
+        {
+          "prompt": "What is the comparative of трудный (difficult)?",
+          "type": "text-input",
+          "answer": "труднее",
+          "explanation": "трудный → труднее. Regular: stem + -ЕЕ."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Superlative — самый + adjective",
+          "body": "The superlative (the most X) is formed with самый + adjective in full agreement. самый agrees in gender, number, and case like any adjective. самый лучший = the very best (often doubled with irregular form).",
+          "examples": [
+            { "cyrillic": "самый большой город", "transliteration": "samiy bolshoy gorod", "meaning": "the biggest city (самый + adj. agree: masculine)" },
+            { "cyrillic": "самая красивая женщина", "transliteration": "samaya krasivaya zhenshchina", "meaning": "the most beautiful woman" },
+            { "cyrillic": "самое трудное слово", "transliteration": "samoye trudnoye slovo", "meaning": "the most difficult word" }
+          ]
+        },
+        {
+          "title": "Key adjective vocabulary — a practical set",
+          "body": "These adjectives appear constantly in everyday Russian. Learn them with their masculine form (dictionary form) and the comparative where it's irregular.",
+          "examples": [
+            { "cyrillic": "дорогой / дешёвый", "transliteration": "dorogoy / desheviy", "meaning": "expensive / cheap → дороже / дешевле" },
+            { "cyrillic": "быстрый / медленный", "transliteration": "bistriy / medlenniy", "meaning": "fast / slow → быстрее / медленнее" },
+            { "cyrillic": "лёгкий / трудный", "transliteration": "lyokhkiy / trudniy", "meaning": "easy / difficult → легче / труднее" },
+            { "cyrillic": "холодный / горячий", "transliteration": "kholodniy / goryachiy", "meaning": "cold / hot → холоднее / горячее" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is the comparative of большой?",
+          "type": "text-input",
+          "answer": "больше",
+          "explanation": "большой (big) → больше (bigger/more). Irregular."
+        },
+        {
+          "prompt": "This is cheaper: Это ___.",
+          "type": "text-input",
+          "answer": "дешевле",
+          "explanation": "дешёвый → дешевле. Comparative of cheap."
+        },
+        {
+          "prompt": "How do you say 'this lesson is more interesting'?",
+          "type": "text-input",
+          "answer": "Этот урок интереснее.",
+          "explanation": "интересный → интереснее. Comparative: stem + -ЕЕ."
+        },
+        {
+          "prompt": "She is younger than he: Она ___ него.",
+          "type": "multiple-choice",
+          "options": ["моложе", "младше", "Both are correct", "молодее"],
+          "answer": "Both are correct",
+          "explanation": "моложе and младше are both comparatives of молодой. него = genitive of он (comparative without чем)."
+        },
+        {
+          "prompt": "The biggest city: ___ город.",
+          "type": "text-input",
+          "answer": "самый большой",
+          "explanation": "Superlative: самый + adjective (both agree in masculine). самый большой город."
+        },
+        {
+          "prompt": "What is the comparative of плохой (bad)?",
+          "type": "text-input",
+          "answer": "хуже",
+          "explanation": "плохой (bad) → хуже (worse). Irregular."
+        },
+        {
+          "prompt": "Do comparatives agree in gender and number?",
+          "type": "multiple-choice",
+          "options": ["Yes — they agree like adjectives", "No — simple comparatives are invariable"],
+          "answer": "No — simple comparatives are invariable",
+          "explanation": "Simple comparatives (лучше, хуже, больше, etc.) are invariable — one form for all genders and numbers."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Regular comparative: adjective stem + -ЕЕ (интересный → интереснее)",
+        "Key irregular comparatives: лучше (better), хуже (worse), больше (more/bigger), меньше (less/smaller)",
+        "Simple comparatives are invariable — no gender or case agreement",
+        "Comparison: A [comparative] чем B (both nominative) or A [comparative] + B in genitive",
+        "Superlative: самый + full adjective (самый большой, самая красивая)"
+      ],
+      "vocabulary": ["лучше", "хуже", "больше", "меньше", "дороже", "дешевле"],
+      "nextLesson": "Next: Block 3 — Everyday language. Unit 7: family, people, and descriptions."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What is the comparative of хороший?",
+        "type": "text-input",
+        "answer": "лучше",
+        "grammarPoint": "comparative-irregular"
+      },
+      {
+        "prompt": "What is the comparative of трудный?",
+        "type": "text-input",
+        "answer": "труднее",
+        "grammarPoint": "comparative-regular"
+      },
+      {
+        "prompt": "Coffee is better than tea:",
+        "type": "text-input",
+        "answer": "Кофе лучше, чем чай.",
+        "grammarPoint": "comparative-construction"
+      },
+      {
+        "prompt": "Do simple comparatives agree in gender?",
+        "type": "multiple-choice",
+        "options": ["Yes", "No — they are invariable"],
+        "answer": "No — they are invariable",
+        "grammarPoint": "comparative-invariable"
+      },
+      {
+        "prompt": "What is the comparative of плохой?",
+        "type": "text-input",
+        "answer": "хуже",
+        "grammarPoint": "comparative-irregular"
+      },
+      {
+        "prompt": "The most interesting lesson (masculine):",
+        "type": "text-input",
+        "answer": "самый интересный урок",
+        "grammarPoint": "superlative-samiy"
+      },
+      {
+        "prompt": "What is the comparative of большой?",
+        "type": "text-input",
+        "answer": "больше",
+        "grammarPoint": "comparative-irregular"
+      },
+      {
+        "prompt": "What is the comparative of маленький?",
+        "type": "text-input",
+        "answer": "меньше",
+        "grammarPoint": "comparative-irregular"
+      }
+    ]
+  }
+}

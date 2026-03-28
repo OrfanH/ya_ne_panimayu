@@ -1,0 +1,261 @@
+{
+  "id": "10-2",
+  "unit": 10,
+  "lesson": 2,
+  "block": "everyday",
+  "title": "Asking for directions",
+  "subtitle": "Getting around with the grammar you know",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "направо",
+      "transliteration": "napravo",
+      "gender": null,
+      "meaning": "to the right",
+      "exampleCyrillic": "Поверните направо.",
+      "exampleTransliteration": "Povernite napravo.",
+      "exampleMeaning": "Turn right."
+    },
+    {
+      "cyrillic": "налево",
+      "transliteration": "nalevo",
+      "gender": null,
+      "meaning": "to the left",
+      "exampleCyrillic": "Потом налево.",
+      "exampleTransliteration": "Potom nalevo.",
+      "exampleMeaning": "Then to the left."
+    },
+    {
+      "cyrillic": "прямо",
+      "transliteration": "pryamo",
+      "gender": null,
+      "meaning": "straight (ahead)",
+      "exampleCyrillic": "Идите прямо.",
+      "exampleTransliteration": "Idite pryamo.",
+      "exampleMeaning": "Go straight."
+    },
+    {
+      "cyrillic": "далеко",
+      "transliteration": "daleko",
+      "gender": null,
+      "meaning": "far",
+      "exampleCyrillic": "Это далеко?",
+      "exampleTransliteration": "Eto daleko?",
+      "exampleMeaning": "Is it far?"
+    },
+    {
+      "cyrillic": "рядом",
+      "transliteration": "ryadom",
+      "gender": null,
+      "meaning": "nearby / next to",
+      "exampleCyrillic": "Метро рядом.",
+      "exampleTransliteration": "Metro ryadom.",
+      "exampleMeaning": "The metro is nearby."
+    },
+    {
+      "cyrillic": "метро",
+      "transliteration": "metro",
+      "gender": "neuter",
+      "meaning": "metro / underground",
+      "exampleCyrillic": "Где метро?",
+      "exampleTransliteration": "Gde metro?",
+      "exampleMeaning": "Where is the metro?"
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Asking for and giving directions is one of the most practical skills in any language. You already have all the grammar you need: где (where), идти/ехать (go on foot/by vehicle), в/на + prepositional (location), imperatives (turn, go). This lesson is about applying what you know to a real situation."
+    },
+    "why": {
+      "text": "Directions in Russian use куда (where to, with movement verbs) vs где (where, for location), and the motion verb pair идти (go on foot) / ехать (go by vehicle). The imperative forms of these are идите (go!) and поверните (turn!). The prepositions направо / налево / прямо are fixed adverbs — no case change needed."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Asking where something is",
+          "body": "Use где + subject to ask location. For places, you already know prepositional case with в/на. Скажите is a polite opener before asking a stranger for directions.",
+          "examples": [
+            { "cyrillic": "Скажите, пожалуйста, где вокзал?", "transliteration": "Skazhite, pozhaluysta, gde vokzal?", "meaning": "Excuse me, where is the train station?" },
+            { "cyrillic": "Где находится метро?", "transliteration": "Gde nakhoditsya metro?", "meaning": "Where is the metro located? (находится = is located)" },
+            { "cyrillic": "Как добраться до центра?", "transliteration": "Kak dobrat'sya do tsentra?", "meaning": "How do I get to the centre? (до + genitive = to/up to)" }
+          ]
+        },
+        {
+          "title": "Direction adverbs and imperatives",
+          "body": "These adverbs never change form. Pair them with imperative verbs for giving directions. идите (go, on foot) and поверните (turn) are the two core imperative verbs for directions.",
+          "examples": [
+            { "cyrillic": "Идите прямо.", "transliteration": "Idite pryamo.", "meaning": "Go straight." },
+            { "cyrillic": "Поверните направо.", "transliteration": "Povernite napravo.", "meaning": "Turn right." },
+            { "cyrillic": "Поверните налево.", "transliteration": "Povernite nalevo.", "meaning": "Turn left." },
+            { "cyrillic": "Идите до угла.", "transliteration": "Idite do ugla.", "meaning": "Go to the corner. (до + genitive)" }
+          ]
+        },
+        {
+          "title": "Proximity and distance",
+          "body": "To say something is near or far, use рядом (nearby) and далеко (far) as predicates. To say near a landmark, use рядом с + instrumental.",
+          "examples": [
+            { "cyrillic": "Это рядом.", "transliteration": "Eto ryadom.", "meaning": "It is nearby." },
+            { "cyrillic": "Это далеко?", "transliteration": "Eto daleko?", "meaning": "Is it far?" },
+            { "cyrillic": "Метро рядом с вокзалом.", "transliteration": "Metro ryadom s vokzalom.", "meaning": "The metro is next to the station. (рядом с + instrumental)" },
+            { "cyrillic": "Это недалеко.", "transliteration": "Eto nedaleko.", "meaning": "It is not far." }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you ask 'where is the metro?'",
+          "type": "text-input",
+          "answer": "Где метро?",
+          "explanation": "где + noun in nominative. Где метро?"
+        },
+        {
+          "prompt": "How do you say 'go straight'?",
+          "type": "text-input",
+          "answer": "Идите прямо.",
+          "explanation": "идти → formal imperative = идите. прямо = straight. Идите прямо."
+        },
+        {
+          "prompt": "What does рядом mean?",
+          "type": "text-input",
+          "answer": "nearby",
+          "explanation": "рядом (ryadom) = nearby / next to. Invariable adverb."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "идти vs ехать — on foot vs by vehicle",
+          "body": "идти = go on foot. ехать = go by vehicle (bus, car, metro). When giving walking directions: идите. When giving transport directions: езжайте (formal imperative of ехать). At A1 level, идти/идите covers most situations.",
+          "examples": [
+            { "cyrillic": "Идите до угла.", "transliteration": "Idite do ugla.", "meaning": "Walk to the corner." },
+            { "cyrillic": "Езжайте до следующей остановки.", "transliteration": "Yezzhayte do sleduyushchey ostanovki.", "meaning": "Go (by vehicle) to the next stop." }
+          ]
+        },
+        {
+          "title": "A full directions exchange",
+          "body": "Here is a complete example interaction — asking and receiving directions. Notice how the structures combine naturally.",
+          "examples": [
+            { "cyrillic": "— Скажите, пожалуйста, где банк?", "transliteration": "— Skazhite, pozhaluysta, gde bank?", "meaning": "— Excuse me, where is the bank?" },
+            { "cyrillic": "— Идите прямо, потом поверните направо. Банк рядом.", "transliteration": "— Idite pryamo, potom povernite napravo. Bank ryadom.", "meaning": "— Go straight, then turn right. The bank is nearby." },
+            { "cyrillic": "— Это далеко?", "transliteration": "— Eto daleko?", "meaning": "— Is it far?" },
+            { "cyrillic": "— Нет, это недалеко. Минут пять пешком.", "transliteration": "— Net, eto nedaleko. Minut pyat' peshkom.", "meaning": "— No, not far. About five minutes on foot." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What does направо mean?",
+          "type": "text-input",
+          "answer": "to the right",
+          "explanation": "направо (napravo) = to the right."
+        },
+        {
+          "prompt": "Turn left: Поверните ___.",
+          "type": "text-input",
+          "answer": "налево",
+          "explanation": "налево = to the left. Поверните налево."
+        },
+        {
+          "prompt": "The metro is nearby: Метро ___.",
+          "type": "text-input",
+          "answer": "рядом",
+          "explanation": "рядом = nearby. Метро рядом."
+        },
+        {
+          "prompt": "Is it far?: Это ___?",
+          "type": "text-input",
+          "answer": "далеко",
+          "explanation": "далеко = far. Это далеко?"
+        },
+        {
+          "prompt": "Excuse me, where is the bank? (formal, polite)",
+          "type": "text-input",
+          "answer": "Скажите, пожалуйста, где банк?",
+          "explanation": "Скажите (tell me, formal imperative) + пожалуйста + где + place."
+        },
+        {
+          "prompt": "What does прямо mean?",
+          "type": "text-input",
+          "answer": "straight",
+          "explanation": "прямо (pryamo) = straight (ahead)."
+        },
+        {
+          "prompt": "Go straight then turn right: Идите ___, потом поверните ___.",
+          "type": "multiple-choice",
+          "options": ["налево / прямо", "прямо / направо"],
+          "answer": "прямо / направо",
+          "explanation": "прямо = straight, направо = to the right. Идите прямо, потом поверните направо."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Asking location: Где [place]? or Скажите, где [place]?",
+        "Direction adverbs: прямо (straight), направо (right), налево (left) — invariable",
+        "Direction imperatives: идите (go on foot), поверните (turn)",
+        "Distance: рядом (nearby), далеко (far), недалеко (not far)",
+        "рядом с + instrumental = next to [place]"
+      ],
+      "vocabulary": ["направо", "налево", "прямо", "далеко", "рядом", "метро"],
+      "nextLesson": "Next: shopping and transactions — buying things, asking prices, and practical number use."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Where is the metro?",
+        "type": "text-input",
+        "answer": "Где метро?",
+        "grammarPoint": "location-question"
+      },
+      {
+        "prompt": "What does налево mean?",
+        "type": "multiple-choice",
+        "options": ["straight", "to the right", "to the left", "nearby"],
+        "answer": "to the left",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Go straight: Идите ___.",
+        "type": "text-input",
+        "answer": "прямо",
+        "grammarPoint": "direction-imperative"
+      },
+      {
+        "prompt": "Is it far?: Это ___?",
+        "type": "text-input",
+        "answer": "далеко",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "Excuse me where is the bank? (polite, formal): ___, пожалуйста, где банк?",
+        "type": "text-input",
+        "answer": "Скажите",
+        "grammarPoint": "polite-directions-opener"
+      },
+      {
+        "prompt": "Turn right: Поверните ___.",
+        "type": "text-input",
+        "answer": "направо",
+        "grammarPoint": "direction-adverb"
+      },
+      {
+        "prompt": "The station is next to the metro: Вокзал рядом ___ метро.",
+        "type": "text-input",
+        "answer": "с",
+        "grammarPoint": "ryadom-s-instrumental"
+      },
+      {
+        "prompt": "What does рядом mean?",
+        "type": "text-input",
+        "answer": "nearby",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

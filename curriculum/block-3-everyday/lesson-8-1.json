@@ -1,0 +1,281 @@
+{
+  "id": "8-1",
+  "unit": 8,
+  "lesson": 1,
+  "block": "everyday",
+  "title": "Days of the week",
+  "subtitle": "Weekdays, weekends, and temporal expressions",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "понедельник",
+      "transliteration": "ponedel'nik",
+      "gender": "masculine",
+      "meaning": "Monday",
+      "exampleCyrillic": "В понедельник у меня урок.",
+      "exampleTransliteration": "V ponedel'nik u menya urok.",
+      "exampleMeaning": "On Monday I have a lesson."
+    },
+    {
+      "cyrillic": "вторник",
+      "transliteration": "vtornik",
+      "gender": "masculine",
+      "meaning": "Tuesday",
+      "exampleCyrillic": "Во вторник я работаю.",
+      "exampleTransliteration": "Vo vtornik ya rabotayu.",
+      "exampleMeaning": "On Tuesday I work."
+    },
+    {
+      "cyrillic": "среда",
+      "transliteration": "sreda",
+      "gender": "feminine",
+      "meaning": "Wednesday",
+      "exampleCyrillic": "В среду я отдыхаю.",
+      "exampleTransliteration": "V sredu ya otdykhаyu.",
+      "exampleMeaning": "On Wednesday I rest."
+    },
+    {
+      "cyrillic": "четверг",
+      "transliteration": "chetverg",
+      "gender": "masculine",
+      "meaning": "Thursday",
+      "exampleCyrillic": "В четверг встреча.",
+      "exampleTransliteration": "V chetverg vstrecha.",
+      "exampleMeaning": "On Thursday there is a meeting."
+    },
+    {
+      "cyrillic": "пятница",
+      "transliteration": "pyatnitsa",
+      "gender": "feminine",
+      "meaning": "Friday",
+      "exampleCyrillic": "В пятницу я свободен.",
+      "exampleTransliteration": "V pyatnitsu ya svoboden.",
+      "exampleMeaning": "On Friday I am free."
+    },
+    {
+      "cyrillic": "суббота",
+      "transliteration": "subbota",
+      "gender": "feminine",
+      "meaning": "Saturday",
+      "exampleCyrillic": "В субботу я отдыхаю.",
+      "exampleTransliteration": "V subbotu ya otdykhаyu.",
+      "exampleMeaning": "On Saturday I rest."
+    },
+    {
+      "cyrillic": "воскресенье",
+      "transliteration": "voskresen'ye",
+      "gender": "neuter",
+      "meaning": "Sunday",
+      "exampleCyrillic": "В воскресенье — выходной.",
+      "exampleTransliteration": "V voskresen'ye — vikhodnoy.",
+      "exampleMeaning": "Sunday is a day off."
+    },
+    {
+      "cyrillic": "неделя",
+      "transliteration": "nedelya",
+      "gender": "feminine",
+      "meaning": "week",
+      "exampleCyrillic": "На этой неделе.",
+      "exampleTransliteration": "Na etoy nedele.",
+      "exampleMeaning": "This week."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Days of the week appear in nearly every practical sentence about planning, scheduling, and explaining your life. They also happen to be a useful case drill: 'on Monday' requires accusative (в + accusative for specific days). Seven words with a consistent case pattern."
+    },
+    "why": {
+      "text": "Days of the week in Russian are used with в + accusative to express 'on [day]'. This mirrors the direction/movement accusative you learned in Unit 5 — here applied to time rather than place. The same preposition в covers both spatial and temporal contexts."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "The seven days",
+          "body": "All days of the week are masculine in Russian except среда (Wednesday — feminine), пятница (Friday — feminine), суббота (Saturday — feminine), and воскресенье (Sunday — neuter). Write them in lowercase.",
+          "examples": [
+            { "cyrillic": "понедельник (м)", "transliteration": "ponedel'nik", "meaning": "Monday" },
+            { "cyrillic": "вторник (м)", "transliteration": "vtornik", "meaning": "Tuesday" },
+            { "cyrillic": "среда (ж)", "transliteration": "sreda", "meaning": "Wednesday" },
+            { "cyrillic": "четверг (м)", "transliteration": "chetverg", "meaning": "Thursday" },
+            { "cyrillic": "пятница (ж)", "transliteration": "pyatnitsa", "meaning": "Friday" },
+            { "cyrillic": "суббота (ж)", "transliteration": "subbota", "meaning": "Saturday" },
+            { "cyrillic": "воскресенье (ср)", "transliteration": "voskresen'ye", "meaning": "Sunday" }
+          ]
+        },
+        {
+          "title": "'On [day]' — в + accusative",
+          "body": "To say an event happens on a specific day, use в + accusative of the day. Masculine days: no change (same as nominative for inanimate). Feminine days: А→У. Neuter воскресенье: no change (neuter accusative = nominative).",
+          "examples": [
+            { "cyrillic": "в понедельник", "transliteration": "v ponedel'nik", "meaning": "on Monday (masculine, no change)" },
+            { "cyrillic": "в среду", "transliteration": "v sredu", "meaning": "on Wednesday (среда→среду, fem. acc.)" },
+            { "cyrillic": "в пятницу", "transliteration": "v pyatnitsu", "meaning": "on Friday (пятница→пятницу, fem. acc.)" },
+            { "cyrillic": "в субботу", "transliteration": "v subbotu", "meaning": "on Saturday (суббота→субботу, fem. acc.)" },
+            { "cyrillic": "в воскресенье", "transliteration": "v voskresen'ye", "meaning": "on Sunday (neuter, no change)" }
+          ]
+        },
+        {
+          "title": "This week / last week / next week",
+          "body": "Time expressions for week use на + this/that week in prepositional, or на следующей/прошлой неделе. эта неделя (this week) → на этой неделе (prepositional).",
+          "examples": [
+            { "cyrillic": "на этой неделе", "transliteration": "na etoy nedele", "meaning": "this week" },
+            { "cyrillic": "на прошлой неделе", "transliteration": "na proshloy nedele", "meaning": "last week" },
+            { "cyrillic": "на следующей неделе", "transliteration": "na sleduyushchey nedele", "meaning": "next week" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'on Wednesday'?",
+          "type": "text-input",
+          "answer": "в среду",
+          "explanation": "среда → среду (feminine accusative: А→У). в среду."
+        },
+        {
+          "prompt": "How do you say 'on Monday'?",
+          "type": "text-input",
+          "answer": "в понедельник",
+          "explanation": "понедельник is masculine inanimate — accusative = nominative. в понедельник."
+        },
+        {
+          "prompt": "How do you say 'this week'?",
+          "type": "text-input",
+          "answer": "на этой неделе",
+          "explanation": "на + prepositional. эта неделя → этой неделе."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Weekday vs weekend",
+          "body": "будний день (weekday), будни (weekdays plural), выходной день (day off / weekend day). The word выходной (day off) is a common adjective-used-as-noun. суббота и воскресенье = the weekend.",
+          "examples": [
+            { "cyrillic": "В будни я работаю.", "transliteration": "V budni ya rabotayu.", "meaning": "On weekdays I work." },
+            { "cyrillic": "В выходные я отдыхаю.", "transliteration": "V vikhodnyye ya otdykhayu.", "meaning": "On weekends I rest." }
+          ]
+        },
+        {
+          "title": "сегодня / завтра / вчера",
+          "body": "The most practical time adverbs: сегодня (today), завтра (tomorrow), вчера (yesterday). They're invariable and never require a case change — just place before or after the main clause.",
+          "examples": [
+            { "cyrillic": "Сегодня понедельник.", "transliteration": "Segodnya ponedel'nik.", "meaning": "Today is Monday." },
+            { "cyrillic": "Завтра вторник.", "transliteration": "Zavtra vtornik.", "meaning": "Tomorrow is Tuesday." },
+            { "cyrillic": "Вчера была пятница.", "transliteration": "Vchera bila pyatnitsa.", "meaning": "Yesterday was Friday." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is 'on Friday'?",
+          "type": "text-input",
+          "answer": "в пятницу",
+          "explanation": "пятница → пятницу (feminine: А→У). в пятницу."
+        },
+        {
+          "prompt": "What day is today? Сегодня ___.",
+          "type": "multiple-choice",
+          "options": ["в понедельник", "понедельник", "в понедельнике"],
+          "answer": "понедельник",
+          "explanation": "сегодня [day] — just nominative. Сегодня понедельник. No preposition."
+        },
+        {
+          "prompt": "How do you say 'on Thursday'?",
+          "type": "text-input",
+          "answer": "в четверг",
+          "explanation": "четверг is masculine inanimate — accusative = nominative. в четверг."
+        },
+        {
+          "prompt": "How do you say 'next week'?",
+          "type": "text-input",
+          "answer": "на следующей неделе",
+          "explanation": "на + prepositional. следующая неделя → следующей неделе."
+        },
+        {
+          "prompt": "What does неделя mean?",
+          "type": "text-input",
+          "answer": "week",
+          "explanation": "неделя (nedelya) = week."
+        },
+        {
+          "prompt": "What is 'on Saturday'?",
+          "type": "text-input",
+          "answer": "в субботу",
+          "explanation": "суббота → субботу (feminine: А→У). в субботу."
+        },
+        {
+          "prompt": "What does вчера mean?",
+          "type": "text-input",
+          "answer": "yesterday",
+          "explanation": "вчера (vchera) = yesterday. Invariable."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "'On [day]': в + accusative. Masculine days: no change. Feminine days: А→У. Neuter: no change.",
+        "Days of the week are lowercase in Russian",
+        "сегодня (today) / завтра (tomorrow) / вчера (yesterday) — invariable",
+        "на этой неделе (this week) / на прошлой неделе (last week) / на следующей неделе (next week)"
+      ],
+      "vocabulary": ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье", "неделя"],
+      "nextLesson": "Next: months and seasons — talking about dates and times of year."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "On Wednesday: в ___.",
+        "type": "text-input",
+        "answer": "среду",
+        "grammarPoint": "days-accusative-feminine"
+      },
+      {
+        "prompt": "On Monday: в ___.",
+        "type": "text-input",
+        "answer": "понедельник",
+        "grammarPoint": "days-accusative-masculine"
+      },
+      {
+        "prompt": "What day is среда?",
+        "type": "multiple-choice",
+        "options": ["Monday", "Tuesday", "Wednesday", "Thursday"],
+        "answer": "Wednesday",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "On Saturday: в ___.",
+        "type": "text-input",
+        "answer": "субботу",
+        "grammarPoint": "days-accusative-feminine"
+      },
+      {
+        "prompt": "What does завтра mean?",
+        "type": "text-input",
+        "answer": "tomorrow",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "This week:",
+        "type": "text-input",
+        "answer": "на этой неделе",
+        "grammarPoint": "temporal-expressions"
+      },
+      {
+        "prompt": "Today is Friday: Сегодня ___.",
+        "type": "text-input",
+        "answer": "пятница",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "What does воскресенье mean?",
+        "type": "text-input",
+        "answer": "Sunday",
+        "grammarPoint": "vocabulary"
+      }
+    ]
+  }
+}

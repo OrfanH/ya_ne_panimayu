@@ -1,0 +1,265 @@
+{
+  "id": "8-4",
+  "unit": 8,
+  "lesson": 4,
+  "block": "everyday",
+  "title": "Numbers 11–100",
+  "subtitle": "Extending the number system for dates, prices, and ages",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "одиннадцать",
+      "transliteration": "odinnadtsat'",
+      "gender": null,
+      "meaning": "eleven",
+      "exampleCyrillic": "Мне одиннадцать лет.",
+      "exampleTransliteration": "Mne odinnadtsat' let.",
+      "exampleMeaning": "I am eleven years old."
+    },
+    {
+      "cyrillic": "двадцать",
+      "transliteration": "dvadtsat'",
+      "gender": null,
+      "meaning": "twenty",
+      "exampleCyrillic": "Двадцать рублей.",
+      "exampleTransliteration": "Dvadtsat' rubley.",
+      "exampleMeaning": "Twenty roubles."
+    },
+    {
+      "cyrillic": "тридцать",
+      "transliteration": "tridtsat'",
+      "gender": null,
+      "meaning": "thirty",
+      "exampleCyrillic": "Мне тридцать лет.",
+      "exampleTransliteration": "Mne tridtsat' let.",
+      "exampleMeaning": "I am thirty years old."
+    },
+    {
+      "cyrillic": "пятьдесят",
+      "transliteration": "pyat'desyat",
+      "gender": null,
+      "meaning": "fifty",
+      "exampleCyrillic": "Пятьдесят процентов.",
+      "exampleTransliteration": "Pyat'desyat protsentov.",
+      "exampleMeaning": "Fifty percent."
+    },
+    {
+      "cyrillic": "сто",
+      "transliteration": "sto",
+      "gender": null,
+      "meaning": "one hundred",
+      "exampleCyrillic": "Сто рублей.",
+      "exampleTransliteration": "Sto rubley.",
+      "exampleMeaning": "One hundred roubles."
+    },
+    {
+      "cyrillic": "рубль",
+      "transliteration": "rubl'",
+      "gender": "masculine",
+      "meaning": "rouble (Russian currency unit)",
+      "exampleCyrillic": "Это стоит пятьдесят рублей.",
+      "exampleTransliteration": "Eto stoit pyat'desyat rubley.",
+      "exampleMeaning": "This costs fifty roubles."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You know 1–10. Extending to 100 is faster than it looks: the teens follow a pattern, the tens follow a pattern, and compound numbers just stack them. By the end of this lesson you can express any age, price, or quantity up to 99."
+    },
+    "why": {
+      "text": "Numbers 11–19 are built by combining a base number + -надцать (a suffix meaning 'on ten'). Numbers 20–90 combine a units number + десять/десят (ten). The counting zone rule (лет / года / год, рублей / рубля / рубль) still applies — the final digit determines which form follows the number."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Teens: 11–19",
+          "body": "The teens add -надцать to a modified base. Note: 11 = один + надцать → одиннадцать, 12 = двенадцать, 13 = тринадцать, etc. The teens are a special case — they always take genitive plural (5+ zone) regardless of ending.",
+          "examples": [
+            { "cyrillic": "одиннадцать (11)", "transliteration": "odinnadtsat'", "meaning": "eleven" },
+            { "cyrillic": "двенадцать (12)", "transliteration": "dvenadtsat'", "meaning": "twelve" },
+            { "cyrillic": "тринадцать (13)", "transliteration": "trinadtsat'", "meaning": "thirteen" },
+            { "cyrillic": "четырнадцать (14)", "transliteration": "chetyrnadtsat'", "meaning": "fourteen" },
+            { "cyrillic": "пятнадцать (15)", "transliteration": "pyatnadtsat'", "meaning": "fifteen" },
+            { "cyrillic": "шестнадцать (16) / семнадцать (17) / восемнадцать (18) / девятнадцать (19)", "transliteration": "shestnadtsat' / semnadtsat' / vosemnadtsat' / devyatnadtsat'", "meaning": "sixteen / seventeen / eighteen / nineteen" }
+          ]
+        },
+        {
+          "title": "Tens: 20–100",
+          "body": "The tens are built from the units. 20 = двадцать, 30 = тридцать, 40 = сорок (irregular), 50 = пятьдесят, 60 = шестьдесят, 70 = семьдесят, 80 = восемьдесят, 90 = девяносто (irregular), 100 = сто.",
+          "examples": [
+            { "cyrillic": "двадцать (20)", "transliteration": "dvadtsat'", "meaning": "twenty" },
+            { "cyrillic": "тридцать (30)", "transliteration": "tridtsat'", "meaning": "thirty" },
+            { "cyrillic": "сорок (40)", "transliteration": "sorok", "meaning": "forty (irregular)" },
+            { "cyrillic": "пятьдесят (50)", "transliteration": "pyat'desyat", "meaning": "fifty" },
+            { "cyrillic": "шестьдесят (60) / семьдесят (70) / восемьдесят (80)", "transliteration": "shest'desyat / sem'desyat / vosem'desyat", "meaning": "sixty / seventy / eighty" },
+            { "cyrillic": "девяносто (90) / сто (100)", "transliteration": "devyanosto / sto", "meaning": "ninety (irregular) / one hundred" }
+          ]
+        },
+        {
+          "title": "Compound numbers and the counting zone rule",
+          "body": "Compound numbers (21, 35, 47...) just combine the ten + the unit: двадцать один, тридцать пять, сорок семь. The noun form is determined by the LAST digit: 21 → один (zone 1 → nominative), 22 → два (zone 2 → genitive singular), 25 → пять (zone 3 → genitive plural).",
+          "examples": [
+            { "cyrillic": "двадцать один год", "transliteration": "dvadtsat' odin god", "meaning": "21 years (last digit 1 → год, nominative)" },
+            { "cyrillic": "двадцать два года", "transliteration": "dvadtsat' dva goda", "meaning": "22 years (last digit 2 → года, genitive sg.)" },
+            { "cyrillic": "двадцать пять лет", "transliteration": "dvadtsat' pyat' let", "meaning": "25 years (last digit 5 → лет, genitive pl.)" },
+            { "cyrillic": "Мне тридцать один год.", "transliteration": "Mne tridtsat' odin god.", "meaning": "I am 31 years old." }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'twenty'?",
+          "type": "text-input",
+          "answer": "двадцать",
+          "explanation": "двадцать = twenty."
+        },
+        {
+          "prompt": "I am 25 years old: Мне двадцать пять ___.",
+          "type": "text-input",
+          "answer": "лет",
+          "explanation": "Last digit 5 → genitive plural → лет. Мне двадцать пять лет."
+        },
+        {
+          "prompt": "What is 40 in Russian?",
+          "type": "text-input",
+          "answer": "сорок",
+          "explanation": "сорок = forty. Irregular — must be memorised."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Exception: teens always take genitive plural",
+          "body": "11–19 always take the genitive plural form of the following noun — even though 11 ends in 'one'. This is the key exception to the counting zone rule. двенадцать лет (12 years), not двенадцать год.",
+          "examples": [
+            { "cyrillic": "Ему одиннадцать лет.", "transliteration": "Yemu odinnadtsat' let.", "meaning": "He is 11 years old. (лет, not год — teens always genitive plural)" },
+            { "cyrillic": "Ей пятнадцать лет.", "transliteration": "Yey pyatnadtsat' let.", "meaning": "She is 15 years old." }
+          ]
+        },
+        {
+          "title": "Prices and quantities",
+          "body": "The same counting zone rule applies to prices (рублей / рубля / рубль) and quantities. рубль (1), рубля (2-4), рублей (5+, teens).",
+          "examples": [
+            { "cyrillic": "Это стоит сто рублей.", "transliteration": "Eto stoit sto rubley.", "meaning": "This costs 100 roubles. (100 → рублей)" },
+            { "cyrillic": "Двадцать один рубль.", "transliteration": "Dvadtsat' odin rubl'.", "meaning": "21 roubles. (last digit 1 → рубль)" },
+            { "cyrillic": "Тридцать два рубля.", "transliteration": "Tridtsat' dva rublya.", "meaning": "32 roubles. (last digit 2 → рубля)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "What is 'fifty' in Russian?",
+          "type": "text-input",
+          "answer": "пятьдесят",
+          "explanation": "пятьдесят = fifty."
+        },
+        {
+          "prompt": "I am 31: Мне тридцать один ___.",
+          "type": "text-input",
+          "answer": "год",
+          "explanation": "Last digit 1 → год (nominative singular). Мне тридцать один год."
+        },
+        {
+          "prompt": "What is 'forty' in Russian?",
+          "type": "text-input",
+          "answer": "сорок",
+          "explanation": "сорок = forty. Irregular."
+        },
+        {
+          "prompt": "He is 14 years old: Ему четырнадцать ___.",
+          "type": "text-input",
+          "answer": "лет",
+          "explanation": "Teens always take генitive plural → лет."
+        },
+        {
+          "prompt": "What does рубль mean?",
+          "type": "text-input",
+          "answer": "rouble",
+          "explanation": "рубль (rubl') = rouble. Russian currency unit."
+        },
+        {
+          "prompt": "100 roubles: сто ___.",
+          "type": "text-input",
+          "answer": "рублей",
+          "explanation": "100 → рублей (genitive plural). сто рублей."
+        },
+        {
+          "prompt": "Do teens (11-19) follow the same zone rule as other numbers?",
+          "type": "multiple-choice",
+          "options": ["Yes — last digit determines the form", "No — teens always take genitive plural"],
+          "answer": "No — teens always take genitive plural",
+          "explanation": "Teens are the exception: all of 11-19 take genitive plural regardless of the final digit."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Teens (11–19): always take genitive plural — лет, рублей, etc. No exceptions.",
+        "Tens: двадцать, тридцать, сорок (irregular), пятьдесят...восемьдесят, девяносто (irregular), сто",
+        "Compound numbers: last digit determines the noun form (same counting zone rule as 1-10)",
+        "сорок (40) and девяносто (90) are irregular — memorise them separately"
+      ],
+      "vocabulary": ["одиннадцать", "двадцать", "тридцать", "пятьдесят", "сто", "рубль"],
+      "nextLesson": "Next: Unit 9 — Verb aspects. The perfective/imperfective distinction in full depth."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "What is 'twenty' in Russian?",
+        "type": "text-input",
+        "answer": "двадцать",
+        "grammarPoint": "vocabulary-numbers"
+      },
+      {
+        "prompt": "I am 25: Мне двадцать пять ___.",
+        "type": "text-input",
+        "answer": "лет",
+        "grammarPoint": "counting-zone-numbers"
+      },
+      {
+        "prompt": "What is 'forty' in Russian?",
+        "type": "multiple-choice",
+        "options": ["четырьдесят", "сорок", "четыредесят", "сорок два"],
+        "answer": "сорок",
+        "grammarPoint": "vocabulary-irregular"
+      },
+      {
+        "prompt": "He is 13: Ему тринадцать ___.",
+        "type": "text-input",
+        "answer": "лет",
+        "grammarPoint": "teens-genitive-plural"
+      },
+      {
+        "prompt": "100 roubles: сто ___.",
+        "type": "text-input",
+        "answer": "рублей",
+        "grammarPoint": "counting-zone-numbers"
+      },
+      {
+        "prompt": "I am 31: Мне тридцать один ___.",
+        "type": "text-input",
+        "answer": "год",
+        "grammarPoint": "counting-zone-compound"
+      },
+      {
+        "prompt": "What is 'ninety' in Russian?",
+        "type": "text-input",
+        "answer": "девяносто",
+        "grammarPoint": "vocabulary-irregular"
+      },
+      {
+        "prompt": "Do teens (11-19) follow the last-digit zone rule?",
+        "type": "multiple-choice",
+        "options": ["Yes", "No — teens always take genitive plural"],
+        "answer": "No — teens always take genitive plural",
+        "grammarPoint": "teens-exception"
+      }
+    ]
+  }
+}

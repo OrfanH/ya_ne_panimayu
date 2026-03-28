@@ -1,0 +1,268 @@
+{
+  "id": "9-2",
+  "unit": 9,
+  "lesson": 2,
+  "block": "everyday",
+  "title": "Aspect in the past tense",
+  "subtitle": "Choosing the right aspect for past events",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "купить / покупать",
+      "transliteration": "kupit' / pokupat'",
+      "gender": null,
+      "meaning": "to buy (pf.) / to buy (impf., repeatedly)",
+      "exampleCyrillic": "Я купил хлеб. / Я покупаю хлеб каждый день.",
+      "exampleTransliteration": "Ya kupil khleb. / Ya pokupayu khleb kazhdiy den'.",
+      "exampleMeaning": "I bought bread (done). / I buy bread every day."
+    },
+    {
+      "cyrillic": "приходить / прийти",
+      "transliteration": "prikhodit' / priyti",
+      "gender": null,
+      "meaning": "to come, arrive (impf.) / to come, arrive (pf., one time)",
+      "exampleCyrillic": "Он приходил каждый день. / Он пришёл в пять часов.",
+      "exampleTransliteration": "On prikhodil kazhdiy den'. / On prishyol v pyat' chasov.",
+      "exampleMeaning": "He used to come every day. / He came (arrived) at five o'clock."
+    },
+    {
+      "cyrillic": "потом",
+      "transliteration": "potom",
+      "gender": null,
+      "meaning": "then / afterwards",
+      "exampleCyrillic": "Сначала я поел, потом лёг спать.",
+      "exampleTransliteration": "Snachala ya poel, potom lyog spat'.",
+      "exampleMeaning": "First I ate, then I went to bed."
+    },
+    {
+      "cyrillic": "сначала",
+      "transliteration": "snachala",
+      "gender": null,
+      "meaning": "first / at first",
+      "exampleCyrillic": "Сначала я читал, потом писал.",
+      "exampleTransliteration": "Snachala ya chital, potom pisal.",
+      "exampleMeaning": "First I was reading, then I was writing."
+    },
+    {
+      "cyrillic": "наконец",
+      "transliteration": "nakonets",
+      "gender": null,
+      "meaning": "finally / at last",
+      "exampleCyrillic": "Наконец он сделал это.",
+      "exampleTransliteration": "Nakonets on sdelal eto.",
+      "exampleMeaning": "He finally did it."
+    },
+    {
+      "cyrillic": "долго",
+      "transliteration": "dolgo",
+      "gender": null,
+      "meaning": "for a long time",
+      "exampleCyrillic": "Я долго ждал.",
+      "exampleTransliteration": "Ya dolgo zhdal.",
+      "exampleMeaning": "I waited for a long time."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "Past tense is where aspect choice is most noticeable. The difference between 'I was reading' and 'I read it' — or 'he came every day' and 'he arrived at five' — is aspect. Both use past tense forms; the aspect determines the meaning. This lesson gives you the full picture."
+    },
+    "why": {
+      "text": "The Russian past tense is simpler than the present: verbs agree in gender and number, not person. But you still choose aspect. The choice depends on what you want to communicate: the ongoing activity (imperfective) or the completed result (perfective). Certain contexts demand one or the other — not a stylistic preference, but a grammatical requirement."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Past tense forms — gender agreement",
+          "body": "Russian past tense agrees with the subject in gender and number, not person. Remove the infinitive ending (-ть or -ти) and add: -л (masculine), -ла (feminine), -ло (neuter), -ли (plural). This applies to both aspects.",
+          "examples": [
+            { "cyrillic": "читал / читала / читали (НСВ)", "transliteration": "chital / chitala / chitali", "meaning": "was reading (m / f / pl) — imperfective" },
+            { "cyrillic": "прочитал / прочитала / прочитали (СВ)", "transliteration": "prochital / prochitala / prochitali", "meaning": "read and finished (m / f / pl) — perfective" },
+            { "cyrillic": "сделал / сделала / сделали", "transliteration": "sdelal / sdelala / sdelali", "meaning": "did and finished (m / f / pl)" }
+          ]
+        },
+        {
+          "title": "When to use imperfective past",
+          "body": "Use imperfective past when: (1) describing an ongoing activity at a point in time, (2) describing a habitual/repeated past action, (3) describing background activity while something else happened, (4) emphasising the process, not the result.",
+          "examples": [
+            { "cyrillic": "Вчера я читал весь день. (НСВ)", "transliteration": "Vchera ya chital ves' den'.", "meaning": "Yesterday I was reading all day. (ongoing, all day)" },
+            { "cyrillic": "Раньше он приходил каждый день. (НСВ)", "transliteration": "Ran'she on prikhodil kazhdiy den'.", "meaning": "He used to come every day. (habitual past)" },
+            { "cyrillic": "Я долго ждал. (НСВ)", "transliteration": "Ya dolgo zhdal.", "meaning": "I waited for a long time. (process, duration)" }
+          ]
+        },
+        {
+          "title": "When to use perfective past",
+          "body": "Use perfective past when: (1) describing a single completed event, (2) describing a sequence of events (each event completed before the next), (3) expressing a result that is relevant now, (4) with уже (already) and наконец (finally).",
+          "examples": [
+            { "cyrillic": "Он пришёл в пять. (СВ)", "transliteration": "On prishyol v pyat'.", "meaning": "He arrived at five. (single, completed event)" },
+            { "cyrillic": "Я купил хлеб и пошёл домой. (СВ + СВ)", "transliteration": "Ya kupil khleb i poshyol domoy.", "meaning": "I bought bread and went home. (sequence: done, then done)" },
+            { "cyrillic": "Наконец он написал письмо. (СВ)", "transliteration": "Nakonets on napisal pis'mo.", "meaning": "He finally wrote the letter. (completed result)" }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "Yesterday he was reading all day: Вчера он ___ весь день.",
+          "type": "multiple-choice",
+          "options": ["читал", "прочитал"],
+          "answer": "читал",
+          "explanation": "All day = duration of process → imperfective past. читал."
+        },
+        {
+          "prompt": "She finally finished writing the letter: Наконец она ___ письмо.",
+          "type": "multiple-choice",
+          "options": ["писала", "написала"],
+          "answer": "написала",
+          "explanation": "наконец + completed result → perfective. написала (feminine past of написать)."
+        },
+        {
+          "prompt": "What does наконец mean?",
+          "type": "text-input",
+          "answer": "finally",
+          "explanation": "наконец (nakonets) = finally / at last. Triggers perfective aspect."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Sequences of events — perfective",
+          "body": "When telling a story with a sequence of events that each happened one after the other, use perfective for each step. This is the 'narrative past' — a series of completed actions moving the story forward. Imperfective would describe background or process, not progression.",
+          "examples": [
+            { "cyrillic": "Я встал, оделся и пошёл на работу.", "transliteration": "Ya vstal, odelsa i poshyol na rabotu.", "meaning": "I got up, got dressed, and went to work. (three completed steps, sequence)" },
+            { "cyrillic": "Она купила билет и вошла в автобус.", "transliteration": "Ona kupila bilet i voshla v avtobus.", "meaning": "She bought a ticket and got on the bus. (sequence of two completed actions)" }
+          ]
+        },
+        {
+          "title": "The 'annulled action' — imperfective",
+          "body": "Imperfective past can describe an action that happened but whose result no longer holds — sometimes called the 'annulled action'. Он открывал окно (he opened the window [but it's now closed again]). Perfective он открыл окно implies the result still stands.",
+          "examples": [
+            { "cyrillic": "Я брал книгу. (НСВ)", "transliteration": "Ya bral knigu.", "meaning": "I took the book. (but gave it back)" },
+            { "cyrillic": "Я взял книгу. (СВ)", "transliteration": "Ya vzyal knigu.", "meaning": "I took the book. (I have it now)" }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "I bought bread (one time, done): Я ___ хлеб.",
+          "type": "multiple-choice",
+          "options": ["покупал", "купил"],
+          "answer": "купил",
+          "explanation": "One completed purchase → perfective. купил."
+        },
+        {
+          "prompt": "What does долго mean?",
+          "type": "text-input",
+          "answer": "for a long time",
+          "explanation": "долго (dolgo) = for a long time. Triggers imperfective (duration of process)."
+        },
+        {
+          "prompt": "He used to come every day: Раньше он ___ каждый день.",
+          "type": "multiple-choice",
+          "options": ["приходил", "пришёл"],
+          "answer": "приходил",
+          "explanation": "Habitual past (каждый день / раньше) → imperfective. приходил."
+        },
+        {
+          "prompt": "What does сначала mean?",
+          "type": "text-input",
+          "answer": "first / at first",
+          "explanation": "сначала (snachala) = first / at first."
+        },
+        {
+          "prompt": "She finally arrived: Наконец она ___.",
+          "type": "multiple-choice",
+          "options": ["приходила", "пришла"],
+          "answer": "пришла",
+          "explanation": "наконец + single completed event → perfective. пришла (feminine past of прийти)."
+        },
+        {
+          "prompt": "I got up, got dressed, went to work — each verb is ___.",
+          "type": "multiple-choice",
+          "options": ["imperfective", "perfective"],
+          "answer": "perfective",
+          "explanation": "Narrative sequence of completed events → each verb is perfective."
+        },
+        {
+          "prompt": "I was waiting for a long time: Я долго ___.",
+          "type": "multiple-choice",
+          "options": ["ждал", "подождал"],
+          "answer": "ждал",
+          "explanation": "долго (for a long time, duration of process) → imperfective. ждал."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Past tense agrees in gender/number: -л (m), -ла (f), -ло (n), -ли (pl)",
+        "Imperfective past: process, duration, habit, background — 'was doing', 'used to do'",
+        "Perfective past: single completed event, sequence, result — 'did and finished'",
+        "Sequence of events (narrative): each step = perfective",
+        "Context clues: долго/всегда/раньше → imperfective; уже/наконец/вдруг → perfective"
+      ],
+      "vocabulary": ["купить / покупать", "приходить / прийти", "потом", "сначала", "наконец", "долго"],
+      "nextLesson": "Next: aspect in the future tense — and choosing aspect for commands (imperative)."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "Yesterday she was reading all day: Вчера она ___ весь день.",
+        "type": "multiple-choice",
+        "options": ["читала", "прочитала"],
+        "answer": "читала",
+        "grammarPoint": "aspect-imperfective-past-duration"
+      },
+      {
+        "prompt": "He finally arrived: Наконец он ___.",
+        "type": "multiple-choice",
+        "options": ["приходил", "пришёл"],
+        "answer": "пришёл",
+        "grammarPoint": "aspect-perfective-nakonets"
+      },
+      {
+        "prompt": "Past tense agreement: a female speaker saying 'I read (finished)' uses:",
+        "type": "multiple-choice",
+        "options": ["прочитал", "прочитала"],
+        "answer": "прочитала",
+        "grammarPoint": "past-tense-gender-agreement"
+      },
+      {
+        "prompt": "What does долго mean?",
+        "type": "text-input",
+        "answer": "for a long time",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "I bought bread and went home — both verbs are:",
+        "type": "multiple-choice",
+        "options": ["imperfective", "perfective"],
+        "answer": "perfective",
+        "grammarPoint": "aspect-narrative-sequence"
+      },
+      {
+        "prompt": "He used to come every day: Он ___ каждый день.",
+        "type": "multiple-choice",
+        "options": ["приходил", "пришёл"],
+        "answer": "приходил",
+        "grammarPoint": "aspect-habitual-past"
+      },
+      {
+        "prompt": "What does потом mean?",
+        "type": "text-input",
+        "answer": "then / afterwards",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "I waited for a long time: Я долго ___.",
+        "type": "multiple-choice",
+        "options": ["ждал", "подождал"],
+        "answer": "ждал",
+        "grammarPoint": "aspect-imperfective-dolgo"
+      }
+    ]
+  }
+}

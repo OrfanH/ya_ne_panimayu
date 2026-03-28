@@ -1,0 +1,262 @@
+{
+  "id": "7-2",
+  "unit": 7,
+  "lesson": 2,
+  "block": "everyday",
+  "title": "Describing people",
+  "subtitle": "Appearance, character, and nationality",
+  "estimatedMinutes": 20,
+  "vocabulary": [
+    {
+      "cyrillic": "высокий",
+      "transliteration": "visokiy",
+      "gender": "masculine",
+      "meaning": "tall (masculine)",
+      "exampleCyrillic": "Он очень высокий.",
+      "exampleTransliteration": "On ochen' visokiy.",
+      "exampleMeaning": "He is very tall."
+    },
+    {
+      "cyrillic": "умный",
+      "transliteration": "umniy",
+      "gender": "masculine",
+      "meaning": "clever / smart (masculine)",
+      "exampleCyrillic": "Умный студент.",
+      "exampleTransliteration": "Umniy student.",
+      "exampleMeaning": "A smart student."
+    },
+    {
+      "cyrillic": "добрый",
+      "transliteration": "dobriy",
+      "gender": "masculine",
+      "meaning": "kind / good-natured (masculine)",
+      "exampleCyrillic": "Добрый человек.",
+      "exampleTransliteration": "Dobriy chelovek.",
+      "exampleMeaning": "A kind person."
+    },
+    {
+      "cyrillic": "весёлый",
+      "transliteration": "vesyoliy",
+      "gender": "masculine",
+      "meaning": "cheerful / fun (masculine)",
+      "exampleCyrillic": "Весёлая компания.",
+      "exampleTransliteration": "Vesyolaya kompaniya.",
+      "exampleMeaning": "A fun group."
+    },
+    {
+      "cyrillic": "серьёзный",
+      "transliteration": "seryozniy",
+      "gender": "masculine",
+      "meaning": "serious (masculine)",
+      "exampleCyrillic": "Серьёзный разговор.",
+      "exampleTransliteration": "Seryozniy razgovor.",
+      "exampleMeaning": "A serious conversation."
+    },
+    {
+      "cyrillic": "очень",
+      "transliteration": "ochen'",
+      "gender": null,
+      "meaning": "very",
+      "exampleCyrillic": "Он очень умный.",
+      "exampleTransliteration": "On ochen' umniy.",
+      "exampleMeaning": "He is very clever."
+    }
+  ],
+  "phases": {
+    "hook": {
+      "text": "You can introduce yourself and your family. Now: how do you describe what people are like? Today's lesson gives you the adjectives for appearance and character, and consolidates how these adjectives agree with the person you're describing."
+    },
+    "why": {
+      "text": "Descriptive adjectives are a direct grammar drill in disguise. Every time you say 'she is tall' (она высокая), 'he is kind' (он добрый), or 'they are cheerful' (они весёлые), you're practising adjective agreement across all three genders. Vocabulary acquisition and grammar practice in one."
+    },
+    "explain": {
+      "cards": [
+        {
+          "title": "Appearance vocabulary",
+          "body": "Physical description adjectives. Remember: the dictionary form is masculine. Add the appropriate ending when describing feminine or neuter subjects.",
+          "examples": [
+            { "cyrillic": "высокий / высокая / высокое", "transliteration": "visokiy / visokaya / visokoye", "meaning": "tall (m/f/n)" },
+            { "cyrillic": "низкий / низкая / низкое", "transliteration": "nizkiy / nizkaya / nizkoye", "meaning": "short (m/f/n)" },
+            { "cyrillic": "красивый / красивая", "transliteration": "krasiviy / krasivaya", "meaning": "beautiful / handsome (m/f)" },
+            { "cyrillic": "молодой / молодая / молодое", "transliteration": "molodoy / molodaya / molodoye", "meaning": "young (m/f/n)" },
+            { "cyrillic": "старый / старая / старое", "transliteration": "stariy / staraya / staroye", "meaning": "old (m/f/n)" }
+          ]
+        },
+        {
+          "title": "Character vocabulary",
+          "body": "Character adjectives are extremely common in self-descriptions and introductions. Learn the masculine form and apply the gender rule.",
+          "examples": [
+            { "cyrillic": "умный / умная", "transliteration": "umniy / umnaya", "meaning": "clever/smart" },
+            { "cyrillic": "добрый / добрая", "transliteration": "dobriy / dobraya", "meaning": "kind/good-natured" },
+            { "cyrillic": "весёлый / весёлая", "transliteration": "vesyoliy / vesyolaya", "meaning": "cheerful/fun" },
+            { "cyrillic": "серьёзный / серьёзная", "transliteration": "seryozniy / seryoznaya", "meaning": "serious" },
+            { "cyrillic": "честный / честная", "transliteration": "chestniy / chestnaya", "meaning": "honest" }
+          ]
+        },
+        {
+          "title": "Short-form adjectives",
+          "body": "Russian has two forms of most adjectives: the full form (новый) used before a noun, and the short form (нов) used as a predicate (after the subject). In practice at A1, you'll mostly hear full forms. But some short forms are more common than their full equivalents: рад/рада (pleased), здоров/здорова (healthy), готов/готова (ready).",
+          "examples": [
+            { "cyrillic": "Он рад. / Она рада.", "transliteration": "On rad. / Ona rada.", "meaning": "He is pleased. / She is pleased." },
+            { "cyrillic": "Я готов. / Я готова.", "transliteration": "Ya gotov. / Ya gotova.", "meaning": "I'm ready. (male/female speaker)" },
+            { "cyrillic": "Он здоров. / Она здорова.", "transliteration": "On zdorov. / Ona zdorova.", "meaning": "He is healthy. / She is healthy." }
+          ]
+        }
+      ]
+    },
+    "midCheck": {
+      "questions": [
+        {
+          "prompt": "How do you say 'she is very tall'?",
+          "type": "text-input",
+          "answer": "Она очень высокая.",
+          "explanation": "она (feminine) → высокая (feminine adjective). Она очень высокая."
+        },
+        {
+          "prompt": "How do you say 'he is kind'?",
+          "type": "text-input",
+          "answer": "Он добрый.",
+          "explanation": "он (masculine) → добрый (masculine adjective). Он добрый."
+        },
+        {
+          "prompt": "I'm ready. (you are female) What do you say?",
+          "type": "text-input",
+          "answer": "Я готова.",
+          "explanation": "Short-form adjective: female speaker uses готова. Male speaker uses готов."
+        }
+      ]
+    },
+    "deepen": {
+      "cards": [
+        {
+          "title": "Using не to describe what someone is NOT",
+          "body": "You already know не as negation. For adjectives: put не before the adjective. не is usually unstressed. Note: for short predicative forms, не + adjective is common.",
+          "examples": [
+            { "cyrillic": "Он не высокий.", "transliteration": "On ne visokiy.", "meaning": "He is not tall." },
+            { "cyrillic": "Она не серьёзная.", "transliteration": "Ona ne seryoznaya.", "meaning": "She is not serious." },
+            { "cyrillic": "Я не готов.", "transliteration": "Ya ne gotov.", "meaning": "I'm not ready. (male)" }
+          ]
+        },
+        {
+          "title": "Nationality adjectives",
+          "body": "Nationality adjectives work like regular adjectives and agree in gender. They are written in lowercase in Russian (unlike English). русский/русская (Russian), английский/английская (English), немецкий/немецкая (German).",
+          "examples": [
+            { "cyrillic": "Он русский. / Она русская.", "transliteration": "On russkiy. / Ona russkaya.", "meaning": "He is Russian. / She is Russian." },
+            { "cyrillic": "Он английский студент.", "transliteration": "On angliyskiy student.", "meaning": "He is an English student." }
+          ]
+        }
+      ]
+    },
+    "drill": {
+      "questions": [
+        {
+          "prompt": "She is clever: Она ___.",
+          "type": "text-input",
+          "answer": "умная",
+          "explanation": "умный (m) → умная (f). Она умная."
+        },
+        {
+          "prompt": "He is cheerful: Он ___.",
+          "type": "text-input",
+          "answer": "весёлый",
+          "explanation": "весёлый is already masculine. Он весёлый."
+        },
+        {
+          "prompt": "What does очень mean?",
+          "type": "text-input",
+          "answer": "very",
+          "explanation": "очень (ochen') = very. Never changes form."
+        },
+        {
+          "prompt": "She is ready (female): Я ___.",
+          "type": "text-input",
+          "answer": "готова",
+          "explanation": "Short-form adjective: female speaker = готова."
+        },
+        {
+          "prompt": "He is not tall: Он ___ высокий.",
+          "type": "text-input",
+          "answer": "не",
+          "explanation": "не before the adjective = negation. Он не высокий."
+        },
+        {
+          "prompt": "What does серьёзный mean?",
+          "type": "text-input",
+          "answer": "serious",
+          "explanation": "серьёзный (seryozniy) = serious."
+        },
+        {
+          "prompt": "She is Russian: Она ___.",
+          "type": "text-input",
+          "answer": "русская",
+          "explanation": "русский (m) → русская (f). Она русская."
+        }
+      ]
+    },
+    "summary": {
+      "rules": [
+        "Adjectives agree with the subject in gender: он добрый / она добрая / оно доброе",
+        "очень (very) is invariable — place before the adjective",
+        "Short-form predicative adjectives: рад/рада, готов/готова, здоров/здорова (agree in gender only)",
+        "Nationality adjectives: lowercase in Russian, agree like regular adjectives",
+        "Negation: не before the adjective"
+      ],
+      "vocabulary": ["высокий", "умный", "добрый", "весёлый", "серьёзный", "очень"],
+      "nextLesson": "Next: talking about yourself and others — combining vocabulary and structures from Units 7-1 and 7-2."
+    }
+  },
+  "test": {
+    "questions": [
+      {
+        "prompt": "She is very clever: Она очень ___.",
+        "type": "text-input",
+        "answer": "умная",
+        "grammarPoint": "adjective-agreement-feminine"
+      },
+      {
+        "prompt": "What does добрый mean?",
+        "type": "multiple-choice",
+        "options": ["tall", "clever", "kind", "serious"],
+        "answer": "kind",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "He is not serious: Он не ___.",
+        "type": "text-input",
+        "answer": "серьёзный",
+        "grammarPoint": "adjective-negation"
+      },
+      {
+        "prompt": "I am ready (female speaker):",
+        "type": "text-input",
+        "answer": "Я готова.",
+        "grammarPoint": "short-form-adjective"
+      },
+      {
+        "prompt": "She is Russian: Она ___.",
+        "type": "text-input",
+        "answer": "русская",
+        "grammarPoint": "nationality-adjective"
+      },
+      {
+        "prompt": "What does весёлый mean?",
+        "type": "text-input",
+        "answer": "cheerful",
+        "grammarPoint": "vocabulary"
+      },
+      {
+        "prompt": "He is very tall: Он очень ___.",
+        "type": "text-input",
+        "answer": "высокий",
+        "grammarPoint": "adjective-agreement-masculine"
+      },
+      {
+        "prompt": "очень (very) changes form for gender.",
+        "type": "multiple-choice",
+        "options": ["True", "False — it is invariable"],
+        "answer": "False — it is invariable",
+        "grammarPoint": "adverb-invariable"
+      }
+    ]
+  }
+}
