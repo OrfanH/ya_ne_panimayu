@@ -9,7 +9,7 @@
 ### TASK-005
 **title:** Mobile input — virtual joystick on touch, hidden on desktop
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-004]
 **assigned_agents:** [designer, coder, reviewer, git]
 **reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, app/game/entities/Player.js]

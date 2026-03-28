@@ -8,16 +8,31 @@ const PLAYER_GOLD_DARK   = 0x7A6000;
 
 class Player {
   constructor(scene, x, y, tileSize) {
-    this._scene     = scene;
-    this._direction = 'down';
-    this._alphaTime = 0;
-    this._moving    = false;
+    this._scene       = scene;
+    this._direction   = 'down';
+    this._alphaTime   = 0;
+    this._moving      = false;
+    this._joystickDx  = 0;
+    this._joystickDy  = 0;
 
     this._createDirectionalTextures(scene, tileSize);
 
     this._sprite = scene.physics.add.image(x, y, 'player-down');
     this._sprite.setCollideWorldBounds(true);
     this._sprite.setDisplaySize(tileSize - 4, tileSize - 4);
+
+    // Joystick event listeners
+    this._onJoystickMove = (e) => {
+      this._joystickDx = e.detail.dx;
+      this._joystickDy = e.detail.dy;
+    };
+    this._onJoystickStop = () => {
+      this._joystickDx = 0;
+      this._joystickDy = 0;
+    };
+
+    window.addEventListener('joystick:move', this._onJoystickMove);
+    window.addEventListener('joystick:stop', this._onJoystickStop);
   }
 
   // ---------------------------------------------------------------
@@ -42,16 +57,27 @@ class Player {
     let vx = 0;
     let vy = 0;
 
-    if (cursors.left.isDown  || wasd.left.isDown)  { vx = -speed; }
-    if (cursors.right.isDown || wasd.right.isDown)  { vx =  speed; }
-    if (cursors.up.isDown    || wasd.up.isDown)     { vy = -speed; }
-    if (cursors.down.isDown  || wasd.down.isDown)   { vy =  speed; }
+    const joystickActive = this._joystickDx !== 0 || this._joystickDy !== 0;
 
-    // Normalise diagonal movement
-    if (vx !== 0 && vy !== 0) {
-      const factor = 1 / Math.SQRT2;
-      vx *= factor;
-      vy *= factor;
+    if (joystickActive) {
+      // Dominant axis snapping: horizontal if |dx| > |dy|, else vertical
+      if (Math.abs(this._joystickDx) > Math.abs(this._joystickDy)) {
+        vx = this._joystickDx * speed;
+      } else {
+        vy = this._joystickDy * speed;
+      }
+    } else {
+      if (cursors.left.isDown  || wasd.left.isDown)  { vx = -speed; }
+      if (cursors.right.isDown || wasd.right.isDown)  { vx =  speed; }
+      if (cursors.up.isDown    || wasd.up.isDown)     { vy = -speed; }
+      if (cursors.down.isDown  || wasd.down.isDown)   { vy =  speed; }
+
+      // Normalise diagonal movement
+      if (vx !== 0 && vy !== 0) {
+        const factor = 1 / Math.SQRT2;
+        vx *= factor;
+        vy *= factor;
+      }
     }
 
     this._sprite.body.setVelocity(vx, vy);
