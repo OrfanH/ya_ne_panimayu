@@ -76,4 +76,5 @@ const EVENTS = {
   NPC_INTERACT: 'npc:interact',
   VOCABULARY_NEW: 'vocabulary:new',
   ZONE_ENTER:     'zone:enter',
+  MISTAKE_LOG:    'mistake:log',
 };

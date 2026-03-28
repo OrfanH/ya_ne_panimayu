@@ -6,35 +6,10 @@
 
 ## Backlog
 
-### TASK-008
-**title:** AI dialogue — Gemini via api/tutor.js, NPC persona, Flash-Lite fallback on 429
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-007, TASK-002]
-**assigned_agents:** [architect, coder, reviewer, tester, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, api/tutor.js, STORY.md, app/ui/dialogue.js]
-**writes:** [api/tutor.js, app/tutor.js]
-**done_when:** DialogueBox requests AI response via api/tutor.js with NPC persona in system prompt. Flash-Lite fires on 429. Response renders correctly.
-**notes:** api/tutor.js is already implemented — read it first, only modify if architect spec identifies a specific gap. NPC persona is constructed client-side in app/tutor.js (by design — see CLAUDE-STACK.md). Grep STORY.md for the specific NPC — do not load full file.
-
----
-
-### TASK-009
-**title:** HUD — location name, active mission indicator, J key opens journal
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-004]
-**assigned_agents:** [designer, coder, reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-VISION.md, app/tokens.css]
-**writes:** [app/ui/hud.js, app/style.css]
-**done_when:** HUD shows location name top-left, active mission top-right, J opens journal. All values via tokens.css. Location name updates via custom event.
-
----
-
 ### TASK-010
 **title:** Journal UI — notebook style, vocabulary tab, mission log tab, closes cleanly
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-009]
 **assigned_agents:** [designer, coder, reviewer, ux-reviewer, git]
 **reads:** [CLAUDE-RULES.md, CLAUDE-VISION.md, app/tokens.css, app/ui/hud.js]
@@ -47,25 +22,12 @@
 ### TASK-011
 **title:** Mistake logging — silent capture, stored to KV, retrievable for missions
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-008]
 **assigned_agents:** [architect, coder, reviewer, git]
 **reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, app/tutor.js, app/storage.js]
 **writes:** [app/game/systems/MistakeLogger.js, app/storage.js]
 **done_when:** Wrong response stores (word, context, correct answer) silently to KV. Retrievable as list. No player feedback at mistake time.
-
----
-
-### TASK-012
-**title:** Audio system — Tone.js, AudioManager, per-location music, mute toggle
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-003, TASK-002]
-**assigned_agents:** [composer, coder, reviewer, tester, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-VISION.md, STORY.md, app/game/scenes/WorldScene.js]
-**writes:** [app/game/systems/AudioManager.js, .claude/music-spec.md]
-**done_when:** Tone.js loads with no errors, AudioManager starts ambient music on scene load, crossfades between locations, pauses on dialogue open, resumes on dialogue close, mute toggle works. No audio files — synthesis only.
-**notes:** composer writes .claude/music-spec.md first. coder implements from spec only. Grep STORY.md for location mood notes only.
 
 ---
 
@@ -79,19 +41,6 @@
 **writes:** [.claude/handoffs/ux-report.md]
 **done_when:** New player enters apartment, meets NPC, completes full AI conversation in Russian, vocabulary logs to journal, ambient music plays throughout, no dead ends. ux-reviewer approves.
 **notes:** Sign-off task only. No new code written here.
-
----
-
-### TASK-014
-**title:** NPC dialogue — apartment, full content from STORY.md
-**track:** CONTENT
-**status:** BACKLOG
-**depends_on:** [TASK-002, TASK-007]
-**assigned_agents:** [curriculum-designer, content-writer, dialogue-writer, linguist, ux-reviewer, git]
-**reads:** [CLAUDE-VISION.md, STORY.md, WORLD.md, .claude/curriculum-map.md]
-**writes:** [app/game/content/apartment-dialogue.js, .claude/handoffs/content-spec.md]
-**done_when:** Apartment NPC has scripted opening beats, 8+ distinct visit variations, curriculum vocabulary appears naturally, linguist approved, ux-reviewer confirms it feels like a real conversation.
-**notes:** Grep STORY.md and WORLD.md for apartment section only.
 
 ---
 
@@ -205,6 +154,10 @@
 - TASK-005 | DONE | 2026-03-28 | Mobile input — virtual joystick on touch, hidden on desktop | d6c3ac2
 - TASK-006 | DONE | 2026-03-28 | NPC system — NPC class, apartment scene, E key dialogue-start | 29573ea
 - TASK-007 | DONE | 2026-03-28 | Dialogue UI — visual novel box, portrait, Russian + translation, choices | b6e2d8a
+- TASK-008 | DONE | 2026-03-28 | AI dialogue — TutorAI, Gemini, Flash-Lite fallback | 34bfe2a
+- TASK-009 | DONE | 2026-03-28 | HUD — location name, mission indicator, journal hint | 5657146
+- TASK-012 | DONE | 2026-03-28 | Audio — Tone.js, 6 location soundscapes, mute toggle | 9b1176c
+- TASK-014 | DONE | 2026-03-28 | NPC dialogue — Galina Ivanovna, 10 variations, A1 Russian | bf2cea1
 
 ## Session log
 
@@ -217,3 +170,7 @@
 - 2026-03-28 · TASK-005 Virtual joystick — touch overlay, custom events, Player.js integration via designer + coder · d6c3ac2
 - 2026-03-28 · TASK-006 NPC system — NPC class, ApartmentScene, E key interaction via architect + coder · 29573ea
 - 2026-03-28 · TASK-007 Dialogue UI — visual novel box, slide-in animation, translation toggle via architect + designer + coder · b6e2d8a
+- 2026-03-28 · TASK-008 AI dialogue — TutorAI client, NPC persona, Gemini Flash + Flash-Lite fallback · 34bfe2a
+- 2026-03-28 · TASK-009 HUD — location name, mission indicator, J key journal hint · 5657146
+- 2026-03-28 · TASK-012 Audio — Tone.js AudioManager, 6 location soundscapes, mute toggle, dialogue ducking · 9b1176c
+- 2026-03-28 · TASK-014 NPC dialogue — Galina Ivanovna apartment content, 10 variations, A1 curriculum vocab · bf2cea1
