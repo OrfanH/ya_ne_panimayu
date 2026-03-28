@@ -52,6 +52,7 @@ const DEFAULT_PROGRESS = {
   testScores: {},
   npcRelationships: {},
   lastSession: null,
+  hasSeenIntro: false,
   playerPosition: {
     scene: 'Town',
     x: 400,
@@ -81,4 +82,5 @@ const EVENTS = {
   TEST_END:       'test:end',
   TEST_RESULT:    'test:result',
   TEST_DISMISS:   'test:dismiss',
+  INTRO_DONE:     'intro:done',
 };
