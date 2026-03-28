@@ -117,6 +117,42 @@ async function logError(grammarPoint, attemptedAnswer) {
   return errors;
 }
 
+/* --- Mistakes --- */
+
+async function getMistakes() {
+  const data = await kvGet(STORAGE_KEYS.MISTAKES);
+  return data || { entries: [] };
+}
+
+async function logMistake(word, context, correctAnswer, npcId, location) {
+  const mistakes = await getMistakes();
+  const now = new Date().toISOString();
+  const existing = mistakes.entries.find(
+    (e) => e.word === word && e.context === context
+  );
+
+  if (existing) {
+    existing.count += 1;
+    existing.lastSeen = now;
+  } else {
+    mistakes.entries.push({
+      word,
+      context,
+      correctAnswer,
+      npcId,
+      location,
+      count: 1,
+      lastSeen: now,
+    });
+  }
+  await kvSet(STORAGE_KEYS.MISTAKES, mistakes);
+}
+
+async function getMistakeList() {
+  const mistakes = await getMistakes();
+  return [...mistakes.entries].sort((a, b) => b.count - a.count);
+}
+
 /* --- Notes / Bookmarks --- */
 
 async function getNotes() {

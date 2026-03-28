@@ -11,7 +11,7 @@ const BUILDING_ZONES = [
   { id: 'apartment', name: 'Apartment Building', col: 5,  row: 3,  cols: 6, rows: 5, chapter: 1, locked: false,
     roofColor: 0xD95F3B, wallColor: 0xE8C99A, doorColor: 0x7B5533 },
   { id: 'park',      name: 'Park',               col: 14, row: 2,  cols: 5, rows: 4, chapter: 2, locked: true,
-    roofColor: 0x4E9E55, wallColor: 0xB5D98A, doorColor: null },
+    roofColor: 0x4E9E55, wallColor: 0xB5D98A, doorColor: 0x4E9E55 },
   { id: 'cafe',      name: 'Café',               col: 22, row: 8,  cols: 5, rows: 4, chapter: 3, locked: true,
     roofColor: 0xC97C3A, wallColor: 0xF0DDB8, doorColor: 0x7B5533 },
   { id: 'market',    name: 'Market',             col: 4,  row: 14, cols: 6, rows: 5, chapter: 4, locked: true,
@@ -116,18 +116,33 @@ class WorldScene extends Phaser.Scene {
     });
 
     // -------------------------------------------------------
-    // 10. Building zone interaction tracking
+    // 10. Unlock locations based on progress
+    // -------------------------------------------------------
+    this._checkUnlocks();
+
+    // -------------------------------------------------------
+    // 11. Building zone interaction tracking
     // -------------------------------------------------------
     this._currentZoneId      = null;
     this._lastZoneEnterEmit  = null;
     this._proximityOutlines  = this._createProximityOutlines(T);
 
     // -------------------------------------------------------
-    // 11. Scene transitions via ZONE_ENTER
+    // 12. Scene transitions via ZONE_ENTER
     // -------------------------------------------------------
     this.game.events.on(EVENTS.ZONE_ENTER, ({ id }) => {
       if (id === 'apartment') {
         this.scene.start('Apartment');
+      } else if (id === 'park') {
+        this.scene.start('Park');
+      } else if (id === 'cafe') {
+        this.scene.start('Cafe');
+      } else if (id === 'market') {
+        this.scene.start('Market');
+      } else if (id === 'station') {
+        this.scene.start('Station');
+      } else if (id === 'police') {
+        this.scene.start('Police');
       }
     });
   }
@@ -135,6 +150,26 @@ class WorldScene extends Phaser.Scene {
   update() {
     this._player.update(this._cursors, this._wasd);
     this._checkZoneProximity();
+  }
+
+  // ---------------------------------------------------------------
+  // Private — unlock check based on progress
+  // ---------------------------------------------------------------
+  _checkUnlocks() {
+    // Park unlocks after player has visited apartment (chapter >= 2 or park in unlockedLocations)
+    getProgress().then((progress) => {
+      const unlocked = progress.unlockedLocations || [];
+      for (const zone of BUILDING_ZONES) {
+        if (zone.locked && unlocked.includes(zone.id)) {
+          zone.locked = false;
+        }
+      }
+      // Always unlock park after first apartment visit
+      if (unlocked.includes('apartment') || progress.chapter >= 2) {
+        const park = BUILDING_ZONES.find((z) => z.id === 'park');
+        if (park) { park.locked = false; }
+      }
+    });
   }
 
   // ---------------------------------------------------------------

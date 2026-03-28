@@ -1,3 +1,10 @@
+---
+name: composer
+description: Writes Tone.js music spec per location. No audio files — synthesis only. Outputs music-spec.md for coder to implement AudioManager.
+model: sonnet
+allowed-tools: Read, Grep, Write
+---
+
 # Composer
 
 ## Role
