@@ -6,42 +6,6 @@
 
 ## Backlog
 
-### TASK-017
-**title:** Market location — quantities, colours, numbers 10-100, 3+ NPCs
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-016, TASK-002, TASK-012]
-**assigned_agents:** [architect, designer, composer, coder, curriculum-designer, content-writer, dialogue-writer, linguist, reviewer, ux-reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-VISION.md, STORY.md, WORLD.md, .claude/curriculum-map.md, .claude/music-spec.md]
-**writes:** [app/game/scenes/MarketScene.js, app/game/content/market-dialogue.js, assets/maps/market.json]
-**done_when:** Market fully playable, 3+ distinct NPCs, cafe vocabulary reappears in new context, lively market music distinct from cafe, linguist approved, ux-reviewer approved.
-
----
-
-### TASK-018
-**title:** Train station — A2 content, time, directions, future tense
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-017, TASK-002, TASK-012]
-**assigned_agents:** [architect, designer, composer, coder, curriculum-designer, content-writer, dialogue-writer, linguist, reviewer, ux-reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-VISION.md, STORY.md, WORLD.md, .claude/curriculum-map.md, .claude/music-spec.md]
-**writes:** [app/game/scenes/StationScene.js, app/game/content/station-dialogue.js, assets/maps/station.json]
-**done_when:** Station fully playable, future tense introduced through ticket buying naturally, market vocabulary reappears, transient travel-feel music, linguist approved, ux-reviewer approved.
-
----
-
-### TASK-019
-**title:** Police station — A2 content, formal register, past tense
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-018, TASK-002, TASK-012]
-**assigned_agents:** [architect, designer, composer, coder, curriculum-designer, content-writer, dialogue-writer, linguist, reviewer, ux-reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-VISION.md, STORY.md, WORLD.md, .claude/curriculum-map.md, .claude/music-spec.md]
-**writes:** [app/game/scenes/PoliceScene.js, app/game/content/police-dialogue.js, assets/maps/police.json]
-**done_when:** Police station fully playable, formal register distinct from all previous locations, sparse tense music, linguist approved, ux-reviewer approved.
-
----
-
 ### TASK-020
 **title:** Chapter test rooms — professor's apartment, one per chapter, 70%+ unlocks next
 **track:** BUILD
@@ -100,6 +64,9 @@
 - TASK-013 | DONE | 2026-03-28 | First location complete — apartment end-to-end with audio | 885a426
 - TASK-015 | DONE | 2026-03-28 | Park — ParkScene, Artyom + Tamara, unlock from apartment | a0ddf24
 - TASK-016 | DONE | 2026-03-28 | Cafe — CafeScene, Lena + Boris, ordering vocab, A1+ | 484d69a
+- TASK-017 | DONE | 2026-03-28 | Market — MarketScene, Fatima + Misha + Styopan, 3 NPCs | 33d9987
+- TASK-018 | DONE | 2026-03-28 | Train Station — StationScene, Konstantin + Nadya, A2 time/future | 05ea5c7
+- TASK-019 | DONE | 2026-03-28 | Police Station — PoliceScene, Alina + Sergei, past tense/formal | 05ea5c7
 
 ## Session log
 
@@ -121,3 +88,5 @@
 - 2026-03-28 · TASK-013 First location sign-off — Galina NPC wired, TutorAI init, integration fix · 885a426
 - 2026-03-28 · TASK-015 Park — ParkScene with Artyom + Tamara NPCs, directions/colors vocab, unlock after apartment · a0ddf24
 - 2026-03-28 · TASK-016 Cafe — CafeScene with Lena + Boris NPCs, ordering/prices vocab, unlock chain · 484d69a
+- 2026-03-28 · TASK-017 Market — MarketScene with 3 vendor NPCs, quantities/haggling vocab · 33d9987
+- 2026-03-28 · TASK-018+019 Station + Police — all 6 locations complete, full unlock chain · 05ea5c7
