@@ -8,6 +8,56 @@
 
 ---
 
+### TASK-022
+**title:** Onboarding intro sequence — scripted arrival, walk to apartment, meet Galina
+**track:** BUILD
+**status:** BACKLOG
+**depends_on:** [TASK-013]
+**assigned_agents:** [architect, designer, content-writer, coder, reviewer, tester, ux-reviewer, git]
+**reads:** [STORY.md, WORLD.md, app/game/scenes/WorldScene.js, app/game/scenes/ApartmentScene.js, app/game/content/apartment-dialogue.js, app/ui/dialogue.js, app/storage.js, app/config.js]
+**writes:** [app/ui/onboarding.js, app/game/scenes/WorldScene.js, app/storage.js, app/style.css, app/tokens.css, app/config.js]
+**done_when:** First-time players see a brief intro overlay (arrival text, walk prompt), then WorldScene auto-walks player toward apartment. On entering apartment, Galina's first dialogue triggers automatically. A `hasSeenIntro` flag in progress prevents replay. Returning players skip straight to WorldScene.
+**notes:** Keep it short — 3-4 text panels max. No cutscene engine. Use CSS animations for text fade. The intro should feel like STORY.md Chapter 1 opening.
+
+---
+
+### TASK-023
+**title:** Settings menu UI — script mode, theme, volume controls
+**track:** BUILD
+**status:** BACKLOG
+**depends_on:** [TASK-009]
+**assigned_agents:** [architect, designer, coder, reviewer, ux-reviewer, git]
+**reads:** [app/ui/menu.js, app/storage.js, app/config.js, app/tokens.css, app/style.css, app/game/systems/AudioManager.js]
+**writes:** [app/ui/settings.js, app/ui/menu.js, app/style.css, app/tokens.css, app/storage.js, app/config.js]
+**done_when:** Pause menu has a Settings button that opens a panel with: (1) script mode toggle (Cyrillic / transliteration / both), (2) theme toggle (light / dark / system), (3) audio volume slider that controls AudioManager. All settings persist to KV via storage.js. Panel closes with X or Escape.
+**notes:** Script mode must fire a custom event that dialogue.js and journal.js listen to for re-rendering. Theme toggle switches tokens.css custom properties.
+
+---
+
+### TASK-024
+**title:** Scene transitions & cleanup — fade effects, fix legacy refs, remove placeholders
+**track:** FAST
+**status:** IN_PROGRESS
+**depends_on:** [TASK-013]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/scenes/WorldScene.js, app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/game/scenes/TestScene.js, app/ui/menu.js, app/game/systems/DialogueSystem.js, app/game/systems/MissionSystem.js, app/game/scenes/Boot.js, app/game/scenes/Town.js]
+**writes:** [app/game/scenes/WorldScene.js, app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/game/scenes/TestScene.js, app/ui/menu.js, app/game/systems/DialogueSystem.js, app/game/systems/MissionSystem.js, app/game/scenes/Boot.js, app/game/scenes/Town.js]
+**done_when:** (1) All scene transitions use Phaser camera fadeIn/fadeOut (300ms). (2) menu.js JournalUI reference fixed to Journal. (3) DialogueSystem.js and MissionSystem.js placeholder files deleted or replaced with real re-exports. (4) Boot.js and Town.js removed if unused, or Boot.js used as actual preloader.
+**notes:** FAST track — no architect needed. Keep transitions simple: camera fade only, no custom shaders.
+
+---
+
+### TASK-025
+**title:** Endgame graduation sequence — closing scene after Chapter 4 test pass
+**track:** BUILD
+**status:** BACKLOG
+**depends_on:** [TASK-020, TASK-022]
+**assigned_agents:** [architect, designer, content-writer, coder, reviewer, ux-reviewer, git]
+**reads:** [STORY.md, WORLD.md, app/ui/test.js, app/storage.js, app/config.js, app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js, app/game/content/market-dialogue.js, app/game/content/station-dialogue.js, app/game/content/police-dialogue.js]
+**writes:** [app/ui/graduation.js, app/game/scenes/WorldScene.js, app/style.css, app/tokens.css, app/config.js, app/storage.js]
+**done_when:** After passing Chapter 4 test, a graduation overlay appears with: (1) congratulations text, (2) vocabulary summary (total words learned), (3) NPC farewell messages (one line per NPC from their personality), (4) "semester complete" badge. Progress flag prevents re-triggering. Player can still explore after dismissing.
+**notes:** Match STORY.md epilogue tone — bittersweet but warm. NPC farewell messages should be in Russian with translation, using each NPC's personality voice.
+
 ---
 
 ### TASK-IMPROVE-001

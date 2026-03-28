@@ -32,7 +32,7 @@ const MenuUI = (() => {
 
     journalBtn.addEventListener('click', () => {
       close();
-      JournalUI.open();
+      Journal.open();
     });
 
     document.addEventListener('keydown', (e) => {
@@ -48,7 +48,7 @@ const MenuUI = (() => {
 /* --- Initialize all UI modules after DOM is ready --- */
 document.addEventListener('DOMContentLoaded', () => {
   MenuUI.init();
-  JournalUI.init();
+  /* Journal is an IIFE that self-initializes — no init() call needed */
 
   /* Wait for Phaser game to be available, then init event-driven UI */
   const checkGame = setInterval(() => {

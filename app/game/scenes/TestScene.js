@@ -94,7 +94,7 @@ class TestScene extends Phaser.Scene {
 
     this._onTestDismiss = () => {
       this.physics.resume();
-      this.scene.start('Town');
+      this.scene.start('World');
     };
     window.addEventListener(EVENTS.TEST_DISMISS, this._onTestDismiss);
 

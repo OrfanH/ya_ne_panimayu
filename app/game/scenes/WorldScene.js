@@ -126,23 +126,23 @@ class WorldScene extends Phaser.Scene {
     this._currentZoneId      = null;
     this._lastZoneEnterEmit  = null;
     this._proximityOutlines  = this._createProximityOutlines(T);
+    this._transitioning      = false;
 
     // -------------------------------------------------------
     // 12. Scene transitions via ZONE_ENTER
     // -------------------------------------------------------
+    const ZONE_SCENE_MAP = {
+      apartment: 'Apartment',
+      park:      'Park',
+      cafe:      'Cafe',
+      market:    'Market',
+      station:   'Station',
+      police:    'Police',
+    };
+
     this.game.events.on(EVENTS.ZONE_ENTER, ({ id }) => {
-      if (id === 'apartment') {
-        this.scene.start('Apartment');
-      } else if (id === 'park') {
-        this.scene.start('Park');
-      } else if (id === 'cafe') {
-        this.scene.start('Cafe');
-      } else if (id === 'market') {
-        this.scene.start('Market');
-      } else if (id === 'station') {
-        this.scene.start('Station');
-      } else if (id === 'police') {
-        this.scene.start('Police');
+      if (ZONE_SCENE_MAP[id]) {
+        this._transitionTo(ZONE_SCENE_MAP[id]);
       }
     });
   }
@@ -150,6 +150,18 @@ class WorldScene extends Phaser.Scene {
   update() {
     this._player.update(this._cursors, this._wasd);
     this._checkZoneProximity();
+  }
+
+  // ---------------------------------------------------------------
+  // Private — fade-out then start target scene
+  // ---------------------------------------------------------------
+  _transitionTo(sceneKey) {
+    if (this._transitioning) { return; }
+    this._transitioning = true;
+    this.cameras.main.fadeOut(300, 0, 0, 0);
+    this.cameras.main.once('camerafadeoutcomplete', () => {
+      this.scene.start(sceneKey);
+    });
   }
 
   // ---------------------------------------------------------------

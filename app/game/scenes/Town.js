@@ -1,5 +1,8 @@
 /* ============================================
-   Town Scene — Overworld hub map
+   Town Scene — DEPRECATED
+   Superseded by WorldScene (key: 'World').
+   Kept to avoid breaking index.html load order.
+   Do not start this scene — nothing links to 'Town' anymore.
    ============================================ */
 
 class TownScene extends Phaser.Scene {
