@@ -6,19 +6,6 @@
 
 ## Backlog
 
-### TASK-004
-**title:** Player sprite — 4-direction walk, camera follow, collision, scene entry zones
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-003]
-**assigned_agents:** [architect, designer, coder, reviewer, tester, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, app/game/scenes/WorldScene.js]
-**writes:** [app/game/entities/Player.js, app/game/scenes/WorldScene.js]
-**done_when:** Player moves in 4 directions with animation, camera follows, collision works, entry zone fires a zone-enter custom event.
-**notes:** Zone-enter is a custom event only — no direct scene coupling.
-
----
-
 ### TASK-005
 **title:** Mobile input — virtual joystick on touch, hidden on desktop
 **track:** BUILD
@@ -229,6 +216,19 @@
 **done_when:** After 3+ mistakes on a word or failed test, a targeted mission appears in journal from an existing NPC with a plausible story reason. Mission tests exactly the weak vocabulary.
 **notes:** Grep STORY.md for the NPC relevant to the mission only.
 
+---
+
+### TASK-IMPROVE-001
+**title:** Agent skill improvement — create evals for existing skills, create skills from pipeline patterns
+**track:** IMPROVE
+**status:** RECURRING
+**depends_on:** []
+**assigned_agents:** [orchestrator]
+**reads:** [.claude/skills/, .claude/agents/, .claude/handoffs/]
+**writes:** [.claude/skills/]
+**done_when:** Run /improve after every 3 completed BUILD tasks. Each run: (1) review last 3 task outputs for repeated patterns, (2) create or update at least 1 skill, (3) all skill evals pass at 100%.
+**notes:** This is a recurring meta-task, not a one-time backlog item. The orchestrator should trigger /improve automatically after TASK-006, TASK-009, TASK-012, TASK-015, TASK-018, TASK-021. Any agent can also request /improve mid-task if they identify an improvement opportunity.
+
 ## Blocked
 
 (empty)
@@ -238,6 +238,7 @@
 - TASK-001 | DONE | 2026-03-28 | Project scaffold — Phaser boots, tokens.css loads, Vercel deploys | 39badb6
 - TASK-002 | DONE | 2026-03-28 | STORY.md, WORLD.md, curriculum-map — full story bible and world spec | 27f3716
 - TASK-003 | DONE | 2026-03-28 | Town map — WorldScene, 6 buildings, collision, locked locations | 261f7d0
+- TASK-004 | DONE | 2026-03-28 | Player sprite — 4-direction walk, camera follow, collision, zone-enter | d5ed718
 
 ## Session log
 
@@ -246,3 +247,4 @@
 - 2026-03-28 · Project scaffold · 39badb6
 - 2026-03-28 · TASK-002 STORY.md + WORLD.md + curriculum-map via narrative-director + curriculum-designer · 27f3716
 - 2026-03-28 · TASK-003 WorldScene — 6 buildings, collision, locked locations via architect + designer + coder · 261f7d0
+- 2026-03-28 · TASK-004 Player class — 4-direction textures, zone-enter event via architect + designer + coder · d5ed718
