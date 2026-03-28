@@ -6,19 +6,6 @@
 
 ## Backlog
 
-### TASK-007
-**title:** Dialogue UI — visual novel box, portrait, Russian + translation, response options
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-006]
-**assigned_agents:** [architect, designer, coder, reviewer, ux-reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-VISION.md, app/tokens.css, app/game/entities/NPC.js]
-**writes:** [app/ui/dialogue.js, app/style.css]
-**done_when:** Dialogue box renders over paused Phaser with portrait, Russian line, translation, 2-3 response options. Closes on final response, resumes Phaser. Translation is togglable.
-**notes:** HTML layer owns this entirely. Must work on mobile.
-
----
-
 ### TASK-008
 **title:** AI dialogue — Gemini via api/tutor.js, NPC persona, Flash-Lite fallback on 429
 **track:** BUILD
@@ -217,6 +204,7 @@
 - TASK-004 | DONE | 2026-03-28 | Player sprite — 4-direction walk, camera follow, collision, zone-enter | d5ed718
 - TASK-005 | DONE | 2026-03-28 | Mobile input — virtual joystick on touch, hidden on desktop | d6c3ac2
 - TASK-006 | DONE | 2026-03-28 | NPC system — NPC class, apartment scene, E key dialogue-start | 29573ea
+- TASK-007 | DONE | 2026-03-28 | Dialogue UI — visual novel box, portrait, Russian + translation, choices | b6e2d8a
 
 ## Session log
 
@@ -228,3 +216,4 @@
 - 2026-03-28 · TASK-004 Player class — 4-direction textures, zone-enter event via architect + designer + coder · d5ed718
 - 2026-03-28 · TASK-005 Virtual joystick — touch overlay, custom events, Player.js integration via designer + coder · d6c3ac2
 - 2026-03-28 · TASK-006 NPC system — NPC class, ApartmentScene, E key interaction via architect + coder · 29573ea
+- 2026-03-28 · TASK-007 Dialogue UI — visual novel box, slide-in animation, translation toggle via architect + designer + coder · b6e2d8a
