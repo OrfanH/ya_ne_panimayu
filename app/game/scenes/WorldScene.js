@@ -85,14 +85,12 @@ class WorldScene extends Phaser.Scene {
     const spawnX = PLAYER_SPAWN_COL * T + T / 2;
     const spawnY = PLAYER_SPAWN_ROW * T + T / 2;
 
-    this.player = this.add.rectangle(spawnX, spawnY, T - 4, T - 4, 0xFFD700);
-    this.physics.add.existing(this.player);
-    this.player.body.setCollideWorldBounds(true);
+    this._player = new Player(this, spawnX, spawnY, T);
 
     // -------------------------------------------------------
     // 6. Collision between player and solid tiles
     // -------------------------------------------------------
-    this.physics.add.collider(this.player, this.collisionGroup);
+    this.physics.add.collider(this._player.gameObject, this.collisionGroup);
 
     // -------------------------------------------------------
     // 7. World bounds
@@ -103,7 +101,7 @@ class WorldScene extends Phaser.Scene {
     // 8. Camera
     // -------------------------------------------------------
     this.cameras.main.setBounds(0, 0, worldW, worldH);
-    this.cameras.main.startFollow(this.player, true, GAME_CONFIG.CAMERA_LERP, GAME_CONFIG.CAMERA_LERP);
+    this.cameras.main.startFollow(this._player.gameObject, true, GAME_CONFIG.CAMERA_LERP, GAME_CONFIG.CAMERA_LERP);
     this.cameras.main.fadeIn(300);
 
     // -------------------------------------------------------
@@ -120,12 +118,13 @@ class WorldScene extends Phaser.Scene {
     // -------------------------------------------------------
     // 10. Building zone interaction tracking
     // -------------------------------------------------------
-    this._currentZoneId = null;
-    this._proximityOutlines = this._createProximityOutlines(T);
+    this._currentZoneId      = null;
+    this._lastZoneEnterEmit  = null;
+    this._proximityOutlines  = this._createProximityOutlines(T);
   }
 
   update() {
-    this._handleMovement();
+    this._player.update(this._cursors, this._wasd);
     this._checkZoneProximity();
   }
 
@@ -301,37 +300,16 @@ class WorldScene extends Phaser.Scene {
   }
 
   // ---------------------------------------------------------------
-  // Private — movement
-  // ---------------------------------------------------------------
-  _handleMovement() {
-    const speed = GAME_CONFIG.PLAYER_SPEED;
-    const body  = this.player.body;
-
-    let vx = 0;
-    let vy = 0;
-
-    if (this._cursors.left.isDown  || this._wasd.left.isDown)  { vx = -speed; }
-    if (this._cursors.right.isDown || this._wasd.right.isDown) { vx =  speed; }
-    if (this._cursors.up.isDown    || this._wasd.up.isDown)    { vy = -speed; }
-    if (this._cursors.down.isDown  || this._wasd.down.isDown)  { vy =  speed; }
-
-    // Normalise diagonal movement
-    if (vx !== 0 && vy !== 0) {
-      const factor = 1 / Math.SQRT2;
-      vx *= factor;
-      vy *= factor;
-    }
-
-    body.setVelocity(vx, vy);
-  }
-
-  // ---------------------------------------------------------------
-  // Private — zone proximity / enter / exit
+  // Private — zone proximity / enter / exit / ZONE_ENTER
   // ---------------------------------------------------------------
   _checkZoneProximity() {
     const T   = GAME_CONFIG.TILE_SIZE;
-    const px  = this.player.x;
-    const py  = this.player.y;
+    const px  = this._player.gameObject.x;
+    const py  = this._player.gameObject.y;
+
+    // Player's current tile position
+    const playerCol = Math.floor(px / T);
+    const playerRow = Math.floor(py / T);
 
     let entered = null;
 
@@ -365,6 +343,29 @@ class WorldScene extends Phaser.Scene {
               yoyo: true,
               repeat: -1,
             });
+          }
+        }
+
+        // ZONE_ENTER: fire when player steps onto the door tile of an unlocked zone
+        if (!zone.locked && zone.doorColor !== null) {
+          const doorCol = zone.col + Math.floor(zone.cols / 2);
+          const doorRow = zone.row + zone.rows - 1;
+
+          if (playerCol === doorCol && playerRow === doorRow) {
+            const enterKey = zone.id + ':' + doorCol + ':' + doorRow;
+            if (this._lastZoneEnterEmit !== enterKey) {
+              this._lastZoneEnterEmit = enterKey;
+              this.game.events.emit(EVENTS.ZONE_ENTER, {
+                id:   zone.id,
+                name: zone.name,
+              });
+            }
+          } else {
+            // Reset guard when player leaves the door tile
+            const enterKey = zone.id + ':' + doorCol + ':' + doorRow;
+            if (this._lastZoneEnterEmit === enterKey) {
+              this._lastZoneEnterEmit = null;
+            }
           }
         }
       } else {

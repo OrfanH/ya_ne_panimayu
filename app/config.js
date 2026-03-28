@@ -9,23 +9,21 @@ const GEMINI_MODELS = {
   FALLBACK: 'gemini-2.5-flash-lite',
 };
 
-const PHASE_NAMES = [
-  'Hook + Why',
-  'Show + Mid-lesson Check',
-  'Deepen + Second Check',
-  'Full Drill',
-  'Test',
-  'Tutor Feedback',
-  'Summary',
-];
-
-const PHASE_COUNT = PHASE_NAMES.length;
+const GAME_CONFIG = {
+  TILE_SIZE: 32,
+  PLAYER_SPEED: 160,
+  CAMERA_LERP: 0.1,
+  INTERACTION_RADIUS: 48,
+  SCALE_MODE: Phaser.Scale.FIT,
+  GAME_WIDTH: 800,
+  GAME_HEIGHT: 600,
+};
 
 const KEYBOARD_SHORTCUTS = {
-  SUBMIT_ADVANCE: 'Enter',
-  EXIT_LESSON: 'Escape',
-  FOCUS_TUTOR: 'KeyT',
-  BOOKMARK: 'KeyB',
+  INTERACT: 'KeyE',
+  JOURNAL: 'KeyJ',
+  PAUSE: 'Escape',
+  ADVANCE_DIALOGUE: 'Enter',
 };
 
 const RATE_LIMIT_RETRY_MS = 3000;
@@ -33,37 +31,47 @@ const RATE_LIMIT_RETRY_MS = 3000;
 const STORAGE_KEYS = {
   PROGRESS: 'progress',
   VOCABULARY: 'vocabulary',
-  ERRORS: 'errors',
-  NOTES: 'notes',
-  SETTINGS: 'settings',
+  MISTAKES: 'mistakes',
+  JOURNAL: 'journal',
 };
 
-const CURRICULUM_PATH = '/curriculum';
+const LOCATIONS = {
+  APARTMENT: { id: 'apartment', name: 'Apartment Building', chapter: 1 },
+  PARK: { id: 'park', name: 'Park', chapter: 2 },
+  CAFE: { id: 'cafe', name: 'Cafe', chapter: 3 },
+  MARKET: { id: 'market', name: 'Market', chapter: 3 },
+  STATION: { id: 'station', name: 'Train Station', chapter: 4 },
+  POLICE: { id: 'police', name: 'Police Station', chapter: 4 },
+};
 
 const DEFAULT_PROGRESS = {
-  currentLesson: '1-7',
-  currentPhase: 0,
-  completedLessons: [],
-  referenceLessons: ['1-1', '1-2', '1-3', '1-4', '1-5', '1-6'],
-  scores: {},
+  chapter: 1,
+  unlockedLocations: ['apartment'],
+  completedMissions: [],
+  activeMission: null,
   testScores: {},
+  npcRelationships: {},
   lastSession: null,
-  placementDone: false,
+  playerPosition: {
+    scene: 'Town',
+    x: 400,
+    y: 300,
+  },
 };
-
-const DEFAULT_SETTINGS = {
-  scriptMode: 'cyrillic-transliteration',
-  theme: 'system',
-};
-
-const DRILL_QUESTION_TYPES = [
-  'text-input',
-  'multiple-choice',
-  'fill-blank',
-  'translate-to-russian',
-  'translate-to-english',
-];
-
-const TEST_QUESTION_COUNT = { MIN: 8, MAX: 10 };
 
 const TOAST_DURATION_MS = 3000;
+
+const EVENTS = {
+  DIALOGUE_START: 'dialogue:start',
+  DIALOGUE_END: 'dialogue:end',
+  DIALOGUE_CHOICE: 'dialogue:choice',
+  MISSION_START: 'mission:start',
+  MISSION_COMPLETE: 'mission:complete',
+  LOCATION_ENTER: 'location:enter',
+  LOCATION_EXIT: 'location:exit',
+  JOURNAL_OPEN: 'journal:open',
+  JOURNAL_CLOSE: 'journal:close',
+  NPC_INTERACT: 'npc:interact',
+  VOCABULARY_NEW: 'vocabulary:new',
+  ZONE_ENTER:     'zone:enter',
+};
