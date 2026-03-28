@@ -544,6 +544,65 @@ body {
   }
 }
 
+/* --- HUD: Mute Button (bottom-left) --- */
+.hud-mute-btn {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--bg-subtle) 85%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.hud-mute-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.hud-mute-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.hud-mute-btn:active {
+  background: var(--bg-active);
+}
+
+.hud-mute-btn .mute-icon-off {
+  display: none;
+}
+
+.hud-mute-btn.is-muted .mute-icon-on {
+  display: none;
+}
+
+.hud-mute-btn.is-muted .mute-icon-off {
+  display: block;
+}
+
+.hud-mute-btn.is-muted {
+  color: var(--text-tertiary);
+}
+
+@media (max-width: 599px) {
+  .hud-mute-btn {
+    bottom: var(--space-2);
+    left: var(--space-2);
+    width: 44px;
+    height: 44px;
+  }
+}
+
 /* --- Hidden utility — last in cascade to override display values --- */
 .hidden {
   display: none;
