@@ -97,6 +97,16 @@ class ApartmentScene extends Phaser.Scene {
     window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_ENTER, {
       detail: { name: 'Apartment Building' },
     }));
+
+    // -------------------------------------------------------
+    // 10. Unlock park after first apartment visit
+    // -------------------------------------------------------
+    getProgress().then((progress) => {
+      if (!progress.unlockedLocations.includes('park')) {
+        progress.unlockedLocations.push('park');
+        saveProgress(progress);
+      }
+    });
   }
 
   update() {

@@ -18,7 +18,7 @@ const gameConfig = {
       gravity: { y: 0 },
     },
   },
-  scene: [WorldScene, ApartmentScene],
+  scene: [WorldScene, ApartmentScene, ParkScene],
 };
 
 const game = new Phaser.Game(gameConfig);
