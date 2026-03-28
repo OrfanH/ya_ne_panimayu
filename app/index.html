@@ -2,197 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panimayu · Russian Tutor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Один Семестр</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="style.css">
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 </head>
 <body>
-  <div class="app-shell">
+  <!-- Phaser canvas renders here -->
+  <div id="game-container"></div>
 
-    <!-- ===== HEADER ===== -->
-    <header class="app-header">
-      <div class="header-left">
-        <div class="app-logo">
-          <div class="app-logo__mark">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="28" height="28" rx="8" fill="var(--accent)"/>
-              <text x="14" y="19.5" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="600" font-size="16" fill="#ffffff">Я</text>
-            </svg>
-          </div>
-          <span class="app-logo__name">Panimayu</span>
-        </div>
-      </div>
-      <div class="header-right">
-        <span class="header-level" id="header-level">A1</span>
-      </div>
-    </header>
-
-    <!-- ===== MAIN CONTENT AREA ===== -->
-    <div class="app-body">
-
-      <!-- Sidebar (desktop only) -->
-      <nav class="sidebar" id="sidebar">
-        <div class="sidebar-nav-section">
-          <span class="sidebar-section-label">Navigation</span>
-          <button class="sidebar-nav-item sidebar-nav-active" data-nav="index" onclick="navigateTo('/')">
-            <i data-lucide="book-open" class="icon-inline"></i>
-            <span>Lessons</span>
-          </button>
-          <button class="sidebar-nav-item" data-nav="vocabulary" onclick="navigateTo('/vocabulary')">
-            <i data-lucide="languages" class="icon-inline"></i>
-            <span>Vocabulary</span>
-          </button>
-          <button class="sidebar-nav-item" data-nav="notes" onclick="navigateTo('/notes')">
-            <i data-lucide="bookmark" class="icon-inline"></i>
-            <span>Bookmarks</span>
-          </button>
-        </div>
-
-        <div class="sidebar-section">
-          <span class="sidebar-section-label">Lessons</span>
-          <ul class="lesson-list" id="lesson-list">
-            <!-- Populated by JS -->
-          </ul>
-        </div>
-
-        <div class="sidebar-user">
-          <div class="sidebar-user-avatar">O</div>
-          <span class="sidebar-user-name">Orfan</span>
-        </div>
-      </nav>
-
-      <!-- Main content views -->
-      <main class="main-content">
-
-        <!-- INDEX VIEW (lesson selection / resume) -->
-        <div data-view="index" class="view view-active">
-          <div class="resume-banner" id="resume-banner" style="display: none;">
-            <div class="resume-banner-content">
-              <span class="resume-label">Continue where you left off</span>
-              <h2 class="resume-title" id="resume-title"></h2>
-              <p class="resume-phase" id="resume-phase"></p>
-            </div>
-            <button class="btn btn-primary resume-btn" id="resume-btn">
-              Continue
-            </button>
-          </div>
-
-          <section class="lesson-grid" id="lesson-grid">
-            <!-- Populated by JS -->
-          </section>
-        </div>
-
-        <!-- LESSON VIEW -->
-        <div data-view="lesson" class="view view-hidden">
-          <!-- Populated by lesson.html content via JS -->
-          <div id="lesson-container"></div>
-        </div>
-
-        <!-- VOCABULARY VIEW -->
-        <div data-view="vocabulary" class="view view-hidden">
-          <div class="page-header">
-            <h2 class="page-title">Vocabulary</h2>
-            <p class="page-subtitle" id="vocab-count">0 words</p>
-          </div>
-          <div class="vocab-list" id="vocab-list">
-            <!-- Populated by JS -->
-          </div>
-        </div>
-
-        <!-- PLACEMENT VIEW -->
-        <div data-view="placement" class="view view-hidden">
-          <div class="placement-container" id="placement-container">
-            <!-- Populated by JS -->
-          </div>
-        </div>
-
-        <!-- NOTES VIEW -->
-        <div data-view="notes" class="view view-hidden">
-          <div class="page-header">
-            <h2 class="page-title">Bookmarks</h2>
-            <p class="page-subtitle" id="notes-count">0 saved</p>
-          </div>
-          <div class="notes-list" id="notes-list">
-            <!-- Populated by JS -->
-          </div>
-        </div>
-
-      </main>
-
-      <!-- Tutor panel (desktop: sidebar, mobile: bottom sheet) -->
-      <aside class="tutor-panel" id="tutor-panel">
-        <div class="tutor-header">
-          <span class="tutor-label">
-            <i data-lucide="message-circle" class="icon-inline"></i>
-            Tutor
-          </span>
-          <div class="tutor-status" id="tutor-status">
-            <span class="tutor-status-dot"></span>
-          </div>
-        </div>
-        <div class="tutor-messages" id="tutor-messages">
-          <div class="tutor-welcome">
-            <i data-lucide="message-circle" class="tutor-welcome-icon"></i>
-            <span>Ask me anything about the lesson</span>
-          </div>
-        </div>
-        <div class="tutor-loading" id="tutor-loading">
-          <span class="loading-dots"><span>.</span><span>.</span><span>.</span></span>
-        </div>
-        <div class="tutor-input-area">
-          <input
-            type="text"
-            class="tutor-input"
-            id="tutor-input"
-            placeholder="Ask a question..."
-            autocomplete="off"
-          >
-          <button class="btn btn-icon tutor-send" id="tutor-send">
-            <i data-lucide="send" class="icon-inline"></i>
-          </button>
-        </div>
-      </aside>
-
+  <!-- UI overlay layer — all HTML UI goes here, above the canvas -->
+  <div id="ui-overlay">
+    <!-- HUD -->
+    <div id="hud" class="hud hidden">
+      <div id="hud-location" class="hud-location"></div>
+      <div id="hud-mission" class="hud-mission"></div>
     </div>
 
-    <!-- ===== MOBILE TAB BAR ===== -->
-    <nav class="tab-bar">
-      <button class="tab tab-active" data-tab="index" onclick="navigateTo('/')">
-        <i data-lucide="book-open"></i>
-        <span>Lessons</span>
-      </button>
-      <button class="tab" data-tab="vocabulary" onclick="navigateTo('/vocabulary')">
-        <i data-lucide="languages"></i>
-        <span>Vocabulary</span>
-      </button>
-      <button class="tab" data-tab="notes" onclick="navigateTo('/notes')">
-        <i data-lucide="bookmark"></i>
-        <span>Notes</span>
-      </button>
-      <button class="tab" data-tab="lesson" onclick="focusTutorInput()">
-        <i data-lucide="message-circle"></i>
-        <span>Tutor</span>
-      </button>
-    </nav>
+    <!-- Dialogue box -->
+    <div id="dialogue-box" class="dialogue-box hidden">
+      <div class="dialogue-portrait">
+        <img id="dialogue-portrait-img" src="" alt="NPC portrait">
+      </div>
+      <div class="dialogue-content">
+        <div id="dialogue-speaker" class="dialogue-speaker"></div>
+        <div id="dialogue-text-ru" class="dialogue-text-ru"></div>
+        <div id="dialogue-text-en" class="dialogue-text-en"></div>
+      </div>
+      <div id="dialogue-choices" class="dialogue-choices"></div>
+      <div id="dialogue-input" class="dialogue-input hidden">
+        <input type="text" id="dialogue-input-field" autocomplete="off" autocapitalize="off">
+        <button id="dialogue-input-submit" type="button">OK</button>
+      </div>
+    </div>
 
-    <!-- Toast container -->
-    <div class="toast-container" id="toast-container"></div>
+    <!-- Journal overlay -->
+    <div id="journal" class="journal hidden">
+      <div class="journal-header">
+        <h2 class="journal-title">Student Journal</h2>
+        <button id="journal-close" class="journal-close" type="button" aria-label="Close journal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+      <div class="journal-tabs">
+        <button class="journal-tab active" data-tab="vocabulary">Words</button>
+        <button class="journal-tab" data-tab="phrases">Phrases</button>
+        <button class="journal-tab" data-tab="missions">Missions</button>
+        <button class="journal-tab" data-tab="progress">Progress</button>
+      </div>
+      <div id="journal-content" class="journal-content"></div>
+    </div>
 
+    <!-- Menu overlay -->
+    <div id="menu" class="menu hidden">
+      <h2 class="menu-title">Paused</h2>
+      <button id="menu-resume" class="menu-btn" type="button">Resume</button>
+      <button id="menu-journal" class="menu-btn" type="button">Journal</button>
+    </div>
   </div>
 
+  <!-- Scripts — Phaser first, then game, then UI -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.min.js"></script>
   <script src="config.js"></script>
   <script src="storage.js"></script>
   <script src="tutor.js"></script>
-  <script src="session.js"></script>
-  <script src="router.js"></script>
-  <script src="app.js"></script>
-  <script>
-    lucide.createIcons();
-  </script>
+  <script src="game/systems/DialogueSystem.js"></script>
+  <script src="game/systems/MissionSystem.js"></script>
+  <script src="game/entities/Player.js"></script>
+  <script src="game/entities/NPC.js"></script>
+  <script src="game/systems/MapBuilder.js"></script>
+  <script src="game/scenes/Boot.js"></script>
+  <script src="game/scenes/Town.js"></script>
+  <script src="game/scenes/WorldScene.js"></script>
+  <script src="game/main.js"></script>
+  <script src="ui/hud.js"></script>
+  <script src="ui/dialogue.js"></script>
+  <script src="ui/journal.js"></script>
+  <script src="ui/menu.js"></script>
 </body>
 </html>
