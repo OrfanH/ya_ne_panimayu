@@ -33,6 +33,13 @@ const STORAGE_KEYS = {
   VOCABULARY: 'vocabulary',
   MISTAKES: 'mistakes',
   JOURNAL: 'journal',
+  SETTINGS: 'settings',
+};
+
+const DEFAULT_SETTINGS = {
+  scriptMode: 'cyrillic-transliteration',
+  theme: 'system',
+  volume: 80,
 };
 
 const LOCATIONS = {
@@ -83,4 +90,7 @@ const EVENTS = {
   TEST_RESULT:    'test:result',
   TEST_DISMISS:   'test:dismiss',
   INTRO_DONE:     'intro:done',
+  SETTINGS_SCRIPT_MODE_CHANGE: 'settings:scriptMode:change',
+  SETTINGS_THEME_CHANGE:       'settings:theme:change',
+  SETTINGS_VOLUME_CHANGE:      'settings:volume:change',
 };

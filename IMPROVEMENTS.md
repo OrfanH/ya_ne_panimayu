@@ -11,7 +11,7 @@
 ### TASK-023
 **title:** Settings menu UI — script mode, theme, volume controls
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-009]
 **assigned_agents:** [architect, designer, coder, reviewer, ux-reviewer, git]
 **reads:** [app/ui/menu.js, app/storage.js, app/config.js, app/tokens.css, app/style.css, app/game/systems/AudioManager.js]

@@ -94,9 +94,43 @@
   --content-max-width: 680px;
 }
 
-/* --- Dark Mode Overrides --- */
+/* --- Dark Mode Overrides (explicit data-theme attribute) --- */
+:root[data-theme="dark"] {
+  --bg-base: #161616;
+  --bg-surface: #1E1E1E;
+  --bg-subtle: #252525;
+  --bg-hover: #2C2C2C;
+  --bg-active: #333333;
+
+  --text-primary: #EFEFEF;
+  --text-secondary: #A0A0A0;
+  --text-tertiary: #666666;
+  --text-disabled: #444444;
+
+  --border: rgba(255, 255, 255, 0.06);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --border-focus: rgba(255, 255, 255, 0.25);
+
+  --accent: #7B78E8;
+  --accent-hover: #6A67D6;
+  --accent-light: #252450;
+  --accent-text: #A8A6F0;
+
+  --success: #2abf8b;
+  --success-light: #1a3028;
+  --error: #f06565;
+  --error-light: #3a2020;
+  --warning: #d4912a;
+  --warning-light: #332818;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* --- Dark Mode via system preference (only when no explicit theme is set) --- */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme]) {
     --bg-base: #161616;
     --bg-surface: #1E1E1E;
     --bg-subtle: #252525;
