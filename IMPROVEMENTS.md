@@ -34,19 +34,6 @@
 
 ---
 
-### TASK-024
-**title:** Scene transitions & cleanup — fade effects, fix legacy refs, remove placeholders
-**track:** FAST
-**status:** IN_PROGRESS
-**depends_on:** [TASK-013]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/scenes/WorldScene.js, app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/game/scenes/TestScene.js, app/ui/menu.js, app/game/systems/DialogueSystem.js, app/game/systems/MissionSystem.js, app/game/scenes/Boot.js, app/game/scenes/Town.js]
-**writes:** [app/game/scenes/WorldScene.js, app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/game/scenes/TestScene.js, app/ui/menu.js, app/game/systems/DialogueSystem.js, app/game/systems/MissionSystem.js, app/game/scenes/Boot.js, app/game/scenes/Town.js]
-**done_when:** (1) All scene transitions use Phaser camera fadeIn/fadeOut (300ms). (2) menu.js JournalUI reference fixed to Journal. (3) DialogueSystem.js and MissionSystem.js placeholder files deleted or replaced with real re-exports. (4) Boot.js and Town.js removed if unused, or Boot.js used as actual preloader.
-**notes:** FAST track — no architect needed. Keep transitions simple: camera fade only, no custom shaders.
-
----
-
 ### TASK-025
 **title:** Endgame graduation sequence — closing scene after Chapter 4 test pass
 **track:** BUILD
@@ -98,6 +85,7 @@
 - TASK-019 | DONE | 2026-03-28 | Police Station — PoliceScene, Alina + Sergei, past tense/formal | 05ea5c7
 - TASK-020 | DONE | 2026-03-28 | Chapter test rooms — professor's apartment quiz, 70%+ unlock | c539348
 - TASK-021 | DONE | 2026-03-28 | Targeted missions — MistakeLogger-driven, NPC story hooks | 107ea83
+- TASK-024 | DONE | 2026-03-29 | Scene transitions & cleanup — fade effects, fix legacy refs | 2bddef3
 
 ## Session log
 
@@ -123,3 +111,4 @@
 - 2026-03-28 · TASK-018+019 Station + Police — all 6 locations complete, full unlock chain · 05ea5c7
 - 2026-03-28 · TASK-020 Chapter test rooms — TestScene + TestUI, 4 chapters, vocab quiz, unlock logic · c539348
 - 2026-03-28 · TASK-021 Targeted missions — MissionGenerator.js, mistake→NPC mapping, story reasons · 107ea83
+- 2026-03-29 · TASK-024 Scene transitions & cleanup — fadeOut/fadeIn, fix legacy refs, remove placeholders · 2bddef3
