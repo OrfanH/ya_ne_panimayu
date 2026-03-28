@@ -6,18 +6,6 @@
 
 ## Backlog
 
-### TASK-005
-**title:** Mobile input — virtual joystick on touch, hidden on desktop
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-004]
-**assigned_agents:** [designer, coder, reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, app/game/entities/Player.js]
-**writes:** [app/ui/VirtualJoystick.js, app/game/entities/Player.js]
-**done_when:** Touch devices show virtual joystick controlling player movement. Desktop shows nothing. Joystick is HTML overlay, not Phaser element.
-
----
-
 ### TASK-006
 **title:** NPC system — NPC class, one NPC in apartment, E key triggers dialogue-start event
 **track:** BUILD
@@ -239,6 +227,7 @@
 - TASK-002 | DONE | 2026-03-28 | STORY.md, WORLD.md, curriculum-map — full story bible and world spec | 27f3716
 - TASK-003 | DONE | 2026-03-28 | Town map — WorldScene, 6 buildings, collision, locked locations | 261f7d0
 - TASK-004 | DONE | 2026-03-28 | Player sprite — 4-direction walk, camera follow, collision, zone-enter | d5ed718
+- TASK-005 | DONE | 2026-03-28 | Mobile input — virtual joystick on touch, hidden on desktop | d6c3ac2
 
 ## Session log
 
@@ -248,3 +237,4 @@
 - 2026-03-28 · TASK-002 STORY.md + WORLD.md + curriculum-map via narrative-director + curriculum-designer · 27f3716
 - 2026-03-28 · TASK-003 WorldScene — 6 buildings, collision, locked locations via architect + designer + coder · 261f7d0
 - 2026-03-28 · TASK-004 Player class — 4-direction textures, zone-enter event via architect + designer + coder · d5ed718
+- 2026-03-28 · TASK-005 Virtual joystick — touch overlay, custom events, Player.js integration via designer + coder · d6c3ac2
