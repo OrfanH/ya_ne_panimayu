@@ -6,18 +6,6 @@
 
 ## Backlog
 
-### TASK-006
-**title:** NPC system — NPC class, one NPC in apartment, E key triggers dialogue-start event
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-003]
-**assigned_agents:** [architect, coder, reviewer, tester, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, app/game/scenes/WorldScene.js]
-**writes:** [app/game/entities/NPC.js, app/game/scenes/ApartmentScene.js]
-**done_when:** One NPC in apartment, E key nearby fires dialogue-start custom event, Phaser pauses. No dialogue content — system only.
-
----
-
 ### TASK-007
 **title:** Dialogue UI — visual novel box, portrait, Russian + translation, response options
 **track:** BUILD
@@ -228,6 +216,7 @@
 - TASK-003 | DONE | 2026-03-28 | Town map — WorldScene, 6 buildings, collision, locked locations | 261f7d0
 - TASK-004 | DONE | 2026-03-28 | Player sprite — 4-direction walk, camera follow, collision, zone-enter | d5ed718
 - TASK-005 | DONE | 2026-03-28 | Mobile input — virtual joystick on touch, hidden on desktop | d6c3ac2
+- TASK-006 | DONE | 2026-03-28 | NPC system — NPC class, apartment scene, E key dialogue-start | 29573ea
 
 ## Session log
 
@@ -238,3 +227,4 @@
 - 2026-03-28 · TASK-003 WorldScene — 6 buildings, collision, locked locations via architect + designer + coder · 261f7d0
 - 2026-03-28 · TASK-004 Player class — 4-direction textures, zone-enter event via architect + designer + coder · d5ed718
 - 2026-03-28 · TASK-005 Virtual joystick — touch overlay, custom events, Player.js integration via designer + coder · d6c3ac2
+- 2026-03-28 · TASK-006 NPC system — NPC class, ApartmentScene, E key interaction via architect + coder · 29573ea
