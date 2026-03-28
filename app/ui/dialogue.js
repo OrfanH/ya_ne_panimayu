@@ -139,7 +139,7 @@ const DialogueUI = (() => {
             close();
           } else {
             window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_CHOICE, {
-              detail: { choiceId: choice.id },
+              detail: { choiceId: choice.id, russian: choice.russian || '' },
             }));
           }
         });
@@ -221,10 +221,10 @@ const DialogueUI = (() => {
     const line = {
       npcId: detail.npcId || '',
       npcName: detail.npcName || 'NPC',
-      russian: '',
-      translation: '',
-      portrait: null,
-      choices: [],
+      russian: detail.russian || '',
+      translation: detail.translation || '',
+      portrait: detail.portrait || null,
+      choices: detail.choices || [],
     };
     open(line);
   }
