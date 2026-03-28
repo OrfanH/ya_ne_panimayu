@@ -6,22 +6,12 @@
 
 ## Backlog
 
-### TASK-020
-**title:** Chapter test rooms — professor's apartment, one per chapter, 70%+ unlocks next
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-013]
-**assigned_agents:** [architect, designer, coder, curriculum-designer, reviewer, ux-reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-VISION.md, STORY.md, .claude/curriculum-map.md]
-**writes:** [app/game/scenes/TestScene.js, app/ui/test.js]
-**done_when:** Test room accessible after chapter, tests chapter vocabulary only, 70%+ unlocks next chapter, below 70% triggers targeted missions via MistakeLogger.
-
 ---
 
 ### TASK-021
 **title:** Targeted missions — generated from MistakeLogger, delivered via existing NPCs
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-011, TASK-020, TASK-002]
 **assigned_agents:** [architect, coder, content-writer, linguist, reviewer, git]
 **reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, app/game/systems/MistakeLogger.js, STORY.md]
@@ -67,6 +57,7 @@
 - TASK-017 | DONE | 2026-03-28 | Market — MarketScene, Fatima + Misha + Styopan, 3 NPCs | 33d9987
 - TASK-018 | DONE | 2026-03-28 | Train Station — StationScene, Konstantin + Nadya, A2 time/future | 05ea5c7
 - TASK-019 | DONE | 2026-03-28 | Police Station — PoliceScene, Alina + Sergei, past tense/formal | 05ea5c7
+- TASK-020 | DONE | 2026-03-28 | Chapter test rooms — professor's apartment quiz, 70%+ unlock | c539348
 
 ## Session log
 
@@ -90,3 +81,4 @@
 - 2026-03-28 · TASK-016 Cafe — CafeScene with Lena + Boris NPCs, ordering/prices vocab, unlock chain · 484d69a
 - 2026-03-28 · TASK-017 Market — MarketScene with 3 vendor NPCs, quantities/haggling vocab · 33d9987
 - 2026-03-28 · TASK-018+019 Station + Police — all 6 locations complete, full unlock chain · 05ea5c7
+- 2026-03-28 · TASK-020 Chapter test rooms — TestScene + TestUI, 4 chapters, vocab quiz, unlock logic · c539348

@@ -1,185 +1,218 @@
 PASS
 
-# TASK-020 Architecture Spec — Chapter Test Rooms
+# TASK-021 Architecture Spec: MissionGenerator.js
 
-## Files to create or modify
+## File location
+`app/game/systems/MissionGenerator.js`
 
-| File | Action |
+Pattern: IIFE module, identical structure to MistakeLogger.js. Boots after DOMContentLoaded. No DOM manipulation. No Phaser imports. Communicates only via window custom events and storage.js.
+
+---
+
+## 1. When does mission generation trigger?
+
+Three trigger points, all via window event listeners:
+
+| Event | Reason |
 |---|---|
-| `app/game/scenes/TestScene.js` | CREATE — Phaser scene, professor's apartment room |
-| `app/ui/test.js` | CREATE — HTML overlay, question rendering and scoring |
-| `app/config.js` | MODIFY — add 4 new EVENTS entries |
+| `EVENTS.LOCATION_ENTER` | Scene transition — natural moment to check for pending missions. Player is not mid-dialogue. |
+| `EVENTS.TEST_END` | `detail.passed === false` means a failed test — guaranteed to have fresh mistake data. |
+| `EVENTS.DIALOGUE_END` | After any NPC conversation ends — mistakes may have just been logged by MistakeLogger. |
+
+On each trigger: call `_checkAndGenerate()`. This is async and fire-and-forget. Never blocks the game.
+
+Guard: skip generation if `progress.activeMission` is already set (one active mission at a time).
 
 ---
 
-## New EVENTS to add to config.js
+## 2. How is a mistake mapped to an NPC?
+
+**Primary rule: use the `npcId` stored on the mistake entry.**
+
+Every mistake entry from `getMistakeList()` already carries `{ word, npcId, location, count }`. MistakeLogger records `npcId` and `location` at the moment of the mistake. This is the canonical source.
+
+**Fallback rule (npcId is empty string):** map by `location` using a static lookup table embedded in MissionGenerator:
 
 ```js
-TEST_START:    'test:start',
-TEST_END:      'test:end',
-TEST_RESULT:   'test:result',
-TEST_DISMISS:  'test:dismiss',
-```
-
-- `TEST_START` — Phaser fires when player interacts with professor NPC; detail: `{ chapter: Number }`
-- `TEST_END` — HTML fires when the player submits the final answer; detail: `{ chapter, score, total, passed }`
-- `TEST_RESULT` — HTML fires after score is saved; detail: `{ chapter, passed, unlockedChapter? }`
-- `TEST_DISMISS` — HTML fires when player closes the result summary; no detail
-
----
-
-## TestScene.js — Phaser scene
-
-**Scene key:** `'Test'`
-
-**Room layout:** identical visual approach to ApartmentScene — graphics-drawn floor/walls using `GAME_CONFIG.TILE_SIZE`. Dimensions: 12 cols × 9 rows. Professor NPC placed at tile (8, 4). Player spawns at tile (2, 4).
-
-**Scene data (passed via `this.scene.start('Test', data)`):**
-```js
-{
-  chapter: Number   // 1–4, determines which vocabulary set to test
-}
-```
-
-**`create()` setup phases** (numbered comment blocks):
-1. Draw floor and wall border (graphics, same palette as ApartmentScene)
-2. Player — `new Player(this, spawnX, spawnY, T)` with `setCollideWorldBounds(true)`
-3. Professor NPC — `new NPC(this, npcX, npcY, { id: 'professor', name: 'Профессор', tileSize: T })`
-4. World bounds — `this.physics.world.setBounds(0, 0, roomW, roomH)`
-5. Camera — `setBounds`, `startFollow` with `GAME_CONFIG.CAMERA_LERP`, `fadeIn(300)`
-6. Input — `this._eKey`, `this._cursors`, `this._wasd` (exact ApartmentScene names)
-7. Event listeners — store as `this._onTestEnd` and `this._onTestDismiss`
-8. Location enter event — dispatch `EVENTS.LOCATION_ENTER` with `{ name: "Professor's Apartment" }`
-
-**`update()`:**
-- `this._player.update(this._cursors, this._wasd)`
-- `this._npc.checkInteraction(px, py, Phaser.Input.Keyboard.JustDown(this._eKey))`
-- On interaction: `this.physics.pause()` then dispatch `EVENTS.TEST_START` with `{ chapter: this._chapter }`
-- Guard: do not re-fire if `this._testActive === true`
-
-**`shutdown()`:**
-- `window.removeEventListener(EVENTS.TEST_END, this._onTestEnd)`
-- `window.removeEventListener(EVENTS.TEST_DISMISS, this._onTestDismiss)`
-
-**Private state:** `this._chapter`, `this._testActive` (boolean guard)
-
-**`_onTestEnd` handler** (listening to `EVENTS.TEST_END`):
-- Reads `e.detail.passed` — does NOT apply unlock logic here; that lives in `test.js`
-- Sets `this._testActive = false`
-
-**`_onTestDismiss` handler** (listening to `EVENTS.TEST_DISMISS`):
-- Calls `this.physics.resume()`
-- Calls `this.scene.start('Town')` to return player to world
-
----
-
-## test.js — HTML overlay
-
-**Pattern:** IIFE module, same structure as `dialogue.js` and `hud.js`.
-
-**DOM:** Single `#test-overlay` div appended to `#ui-overlay`. Hidden by default via CSS class. Shown by adding class `is-active`. No inline styles.
-
-**Internal state:**
-```js
-const _state = {
-  active: false,
-  chapter: 0,
-  questions: [],       // WordQuestion[]
-  currentIndex: 0,
-  correctCount: 0,
-  phase: 'question',   // 'question' | 'result'
+const LOCATION_NPC_MAP = {
+  apartment: 'galina',
+  park:      'artyom',
+  cafe:      'lena',
+  market:    'fatima',
+  station:   'konstantin',
+  police:    'alina',
 };
 ```
 
-**WordQuestion shape:**
+One NPC per location is chosen as the "mission giver" for generated missions. These are the most narratively prominent NPCs per location (Galina as building anchor, Artyom as park guide, Lena as cafe host, Fatima as market lead, Konstantin as station authority, Alina as police contact). Secondary NPCs in the same location (boris, tamara, misha, styopan, nadya, sergei) can appear as mission targets but never as the giver of a generated mission.
+
+**Selection logic in `_checkAndGenerate()`:**
+1. Call `getMistakeList()` — already sorted by count descending.
+2. Filter entries where `count >= 3`.
+3. Filter out entries where a mission has already been generated for that word (checked via `progress.completedMissions` prefix `gen:` — see mission ID scheme below).
+4. Take the first qualifying entry (highest count, not yet addressed).
+5. Resolve NPC: `entry.npcId || LOCATION_NPC_MAP[entry.location] || 'galina'`.
+
+---
+
+## 3. What does a generated mission object look like?
+
+Generated missions conform to the existing `data/missions.json` schema so journal.js and hud.js work without changes.
+
 ```js
 {
-  cyrillic: String,     // the word being tested
-  meaning: String,      // correct English answer
-  distractors: String[] // 3 wrong meanings from same chapter vocab
+  id:                 'gen:WORD:TIMESTAMP',   // e.g. 'gen:купить:1711620000'
+  generated:          true,                   // flag to distinguish from static missions
+  title:              String,                 // Russian short title, e.g. "Купить молоко"
+  titleEn:            String,                 // English, e.g. "Buy milk"
+  location:           String,                 // location id from mistake entry
+  givenBy:            String,                 // npcId of mission giver
+  type:               'conversation',         // always 'conversation' for generated missions
+  objectiveEn:        String,                 // e.g. "Help Galina with her shopping list"
+  storyReason:        String,                 // narrative hook line shown in journal
+  requiredVocabulary: [String],               // [entry.word] — the weak word under test
+  requiredGrammar:    String,                 // entry.context (grammar context from mistake)
+  successCondition:   'dialogue_complete',    // detected via DIALOGUE_END from givenBy NPC
+  targetNpcId:        String,                 // NPC the player must speak to (same as givenBy)
+  createdAt:          String,                 // ISO timestamp
 }
 ```
 
-**Question generation — `_buildQuestions(chapter)`:**
-- Calls `getVocabulary()` (from `storage.js`)
-- Filters words by `lessonId` matching chapter (see chapter-to-location mapping below)
-- Selects up to 10 words; if fewer than 4 words available, uses all
-- For each selected word: picks 3 distractors randomly from remaining chapter words (or cross-chapter if chapter pool is small)
-- Shuffles the 4-option array (correct + 3 distractors)
-- Returns `WordQuestion[]`
+The `storyReason` field is built from a small static template table keyed by NPC. These are in-character requests, never "you got this wrong" language. See Section 5 for templates.
 
-**Chapter-to-location mapping (internal constant, not exported):**
+The mission object is stored directly into `progress.activeMission` (replacing the current string placeholder). `journal.js` already reads `progress.activeMission` — it will need a minor update to render the object's `titleEn` instead of treating the value as a plain string. That update is the implementer's concern, not this spec's scope.
+
+---
+
+## 4. How does it integrate with the existing dialogue system?
+
+**No new Phaser scenes. No changes to DialogueSystem or NPC.js.**
+
+The integration point is: when a generated mission is active (`progress.activeMission.generated === true`) and the player triggers `DIALOGUE_START` for `targetNpcId`, the dialogue system should present the vocabulary word in context.
+
+MissionGenerator does NOT drive the dialogue content. It only:
+- Sets `progress.activeMission` (the object above) via `saveProgress()`.
+- Fires `EVENTS.MISSION_START` with `{ title: mission.titleEn }` so the HUD shows the mission immediately.
+
+The implementer of the dialogue system reads `activeMission` from progress and injects `requiredVocabulary` and `requiredGrammar` into the NPC's AI system prompt context. The generated mission acts as a soft constraint on the next conversation with that NPC — the NPC will naturally use or request the weak word.
+
+This keeps MissionGenerator single-responsibility: it reads mistakes, produces a mission object, stores it, fires one event.
+
+---
+
+## 5. Story reason templates (embedded in MissionGenerator)
+
+These give the appearance that the NPC has a real reason to involve the player. Indexed by NPC id, parameterised by `word`:
+
 ```js
-const CHAPTER_LOCATIONS = {
-  1: ['apartment'],
-  2: ['park'],
-  3: ['cafe', 'market'],
-  4: ['station', 'police'],
+const STORY_REASONS = {
+  galina:    (w) => `Galina has a shopping list and keeps forgetting "${w}". She wants you to practise saying it before going out.`,
+  artyom:    (w) => `Artyom is helping a friend and needs to explain "${w}" — he wants to make sure he has it right.`,
+  lena:      (w) => `Lena is writing a new menu item. She needs to know the right word for "${w}" before the sign goes up.`,
+  fatima:    (w) => `Fatima is training a new stall assistant. She wants you to help explain what "${w}" means to a customer.`,
+  konstantin:(w) => `Konstantin is filling in a form and the word "${w}" keeps coming up. He asks if you can double-check it with him.`,
+  alina:     (w) => `Alina is updating the public notice board. She wants to confirm "${w}" is written correctly.`,
 };
+const DEFAULT_REASON = (w) => `Someone in town needs help with the word "${w}".`;
 ```
 
-`lessonId` on vocabulary words follows the pattern `locationId` (e.g. `'apartment'`, `'park'`). Filter words where `CHAPTER_LOCATIONS[chapter].includes(word.lessonId)`.
+---
 
-**`_renderQuestion()`:** Renders `_state.questions[_state.currentIndex]`. Shows the Cyrillic word; renders 4 buttons with English meanings. Each button: min 44×44px touch target per CLAUDE-RULES.md. No correct/incorrect reveal animation — just advance immediately on tap.
+## 6. How is mission completion detected?
 
-**Answer handling — `_onAnswer(selectedMeaning)`:**
-- Compares to `_state.questions[_state.currentIndex].meaning`
-- If correct: `_state.correctCount++`
-- If wrong: calls `logMistake(cyrillic, 'test', correctMeaning, 'professor', 'test')` (from `storage.js`)
-- Advance `_state.currentIndex`; if last question, call `_showResult()`; else `_renderQuestion()`
+**Trigger: `EVENTS.DIALOGUE_END`**
 
-**`_showResult()`:**
-- Calculates `score = _state.correctCount / _state.questions.length`
-- `passed = score >= 0.7`
-- Calls `_saveScore(chapter, score, passed)` (async, wrapped in try/catch)
-- Sets `_state.phase = 'result'`
-- Renders result panel: shows fraction (e.g. "7 / 10") and one-line outcome text
-- No points display, no streaks, no stars — vision rule
-- Shows single "Continue" button
-- Dispatches `EVENTS.TEST_END` with `{ chapter, score, total: questions.length, passed }`
+When MissionGenerator receives `DIALOGUE_END`, it checks:
+- Is `progress.activeMission` set and `progress.activeMission.generated === true`?
+- Was the most recent dialogue with `targetNpcId`? (Track last `DIALOGUE_START` detail in module-private state: `_lastDialogueNpcId`.)
 
-**`_saveScore(chapter, score, passed)` (async):**
-- `const progress = await getProgress()`
-- `progress.testScores[chapter] = { score, passed, date: new Date().toISOString() }`
-- If `passed` and next chapter exists: add next chapter's locations to `progress.unlockedLocations`
-- Next chapter unlock map: `{ 1: ['park'], 2: ['cafe','market'], 3: ['station','police'], 4: [] }`
-- `await saveProgress(progress)`
-- Dispatches `EVENTS.TEST_RESULT` with `{ chapter, passed, unlockedChapter: nextChapter || null }`
+If both are true: call `_completeMission(mission)`.
 
-**"Continue" button handler:**
-- Calls `_close()`
-- Dispatches `EVENTS.TEST_DISMISS`
+`_completeMission` does:
+1. `progress.completedMissions.push(mission.id)` — records completion.
+2. `progress.activeMission = null` — clears active slot.
+3. `saveProgress(progress)`.
+4. `window.dispatchEvent(new CustomEvent(EVENTS.MISSION_COMPLETE, { detail: { id: mission.id, titleEn: mission.titleEn } }))`.
 
-**`_close()`:** Removes `is-active` class from `#test-overlay`, resets `_state`.
+No score, no points, no streak. The mission simply closes. The HUD already listens for `MISSION_COMPLETE` via the existing event (currently wired in hud.js as an implicit no-op — the implementer adds a brief dismiss animation).
 
-**`_onTestStart(e)` listener:** Reads `e.detail.chapter`, builds questions, resets state, renders first question, adds `is-active`.
+**Edge: player never goes to targetNpcId.** Mission stays active indefinitely. No expiry. No penalty. CLAUDE-VISION.md: "never intrusive."
 
-**Init:** Registers `window.addEventListener(EVENTS.TEST_START, _onTestStart)` once on DOMContentLoaded. No teardown needed (module lives for page lifetime).
+**Edge: two qualifying mistakes exist.** Only one mission generated per trigger (highest-count word). The second will be picked up on the next trigger cycle after the first is completed.
 
 ---
 
-## What Phaser owns vs HTML layer owns
+## 7. New EVENTS required
 
-| Concern | Owner |
-|---|---|
-| Room rendering (floor, walls, NPC, player) | Phaser — TestScene.js |
-| Player movement and interaction detection | Phaser — TestScene.js |
-| Physics pause/resume | Phaser — TestScene.js |
-| Scene transition back to Town | Phaser — TestScene.js |
-| Question set construction | HTML — test.js |
-| Answer buttons and scoring | HTML — test.js |
-| Progress save and chapter unlock | HTML — test.js (via storage.js) |
-| MistakeLogger calls | HTML — test.js (via storage.js `logMistake`) |
-| Result display | HTML — test.js |
+None. All necessary events already exist in config.js:
+
+- `EVENTS.LOCATION_ENTER` — trigger
+- `EVENTS.TEST_END` — trigger
+- `EVENTS.DIALOGUE_END` — trigger + completion detection
+- `EVENTS.DIALOGUE_START` — track last NPC for completion guard
+- `EVENTS.MISSION_START` — fire when mission is generated (HUD picks this up)
+- `EVENTS.MISSION_COMPLETE` — fire on completion
+
+No additions to `EVENTS` in config.js needed.
 
 ---
 
-## What is explicitly ruled out
+## 8. Module skeleton (for implementer)
 
-- **No score display with points or stars** — CLAUDE-VISION.md forbids gamification elements
-- **No blocking modal** — overlay is non-blocking (player physics is paused by scene, not by a modal lock); result is shown inline in the overlay
-- **No correct/wrong flash animations on answers** — keeps the UI neutral and avoids gamification feel; advance silently
-- **No retry button on the result screen** — failed players return to Town where targeted missions spawn via MistakeLogger; retry loop is a gamification pattern
-- **No separate ProfessorNPC entity class** — reuses existing `NPC` class with `id: 'professor'`; a bespoke class would duplicate code with no architectural benefit
-- **No chapter gating inside TestScene** — the scene accepts any chapter number via scene data; gating (whether the scene is accessible) is the Town scene's responsibility, not TestScene's
-- **No vocabulary fetch inside TestScene** — all storage access stays in the HTML layer (`test.js`); Phaser scenes must not call storage directly per separation-of-concerns rule
+```js
+const MissionGenerator = (() => {
+  const MISTAKE_THRESHOLD = 3;
+  const LOCATION_NPC_MAP = { /* ... */ };
+  const STORY_REASONS    = { /* ... */ };
+
+  let _lastDialogueNpcId = null;
+
+  async function _checkAndGenerate() { /* ... */ }
+  async function _buildMission(entry, npcId) { /* ... */ }
+  async function _completeMission(mission) { /* ... */ }
+
+  function _onLocationEnter()  { _checkAndGenerate(); }
+  function _onTestEnd(e)       { if (!e.detail?.passed) { _checkAndGenerate(); } }
+  function _onDialogueStart(e) { _lastDialogueNpcId = e.detail?.npcId || null; }
+  async function _onDialogueEnd() {
+    await _completeMission(/* check guard */);
+    // then check for new mission after a short gap:
+    await _checkAndGenerate();
+  }
+
+  function init() {
+    window.addEventListener(EVENTS.LOCATION_ENTER,  _onLocationEnter);
+    window.addEventListener(EVENTS.TEST_END,         _onTestEnd);
+    window.addEventListener(EVENTS.DIALOGUE_START,   _onDialogueStart);
+    window.addEventListener(EVENTS.DIALOGUE_END,     _onDialogueEnd);
+  }
+
+  function destroy() {
+    window.removeEventListener(EVENTS.LOCATION_ENTER,  _onLocationEnter);
+    window.removeEventListener(EVENTS.TEST_END,         _onTestEnd);
+    window.removeEventListener(EVENTS.DIALOGUE_START,   _onDialogueStart);
+    window.removeEventListener(EVENTS.DIALOGUE_END,     _onDialogueEnd);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  return { init, destroy };
+})();
+```
+
+---
+
+## 9. Constraints confirmed
+
+- Single new file only: `app/game/systems/MissionGenerator.js`. Placement matches existing systems.
+- No DOM manipulation (CLAUDE-RULES.md: no DOM in `game/`).
+- No Phaser imports or scene access.
+- All storage via `storage.js` functions only (`getMistakeList`, `getProgress`, `saveProgress`).
+- All cross-layer communication via window custom events only.
+- `const`/`let` only, no `var`. Async/await with try/catch for all storage calls.
+- One active mission at a time — never stack generated missions.
+- No gamification language in story reasons or mission titles.

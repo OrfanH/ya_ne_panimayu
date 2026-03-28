@@ -2,32 +2,42 @@ FAIL
 
 ## Violations found
 
-### app/ui/test.js — Inline style in JavaScript
+### 1. Missing try/catch on `_checkAndGenerate()` (line 51)
+**Rule:** "Always wrap async calls in `try/catch`"
 
-**Line:** `_resultContainer.style.display = 'none';` in `_buildDOM()`
+The function uses `await` on multiple lines (52: `getMistakeList()`, 54: `getProgress()`, 60: `saveProgress()`) but the entire function body is not wrapped in try/catch. Any promise rejection will be unhandled.
 
-**Rule violated:** "No inline styles in JS or HTML — all visual changes via CSS class toggling"
+**Fix:** Wrap entire function body in try/catch block.
 
-**Fix:** Replace inline style with CSS class:
-1. Add to style.css: `.test-result.hidden { display: none; }`
-2. Change line to: `_resultContainer.classList.add('hidden');`
-3. When showing result, use: `_resultContainer.classList.remove('hidden');`
+### 2. Missing try/catch on `_onDialogueEnd()` (line 77)
+**Rule:** "Always wrap async calls in `try/catch`"
 
-## All other checks: PASS
+The function uses `await` on lines 78 (`getProgress()`), 83 (`saveProgress()`), but the function is not wrapped in try/catch. Any promise rejection will be unhandled.
 
-- ✓ No `var` usage (const/let only)
-- ✓ No `console.log` in production
-- ✓ No `!important` in CSS
-- ✓ No external libraries beyond Phaser/Tone
-- ✓ No gamification elements
-- ✓ No blocking modals
-- ✓ Game logic separation respected (interaction distance check is acceptable per rule note)
-- ✓ No DOM manipulation in game/ files
-- ✓ No Phaser rendering in ui/ files
-- ✓ Custom events use EVENTS constant
-- ✓ TestScene.shutdown() properly removes listeners
-- ✓ All CSS values use tokens
-- ✓ Mobile-first with @media (min-width: 768px)
-- ✓ Touch targets meet 44x44px minimum (buttons 48px)
-- ✓ Font weights 400/500 only
-- ✓ Proper camelCase/PascalCase/kebab-case naming
+**Fix:** Wrap entire function body in try/catch block.
+
+### 3. Uncaught async function calls in event handlers (lines 89-91)
+**Rule:** "Always wrap async calls in `try/catch`"
+
+Lines 89, 91 call `_checkAndGenerate()` (an async function) without awaiting, making them fire-and-forget patterns. Any errors in `_checkAndGenerate()` will be unhandled promise rejections.
+
+**Fix:** Either:
+- Wrap the calls in `try/catch` after awaiting, or
+- Add `.catch()` handler for unhandled rejections, or
+- Ensure `_checkAndGenerate()` internally handles all errors with try/catch
+
+Note: Fire-and-forget is acceptable IF the called function has internal error handling. Currently `_checkAndGenerate()` lacks try/catch, so errors bubble up unhandled.
+
+---
+
+## Compliant rules
+- No `var` ✓
+- No `console.log` ✓
+- No inline styles ✓
+- No JS frameworks ✓
+- No game logic in scenes ✓
+- No DOM manipulation in game/ files ✓
+- Custom events used correctly ✓
+- Event names from EVENTS constant ✓
+- camelCase for vars/functions ✓
+- No gamification elements ✓
