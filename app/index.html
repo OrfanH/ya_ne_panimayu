@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Russian Tutor</title>
+  <title>Panimayu · Russian Tutor</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="tokens.css">
   <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -17,7 +17,15 @@
     <!-- ===== HEADER ===== -->
     <header class="app-header">
       <div class="header-left">
-        <h1 class="header-title">Russian Tutor</h1>
+        <div class="app-logo">
+          <div class="app-logo__mark">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="28" height="28" rx="8" fill="var(--accent)"/>
+              <text x="14" y="19.5" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-weight="600" font-size="16" fill="#ffffff">Я</text>
+            </svg>
+          </div>
+          <span class="app-logo__name">Panimayu</span>
+        </div>
       </div>
       <div class="header-right">
         <span class="header-level" id="header-level">A1</span>
@@ -29,11 +37,32 @@
 
       <!-- Sidebar (desktop only) -->
       <nav class="sidebar" id="sidebar">
+        <div class="sidebar-nav-section">
+          <span class="sidebar-section-label">Navigation</span>
+          <button class="sidebar-nav-item sidebar-nav-active" data-nav="index" onclick="navigateTo('/')">
+            <i data-lucide="book-open" class="icon-inline"></i>
+            <span>Lessons</span>
+          </button>
+          <button class="sidebar-nav-item" data-nav="vocabulary" onclick="navigateTo('/vocabulary')">
+            <i data-lucide="languages" class="icon-inline"></i>
+            <span>Vocabulary</span>
+          </button>
+          <button class="sidebar-nav-item" data-nav="notes" onclick="navigateTo('/notes')">
+            <i data-lucide="bookmark" class="icon-inline"></i>
+            <span>Bookmarks</span>
+          </button>
+        </div>
+
         <div class="sidebar-section">
-          <h2 class="sidebar-heading">Lessons</h2>
+          <span class="sidebar-section-label">Lessons</span>
           <ul class="lesson-list" id="lesson-list">
             <!-- Populated by JS -->
           </ul>
+        </div>
+
+        <div class="sidebar-user">
+          <div class="sidebar-user-avatar">O</div>
+          <span class="sidebar-user-name">Orfan</span>
         </div>
       </nav>
 
@@ -95,11 +124,14 @@
             <i data-lucide="message-circle" class="icon-inline"></i>
             Tutor
           </span>
-          <div class="tutor-status" id="tutor-status"></div>
+          <div class="tutor-status" id="tutor-status">
+            <span class="tutor-status-dot"></span>
+          </div>
         </div>
         <div class="tutor-messages" id="tutor-messages">
           <div class="tutor-welcome">
-            Ask me anything about the lesson.
+            <i data-lucide="message-circle" class="tutor-welcome-icon"></i>
+            <span>Ask me anything about the lesson</span>
           </div>
         </div>
         <div class="tutor-loading" id="tutor-loading">
