@@ -35,6 +35,7 @@ const STORAGE_KEYS = {
   JOURNAL: 'journal',
   ERRORS: 'errors',
   SETTINGS: 'settings',
+  DIALOGUE_STATE: 'dialogue_state',
 };
 
 const LOCATIONS = {
@@ -86,4 +87,5 @@ const EVENTS = {
   TEST_END:       'test:end',
   TEST_RESULT:    'test:result',
   TEST_DISMISS:   'test:dismiss',
+  DIALOGUE_NODE:  'dialogue:node',
 };

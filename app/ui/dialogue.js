@@ -212,29 +212,10 @@ const DialogueUI = (() => {
   }
 
   // -----------------------------------------------------------
-  // dialogue:start listener — builds a minimal DialogueLine
-  // from the event detail so the box appears immediately.
-  // Full content comes via DialogueUI.open() from the game layer.
-  // -----------------------------------------------------------
-  function _onDialogueStart(e) {
-    const detail = e.detail || {};
-    const line = {
-      npcId: detail.npcId || '',
-      npcName: detail.npcName || 'NPC',
-      russian: detail.russian || '',
-      translation: detail.translation || '',
-      portrait: detail.portrait || null,
-      choices: detail.choices || [],
-    };
-    open(line);
-  }
-
-  // -----------------------------------------------------------
   // Init — called once on page load
   // -----------------------------------------------------------
   function _init() {
     _buildDOM();
-    window.addEventListener(EVENTS.DIALOGUE_START, _onDialogueStart);
     window.addEventListener(EVENTS.DIALOGUE_END, _onDialogueClose);
   }
 
@@ -245,5 +226,5 @@ const DialogueUI = (() => {
     _init();
   }
 
-  return { open, close };
+  return { open, close, update: open };
 })();
