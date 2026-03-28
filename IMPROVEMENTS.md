@@ -9,7 +9,7 @@
 ### TASK-007
 **title:** Dialogue UI — visual novel box, portrait, Russian + translation, response options
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-006]
 **assigned_agents:** [architect, designer, coder, reviewer, ux-reviewer, git]
 **reads:** [CLAUDE-RULES.md, CLAUDE-VISION.md, app/tokens.css, app/game/entities/NPC.js]

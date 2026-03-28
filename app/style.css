@@ -80,82 +80,146 @@ body {
   text-align: right;
 }
 
-/* --- Dialogue Box --- */
-.dialogue-box {
-  position: absolute;
-  bottom: 0;
+/* --- Dialogue Overlay --- */
+#dialogue-overlay {
+  position: fixed;
+  top: 0;
   left: 0;
-  right: 0;
-  height: var(--dialogue-height);
-  background: var(--bg-surface);
-  border-top: 0.5px solid var(--border-strong);
-  display: flex;
-  flex-direction: column;
-  padding: var(--space-4);
-  gap: var(--space-3);
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: flex-end;
+  z-index: 15;
+  pointer-events: none;
 }
 
+#dialogue-overlay.is-active {
+  display: flex;
+}
+
+/* --- Dialogue Box --- */
+.dialogue-box {
+  width: 100%;
+  height: var(--dialogue-height);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  pointer-events: auto;
+  transform: translateY(100%);
+  transition: transform var(--transition-scene);
+  overflow: hidden;
+}
+
+#dialogue-overlay.is-active .dialogue-box {
+  transform: translateY(0);
+}
+
+.dialogue-box.is-closing {
+  transform: translateY(100%);
+}
+
+/* --- Portrait --- */
 .dialogue-portrait {
-  position: absolute;
-  top: calc(-1 * var(--portrait-size) - var(--space-2));
-  left: var(--space-4);
+  width: var(--portrait-size);
+  height: var(--portrait-size);
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  overflow: hidden;
 }
 
 .dialogue-portrait img {
-  width: var(--portrait-size);
-  height: var(--portrait-size);
-  border-radius: var(--radius-md);
-  border: 2px solid var(--bg-surface);
-  background: var(--bg-subtle);
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.dialogue-content {
+/* --- Body --- */
+.dialogue-body {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
   overflow-y: auto;
 }
 
-.dialogue-speaker {
+.dialogue-speaker-name {
   font-size: var(--text-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--accent-text);
-  margin-bottom: var(--space-1);
+  color: var(--text-secondary);
 }
 
-.dialogue-text-ru {
+.dialogue-russian {
   font-size: var(--text-md);
   color: var(--text-primary);
   line-height: var(--line-height-base);
-  margin-bottom: var(--space-1);
 }
 
-.dialogue-text-en {
-  font-size: var(--text-sm);
+.dialogue-translation {
+  font-size: var(--text-base);
   color: var(--text-secondary);
   line-height: var(--line-height-base);
 }
 
+.dialogue-translation.translation-hidden {
+  visibility: hidden;
+}
+
+.dialogue-toggle-translation {
+  min-width: 44px;
+  min-height: 44px;
+  align-self: flex-start;
+  padding: 0 var(--space-2);
+  background: var(--bg-subtle);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.dialogue-toggle-translation:hover {
+  background: var(--bg-hover);
+}
+
+.dialogue-toggle-translation:focus {
+  outline: none;
+  border-color: var(--border-focus);
+}
+
+.dialogue-toggle-translation.toggle-active {
+  color: var(--text-primary);
+}
+
+/* --- Choices --- */
 .dialogue-choices {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  width: 100%;
+  padding-top: var(--space-2);
 }
 
 .dialogue-choice-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 100%;
   min-height: var(--choice-min-height);
   padding: var(--space-2) var(--space-4);
   background: var(--bg-subtle);
-  border: 0.5px solid var(--border-strong);
+  border: 0.5px solid var(--border);
   border-radius: var(--radius-md);
   font-family: var(--font-family);
   font-size: var(--text-md);
   color: var(--text-primary);
   cursor: pointer;
-  transition: all var(--transition-fast);
   text-align: left;
+  transition: background var(--transition-fast);
 }
 
 .dialogue-choice-btn:hover {
@@ -164,67 +228,11 @@ body {
 
 .dialogue-choice-btn:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-light);
+  border-color: var(--border-focus);
 }
 
 .dialogue-choice-btn:active {
   background: var(--bg-active);
-}
-
-.dialogue-choice-translation {
-  display: block;
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-  margin-top: var(--space-1);
-}
-
-.dialogue-input {
-  display: flex;
-  gap: var(--space-2);
-}
-
-.dialogue-input input {
-  flex: 1;
-  height: 44px;
-  padding: 0 var(--space-3);
-  border: 0.5px solid var(--border-strong);
-  border-radius: var(--radius-md);
-  font-family: var(--font-family);
-  font-size: var(--text-md);
-  color: var(--text-primary);
-  background: var(--bg-subtle);
-  transition: all var(--transition-fast);
-}
-
-.dialogue-input input:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px var(--accent-light);
-}
-
-.dialogue-input button {
-  min-width: 44px;
-  height: 44px;
-  padding: 0 var(--space-4);
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-md);
-  font-family: var(--font-family);
-  font-size: var(--text-md);
-  font-weight: var(--font-weight-medium);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-}
-
-.dialogue-input button:hover {
-  background: var(--accent-hover);
-}
-
-.dialogue-input button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px var(--accent-light);
 }
 
 /* --- Journal --- */
@@ -423,11 +431,13 @@ body {
 
 /* --- Desktop overrides --- */
 @media (min-width: 768px) {
-  .dialogue-box {
-    height: auto;
-    max-height: 40%;
-    margin: 0 var(--space-8);
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  .dialogue-portrait {
+    width: 96px;
+    height: 96px;
+  }
+
+  .dialogue-russian {
+    font-size: var(--text-lg);
   }
 
   .journal {
@@ -437,13 +447,5 @@ body {
     bottom: var(--space-8);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
-  }
-
-  .dialogue-input input {
-    height: 40px;
-  }
-
-  .dialogue-input button {
-    height: 40px;
   }
 }

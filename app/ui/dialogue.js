@@ -1,0 +1,249 @@
+/* ============================================
+   Dialogue UI — visual novel box, portrait, Russian + translation,
+   response options. HTML layer only. No Phaser objects.
+   Cross-layer communication via window custom events only.
+   ============================================ */
+
+const DialogueUI = (() => {
+  // -----------------------------------------------------------
+  // State
+  // -----------------------------------------------------------
+  const _state = {
+    active: false,
+    translationVisible: true,
+    currentLine: null,
+  };
+
+  // -----------------------------------------------------------
+  // DOM — created dynamically, appended to #ui-overlay or body
+  // -----------------------------------------------------------
+  let _overlay = null;
+  let _box = null;
+  let _portrait = null;
+  let _speakerName = null;
+  let _russian = null;
+  let _translation = null;
+  let _toggleBtn = null;
+  let _choices = null;
+
+  function _buildDOM() {
+    const uiOverlay = document.getElementById('ui-overlay') || document.body;
+
+    // Remove legacy #dialogue-box if present
+    const legacy = document.getElementById('dialogue-box');
+    if (legacy) {
+      legacy.remove();
+    }
+
+    // #dialogue-overlay
+    _overlay = document.createElement('div');
+    _overlay.id = 'dialogue-overlay';
+
+    // .dialogue-box
+    _box = document.createElement('div');
+    _box.className = 'dialogue-box';
+
+    // .dialogue-portrait
+    _portrait = document.createElement('div');
+    _portrait.className = 'dialogue-portrait';
+
+    // .dialogue-body
+    const body = document.createElement('div');
+    body.className = 'dialogue-body';
+
+    // .dialogue-speaker-name
+    _speakerName = document.createElement('p');
+    _speakerName.className = 'dialogue-speaker-name';
+
+    // .dialogue-russian
+    _russian = document.createElement('p');
+    _russian.className = 'dialogue-russian';
+
+    // .dialogue-translation
+    _translation = document.createElement('p');
+    _translation.className = 'dialogue-translation';
+
+    // .dialogue-toggle-translation
+    _toggleBtn = document.createElement('button');
+    _toggleBtn.className = 'dialogue-toggle-translation';
+    _toggleBtn.type = 'button';
+    _toggleBtn.textContent = 'EN';
+    _toggleBtn.setAttribute('aria-label', 'Toggle translation');
+    _toggleBtn.addEventListener('click', _onToggleTranslation);
+
+    body.appendChild(_speakerName);
+    body.appendChild(_russian);
+    body.appendChild(_translation);
+    body.appendChild(_toggleBtn);
+
+    // .dialogue-choices
+    _choices = document.createElement('div');
+    _choices.className = 'dialogue-choices';
+
+    _box.appendChild(_portrait);
+    _box.appendChild(body);
+    _box.appendChild(_choices);
+
+    _overlay.appendChild(_box);
+    uiOverlay.appendChild(_overlay);
+  }
+
+  // -----------------------------------------------------------
+  // Translation toggle
+  // -----------------------------------------------------------
+  function _onToggleTranslation() {
+    _state.translationVisible = !_state.translationVisible;
+    _applyTranslationVisibility();
+  }
+
+  function _applyTranslationVisibility() {
+    if (_state.translationVisible) {
+      _translation.classList.remove('translation-hidden');
+      _toggleBtn.classList.add('toggle-active');
+    } else {
+      _translation.classList.add('translation-hidden');
+      _toggleBtn.classList.remove('toggle-active');
+    }
+  }
+
+  // -----------------------------------------------------------
+  // Populate DOM from a DialogueLine
+  // -----------------------------------------------------------
+  function _populate(line) {
+    _speakerName.textContent = line.npcName || '';
+
+    // Portrait — clear previous content
+    _portrait.innerHTML = '';
+    if (line.portrait) {
+      const img = document.createElement('img');
+      img.src = line.portrait;
+      img.alt = line.npcName || 'NPC';
+      _portrait.appendChild(img);
+    }
+
+    _russian.textContent = line.russian || '';
+    _translation.textContent = line.translation || '';
+    _applyTranslationVisibility();
+
+    // Choices
+    _choices.innerHTML = '';
+    if (line.choices && line.choices.length > 0) {
+      for (const choice of line.choices) {
+        const btn = document.createElement('button');
+        btn.className = 'dialogue-choice-btn';
+        btn.type = 'button';
+        btn.textContent = choice.russian || '';
+
+        btn.addEventListener('click', () => {
+          if (choice.isFinal) {
+            close();
+          } else {
+            window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_CHOICE, {
+              detail: { choiceId: choice.id },
+            }));
+          }
+        });
+
+        btn.addEventListener('mouseenter', () => {
+          btn.classList.add('is-hover');
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.classList.remove('is-hover');
+        });
+
+        _choices.appendChild(btn);
+      }
+    }
+  }
+
+  // -----------------------------------------------------------
+  // Public — open(line: DialogueLine)
+  // -----------------------------------------------------------
+  function open(line) {
+    _state.currentLine = line;
+    _state.active = true;
+
+    _populate(line);
+
+    _overlay.classList.add('is-active');
+  }
+
+  // -----------------------------------------------------------
+  // Public — close()
+  // -----------------------------------------------------------
+  function close() {
+    if (!_state.active) { return; }
+    _state.active = false;
+    _state.currentLine = null;
+
+    _box.classList.add('is-closing');
+
+    const onEnd = () => {
+      _box.removeEventListener('transitionend', onEnd);
+      _overlay.classList.remove('is-active');
+      _box.classList.remove('is-closing');
+
+      window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+    };
+
+    _box.addEventListener('transitionend', onEnd);
+
+    // Fallback in case transition doesn't fire (e.g. prefers-reduced-motion)
+    setTimeout(() => {
+      if (!_state.active && _overlay.classList.contains('is-active')) {
+        onEnd();
+      }
+    }, 400);
+  }
+
+  // -----------------------------------------------------------
+  // Physics resume bridge — listens for dialogue-close and
+  // resumes physics on all active Phaser scenes.
+  // Kept in ui/ but uses window event pattern (no direct Phaser import).
+  // -----------------------------------------------------------
+  function _onDialogueClose() {
+    if (typeof game !== 'undefined' && game.scene) {
+      game.scene.scenes.forEach((s) => {
+        if (s.physics && s.physics.world) {
+          s.physics.resume();
+        }
+      });
+    }
+  }
+
+  // -----------------------------------------------------------
+  // dialogue:start listener — builds a minimal DialogueLine
+  // from the event detail so the box appears immediately.
+  // Full content comes via DialogueUI.open() from the game layer.
+  // -----------------------------------------------------------
+  function _onDialogueStart(e) {
+    const detail = e.detail || {};
+    const line = {
+      npcId: detail.npcId || '',
+      npcName: detail.npcName || 'NPC',
+      russian: '',
+      translation: '',
+      portrait: null,
+      choices: [],
+    };
+    open(line);
+  }
+
+  // -----------------------------------------------------------
+  // Init — called once on page load
+  // -----------------------------------------------------------
+  function _init() {
+    _buildDOM();
+    window.addEventListener(EVENTS.DIALOGUE_START, _onDialogueStart);
+    window.addEventListener(EVENTS.DIALOGUE_END, _onDialogueClose);
+  }
+
+  // Boot after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _init);
+  } else {
+    _init();
+  }
+
+  return { open, close };
+})();
