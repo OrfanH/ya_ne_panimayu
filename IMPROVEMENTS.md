@@ -6,44 +6,6 @@
 
 ## Backlog
 
-### TASK-010
-**title:** Journal UI — notebook style, vocabulary tab, mission log tab, closes cleanly
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-009]
-**assigned_agents:** [designer, coder, reviewer, ux-reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-VISION.md, app/tokens.css, app/ui/hud.js]
-**writes:** [app/ui/journal.js, app/style.css]
-**done_when:** Journal opens on J, shows two tabs, vocabulary lists Russian + translations, closes with J or X, no layout shift.
-**notes:** Journal reads from KV via storage.js only.
-
----
-
-### TASK-011
-**title:** Mistake logging — silent capture, stored to KV, retrievable for missions
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-008]
-**assigned_agents:** [architect, coder, reviewer, git]
-**reads:** [CLAUDE-RULES.md, CLAUDE-STACK.md, app/tutor.js, app/storage.js]
-**writes:** [app/game/systems/MistakeLogger.js, app/storage.js]
-**done_when:** Wrong response stores (word, context, correct answer) silently to KV. Retrievable as list. No player feedback at mistake time.
-
----
-
-### TASK-013
-**title:** First location complete — apartment fully playable end to end with audio
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-008, TASK-010, TASK-011, TASK-012]
-**assigned_agents:** [ux-reviewer, tester]
-**reads:** [CLAUDE-VISION.md, STORY.md, app/game/scenes/ApartmentScene.js, app/ui/dialogue.js, app/game/systems/AudioManager.js]
-**writes:** [.claude/handoffs/ux-report.md]
-**done_when:** New player enters apartment, meets NPC, completes full AI conversation in Russian, vocabulary logs to journal, ambient music plays throughout, no dead ends. ux-reviewer approves.
-**notes:** Sign-off task only. No new code written here.
-
----
-
 ### TASK-015
 **title:** Park location — map, NPC, dialogue, music, unlock from apartment
 **track:** BUILD
@@ -158,6 +120,9 @@
 - TASK-009 | DONE | 2026-03-28 | HUD — location name, mission indicator, journal hint | 5657146
 - TASK-012 | DONE | 2026-03-28 | Audio — Tone.js, 6 location soundscapes, mute toggle | 9b1176c
 - TASK-014 | DONE | 2026-03-28 | NPC dialogue — Galina Ivanovna, 10 variations, A1 Russian | bf2cea1
+- TASK-010 | DONE | 2026-03-28 | Journal UI — vocabulary tab, mission tab, J/X/Escape close | a440047
+- TASK-011 | DONE | 2026-03-28 | Mistake logging — silent KV capture, retrievable list | a440047
+- TASK-013 | DONE | 2026-03-28 | First location complete — apartment end-to-end with audio | 885a426
 
 ## Session log
 
@@ -174,3 +139,6 @@
 - 2026-03-28 · TASK-009 HUD — location name, mission indicator, J key journal hint · 5657146
 - 2026-03-28 · TASK-012 Audio — Tone.js AudioManager, 6 location soundscapes, mute toggle, dialogue ducking · 9b1176c
 - 2026-03-28 · TASK-014 NPC dialogue — Galina Ivanovna apartment content, 10 variations, A1 curriculum vocab · bf2cea1
+- 2026-03-28 · TASK-010 Journal UI — vocabulary + mission tabs, storage.js reads, notebook CSS · a440047
+- 2026-03-28 · TASK-011 MistakeLogger — silent mistake:log event capture to KV · a440047
+- 2026-03-28 · TASK-013 First location sign-off — Galina NPC wired, TutorAI init, integration fix · 885a426
