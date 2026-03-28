@@ -52,8 +52,8 @@ class WorldScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._buildingGraphics = [];
     for (const zone of BUILDING_ZONES) {
-      const gfx = this._drawBuilding(zone, T);
-      this._buildingGraphics.push({ zone, gfx });
+      const result = this._drawBuilding(zone, T);
+      this._buildingGraphics.push({ zone, gfx: result.gfx, overlay: result.overlay });
     }
 
     // -------------------------------------------------------
@@ -234,12 +234,13 @@ class WorldScene extends Phaser.Scene {
       gfx.fillRect(doorX, doorY, doorW, doorH);
     }
 
-    // Locked visual treatment
+    // Locked visual treatment — Graphics has no setTint, so use a dark overlay rectangle
+    let overlay = null;
     if (zone.locked) {
-      gfx.setTint(0x555577);
+      overlay = this.add.rectangle(x + w / 2, y + h / 2, w, h, 0x555577, 0.5);
       gfx.setAlpha(0.6);
 
-      // Padlock glyph at the centre of the building (drawn after tint so it sits on top)
+      // Padlock glyph at the centre of the building
       const cx = x + w / 2;
       const cy = y + h / 2;
       this._drawPadlock(cx, cy);
@@ -256,7 +257,7 @@ class WorldScene extends Phaser.Scene {
     });
     label.setOrigin(0.5, 1);
 
-    return gfx;
+    return { gfx, overlay };
   }
 
   _drawPadlock(cx, cy) {
@@ -353,13 +354,13 @@ class WorldScene extends Phaser.Scene {
           this._proximityOutlines[zone.id].setVisible(true);
         }
 
-        // Alpha pulse for locked zones
+        // Alpha pulse for locked zones — animate the overlay rectangle
         if (zone.locked) {
           const bldgEntry = this._buildingGraphics.find(b => b.zone.id === zone.id);
-          if (bldgEntry && !zone._pulseTween) {
+          if (bldgEntry && bldgEntry.overlay && !zone._pulseTween) {
             zone._pulseTween = this.tweens.add({
-              targets: bldgEntry.gfx,
-              alpha: { from: 0.6, to: 0.8 },
+              targets: bldgEntry.overlay,
+              alpha: { from: 0.5, to: 0.3 },
               duration: 200,
               yoyo: true,
               repeat: -1,
@@ -377,8 +378,8 @@ class WorldScene extends Phaser.Scene {
           zone._pulseTween.stop();
           zone._pulseTween = null;
           const bldgEntry = this._buildingGraphics.find(b => b.zone.id === zone.id);
-          if (bldgEntry) {
-            bldgEntry.gfx.setAlpha(0.6);
+          if (bldgEntry && bldgEntry.overlay) {
+            bldgEntry.overlay.setAlpha(0.5);
           }
         }
       }
