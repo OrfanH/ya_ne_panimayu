@@ -59,7 +59,7 @@ class BootScene extends Phaser.Scene {
   }
 
   create() {
-    // Player walk animations  (4 frames per direction)
+    // 1. Player walk animations (4 frames per direction)
     const ANIM_FPS = 8;
 
     // Row 0, cols 23-26 → facing down
@@ -86,6 +86,34 @@ class BootScene extends Phaser.Scene {
       repeat:    -1,
     });
 
-    this.scene.start('World');
+    // 2. Register window listeners for menu actions (HTML layer → Phaser)
+    this._onNewGame = () => {
+      this.scene.start('World');
+    };
+
+    this._onContinue = (e) => {
+      const progress = e.detail.progress;
+      this.scene.start(progress.playerPosition.scene, {
+        playerX: progress.playerPosition.x,
+        playerY: progress.playerPosition.y,
+      });
+    };
+
+    window.addEventListener(EVENTS.MAIN_MENU_NEW_GAME, this._onNewGame);
+    window.addEventListener(EVENTS.MAIN_MENU_CONTINUE, this._onContinue);
+
+    // 3. Bridge: emit on Phaser bus, bridge to window for HTML layer
+    this.game.events.once(EVENTS.MAIN_MENU_SHOW, () => {
+      window.dispatchEvent(new CustomEvent(EVENTS.MAIN_MENU_SHOW));
+    });
+    this.game.events.emit(EVENTS.MAIN_MENU_SHOW);
+
+    // 4. Pause this scene — the menu is now in control
+    this.scene.pause();
+  }
+
+  shutdown() {
+    window.removeEventListener(EVENTS.MAIN_MENU_NEW_GAME, this._onNewGame);
+    window.removeEventListener(EVENTS.MAIN_MENU_CONTINUE, this._onContinue);
   }
 }

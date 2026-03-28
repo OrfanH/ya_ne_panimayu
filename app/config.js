@@ -33,6 +33,8 @@ const STORAGE_KEYS = {
   VOCABULARY: 'vocabulary',
   MISTAKES: 'mistakes',
   JOURNAL: 'journal',
+  ERRORS: 'errors',
+  SETTINGS: 'settings',
 };
 
 const LOCATIONS = {
@@ -62,6 +64,9 @@ const DEFAULT_PROGRESS = {
 const TOAST_DURATION_MS = 3000;
 
 const EVENTS = {
+  MAIN_MENU_SHOW: 'mainmenu:show',
+  MAIN_MENU_NEW_GAME: 'mainmenu:newgame',
+  MAIN_MENU_CONTINUE: 'mainmenu:continue',
   DIALOGUE_START: 'dialogue:start',
   DIALOGUE_END: 'dialogue:end',
   DIALOGUE_CHOICE: 'dialogue:choice',
