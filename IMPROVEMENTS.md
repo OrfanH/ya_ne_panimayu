@@ -8,19 +8,6 @@
 
 ---
 
-### TASK-023
-**title:** Settings menu UI — script mode, theme, volume controls
-**track:** BUILD
-**status:** IN_PROGRESS
-**depends_on:** [TASK-009]
-**assigned_agents:** [architect, designer, coder, reviewer, ux-reviewer, git]
-**reads:** [app/ui/menu.js, app/storage.js, app/config.js, app/tokens.css, app/style.css, app/game/systems/AudioManager.js]
-**writes:** [app/ui/settings.js, app/ui/menu.js, app/style.css, app/tokens.css, app/storage.js, app/config.js]
-**done_when:** Pause menu has a Settings button that opens a panel with: (1) script mode toggle (Cyrillic / transliteration / both), (2) theme toggle (light / dark / system), (3) audio volume slider that controls AudioManager. All settings persist to KV via storage.js. Panel closes with X or Escape.
-**notes:** Script mode must fire a custom event that dialogue.js and journal.js listen to for re-rendering. Theme toggle switches tokens.css custom properties.
-
----
-
 ### TASK-025
 **title:** Endgame graduation sequence — closing scene after Chapter 4 test pass
 **track:** BUILD
@@ -74,6 +61,7 @@
 - TASK-021 | DONE | 2026-03-28 | Targeted missions — MistakeLogger-driven, NPC story hooks | 107ea83
 - TASK-024 | DONE | 2026-03-29 | Scene transitions & cleanup — fade effects, fix legacy refs | 2bddef3
 - TASK-022 | DONE | 2026-03-29 | Onboarding intro sequence — 4 panels, auto-walk, Galina auto-trigger | 885e8ac
+- TASK-023 | DONE | 2026-03-29 | Settings menu UI — script mode, theme, volume | a180670
 
 ## Session log
 
@@ -101,3 +89,4 @@
 - 2026-03-28 · TASK-021 Targeted missions — MissionGenerator.js, mistake→NPC mapping, story reasons · 107ea83
 - 2026-03-29 · TASK-024 Scene transitions & cleanup — fadeOut/fadeIn, fix legacy refs, remove placeholders · 2bddef3
 - 2026-03-29 · TASK-022 Onboarding — 4-panel intro, auto-walk to apartment, Galina auto-dialogue · 885e8ac
+- 2026-03-29 · TASK-023 Settings — script mode select, theme pills, volume slider, AudioManager.setVolume · a180670
