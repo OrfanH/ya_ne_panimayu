@@ -1,4 +1,4 @@
-# IMPROVEMENTS.md
+﻿# IMPROVEMENTS.md
 
 ## Current task
 
@@ -14,38 +14,6 @@
 ## Backlog
 
 ---
-
-### TASK-042
-**title:** Dialogue CSS fix — missing variables, portrait visibility, touch targets
-**track:** FAST
-**status:** BACKLOG
-**depends_on:** [TASK-041]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/style.css, app/tokens.css, app/ui/dialogue.js]
-**writes:** [app/style.css, app/tokens.css]
-**done_when:**
-- `--dialogue-height` and `--choice-min-height` declared in tokens.css with appropriate values
-- `.dialogue-portrait` displays correctly when an image src is set (remove unconditional `display:none`, use `.has-portrait` class toggle)
-- Choice buttons are minimum 48px height on mobile (375px viewport)
-- Dialogue box does not collapse or overflow at any supported viewport
-**notes:** CSS-only fix. Do not touch JS logic. Portrait fix requires both a CSS rule change and a one-line JS change in DialogueUI.open() to add the `.has-portrait` class when portrait src is non-empty.
-
----
-
-### TASK-043
-**title:** First-visit flow — scripted greeting → AI handoff with recast correction
-**track:** FAST
-**status:** IN_PROGRESS
-**depends_on:** [TASK-041]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/scenes/ApartmentScene.js, app/ui/dialogue.js, app/game/systems/TutorAI.js, app/game/content/apartment-dialogue.js]
-**writes:** [app/game/scenes/ApartmentScene.js, app/ui/dialogue.js]
-**done_when:**
-- First-visit Galina greeting displays scripted text with at least one choice button ("Привет!" / "Hello") — player is never stuck
-- Selecting the choice advances dialogue; TutorAI takes over for all subsequent exchanges
-- If TutorAI detects a grammar error in player input, NPC response naturally models the correct form inline (recast correction per REFERENCE-DIALOGUE.md §3) — conversation continues, no dead end
-- No double-fire with the TASK-041 fix in place (auto-trigger uses new single-fire pattern)
-**notes:** Per REFERENCE-DIALOGUE.md: failure states must advance, not punish. Recast correction = NPC says the correct form in their reply without labelling it as an error. E.g. player types "Я хочу идти" → NPC replies "О, ты хочешь пойти в парк? Хорошо!" (models correct aspect).
 
 ---
 
@@ -141,7 +109,7 @@
 ### TASK-049
 **title:** Vocabulary logging — dialogue choices feed Journal vocab tab live
 **track:** FAST
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-041]
 **assigned_agents:** [coder, reviewer, git]
 **reads:** [app/ui/dialogue.js, app/ui/journal.js, app/game/systems/MistakeLogger.js, app/storage.js, app/config.js]
@@ -327,6 +295,8 @@
 - TASK-037 | DONE | 2026-03-29 | Dialogue UI pixel stone skin — dark panel, pixel borders, Kenney fonts | 1de63f2
 - TASK-038 | DONE | 2026-03-29 | HUD + Journal + Settings pixel stone skin — consistent aesthetic | 0893c1a
 - TASK-041 | DONE | 2026-03-30 | Dialogue system fix — state machine, single-fire, no race condition | b781759
+- TASK-043 | DONE | 2026-03-30 | First-visit flow — scripted greeting → AI handoff with recast correction | e889552
+- TASK-042 | DONE | 2026-03-30 | Dialogue CSS fix — CSS tokens, portrait .has-portrait, min-height | 658740a
 
 ## Session log
 
@@ -364,3 +334,5 @@
 - 2026-03-29 · TASK-036 Kenney fonts — Pixel/Mini tokens, image-rendering:pixelated, all system fonts removed · e9977eb
 - 2026-03-29 · TASK-038 HUD + Journal + Settings pixel stone skin — consistent stone aesthetic via coder · 0893c1a
 - 2026-03-30 · TASK-041 Dialogue system fix — state machine (CLOSED/OPENING/OPEN/CLOSING), single-fire NPC events, DIALOGUE_UPDATE replaces double DIALOGUE_START · b781759
+- 2026-03-30 · TASK-043 First-visit scripted greeting with choices + TutorAI handoff + recast correction · e889552
+- 2026-03-30 · TASK-042 Dialogue CSS — --dialogue-height + --choice-min-height tokens, portrait .has-portrait visibility · 658740a
