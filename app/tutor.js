@@ -156,7 +156,7 @@ const TutorAI = (() => {
       `You are speaking with a beginner Russian learner.\n` +
       `Respond ONLY in Russian. After each sentence add the English translation in parentheses.\n` +
       `Keep responses to 1–3 sentences.\n` +
-      `Naturally work in vocabulary from this list when relevant: ${vocab.join(', ')}.\n` +
+      `Naturally work in vocabulary from this list when relevant: ${vocab.map(v => v.russian).join(', ')}.\n` +
       `Never break character. Never mention that you are an AI.`
     );
   }

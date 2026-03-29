@@ -54,21 +54,6 @@ async function markGraduationSeen() {
   return progress;
 }
 
-async function markLessonComplete(lessonId, drillScore, testScore) {
-  const progress = await getProgress();
-  if (!progress.completedLessons.includes(lessonId)) {
-    progress.completedLessons.push(lessonId);
-  }
-  if (drillScore !== undefined) {
-    progress.scores[lessonId] = drillScore;
-  }
-  if (testScore !== undefined) {
-    progress.testScores[lessonId] = testScore;
-  }
-  await saveProgress(progress);
-  return progress;
-}
-
 /* --- Vocabulary --- */
 
 async function getVocabulary() {
@@ -97,38 +82,6 @@ async function addVocabulary(words, lessonId) {
   }
   await kvSet(STORAGE_KEYS.VOCABULARY, vocab);
   return vocab;
-}
-
-/* --- Errors --- */
-
-async function getErrors() {
-  const data = await kvGet(STORAGE_KEYS.ERRORS);
-  return data || { patterns: [] };
-}
-
-async function logError(grammarPoint, attemptedAnswer) {
-  const errors = await getErrors();
-  const now = new Date().toISOString();
-  const existing = errors.patterns.find(
-    (p) => p.grammarPoint === grammarPoint
-  );
-
-  if (existing) {
-    existing.count += 1;
-    existing.lastSeen = now;
-    if (!existing.examples.includes(attemptedAnswer)) {
-      existing.examples.push(attemptedAnswer);
-    }
-  } else {
-    errors.patterns.push({
-      grammarPoint,
-      count: 1,
-      lastSeen: now,
-      examples: [attemptedAnswer],
-    });
-  }
-  await kvSet(STORAGE_KEYS.ERRORS, errors);
-  return errors;
 }
 
 /* --- Mistakes --- */
@@ -165,35 +118,6 @@ async function logMistake(word, context, correctAnswer, npcId, location) {
 async function getMistakeList() {
   const mistakes = await getMistakes();
   return [...mistakes.entries].sort((a, b) => b.count - a.count);
-}
-
-/* --- Notes / Bookmarks --- */
-
-async function getNotes() {
-  const data = await kvGet(STORAGE_KEYS.NOTES);
-  return data || { bookmarks: [] };
-}
-
-async function addBookmark(lessonId, phase, cardTitle, content) {
-  const notes = await getNotes();
-  const id = crypto.randomUUID();
-  notes.bookmarks.push({
-    id,
-    lessonId,
-    phase,
-    cardTitle,
-    content,
-    savedAt: new Date().toISOString(),
-  });
-  await kvSet(STORAGE_KEYS.NOTES, notes);
-  return notes;
-}
-
-async function removeBookmark(bookmarkId) {
-  const notes = await getNotes();
-  notes.bookmarks = notes.bookmarks.filter((b) => b.id !== bookmarkId);
-  await kvSet(STORAGE_KEYS.NOTES, notes);
-  return notes;
 }
 
 /* --- Settings --- */
