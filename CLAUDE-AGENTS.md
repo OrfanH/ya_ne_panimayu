@@ -24,6 +24,7 @@ Read this file when you are the orchestrator or need to route a task.
 | reviewer | haiku | BUILD, FAST | Code review against CLAUDE-RULES.md |
 | ux-reviewer | haiku | BUILD, CONTENT | Game feel and learning experience gate |
 | tester | haiku | BUILD | Functional testing |
+| playtester | sonnet | BUILD, BUG | Plays game in-browser, finds bugs, empty UI, broken interactions |
 | git | haiku | all | Commits, pushes, logs to IMPROVEMENTS.md |
 
 ## Track routing
@@ -32,10 +33,11 @@ Read this file when you are the orchestrator or need to route a task.
 |---|---|---|
 | FAST | Fix, polish, feel improvement | coder -> reviewer -> git |
 | CONTENT | Russian writing, dialogue, missions | researcher -> narrative-director -> curriculum-designer -> content-writer -> dialogue-writer -> linguist -> ux-reviewer -> git |
-| BUILD | New features, scenes, systems | researcher -> architect -> designer + content-writer (parallel) -> coder -> reviewer -> ux-reviewer -> git |
+| BUILD | New features, scenes, systems | researcher -> architect -> designer + content-writer (parallel) -> coder -> reviewer -> playtester -> ux-reviewer -> git |
 | BUILD-ART | Pixel art, sprites, portraits | researcher -> pixel-artist -> designer -> coder -> reviewer -> git |
 | BUILD-AUDIO | Music, soundscapes | researcher -> composer -> coder -> reviewer -> git |
-| BUG | Targeted fix from review | fixer -> reviewer -> git |
+| BUG | Targeted fix from review | fixer -> reviewer -> playtester -> git |
+| PLAYTEST | Ad-hoc game QA | playtester -> (issues found? fixer -> playtester) -> git |
 
 **Note:** Tasks may override the default track sequence via their `assigned_agents` list. The task's list is always the authority — it may add or omit agents as needed. Track routing is the default when `assigned_agents` is not specified.
 
@@ -71,6 +73,7 @@ Persistent specs (curriculum-map.md, music-spec.md, pixel-art-spec.md) live in `
 | coder | reviewer | (source files directly) | — |
 | reviewer | tester or back to coder | review-report.md | .claude/handoffs/ |
 | fixer | reviewer | fix-report.md | .claude/handoffs/ |
+| playtester | fixer or orchestrator | play-report.md | .claude/handoffs/ |
 | tester | ux-reviewer or orchestrator | test-report.md | .claude/handoffs/ |
 | ux-reviewer | git or back to orchestrator | ux-report.md | .claude/handoffs/ |
 | git | orchestrator | (commit hash -> IMPROVEMENTS.md) | — |

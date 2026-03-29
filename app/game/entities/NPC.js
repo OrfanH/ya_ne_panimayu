@@ -55,7 +55,13 @@ class NPC {
 
     if (inRange && eKeyJustDown) {
       window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
-        detail: { npcId: this._id, npcName: this._name },
+        detail: {
+          npcId: this._id,
+          npcName: this._name,
+          russian: '...',
+          translation: '',
+          choices: [],
+        },
       }));
       this._scene.physics.pause();
     }
