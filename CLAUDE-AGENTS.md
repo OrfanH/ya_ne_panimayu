@@ -24,6 +24,7 @@ Read this file when you are the orchestrator or need to route a task.
 | reviewer | haiku | BUILD, FAST | Code review against CLAUDE-RULES.md |
 | ux-reviewer | haiku | BUILD, CONTENT | Game feel and learning experience gate |
 | tester | haiku | BUILD | Functional testing |
+| playtester | sonnet | BUILD, BUG | Plays game in-browser, finds bugs, empty UI, broken interactions |
 | git | haiku | all | Commits, pushes, logs to IMPROVEMENTS.md |
 
 ## Track routing
@@ -32,8 +33,9 @@ Read this file when you are the orchestrator or need to route a task.
 |---|---|---|
 | FAST | Fix, polish, feel improvement | coder -> reviewer -> git |
 | CONTENT | Russian writing, dialogue, missions | researcher -> content-writer -> ux-reviewer -> git |
-| BUILD | New features, scenes, systems | researcher -> architect -> designer + content-writer (parallel) -> coder -> reviewer -> ux-reviewer -> git |
-| BUG | Targeted fix from review | fixer -> reviewer -> git |
+| BUILD | New features, scenes, systems | researcher -> architect -> designer + content-writer (parallel) -> coder -> reviewer -> playtester -> ux-reviewer -> git |
+| BUG | Targeted fix from review | fixer -> reviewer -> playtester -> git |
+| PLAYTEST | Ad-hoc game QA | playtester -> (issues found? fixer -> playtester) -> git |
 
 ## Handoff protocol
 
@@ -54,6 +56,7 @@ Every agent reads from and writes to `.claude/handoffs/`. No verbal handoffs.
 | reviewer | tester or back to coder | review-report.md |
 | fixer | reviewer | fix-report.md |
 | tester | ux-reviewer or orchestrator | test-report.md |
+| playtester | fixer or orchestrator | play-report.md |
 | ux-reviewer | git or back to orchestrator | ux-report.md |
 | git | orchestrator | (commit hash -> IMPROVEMENTS.md) |
 

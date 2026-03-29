@@ -306,11 +306,24 @@ const TutorAI = (() => {
   // Public — startConversation(npcData)
   // Must be called before the first DIALOGUE_START event fires.
   // -----------------------------------------------------------
-  function startConversation(npcData) {
+  async function startConversation(npcData) {
     _npcId = npcData.id;
     _npcData = npcData;
     _history = [];
+    _isWaiting = true;
+
+    window.dispatchEvent(new CustomEvent(EVENTS.TUTOR_AI_REQUEST, {
+      detail: { npcId: _npcId },
+    }));
+
+    const greeting = await _sendToAI('Greet the player. This is the start of the conversation.');
+
+    window.dispatchEvent(new CustomEvent(EVENTS.TUTOR_AI_RESPONSE, {
+      detail: { npcId: _npcId, reply: greeting },
+    }));
+
     _isWaiting = false;
+    _dispatchAILine(greeting);
   }
 
   // -----------------------------------------------------------
