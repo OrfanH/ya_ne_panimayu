@@ -31,8 +31,9 @@ Do not read STORY.md, WORLD.md, or source files not in the reads list.
 
 ## If you discover a missing dependency
 
-Add it to IMPROVEMENTS.md Backlog with full schema.
-Report the addition in architecture-spec.md under a "New dependency added" heading.
+Do NOT write to IMPROVEMENTS.md — only the orchestrator writes to IMPROVEMENTS.md.
+Instead, add a "Missing dependency" section to architecture-spec.md with the full task schema.
+The orchestrator reads this and adds it to the backlog.
 
 ## What you never do
 

@@ -8,7 +8,7 @@ Read this file when you are the orchestrator or need to route a task.
 
 | Agent | Model | Track | Role |
 |---|---|---|---|
-| orchestrator | opus | all | Reads IMPROVEMENTS.md, picks task, routes to correct track |
+| orchestrator | opus | all | Reads IMPROVEMENTS.md, picks task, routes to correct track. When backlog empty, assesses project and generates tasks. |
 | researcher | opus | BUILD, CONTENT | Deep research: pedagogy, game design, technical. Runs once per task. |
 | architect | sonnet | BUILD | Designs solution spec from researcher brief |
 | designer | sonnet | BUILD | Translates architect spec into visual brief |
@@ -31,31 +31,51 @@ Read this file when you are the orchestrator or need to route a task.
 | Track | When | Agent sequence |
 |---|---|---|
 | FAST | Fix, polish, feel improvement | coder -> reviewer -> git |
-| CONTENT | Russian writing, dialogue, missions | researcher -> content-writer -> ux-reviewer -> git |
+| CONTENT | Russian writing, dialogue, missions | researcher -> narrative-director -> curriculum-designer -> content-writer -> dialogue-writer -> linguist -> ux-reviewer -> git |
 | BUILD | New features, scenes, systems | researcher -> architect -> designer + content-writer (parallel) -> coder -> reviewer -> ux-reviewer -> git |
+| BUILD-ART | Pixel art, sprites, portraits | researcher -> pixel-artist -> designer -> coder -> reviewer -> git |
+| BUILD-AUDIO | Music, soundscapes | researcher -> composer -> coder -> reviewer -> git |
 | BUG | Targeted fix from review | fixer -> reviewer -> git |
+
+**Note:** Tasks may override the default track sequence via their `assigned_agents` list. The task's list is always the authority — it may add or omit agents as needed. Track routing is the default when `assigned_agents` is not specified.
+
+### Parallel agent merge protocol
+
+When a track runs agents in parallel (e.g. designer + content-writer in BUILD):
+1. Both agents read the same architecture-spec.md as input
+2. Designer writes `.claude/handoffs/design-spec.md` (visual brief)
+3. Content-writer writes `.claude/handoffs/content-spec.md` (dialogue/vocab structure)
+4. Coder reads **both** handoff files — design-spec.md for UI/visuals, content-spec.md for data/dialogue
+5. If the two specs conflict (e.g. both specify layout for the same UI element), coder follows design-spec.md for visuals and content-spec.md for data/structure
+6. Coder flags any unresolvable conflicts in a comment: `// CONFLICT: design-spec says X, content-spec says Y — chose X`
 
 ## Handoff protocol
 
 Every agent reads from and writes to `.claude/handoffs/`. No verbal handoffs.
 
-| From | To | File |
-|---|---|---|
-| researcher | architect or curriculum-designer | research-brief.md |
-| architect | designer | architecture-spec.md |
-| designer | coder | design-spec.md |
-| composer | coder | .claude/music-spec.md |
-| curriculum-designer | content-writer | curriculum-map.md |
-| narrative-director | content-writer, dialogue-writer | narrative-review.md |
-| content-writer | dialogue-writer | content-spec.md |
-| dialogue-writer | linguist | dialogue-draft.md |
-| linguist | ux-reviewer or back to content-writer | language-review.md |
-| coder | reviewer | (source files directly) |
-| reviewer | tester or back to coder | review-report.md |
-| fixer | reviewer | fix-report.md |
-| tester | ux-reviewer or orchestrator | test-report.md |
-| ux-reviewer | git or back to orchestrator | ux-report.md |
-| git | orchestrator | (commit hash -> IMPROVEMENTS.md) |
+All handoff files live in `.claude/handoffs/` and are wiped at the start of each task.
+Persistent specs (curriculum-map.md, music-spec.md, pixel-art-spec.md) live in `.claude/` and survive across tasks.
+
+| From | To | File | Location |
+|---|---|---|---|
+| researcher | architect or curriculum-designer | research-brief.md | .claude/handoffs/ |
+| architect | designer, coder | architecture-spec.md | .claude/handoffs/ |
+| designer | coder | design-spec.md | .claude/handoffs/ |
+| pixel-artist | designer, coder | pixel-art-spec.md | .claude/ (persistent) |
+| composer | coder | music-spec.md | .claude/ (persistent) |
+| narrative-director | content-writer, dialogue-writer | narrative-review.md | .claude/handoffs/ |
+| curriculum-designer | content-writer | curriculum-map.md | .claude/ (persistent) |
+| content-writer | dialogue-writer | content-spec.md | .claude/handoffs/ |
+| dialogue-writer | linguist | dialogue-draft.md | .claude/handoffs/ |
+| linguist | ux-reviewer or back to content-writer | language-review.md | .claude/handoffs/ |
+| coder | reviewer | (source files directly) | — |
+| reviewer | tester or back to coder | review-report.md | .claude/handoffs/ |
+| fixer | reviewer | fix-report.md | .claude/handoffs/ |
+| tester | ux-reviewer or orchestrator | test-report.md | .claude/handoffs/ |
+| ux-reviewer | git or back to orchestrator | ux-report.md | .claude/handoffs/ |
+| git | orchestrator | (commit hash -> IMPROVEMENTS.md) | — |
+
+**All agents output PASS or FAIL on line 1 of their handoff file.** The orchestrator reads line 1 to decide whether to proceed or retry.
 
 ---
 

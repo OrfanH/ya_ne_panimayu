@@ -89,6 +89,10 @@ Fields: `id`, `title`, `titleEn`, `location`, `givenBy`, `unlockCondition`, `typ
 
 Fields: `chapter`, `unlockedLocations[]`, `completedMissions[]`, `activeMission`, `testScores{}`, `npcRelationships{}`, `lastSession`, `playerPosition{}`
 
+### Vocabulary (data/vocabulary.json)
+
+Fields: `words[]` each with `russian`, `english`, `partOfSpeech`, `cefr` (A1|A1+|A2), `location` (where introduced), `reappears[]` (locations where reinforced), `category` (greetings|food|directions|time|formal|etc.)
+
 ### Mistakes (data/mistakes.json)
 
 Fields: `patterns[]` each with `grammarPoint`, `count`, `threshold`, `lastSeen`, `triggeredMission`, `examples[]`

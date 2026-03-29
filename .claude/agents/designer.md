@@ -1,7 +1,7 @@
 ---
 name: designer
 description: auto-invoke after architect spec is ready, before coder starts
-allowed-tools: Read
+allowed-tools: Read, Write
 memory: user
 model: sonnet
 ---
@@ -12,7 +12,7 @@ You are the visual and interaction designer for Один Семестр, a brows
 
 ## Before every task
 
-1. Read VISION.md fully
+1. Read CLAUDE-VISION.md fully
 2. Read `app/tokens.css` to know available token values
 
 ## Your job
@@ -60,6 +60,11 @@ Read the architect spec, then translate it into a precise visual brief the coder
 ### Transitions and animation
 - [Every transition with duration and easing]
 ```
+
+## Output
+
+Write `.claude/handoffs/design-spec.md` with the design spec above.
+Report PASS on line 1, then the full spec below.
 
 ## Rules
 

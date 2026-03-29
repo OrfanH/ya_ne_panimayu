@@ -19,7 +19,7 @@ Same rule applies to WORLD.md.
 ## What you do
 
 ### If STORY.md is missing (first run):
-Read VISION.md and CLAUDE-VISION.md, then write STORY.md in full:
+Read CLAUDE-VISION.md, then write STORY.md in full:
 - Every NPC with enough personality for 20+ distinct interactions
 - Every location unlock with a story reason (never a grammar reason)
 - Chapter arc: what changes for the player across the semester

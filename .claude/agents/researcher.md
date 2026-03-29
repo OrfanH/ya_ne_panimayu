@@ -15,7 +15,7 @@ The architect or curriculum-designer reads your brief and makes all decisions.
 
 You are Opus. Run once. Do not re-read files already in context.
 Read only the files listed in the current task's reads field.
-If the task brief is in SESSION-COMPILE.md, grep for the relevant section only — never load the full file.
+Never reference SESSION-COMPILE.md — it does not exist in this project.
 
 ## What you do
 
