@@ -6,26 +6,13 @@
 
 ---
 
+## Knowledge Base
+- [4e0810e] REFERENCE-GAMEDESIGN.md, REFERENCE-PIXELART.md, REFERENCE-DIALOGUE.md added
+
+---
+
 ## Backlog
 
-
-### TASK-038
-**title:** HUD + Journal + Settings pixel skin — consistent stone/pixel aesthetic
-**track:** VISUAL
-**status:** READY
-**depends_on:** [TASK-037]
-**assigned_agents:** [coder]
-**reads:** [app/ui/hud.js, app/ui/journal.js, app/ui/settings.js, app/style.css, app/tokens.css, app/assets/ui/ui-pack.png]
-**writes:** [app/style.css, app/ui/hud.js]
-**done_when:**
-- HUD location name pill (`#hud-location`) uses Kenney Mini font, stone/dark background. Minimal — max 2-tile-height tall.
-- Mission indicator (`#hud-mission`) same stone styling, compact single line.
-- Journal panel (`.journal-overlay`) uses stone 9-slice border matching dialogue box aesthetic. Tab buttons use stone pill style.
-- Settings panel (`.settings-overlay`) matches journal stone style.
-- Mute button (`#hud-mute`) uses a clean pixel icon style consistent with the stone palette.
-- No rounded-rect CSS remaining in any HUD or overlay element.
-- All panels use `--font-game` or `--font-hud` — no system fonts.
-**notes:** All UI panels must look like they came from the same stone/silver UI kit. No mixing of styles. HUD must remain non-intrusive (see VISION.md).
 
 ---
 
@@ -98,6 +85,7 @@
 - TASK-036 | DONE | 2026-03-29 | Kenney Pixel + Mini fonts — replace all monospace/Google Fonts | e9977eb
 - TASK-035 | DONE | 2026-03-29 | Interior rooms — roguelike-indoors tiles for all 6 scenes | 4fd7582
 - TASK-037 | DONE | 2026-03-29 | Dialogue UI pixel stone skin — dark panel, pixel borders, Kenney fonts | 1de63f2
+- TASK-038 | DONE | 2026-03-29 | HUD + Journal + Settings pixel stone skin — consistent aesthetic | 0893c1a
 
 ## Session log
 
@@ -133,3 +121,4 @@
 - 2026-03-29 · TASK-039 NPC sprites — composable layers from roguelike-characters sheet, all 13 NPCs distinct · 2798039
 - 2026-03-29 · TASK-034 Overworld tiles — CITY_TILES constant, city spritesheet for ground/paths/6 buildings · e3a1a2d
 - 2026-03-29 · TASK-036 Kenney fonts — Pixel/Mini tokens, image-rendering:pixelated, all system fonts removed · e9977eb
+- 2026-03-29 · TASK-038 HUD + Journal + Settings pixel stone skin — consistent stone aesthetic via coder · 0893c1a
