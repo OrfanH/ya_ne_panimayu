@@ -13,15 +13,273 @@
 
 ## Backlog
 
+---
+
+### TASK-041
+**title:** Dialogue system fix — state machine, single-fire, no race condition
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-038]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/ui/dialogue.js, app/game/entities/NPC.js, app/game/scenes/ApartmentScene.js, app/game/systems/TutorAI.js]
+**writes:** [app/ui/dialogue.js, app/game/entities/NPC.js]
+**done_when:**
+- DialogueUI has a state machine with states: CLOSED, OPENING, OPEN, CLOSING — re-entry during non-CLOSED state is a no-op
+- NPC.checkInteraction fires DIALOGUE_START exactly once with full payload (text + choices); does NOT emit a second time with '...'
+- Dialogue opens showing a loading indicator, then TutorAI updates content via DIALOGUE_UPDATE — no second DIALOGUE_START call
+- DIALOGUE_END fires exactly once per close(); transitionend cancels the 400ms fallback timer
+- No visible flicker, no double-open, no mid-conversation TutorAI reset
+**notes:** Root cause: NPC emits DIALOGUE_START with '...' placeholder, TutorAI emits a second DIALOGUE_START with the real response. Fix: NPC opens the box in loading state, TutorAI calls a new DialogueUI.update() method. See trace-report.md for full analysis.
 
 ---
 
+### TASK-042
+**title:** Dialogue CSS fix — missing variables, portrait visibility, touch targets
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-041]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/style.css, app/tokens.css, app/ui/dialogue.js]
+**writes:** [app/style.css, app/tokens.css]
+**done_when:**
+- `--dialogue-height` and `--choice-min-height` declared in tokens.css with appropriate values
+- `.dialogue-portrait` displays correctly when an image src is set (remove unconditional `display:none`, use `.has-portrait` class toggle)
+- Choice buttons are minimum 48px height on mobile (375px viewport)
+- Dialogue box does not collapse or overflow at any supported viewport
+**notes:** CSS-only fix. Do not touch JS logic. Portrait fix requires both a CSS rule change and a one-line JS change in DialogueUI.open() to add the `.has-portrait` class when portrait src is non-empty.
+
+---
+
+### TASK-043
+**title:** First-visit flow — scripted greeting → AI handoff with recast correction
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-041]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/scenes/ApartmentScene.js, app/ui/dialogue.js, app/game/systems/TutorAI.js, app/game/content/apartment-dialogue.js]
+**writes:** [app/game/scenes/ApartmentScene.js, app/ui/dialogue.js]
+**done_when:**
+- First-visit Galina greeting displays scripted text with at least one choice button ("Привет!" / "Hello") — player is never stuck
+- Selecting the choice advances dialogue; TutorAI takes over for all subsequent exchanges
+- If TutorAI detects a grammar error in player input, NPC response naturally models the correct form inline (recast correction per REFERENCE-DIALOGUE.md §3) — conversation continues, no dead end
+- No double-fire with the TASK-041 fix in place (auto-trigger uses new single-fire pattern)
+**notes:** Per REFERENCE-DIALOGUE.md: failure states must advance, not punish. Recast correction = NPC says the correct form in their reply without labelling it as an error. E.g. player types "Я хочу идти" → NPC replies "О, ты хочешь пойти в парк? Хорошо!" (models correct aspect).
+
+---
+
+### TASK-044
+**title:** AudioManager init + mute button wiring
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-038]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/systems/AudioManager.js, app/ui/hud.js, app/game/scenes/Boot.js, app/index.html]
+**writes:** [app/game/systems/AudioManager.js, app/ui/hud.js]
+**done_when:**
+- `AudioManager.init()` is called on first user interaction event (Tone.start() requirement met)
+- Location-specific soundscape starts automatically when player enters each scene (ZONE_ENTER event)
+- `#hud-mute` button is wired to `AudioManager.toggle()` — click toggles mute on/off
+- Mute state persists across scenes within a session
+- No uncaught Tone.js errors in console during normal play
+**notes:** Tone.start() MUST be inside a user gesture handler (keydown, click, touchstart). Wire to the first such event received after game load. AudioManager.init() can be called from Boot.js completion or from WorldScene.create() on the first input.
+
+---
+
+### TASK-045
+**title:** Event listener audit — scene shutdown cleanup + Player.destroy()
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-038]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/entities/Player.js, app/game/entities/NPC.js, app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/game/scenes/TestScene.js, app/game/scenes/WorldScene.js]
+**writes:** [app/game/entities/Player.js, app/game/scenes/TestScene.js, app/game/scenes/WorldScene.js]
+**done_when:**
+- `Player.js` has a `destroy()` method that calls `window.removeEventListener` for `joystick:move` and `joystick:stop` using stored bound references
+- All interior scenes call `this.player.destroy()` in their `shutdown()` method
+- `TestScene.shutdown()` removes `TEST_END` and `TEST_DISMISS` event listeners
+- `WorldScene` ZONE_ENTER listener is removed on scene shutdown
+- After 5 round-trip World ↔ ApartmentScene transitions, no duplicate event handlers exist
+**notes:** Bind listener functions once in create() as `this._onJoystickMove = (...) => {...}` and reuse the same reference in removeEventListener. Anonymous arrow functions cannot be removed.
+
+---
+
+### TASK-046
+**title:** Scene transition guard — prevent double-enter race condition
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-045]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/scenes/WorldScene.js]
+**writes:** [app/game/scenes/WorldScene.js]
+**done_when:**
+- `WorldScene._transitionTo()` sets a boolean lock (`_transitioning = true`) on first call
+- Subsequent `_transitionTo()` calls while `_transitioning` is true are silently ignored
+- Lock is reset in `WorldScene.shutdown()` (guards against edge cases)
+- Multiple overlapping zone collisions do not queue multiple scene transitions
+**notes:** Single-file change. Zone overlap is the most common trigger — player standing at a building entrance while walking can fire 2-3 ZONE_ENTER events in one frame.
+
+---
+
+### TASK-047
+**title:** NPC relationship tiers — stranger / acquaintance / friend dialogue switching
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-041, TASK-045]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/entities/NPC.js, app/game/content/apartment-dialogue.js, app/storage.js, app/config.js]
+**writes:** [app/game/entities/NPC.js, app/game/content/apartment-dialogue.js]
+**done_when:**
+- `NPC.js` reads `npcRelationships[npcId]` from storage to determine tier: 0 = stranger, 1 = acquaintance, 2 = friend
+- Relationship score increments by 1 after each completed dialogue (DIALOGUE_END fires)
+- Score thresholds: 0 = stranger, 1–2 = acquaintance, 3+ = friend
+- `TutorAI.startConversation()` receives the current tier as context so the system prompt adjusts formality (вы vs ты) per REFERENCE-DIALOGUE.md §1
+- Galina's `apartment-dialogue.js` scripted fallbacks have at least two tier-tagged variants per NPC interaction to demonstrate the system working
+**notes:** Per REFERENCE-DIALOGUE.md: strangers use вы and formal address; acquaintances switch to ты and use the player's name; friends ask questions about the player's life. The tier must be passed to TutorAI so AI-generated responses also respect it.
+
+---
+
+### TASK-048
+**title:** Wire MissionGenerator — trigger from dialogue, update HUD + Journal
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-041, TASK-045]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/systems/MissionGenerator.js, app/game/systems/MistakeLogger.js, app/ui/hud.js, app/ui/journal.js, app/storage.js]
+**writes:** [app/game/systems/MissionGenerator.js, app/ui/hud.js, app/ui/journal.js]
+**done_when:**
+- `MissionGenerator.checkAndGenerate()` is called after every `DIALOGUE_END` event
+- If a new mission is generated, `#hud-mission` text updates immediately with the mission title
+- Journal missions tab re-renders active + completed missions when opened (reads from storage)
+- Completed missions display with a visual completion indicator (strikethrough or checkmark)
+- Empty state: missions tab shows "Нет заданий" when no missions exist
+**notes:** MissionGenerator reads from MistakeLogger — ensure MistakeLogger has at least one logged mistake before testing, otherwise no mission will generate.
+
+---
+
+### TASK-049
+**title:** Vocabulary logging — dialogue choices feed Journal vocab tab live
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-041]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/ui/dialogue.js, app/ui/journal.js, app/game/systems/MistakeLogger.js, app/storage.js, app/config.js]
+**writes:** [app/ui/dialogue.js, app/ui/journal.js]
+**done_when:**
+- When a player selects a dialogue choice, vocabulary words from the current NPC exchange are extracted and saved to storage via `storage.addVocab()`
+- Journal vocabulary tab renders all logged words from storage with: Russian word, English translation, scene context (location name)
+- Words are deduplicated — the same word appearing twice shows once with a frequency counter
+- Journal tab re-reads from storage every time it opens (not cached in memory)
+**notes:** Vocabulary extraction can be simple: TutorAI already has the exchange context. Add a `vocab` array to the DIALOGUE_END event payload containing words introduced in that exchange, then persist them. For AI responses, extract from the annotated word list if TutorAI returns one; for scripted fallbacks, attach a static vocab list per script entry.
+
+---
+
+### TASK-050
+**title:** Daily NPC conversation limit — one rich exchange per day, then short farewell
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-047]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/entities/NPC.js, app/game/systems/TutorAI.js, app/storage.js, app/config.js]
+**writes:** [app/game/entities/NPC.js, app/game/systems/TutorAI.js]
+**done_when:**
+- Storage tracks `lastTalkedDate[npcId]` — the in-game or real-world date of the last completed conversation
+- If player interacts with an NPC they already spoke to today, NPC gives a short contextual farewell line ("До завтра!" / "See you tomorrow!") and dialogue closes after one beat — no full AI conversation
+- System prompt sent to TutorAI includes a `alreadySpokenToday: true` flag when applicable, allowing AI to give a brief response naturally
+- Per REFERENCE-GAMEDESIGN.md §1: after one rich conversation, NPC gives "see you tomorrow" — scarcity makes choices feel meaningful
+**notes:** "Today" can be defined as the same UTC calendar day, or as a session-based flag if simpler. Start with session-based (reset on page load) then upgrade to date-based.
+
+---
+
+### TASK-051
+**title:** NPC interaction indicator — proximity E-key / tap-zone visual
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-045]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/entities/NPC.js, app/game/entities/Player.js, app/style.css, app/tokens.css]
+**writes:** [app/game/entities/NPC.js, app/style.css]
+**done_when:**
+- When player enters NPC interaction range, a small pixel-art prompt appears above the NPC sprite ("E" on desktop, tap icon on mobile)
+- Prompt disappears when player moves out of range or dialogue opens
+- Indicator uses pixel font (`--font-hud`) and stone/dark palette matching the game aesthetic
+- Works correctly for all NPCs across all scenes
+**notes:** Per REFERENCE-GAMEDESIGN.md: the player must know what they can interact with. The indicator should be subtle — not a floating exclamation mark, but a small keyboard hint. Use a Phaser Text object positioned above the NPC sprite, visible only in the interaction zone.
+
+---
+
+### TASK-052
+**title:** Mobile dialogue UX — tap to advance, viewport fit, 48px touch targets
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-042]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/ui/dialogue.js, app/style.css, app/tokens.css]
+**writes:** [app/ui/dialogue.js, app/style.css]
+**done_when:**
+- Tapping anywhere on the dialogue text area advances to the next beat (no dedicated "next" button needed)
+- Choice buttons are minimum 48px height and full-width on mobile (375px)
+- Dialogue panel does not overflow or require horizontal scroll on 375px viewport
+- Tap-to-advance does not accidentally trigger NPC interaction again (event propagation handled correctly)
+**notes:** Tap-to-advance must be guarded: only fire when dialogue is OPEN state (from TASK-041 state machine). Use a single `click` listener on the dialogue text container, not on the whole window.
+
+---
+
+### TASK-053
+**title:** Dialogue API fallback chain — scripted → AI → graceful error message
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-041]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/systems/TutorAI.js, app/ui/dialogue.js, app/config.js, app/game/content/apartment-dialogue.js]
+**writes:** [app/game/systems/TutorAI.js, app/ui/dialogue.js]
+**done_when:**
+- If Gemini primary + fallback both fail, TutorAI returns a scripted line from the NPC's location dialogue file (not a generic error string)
+- Player can continue the conversation using scripted fallback — no freeze, no empty box
+- A subtle in-dialogue indicator shows when AI is unavailable (e.g., a small "(offline)" label near NPC name) — not a disruptive toast
+- On API recovery (next interaction), AI mode resumes automatically
+**notes:** Current behaviour: silently returns "Извините, я сейчас занят" with no recovery path. Fix: on API failure, flag TutorAI._offline = true, route subsequent calls through the scripted dialogue arrays, clear flag on next successful API call.
+
+---
+
+### TASK-054
+**title:** TestScene lifecycle fix — shutdown cleanup and clean retry flow
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-045]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/scenes/TestScene.js]
+**writes:** [app/game/scenes/TestScene.js]
+**done_when:**
+- `TestScene.shutdown()` removes all `window.addEventListener` calls registered during `create()` (TEST_END, TEST_DISMISS, and any others)
+- Player can exit a test and re-enter it without duplicate event handlers accumulating
+- Test retry (after failing) works correctly — score resets, questions reload, no stale state
+- If test is passed, return to WorldScene with correct unlock state
+**notes:** Mirrors TASK-045 pattern. Store bound listener references in this._onTestEnd etc. during create(), remove them in shutdown().
+
+---
+
+### TASK-055
+**title:** Loading states + API error toast — boot progress bar, non-blocking error feedback
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-038]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/game/scenes/Boot.js, app/ui/hud.js, app/game/systems/TutorAI.js, app/index.html, app/style.css]
+**writes:** [app/game/scenes/Boot.js, app/ui/hud.js, app/style.css]
+**done_when:**
+- Boot scene displays a pixel-art progress bar while assets load (Phaser `on('progress')` callback)
+- When TutorAI API fails (after both retries), a non-blocking toast notification appears for 3 seconds then auto-dismisses
+- Toast uses `--font-hud`, stone palette, matches game aesthetic — does not block game interaction
+- No raw JS errors visible in browser console during a normal play session
+**notes:** Boot progress bar: use Phaser's built-in progress event (`this.load.on('progress', ...)`) to draw a bar in Boot scene graphics. Toast: a single `<div id="hud-toast">` injected into index.html, shown/hidden via CSS class, auto-hidden after 3s via setTimeout.
+
+---
 
 ### TASK-040
 **title:** Full playtest — end-to-end game loop verification
 **track:** BUILD
-**status:** READY
-**depends_on:** [TASK-038]
+**status:** BACKLOG
+**depends_on:** [TASK-041, TASK-042, TASK-043, TASK-044, TASK-045, TASK-052, TASK-051, TASK-055]
 **assigned_agents:** [playtester]
 **reads:** [app/index.html, all scene and UI files]
 **writes:** [.claude/handoffs/play-report.md]
