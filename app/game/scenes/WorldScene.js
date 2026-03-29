@@ -22,6 +22,40 @@ const BUILDING_ZONES = [
     roofColor: 0x3D3A8C, wallColor: 0xD0D8F0, doorColor: 0x2A2870 },
 ];
 
+/*
+ * CITY TILESET INDEX MAP (roguelike-city.png)
+ * Frame formula: N = row × 37 + col  (37 tiles per row, 0-indexed)
+ * Spritesheet key: 'city'  |  16×16 px tiles  |  1px spacing
+ *
+ * Ground:
+ *   grass_a  = 888  (r24c0  #509860 bright green)
+ *   grass_b  = 962  (r26c0  #7C8C59 olive green)
+ * Paths:
+ *   path_a   = 606  (r16c14 #ACACAC neutral grey)
+ *   path_b   = 644  (r17c15 #AAAAAA light grey)
+ * Buildings:
+ *   apartment — wall=0   roof=37  door=74
+ *   park      — wall=925 roof=365 door=889
+ *   cafe      — wall=163 roof=141 door=529
+ *   market    — wall=22  roof=290 door=59
+ *   station   — wall=607 roof=485 door=643
+ *   police    — wall=8   roof=566 door=45
+ */
+const CITY_TILES = {
+  grass_a: 888,
+  grass_b: 962,
+  path_a:  606,
+  path_b:  644,
+  buildings: {
+    apartment: { wall: 0,   roof: 37,  door: 74  },
+    park:      { wall: 925, roof: 365, door: 889 },
+    cafe:      { wall: 163, roof: 141, door: 529 },
+    market:    { wall: 22,  roof: 290, door: 59  },
+    station:   { wall: 607, roof: 485, door: 643 },
+    police:    { wall: 8,   roof: 566, door: 45  },
+  },
+};
+
 class WorldScene extends Phaser.Scene {
   constructor() {
     super({ key: 'World' });
@@ -232,9 +266,8 @@ class WorldScene extends Phaser.Scene {
   _drawGround(T, worldW, worldH) {
     for (let row = 0; row < ROWS; row++) {
       for (let col = 0; col < COLS; col++) {
-        const isDark = (row + col) % 2 === 1;
-        const key = isDark ? this._tileKeys.grassDark : this._tileKeys.grass;
-        this.add.image(col * T + T / 2, row * T + T / 2, key);
+        const frame = (row + col) % 2 === 1 ? CITY_TILES.grass_b : CITY_TILES.grass_a;
+        this.add.image(col * T + T / 2, row * T + T / 2, 'city', frame);
       }
     }
   }
@@ -247,20 +280,13 @@ class WorldScene extends Phaser.Scene {
     // Horizontal branches to each building entrance
     const pathSegments = this._computePathSegments();
 
-    const gfx = this.add.graphics();
-    gfx.fillStyle(0xC8A96E);
-
     for (const seg of pathSegments) {
-      gfx.fillRect(seg.col * T, seg.row * T, seg.cols * T, seg.rows * T);
-    }
-
-    // Subtle edge lines
-    gfx.fillStyle(0xB89558);
-    for (const seg of pathSegments) {
-      // Top edge
-      gfx.fillRect(seg.col * T, seg.row * T, seg.cols * T, 2);
-      // Bottom edge
-      gfx.fillRect(seg.col * T, (seg.row + seg.rows) * T - 2, seg.cols * T, 2);
+      for (let r = seg.row; r < seg.row + seg.rows; r++) {
+        for (let c = seg.col; c < seg.col + seg.cols; c++) {
+          const frame = (r + c) % 2 === 0 ? CITY_TILES.path_a : CITY_TILES.path_b;
+          this.add.image(c * T + T / 2, r * T + T / 2, 'city', frame);
+        }
+      }
     }
   }
 
@@ -310,51 +336,49 @@ class WorldScene extends Phaser.Scene {
     const w = zone.cols * T;
     const h = zone.rows * T;
 
-    const gfx = this.add.graphics();
+    const tiles = this.add.container(0, 0);
+    const spec = CITY_TILES.buildings[zone.id];
 
-    // Wall fill
-    gfx.fillStyle(zone.wallColor);
-    gfx.fillRect(x, y, w, h);
-
-    // Roof strip (top 1 tile height)
-    gfx.fillStyle(zone.roofColor);
-    gfx.fillRect(x, y, w, T);
-
-    // Door (if applicable) — bottom centre, 1 tile wide, 1.5 tiles tall
-    if (zone.doorColor !== null) {
-      const doorCol   = zone.col + Math.floor(zone.cols / 2);
-      const doorX     = doorCol * T + T * 0.2;
-      const doorW     = T * 0.6;
-      const doorH     = T * 1.2;
-      const doorY     = y + h - doorH;
-      gfx.fillStyle(zone.doorColor);
-      gfx.fillRect(doorX, doorY, doorW, doorH);
+    // Wall fill (all rows)
+    for (let r = zone.row; r < zone.row + zone.rows; r++) {
+      for (let c = zone.col; c < zone.col + zone.cols; c++) {
+        tiles.add(this.add.image(c * T + T / 2, r * T + T / 2, 'city', spec.wall));
+      }
     }
 
-    // Locked visual treatment — Graphics has no setTint, so use a dark overlay rectangle
+    // Roof overdraw (top row)
+    for (let c = zone.col; c < zone.col + zone.cols; c++) {
+      tiles.add(this.add.image(c * T + T / 2, zone.row * T + T / 2, 'city', spec.roof));
+    }
+
+    // Door (bottom centre, 1 tile)
+    const doorCol = zone.col + Math.floor(zone.cols / 2);
+    const doorRow = zone.row + zone.rows - 1;
+    tiles.add(this.add.image(doorCol * T + T / 2, doorRow * T + T / 2, 'city', spec.door));
+
+    // Locked visual treatment — overlay rectangle + padlock glyph
     let overlay = null;
     if (zone.locked) {
       overlay = this.add.rectangle(x + w / 2, y + h / 2, w, h, 0x555577, 0.5);
-      gfx.setAlpha(0.6);
+      tiles.setAlpha(0.6);
 
       // Padlock glyph at the centre of the building
-      const cx = x + w / 2;
-      const cy = y + h / 2;
-      this._drawPadlock(cx, cy);
+      this._drawPadlock(x + w / 2, y + h / 2);
     }
 
     // Label
     const labelY = y - 4;
     const labelColor = zone.locked ? '#AAAACC' : '#F7F7F5';
     const label = this.add.text(x + w / 2, labelY, zone.name, {
-      fontFamily: 'monospace',
+      fontFamily: 'Kenney Pixel',
       fontSize: '13px',
       color: labelColor,
       shadow: { x: 1, y: 1, color: '#00000066', fill: true },
     });
     label.setOrigin(0.5, 1);
 
-    return { gfx, overlay };
+    // Return container as 'gfx' so existing code that calls gfx.setAlpha still works
+    return { gfx: tiles, overlay };
   }
 
   _drawPadlock(cx, cy) {
