@@ -13,8 +13,7 @@
       "TodoWrite",
       "NotebookEdit",
       "Skill",
-      "mcp__*",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__*"
     ]
   }
 }
