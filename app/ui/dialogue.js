@@ -177,6 +177,7 @@ const DialogueUI = (() => {
     _state.currentLine = line;
 
     _populate(line);
+    _portrait.classList.toggle('has-portrait', !!line.portrait);
     _overlay.classList.add('is-active');
 
     // Track when opening transition ends → move to OPEN

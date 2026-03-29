@@ -99,6 +99,8 @@
   --header-height: 56px;
   --tab-bar-height: 56px;
   --content-max-width: 680px;
+  --dialogue-height: 200px;
+  --choice-min-height: 48px;
 }
 
 /* --- Dark Mode Overrides (explicit data-theme attribute) --- */

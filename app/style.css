@@ -232,7 +232,7 @@ body {
 /* --- Dialogue Box (pixel stone skin) --- */
 .dialogue-box {
   width: 100%;
-  height: var(--dialogue-height);
+  min-height: var(--dialogue-height);
   background: #3a3d4a;
   border-top: 4px solid #6e7487;
   border-left: 4px solid #6e7487;
@@ -266,6 +266,11 @@ body {
 /* --- Portrait --- */
 .dialogue-portrait {
   display: none;
+  width: 80px;
+  flex-shrink: 0;
+}
+.dialogue-portrait.has-portrait {
+  display: block;
 }
 
 .dialogue-portrait img {
