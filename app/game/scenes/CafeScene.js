@@ -102,6 +102,7 @@ class CafeScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
+      if (TutorAI.isActive()) { return; }
       if (detail.npcId === lenaData.id) {
         TutorAI.startConversation(lenaData);
       } else if (detail.npcId === borisData.id) {

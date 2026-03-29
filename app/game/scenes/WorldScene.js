@@ -489,18 +489,22 @@ class WorldScene extends Phaser.Scene {
     if (newId !== this._currentZoneId) {
       if (this._currentZoneId !== null) {
         // Exit previous zone
-        this.game.events.emit(EVENTS.LOCATION_EXIT, { id: this._currentZoneId });
+        window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_EXIT, {
+          detail: { id: this._currentZoneId },
+        }));
       }
 
       this._currentZoneId = newId;
 
       if (newId !== null) {
         // Enter new zone
-        this.game.events.emit(EVENTS.LOCATION_ENTER, {
-          id:     entered.id,
-          name:   entered.name,
-          locked: entered.locked,
-        });
+        window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_ENTER, {
+          detail: {
+            id:     entered.id,
+            name:   entered.name,
+            locked: entered.locked,
+          },
+        }));
       }
     }
   }

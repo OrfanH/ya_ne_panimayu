@@ -85,6 +85,7 @@ class StationScene extends Phaser.Scene {
     // Dialogue
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
+      if (TutorAI.isActive()) { return; }
       if (detail.npcId === konstantinData.id) {
         TutorAI.startConversation(konstantinData);
       } else if (detail.npcId === nadyaData.id) {
