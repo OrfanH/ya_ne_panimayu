@@ -8,111 +8,6 @@
 
 ## Backlog
 
----
-
-### TASK-033
-**title:** Kenney asset extraction — copy tilesets, fonts, UI pack into project
-**track:** VISUAL
-**status:** READY
-**depends_on:** []
-**assigned_agents:** [coder]
-**reads:** [app/assets/, app/index.html, app/style.css, app/game/scenes/Boot.js]
-**writes:** [app/assets/tilesets/roguelike-city.png, app/assets/tilesets/roguelike-indoors.png, app/assets/tilesets/roguelike-characters.png, app/assets/fonts/KenneyPixel.ttf, app/assets/fonts/KenneyMini.ttf, app/assets/ui/ui-pack.png, app/index.html, app/game/scenes/Boot.js]
-**done_when:**
-- `app/assets/tilesets/roguelike-city.png` extracted from `kenney_roguelike-modern-city.zip → Tilemap/tilemap_packed.png`
-- `app/assets/tilesets/roguelike-indoors.png` extracted from `kenney_roguelike-indoors.zip → Tilesheets/roguelikeIndoor_transparent.png`
-- `app/assets/tilesets/roguelike-characters.png` extracted from `kenney_roguelike-characters.zip → Spritesheet/roguelikeChar_transparent.png`
-- `app/assets/fonts/KenneyPixel.ttf` extracted from `kenney_kenney-fonts.zip → Fonts/Kenney Pixel.ttf`
-- `app/assets/fonts/KenneyMini.ttf` extracted from `kenney_kenney-fonts.zip → Fonts/Kenney Mini.ttf`
-- `app/assets/ui/ui-pack.png` extracted from `kenney_ui-pack-pixel-adventure (1).zip → Tilesheets/Small tiles/Thick outline/tilemap_packed.png`
-- Boot.js preloads: key `city` (frameWidth:16, frameHeight:16, spacing:1), key `indoors` (same spec), key `chars` (same spec)
-- `app/index.html` adds `@font-face` declarations for KenneyPixel and KenneyMini pointing to `assets/fonts/`
-- Existing `urban` spritesheet load and all player walk animations left untouched
-**notes:** Source zips are in C:\Users\ORfan\Downloads\. roguelike-city is 37×28 tiles with 1px spacing (different from `urban` 27×18 with 0px spacing — keep both). roguelike-indoors and roguelike-characters are also 16×16 with 1px spacing. Fonts load via CSS @font-face, not Phaser asset load. Do NOT use kenney_pixel-ui-pack.zip — not in the approved stack.
-
----
-
-### TASK-034
-**title:** Overworld map — replace programmatic rects with roguelike-city tiles
-**track:** VISUAL
-**status:** READY
-**depends_on:** [TASK-033]
-**assigned_agents:** [pixel-artist, coder]
-**reads:** [app/game/scenes/WorldScene.js, app/game/systems/MapBuilder.js, app/assets/tilesets/roguelike-city.png]
-**writes:** [app/game/scenes/WorldScene.js, app/game/systems/MapBuilder.js]
-**done_when:**
-- Ground layer: grass tile frames from `city` spritesheet replace the checkerboard `this._tileKeys.grassDark / grass` colored images. At minimum two grass tile variants for checker effect.
-- Path network: sidewalk/pavement tile frames replace the filled `0xC8A96E` Graphics rects.
-- Each of the 6 buildings uses distinct tile compositions drawn from roguelike-city building tiles. Apartment = residential brick; Park = green/hedge tiles; Cafe = shopfront tiles; Market = market stall tiles; Station = platform/transit tiles; Police = institutional tiles. Buildings must remain recognisable as distinct location types.
-- Locked overlay and padlock glyph logic kept exactly as-is (no changes to collision or zone detection).
-- Building labels retained; font updated to `'Kenney Pixel'` (loaded by TASK-033).
-- Tile index mapping documented in a comment block at the top of WorldScene.js.
-**notes:** pixel-artist writes a tile-index spec first (which city frames map to ground/paths/each building type). Coder implements from that spec. roguelike-city frame formula: `N = row * 37 + col` (37 tiles per row, 0-indexed). Sample.png in the zip shows the full sheet layout. Do NOT modify the collision system, zone detection, or unlock logic.
-
----
-
-### TASK-035
-**title:** Interior rooms — replace bare floor/wall graphics with roguelike-indoors tiles
-**track:** VISUAL
-**status:** READY
-**depends_on:** [TASK-033]
-**assigned_agents:** [pixel-artist, coder]
-**reads:** [app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/assets/tilesets/roguelike-indoors.png]
-**writes:** [app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js]
-**done_when:**
-- Each interior scene replaces its single `gfx.fillRect` floor and `gfx.strokeRect` wall-border with tiled layers from the `indoors` spritesheet.
-- Floor tiles per location: Apartment = wood plank tiles; Park = stone/grass floor; Cafe = checkered floor tiles; Market = stone floor tiles; Station = concrete/platform tiles; Police = institutional floor tiles.
-- Wall perimeter tiles from indoors pack replace the solid-colour border stroke.
-- At least 2–3 furniture or prop tiles placed per room from the indoors pack (e.g. desk, bookshelf, counter, bench) to make each room feel distinct.
-- All NPC spawn positions and player spawn positions remain unchanged.
-- World bounds, collision, camera follow untouched.
-- Tile index mapping commented at top of each modified scene file.
-**notes:** pixel-artist writes a per-room tile spec first. roguelike-indoors sheet is 16×16 tiles with 1px spacing. The transparent PNG variant is used. Do NOT change scene logic, event listeners, or NPC/player wiring.
-
----
-
-### TASK-036
-**title:** Kenney Pixel + Mini fonts — replace all monospace/Google Fonts with Kenney fonts
-**track:** VISUAL
-**status:** READY
-**depends_on:** [TASK-033]
-**assigned_agents:** [coder]
-**reads:** [app/index.html, app/tokens.css, app/style.css, app/game/scenes/Boot.js, app/game/scenes/WorldScene.js, app/ui/hud.js, app/ui/dialogue.js, app/ui/journal.js, app/ui/settings.js]
-**writes:** [app/index.html, app/tokens.css, app/style.css, app/game/scenes/Boot.js, app/game/scenes/WorldScene.js, app/ui/hud.js, app/ui/dialogue.js, app/ui/journal.js, app/ui/settings.js]
-**done_when:**
-- `app/index.html`: Google Fonts `<link>` tags removed. `@font-face` blocks (already added in TASK-033) confirmed present for KenneyPixel and KenneyMini.
-- `app/tokens.css`: `--font-game: 'Kenney Pixel', monospace` and `--font-hud: 'Kenney Mini', monospace` defined. Old Google Font family names removed.
-- All `fontFamily: 'monospace'` in Phaser scene text objects replaced with `'Kenney Pixel'`.
-- Boot.js loading screen title uses `'Kenney Pixel'`.
-- WorldScene building labels use `'Kenney Pixel'`.
-- HTML overlay UI (hud.js, dialogue.js, journal.js, settings.js): CSS font-family changed to `var(--font-game)` for body text, `var(--font-hud)` for compact labels.
-- No Plus Jakarta Sans or Crimson Pro or Inter references remain anywhere.
-- `image-rendering: pixelated` applied to canvas element in CSS (if not already present).
-**notes:** Kenney Pixel is the dialogue/scene font. Kenney Mini is the compact HUD/label font. Both have monospace fallback. The fonts are CC0 and local — no CDN dependency.
-
----
-
-### TASK-037
-**title:** Dialogue UI pixel skin — stone panel border from UI adventure pack
-**track:** VISUAL
-**status:** READY
-**depends_on:** [TASK-036]
-**assigned_agents:** [pixel-artist, coder]
-**reads:** [app/ui/dialogue.js, app/style.css, app/tokens.css, app/assets/ui/ui-pack.png]
-**writes:** [app/style.css, app/assets/ui/]
-**done_when:**
-- `.dialogue-box` background replaced with a pixel-art 9-slice stone panel from the UI adventure `Thick outline` tilesheet. Stone/silver/grey tones only — never the brown wooden variant.
-- The 9-slice is implemented via CSS `border-image`. Corner radius removed.
-- Response choice buttons (`.dialogue-choices button`) restyled with stone button tiles — flat stone state and pressed state on click.
-- `.dialogue-speaker-name` uses Kenney Pixel, white or light-grey on stone.
-- `.dialogue-russian` (primary Russian text) uses Kenney Pixel at readable size.
-- `.dialogue-translation` (English below) uses Kenney Mini, muted colour.
-- `.dialogue-portrait` placeholder div set to `display: none` — do not remove the element.
-- Dialogue box slides in from bottom as before (animation kept).
-- Visual verified on desktop (1280×720) and mobile (375px wide) — no overflow, no clipped text.
-**notes:** Stone/silver = the grey-toned 9-slice tiles (not the brown/wooden ancient tiles). If specific tile coordinates are unclear from the sheet, use the individual tile PNGs from `Tiles/outline/` subfolder of the zip as reference. Do NOT use kenney_pixel-ui-pack.zip.
-
----
 
 ### TASK-038
 **title:** HUD + Journal + Settings pixel skin — consistent stone/pixel aesthetic
@@ -134,24 +29,6 @@
 
 ---
 
-### TASK-039
-**title:** NPC overworld sprites — roguelike-characters composable layers
-**track:** VISUAL
-**status:** READY
-**depends_on:** [TASK-033]
-**assigned_agents:** [pixel-artist, coder]
-**reads:** [app/game/entities/NPC.js, app/game/scenes/WorldScene.js, app/assets/tilesets/roguelike-characters.png]
-**writes:** [app/game/entities/NPC.js]
-**done_when:**
-- `app/assets/tilesets/roguelike-characters.png` confirmed present (extracted in TASK-033)
-- Boot.js preloads `chars` spritesheet confirmed (done in TASK-033)
-- NPC.js `_createTexture()` replaced with frame-based sprite draws from the `chars` sheet
-- Each of the 10 NPCs has a visually distinct appearance using different frame combinations
-- NPC sprites use composable layers where available (body + clothing + accessory frames)
-- All NPC interaction radii, name labels, and [E] indicators unchanged
-**notes:** pack: kenney_roguelike-characters.zip → Spritesheet/roguelikeChar_transparent.png. Sheet is 16×16 tiles with 1px spacing. pixel-artist writes a per-NPC frame assignment spec first; coder implements. Do NOT introduce any other character art source.
-
----
 
 ### TASK-040
 **title:** Full playtest — end-to-end game loop verification
@@ -215,6 +92,12 @@
 - TASK-030 | DONE | 2026-03-29 | Settings visibility, dialogue reset loop, WorldScene event bus fixes | 9f9c155
 - TASK-031 | DONE | 2026-03-29 | Test bail UX, localStorage fallback, DOM cleanup | 4c3c624
 - TASK-032 | DONE | 2026-03-29 | Session close — NPC.js portrait path + dialogue.js onerror stash | 4c3c624
+- TASK-033 | DONE | 2026-03-29 | Kenney asset extraction — tilesets, fonts, UI pack into project | 07f1126
+- TASK-039 | DONE | 2026-03-29 | NPC overworld sprites — roguelike-characters composable layers | 2798039
+- TASK-034 | DONE | 2026-03-29 | Overworld map — roguelike-city tiles for ground, paths, buildings | e3a1a2d
+- TASK-036 | DONE | 2026-03-29 | Kenney Pixel + Mini fonts — replace all monospace/Google Fonts | e9977eb
+- TASK-035 | DONE | 2026-03-29 | Interior rooms — roguelike-indoors tiles for all 6 scenes | 4fd7582
+- TASK-037 | DONE | 2026-03-29 | Dialogue UI pixel stone skin — dark panel, pixel borders, Kenney fonts | 1de63f2
 
 ## Session log
 
@@ -246,3 +129,7 @@
 - 2026-03-29 · TASK-025 Endgame — graduation overlay, 10 NPC farewells, vocab count, badge · 96c0552
 - 2026-03-29 · TASK-026–032 bug fixes, CDN, all dialogues, playtest fixes · 4c3c624
 - 2026-03-29 · Art stack finalised — 6 Kenney CC0 packs, visual tasks TASK-033 through TASK-040 generated
+- 2026-03-29 · TASK-033 Kenney asset extraction — 6 assets extracted from zips, Boot.js preloads, @font-face added · 07f1126
+- 2026-03-29 · TASK-039 NPC sprites — composable layers from roguelike-characters sheet, all 13 NPCs distinct · 2798039
+- 2026-03-29 · TASK-034 Overworld tiles — CITY_TILES constant, city spritesheet for ground/paths/6 buildings · e3a1a2d
+- 2026-03-29 · TASK-036 Kenney fonts — Pixel/Mini tokens, image-rendering:pixelated, all system fonts removed · e9977eb
