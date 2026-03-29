@@ -91,7 +91,12 @@ Your job is to assess the current state of the project and generate the next bat
 3. Read CLAUDE-STACK.md — understand current technical capabilities
 4. Read .claude/curriculum-map.md — understand content coverage
 5. Scan the source tree (glob `app/**/*.js`, `data/*.json`, `assets/**/*`) — understand what exists on disk
-6. Compare vision vs reality — identify gaps in these categories:
+6. Read the three knowledge bases that agents will draw on — skim headings only, do not deep-read:
+   - `REFERENCE-GAMEDESIGN.md` — daily loop, NPC arcs, SLA acquisition, progression without gamification
+   - `REFERENCE-PIXELART.md` — 16×16 tile standard, Kenney gaps (café/apartment/market/police interiors, Russian signage), palette rules
+   - `REFERENCE-DIALOGUE.md` — NPC voice briefs, Russian as diegetic mechanic, recast correction, mistake handling
+   When writing task specs, note which reference file(s) each agent should read for that task.
+7. Compare vision vs reality — identify gaps in these categories:
    - **Art:** Are there actual pixel art assets, or just placeholder/programmatic graphics?
    - **Audio:** Is the music spec implemented, or just the system shell?
    - **Content:** Are all NPC dialogues written and reviewed, or just the first location?
