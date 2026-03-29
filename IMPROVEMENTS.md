@@ -15,24 +15,6 @@
 
 ---
 
-### TASK-041
-**title:** Dialogue system fix — state machine, single-fire, no race condition
-**track:** FAST
-**status:** BACKLOG
-**depends_on:** [TASK-038]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/ui/dialogue.js, app/game/entities/NPC.js, app/game/scenes/ApartmentScene.js, app/game/systems/TutorAI.js]
-**writes:** [app/ui/dialogue.js, app/game/entities/NPC.js]
-**done_when:**
-- DialogueUI has a state machine with states: CLOSED, OPENING, OPEN, CLOSING — re-entry during non-CLOSED state is a no-op
-- NPC.checkInteraction fires DIALOGUE_START exactly once with full payload (text + choices); does NOT emit a second time with '...'
-- Dialogue opens showing a loading indicator, then TutorAI updates content via DIALOGUE_UPDATE — no second DIALOGUE_START call
-- DIALOGUE_END fires exactly once per close(); transitionend cancels the 400ms fallback timer
-- No visible flicker, no double-open, no mid-conversation TutorAI reset
-**notes:** Root cause: NPC emits DIALOGUE_START with '...' placeholder, TutorAI emits a second DIALOGUE_START with the real response. Fix: NPC opens the box in loading state, TutorAI calls a new DialogueUI.update() method. See trace-report.md for full analysis.
-
----
-
 ### TASK-042
 **title:** Dialogue CSS fix — missing variables, portrait visibility, touch targets
 **track:** FAST
@@ -53,7 +35,7 @@
 ### TASK-043
 **title:** First-visit flow — scripted greeting → AI handoff with recast correction
 **track:** FAST
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-041]
 **assigned_agents:** [coder, reviewer, git]
 **reads:** [app/game/scenes/ApartmentScene.js, app/ui/dialogue.js, app/game/systems/TutorAI.js, app/game/content/apartment-dialogue.js]
@@ -344,6 +326,7 @@
 - TASK-035 | DONE | 2026-03-29 | Interior rooms — roguelike-indoors tiles for all 6 scenes | 4fd7582
 - TASK-037 | DONE | 2026-03-29 | Dialogue UI pixel stone skin — dark panel, pixel borders, Kenney fonts | 1de63f2
 - TASK-038 | DONE | 2026-03-29 | HUD + Journal + Settings pixel stone skin — consistent aesthetic | 0893c1a
+- TASK-041 | DONE | 2026-03-30 | Dialogue system fix — state machine, single-fire, no race condition | b781759
 
 ## Session log
 
@@ -380,3 +363,4 @@
 - 2026-03-29 · TASK-034 Overworld tiles — CITY_TILES constant, city spritesheet for ground/paths/6 buildings · e3a1a2d
 - 2026-03-29 · TASK-036 Kenney fonts — Pixel/Mini tokens, image-rendering:pixelated, all system fonts removed · e9977eb
 - 2026-03-29 · TASK-038 HUD + Journal + Settings pixel stone skin — consistent stone aesthetic via coder · 0893c1a
+- 2026-03-30 · TASK-041 Dialogue system fix — state machine (CLOSED/OPENING/OPEN/CLOSING), single-fire NPC events, DIALOGUE_UPDATE replaces double DIALOGUE_START · b781759

@@ -96,20 +96,65 @@ class ApartmentScene extends Phaser.Scene {
 
     // -------------------------------------------------------
     // 7. Dialogue-start listener → init TutorAI with NPC data
+    //    Skipped during first-visit scripted mode (_firstVisitScripted flag).
     // -------------------------------------------------------
+    this._firstVisitScripted = false;
+
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
-      if (detail.npcId === npcData.id && !TutorAI.isActive()) {
-        TutorAI.startConversation(npcData);
+      if (detail.npcId === npcData.id && !TutorAI.isActive() && !this._firstVisitScripted) {
+        const aiNpcData = Object.assign({}, npcData, {
+          persona: npcData.persona +
+            ' When the student makes a grammar error, naturally model the correct form' +
+            ' in your reply without labelling it as an error (recast correction).' +
+            ' For example: if the student says "Я хочу идти", you reply using "пойти" naturally in your response.',
+        });
+        TutorAI.startConversation(aiNpcData);
       }
     };
     window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
 
     // -------------------------------------------------------
-    // 8. Dialogue-end listener → resume physics
+    // 7b. Dialogue-choice handler for first-visit scripted responses
+    //     TutorAI ignores choices when _npcId is null, so this
+    //     handler is the sole responder during scripted mode.
+    // -------------------------------------------------------
+    this._onDialogueChoice = (e) => {
+      if (!this._firstVisitScripted) { return; }
+      const detail = e.detail || {};
+      const choiceId = detail.choiceId;
+      const opening = APARTMENT_DIALOGUE.VARIATIONS[0];
+      const response = opening.lines.find((l) => l.choiceId === choiceId);
+      if (!response) { return; }
+
+      window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+        detail: {
+          npcId:       npcData.id,
+          npcName:     npcData.name,
+          russian:     response.russian,
+          translation: response.translation,
+          portrait:    npcData.portrait || null,
+          choices: [
+            { id: 'dismiss', russian: 'Хорошо.', isFinal: true },
+          ],
+        },
+      }));
+    };
+    window.addEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
+
+    // -------------------------------------------------------
+    // 8. Dialogue-end listener → resume physics, save galina_met
+    //    on first visit, then hand off to TutorAI for next visit.
     // -------------------------------------------------------
     this._onDialogueEnd = () => {
       this.physics.resume();
+      if (this._firstVisitScripted) {
+        this._firstVisitScripted = false;
+        getProgress().then((progress) => {
+          progress.npcRelationships.galina = { met: true };
+          saveProgress(progress);
+        });
+      }
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
@@ -131,19 +176,27 @@ class ApartmentScene extends Phaser.Scene {
     });
 
     // -------------------------------------------------------
-    // 11. First-visit: auto-trigger Galina's opening line
+    // 11. First-visit: auto-trigger scripted opening with choices
+    //     Uses the 'opening' variation from APARTMENT_DIALOGUE.
+    //     _firstVisitScripted blocks TutorAI takeover until
+    //     the scripted exchange completes and galina_met is saved.
     // -------------------------------------------------------
     getProgress().then((progress) => {
       const isFirstVisit = progress.npcRelationships.galina === undefined;
       if (isFirstVisit) {
+        this._firstVisitScripted = true;
+        const opening = APARTMENT_DIALOGUE.VARIATIONS[0];
+        const firstLine = opening.lines[0];
         this.time.delayedCall(350, () => {
           this.physics.pause();
           window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
             detail: {
-              npcId:       'galina',
-              npcName:     'Галина Ивановна',
-              russian:     'Здравствуйте. Вы студент?',
-              translation: 'Hello. Are you a student?',
+              npcId:       npcData.id,
+              npcName:     npcData.name,
+              russian:     firstLine.russian,
+              translation: firstLine.translation,
+              portrait:    npcData.portrait || null,
+              choices:     firstLine.choices,
             },
           }));
         });
@@ -161,6 +214,7 @@ class ApartmentScene extends Phaser.Scene {
 
   shutdown() {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
+    window.removeEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
   }
 }
