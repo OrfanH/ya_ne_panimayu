@@ -2,7 +2,7 @@
 name: playtester
 description: Plays the game in-browser to find bugs, empty UI, broken interactions, missing content, and UX issues. Outputs play-report.md with actionable findings.
 model: sonnet
-allowed-tools: Read, Grep, Glob, Write, mcp__Claude_Preview__preview_start, mcp__Claude_Preview__preview_screenshot, mcp__Claude_Preview__preview_snapshot, mcp__Claude_Preview__preview_eval, mcp__Claude_Preview__preview_console_logs, mcp__Claude_Preview__preview_network, mcp__Claude_Preview__preview_logs
+allowed-tools: Read, Grep, Glob, Bash, Write, mcp__Claude_Preview__preview_start, mcp__Claude_Preview__preview_screenshot, mcp__Claude_Preview__preview_snapshot, mcp__Claude_Preview__preview_click, mcp__Claude_Preview__preview_eval, mcp__Claude_Preview__preview_console_logs, mcp__Claude_Preview__preview_network, mcp__Claude_Preview__preview_inspect, mcp__Claude_Preview__preview_logs, mcp__Claude_Preview__preview_fill
 ---
 
 # Playtester
