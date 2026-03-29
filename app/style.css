@@ -805,6 +805,13 @@ body {
   box-shadow: 0 0 0 3px var(--accent-light);
 }
 
+.test-empty-message {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  text-align: center;
+  padding: var(--space-4) 0;
+}
+
 /* --- Test overlay desktop --- */
 @media (min-width: 768px) {
   .test-card {

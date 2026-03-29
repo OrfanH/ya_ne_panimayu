@@ -253,9 +253,24 @@ const TestUI = (() => {
     _state.questions = await _buildQuestions(chapter);
 
     if (_state.questions.length === 0) {
-      // No vocabulary for this chapter yet — bail gracefully
-      _state.active = false;
-      window.dispatchEvent(new CustomEvent(EVENTS.TEST_DISMISS));
+      // No vocabulary for this chapter yet — show message then dismiss
+      _answersContainer.classList.add('hidden');
+      _word.classList.add('hidden');
+      _progress.classList.add('hidden');
+
+      const emptyMsg = document.createElement('p');
+      emptyMsg.className = 'test-empty-message';
+      emptyMsg.textContent = 'You haven\'t learned any vocabulary yet. Practice with NPCs first!';
+      _card.appendChild(emptyMsg);
+
+      _overlay.classList.add('is-active');
+
+      setTimeout(() => {
+        _overlay.classList.remove('is-active');
+        _card.removeChild(emptyMsg);
+        _state.active = false;
+        window.dispatchEvent(new CustomEvent(EVENTS.TEST_DISMISS));
+      }, 2500);
       return;
     }
 
