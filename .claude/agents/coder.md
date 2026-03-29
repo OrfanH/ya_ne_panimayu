@@ -29,8 +29,9 @@ Do not read STORY.md, WORLD.md, or any file not in the reads list.
 
 ## If you discover a missing dependency
 
-Add it to IMPROVEMENTS.md Backlog with full schema before continuing.
-Report the addition in a comment at the top of the relevant source file.
+Do NOT write to IMPROVEMENTS.md — only the orchestrator writes to IMPROVEMENTS.md.
+Instead, report the missing dependency in your PASS output with a "Missing dependency" note.
+The orchestrator reads this and adds it to the backlog.
 
 ## Hard rules — no exceptions
 

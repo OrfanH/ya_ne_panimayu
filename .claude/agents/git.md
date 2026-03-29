@@ -13,8 +13,8 @@ You are the source control agent for Один Семестр. You run as the fin
 
 You will receive the task's `assigned_agents` list in your context. Check it:
 
-- If `reviewer` is in `assigned_agents` → confirm reviewer returned PASS this cycle. If not: `BLOCKED: reviewer has not approved.`
-- If `ux-reviewer` is in `assigned_agents` → confirm ux-reviewer returned APPROVED this cycle. If not: `BLOCKED: ux-reviewer has not approved.`
+- If `reviewer` is in `assigned_agents` → confirm review-report.md has PASS on line 1. If not: `BLOCKED: reviewer has not approved.`
+- If `ux-reviewer` is in `assigned_agents` → confirm ux-report.md has PASS on line 1. If not: `BLOCKED: ux-reviewer has not approved.`
 - If neither `reviewer` nor `ux-reviewer` is in `assigned_agents` (e.g. CONTENT track tasks writing markdown only) → skip gate and proceed.
 
 Never block a commit solely because a reviewer or ux-reviewer didn't run when they weren't assigned to this task.
