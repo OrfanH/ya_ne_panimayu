@@ -56,6 +56,27 @@ class BootScene extends Phaser.Scene {
       frameWidth:  16,
       frameHeight: 16,
     });
+
+    // Kenney Roguelike Modern City — 37×28 tiles, 16×16 px, 1px spacing
+    this.load.spritesheet('city', 'assets/tilesets/roguelike-city.png', {
+      frameWidth:  16,
+      frameHeight: 16,
+      spacing:     1,
+    });
+
+    // Kenney Roguelike Indoors — 16×16 px, 1px spacing
+    this.load.spritesheet('indoors', 'assets/tilesets/roguelike-indoors.png', {
+      frameWidth:  16,
+      frameHeight: 16,
+      spacing:     1,
+    });
+
+    // Kenney Roguelike Characters — 16×16 px, 1px spacing
+    this.load.spritesheet('chars', 'assets/tilesets/roguelike-characters.png', {
+      frameWidth:  16,
+      frameHeight: 16,
+      spacing:     1,
+    });
   }
 
   create() {
