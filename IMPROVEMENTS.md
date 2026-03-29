@@ -8,19 +8,6 @@
 
 ---
 
-### TASK-025
-**title:** Endgame graduation sequence — closing scene after Chapter 4 test pass
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-020, TASK-022]
-**assigned_agents:** [architect, designer, content-writer, coder, reviewer, ux-reviewer, git]
-**reads:** [STORY.md, WORLD.md, app/ui/test.js, app/storage.js, app/config.js, app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js, app/game/content/market-dialogue.js, app/game/content/station-dialogue.js, app/game/content/police-dialogue.js]
-**writes:** [app/ui/graduation.js, app/game/scenes/WorldScene.js, app/style.css, app/tokens.css, app/config.js, app/storage.js]
-**done_when:** After passing Chapter 4 test, a graduation overlay appears with: (1) congratulations text, (2) vocabulary summary (total words learned), (3) NPC farewell messages (one line per NPC from their personality), (4) "semester complete" badge. Progress flag prevents re-triggering. Player can still explore after dismissing.
-**notes:** Match STORY.md epilogue tone — bittersweet but warm. NPC farewell messages should be in Russian with translation, using each NPC's personality voice.
-
----
-
 ### TASK-IMPROVE-001
 **title:** Agent skill improvement — create evals for existing skills, create skills from pipeline patterns
 **track:** IMPROVE
@@ -62,6 +49,7 @@
 - TASK-024 | DONE | 2026-03-29 | Scene transitions & cleanup — fade effects, fix legacy refs | 2bddef3
 - TASK-022 | DONE | 2026-03-29 | Onboarding intro sequence — 4 panels, auto-walk, Galina auto-trigger | 885e8ac
 - TASK-023 | DONE | 2026-03-29 | Settings menu UI — script mode, theme, volume | a180670
+- TASK-025 | DONE | 2026-03-29 | Endgame graduation sequence — NPC farewells, vocab summary | 96c0552
 
 ## Session log
 
@@ -90,3 +78,4 @@
 - 2026-03-29 · TASK-024 Scene transitions & cleanup — fadeOut/fadeIn, fix legacy refs, remove placeholders · 2bddef3
 - 2026-03-29 · TASK-022 Onboarding — 4-panel intro, auto-walk to apartment, Galina auto-dialogue · 885e8ac
 - 2026-03-29 · TASK-023 Settings — script mode select, theme pills, volume slider, AudioManager.setVolume · a180670
+- 2026-03-29 · TASK-025 Endgame — graduation overlay, 10 NPC farewells, vocab count, badge · 96c0552
