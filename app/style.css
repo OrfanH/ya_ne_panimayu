@@ -1151,6 +1151,183 @@ body {
   }
 }
 
+/* --- Graduation Overlay --- */
+#graduation-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--overlay-scrim);
+  z-index: 40;
+  opacity: 0;
+  transition: opacity var(--onboarding-fade-duration) ease;
+}
+
+#graduation-overlay.is-active {
+  opacity: 1;
+}
+
+#graduation-overlay.is-dismissing {
+  opacity: 0;
+  transition: opacity var(--transition-phase) ease;
+}
+
+.graduation-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-6);
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.graduation-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  background: var(--color-badge-gold);
+  color: var(--text-primary);
+  border-radius: var(--radius-pill);
+  padding: var(--space-1) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.graduation-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.graduation-title-sub {
+  display: block;
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-secondary);
+  margin-top: var(--space-1);
+}
+
+.graduation-vocab-count {
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-secondary);
+}
+
+.graduation-farewells-wrap {
+  position: relative;
+}
+
+.graduation-farewells {
+  overflow-y: auto;
+  max-height: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.graduation-farewells::-webkit-scrollbar {
+  width: 4px;
+}
+
+.graduation-farewells::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.graduation-farewells::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--radius-pill);
+}
+
+.graduation-farewells-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background: linear-gradient(to bottom, transparent, var(--bg-surface));
+  pointer-events: none;
+}
+
+.farewell-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--space-4);
+}
+
+.farewell-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.farewell-name {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.farewell-ru {
+  font-size: var(--text-md);
+  font-family: var(--font-family-prose);
+  color: var(--text-primary);
+  line-height: var(--line-height-base);
+}
+
+.farewell-en {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: var(--line-height-base);
+}
+
+.graduation-dismiss-btn {
+  min-height: 48px;
+  padding: var(--space-3) var(--space-6);
+  background: var(--accent);
+  color: var(--color-button-text);
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-family);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  width: 100%;
+  transition: background var(--transition-fast);
+}
+
+.graduation-dismiss-btn:hover {
+  background: var(--accent-hover);
+}
+
+.graduation-dismiss-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--accent-light);
+}
+
+.graduation-dismiss-btn:active {
+  background: var(--accent-hover);
+}
+
+@media (min-width: 480px) {
+  .graduation-card {
+    max-width: 540px;
+    width: 100%;
+    border-radius: var(--radius-xl);
+  }
+}
+
 /* --- Hidden utility — last in cascade to override display values --- */
 .hidden {
   display: none;
