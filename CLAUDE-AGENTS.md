@@ -24,6 +24,8 @@ Read this file when you are the orchestrator or need to route a task.
 | reviewer | haiku | BUILD, FAST | Code review against CLAUDE-RULES.md |
 | ux-reviewer | haiku | BUILD, CONTENT | Game feel and learning experience gate |
 | tester | haiku | BUILD | Functional testing |
+| code-tracer | haiku | BUILD, BUG, PLAYTEST | Static analysis — traces event chains, data shapes, null refs. No browser. Fast first pass. |
+| playtester | sonnet | BUILD, BUG, PLAYTEST | Event-injection browser testing — fires game events via preview_eval, checks DOM + console |
 | git | haiku | all | Commits, pushes, logs to IMPROVEMENTS.md |
 
 ## Track routing
@@ -32,10 +34,11 @@ Read this file when you are the orchestrator or need to route a task.
 |---|---|---|
 | FAST | Fix, polish, feel improvement | coder -> reviewer -> git |
 | CONTENT | Russian writing, dialogue, missions | researcher -> narrative-director -> curriculum-designer -> content-writer -> dialogue-writer -> linguist -> ux-reviewer -> git |
-| BUILD | New features, scenes, systems | researcher -> architect -> designer + content-writer (parallel) -> coder -> reviewer -> ux-reviewer -> git |
+| BUILD | New features, scenes, systems | researcher -> architect -> designer + content-writer (parallel) -> coder -> reviewer -> code-tracer -> playtester -> ux-reviewer -> git |
 | BUILD-ART | Pixel art, sprites, portraits | researcher -> pixel-artist -> designer -> coder -> reviewer -> git |
 | BUILD-AUDIO | Music, soundscapes | researcher -> composer -> coder -> reviewer -> git |
-| BUG | Targeted fix from review | fixer -> reviewer -> git |
+| BUG | Targeted fix from review | fixer -> reviewer -> code-tracer -> playtester -> git |
+| PLAYTEST | Ad-hoc game QA | code-tracer -> playtester -> (issues found? fixer -> code-tracer -> playtester) -> git |
 
 **Note:** Tasks may override the default track sequence via their `assigned_agents` list. The task's list is always the authority — it may add or omit agents as needed. Track routing is the default when `assigned_agents` is not specified.
 
@@ -72,6 +75,8 @@ Persistent specs (curriculum-map.md, music-spec.md, pixel-art-spec.md) live in `
 | reviewer | tester or back to coder | review-report.md | .claude/handoffs/ |
 | fixer | reviewer | fix-report.md | .claude/handoffs/ |
 | tester | ux-reviewer or orchestrator | test-report.md | .claude/handoffs/ |
+| code-tracer | playtester or fixer | trace-report.md | .claude/handoffs/ |
+| playtester | fixer or orchestrator | play-report.md | .claude/handoffs/ |
 | ux-reviewer | git or back to orchestrator | ux-report.md | .claude/handoffs/ |
 | git | orchestrator | (commit hash -> IMPROVEMENTS.md) | — |
 
