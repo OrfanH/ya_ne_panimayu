@@ -77,7 +77,7 @@ class ApartmentScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
-      if (detail.npcId === npcData.id) {
+      if (detail.npcId === npcData.id && !TutorAI.isActive()) {
         TutorAI.startConversation(npcData);
       }
     };

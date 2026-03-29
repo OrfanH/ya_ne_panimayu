@@ -119,6 +119,7 @@ class ParkScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
+      if (TutorAI.isActive()) { return; }
       if (detail.npcId === artyomData.id) {
         TutorAI.startConversation(artyomData);
       } else if (detail.npcId === tamaraData.id) {

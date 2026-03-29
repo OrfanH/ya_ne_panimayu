@@ -901,11 +901,15 @@ body {
 #settings-panel {
   position: fixed;
   inset: 0;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.7);
   z-index: 35;
+}
+
+#settings-panel:not(.hidden) {
+  display: flex;
 }
 
 .settings-card {

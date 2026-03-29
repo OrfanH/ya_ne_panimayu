@@ -86,6 +86,7 @@ class PoliceScene extends Phaser.Scene {
     // Dialogue
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
+      if (TutorAI.isActive()) { return; }
       if (detail.npcId === alinaData.id) {
         TutorAI.startConversation(alinaData);
       } else if (detail.npcId === sergeiData.id) {

@@ -327,6 +327,14 @@ const TutorAI = (() => {
   }
 
   // -----------------------------------------------------------
+  // Public — isActive()
+  // Returns true when a conversation is in progress.
+  // -----------------------------------------------------------
+  function isActive() {
+    return _npcId !== null;
+  }
+
+  // -----------------------------------------------------------
   // Public — destroy()
   // -----------------------------------------------------------
   function destroy() {
@@ -345,5 +353,5 @@ const TutorAI = (() => {
     init();
   }
 
-  return { init, startConversation, destroy };
+  return { init, isActive, startConversation, destroy };
 })();

@@ -101,6 +101,7 @@ class MarketScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
+      if (TutorAI.isActive()) { return; }
       if (detail.npcId === fatimaData.id) {
         TutorAI.startConversation(fatimaData);
       } else if (detail.npcId === mishaData.id) {
