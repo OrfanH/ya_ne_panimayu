@@ -107,6 +107,26 @@ class ApartmentScene extends Phaser.Scene {
         saveProgress(progress);
       }
     });
+
+    // -------------------------------------------------------
+    // 11. First-visit: auto-trigger Galina's opening line
+    // -------------------------------------------------------
+    getProgress().then((progress) => {
+      const isFirstVisit = progress.npcRelationships.galina === undefined;
+      if (isFirstVisit) {
+        this.time.delayedCall(350, () => {
+          this.physics.pause();
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+            detail: {
+              npcId:       'galina',
+              npcName:     'Галина Ивановна',
+              russian:     'Здравствуйте. Вы студент?',
+              translation: 'Hello. Are you a student?',
+            },
+          }));
+        });
+      }
+    });
   }
 
   update() {

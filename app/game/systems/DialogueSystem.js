@@ -1,4 +1,1 @@
-/* ============================================
-   Dialogue System — fires events to UI layer
-   Placeholder until dialogue system is built (backlog item 6).
-   ============================================ */
+/* DialogueSystem — actual implementation is in app/ui/dialogue.js */

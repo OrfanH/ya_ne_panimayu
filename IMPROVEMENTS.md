@@ -8,8 +8,6 @@
 
 ---
 
----
-
 ### TASK-IMPROVE-001
 **title:** Agent skill improvement — create evals for existing skills, create skills from pipeline patterns
 **track:** IMPROVE
@@ -48,6 +46,10 @@
 - TASK-019 | DONE | 2026-03-28 | Police Station — PoliceScene, Alina + Sergei, past tense/formal | 05ea5c7
 - TASK-020 | DONE | 2026-03-28 | Chapter test rooms — professor's apartment quiz, 70%+ unlock | c539348
 - TASK-021 | DONE | 2026-03-28 | Targeted missions — MistakeLogger-driven, NPC story hooks | 107ea83
+- TASK-024 | DONE | 2026-03-29 | Scene transitions & cleanup — fade effects, fix legacy refs | 2bddef3
+- TASK-022 | DONE | 2026-03-29 | Onboarding intro sequence — 4 panels, auto-walk, Galina auto-trigger | 885e8ac
+- TASK-023 | DONE | 2026-03-29 | Settings menu UI — script mode, theme, volume | a180670
+- TASK-025 | DONE | 2026-03-29 | Endgame graduation sequence — NPC farewells, vocab summary | 96c0552
 
 ## Session log
 
@@ -73,3 +75,7 @@
 - 2026-03-28 · TASK-018+019 Station + Police — all 6 locations complete, full unlock chain · 05ea5c7
 - 2026-03-28 · TASK-020 Chapter test rooms — TestScene + TestUI, 4 chapters, vocab quiz, unlock logic · c539348
 - 2026-03-28 · TASK-021 Targeted missions — MissionGenerator.js, mistake→NPC mapping, story reasons · 107ea83
+- 2026-03-29 · TASK-024 Scene transitions & cleanup — fadeOut/fadeIn, fix legacy refs, remove placeholders · 2bddef3
+- 2026-03-29 · TASK-022 Onboarding — 4-panel intro, auto-walk to apartment, Galina auto-dialogue · 885e8ac
+- 2026-03-29 · TASK-023 Settings — script mode select, theme pills, volume slider, AudioManager.setVolume · a180670
+- 2026-03-29 · TASK-025 Endgame — graduation overlay, 10 NPC farewells, vocab count, badge · 96c0552
