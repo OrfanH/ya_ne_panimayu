@@ -3,6 +3,9 @@
    Unlocked after cafe visit.
    ============================================ */
 
+// TILE INDEX (roguelike-indoors, 27-col sheet, N = row*27+col)
+// floor_a: 324, floor_b: 325, wall: 266, furniture: [23, 341, 131]
+
 const MARKET_COLS = 18;
 const MARKET_ROWS = 12;
 
@@ -17,23 +20,38 @@ class MarketScene extends Phaser.Scene {
     const marketH = MARKET_ROWS * T;
 
     // -------------------------------------------------------
-    // 1. Draw market ground
+    // 1. Draw market ground using indoors spritesheet
     // -------------------------------------------------------
     const gfx = this.add.graphics();
 
-    // Cobblestone base
-    gfx.fillStyle(0xB8A88A);
-    gfx.fillRect(0, 0, marketW, marketH);
+    const COLS = MARKET_COLS;
+    const ROWS = MARKET_ROWS;
+    const FLOOR_A = 324;
+    const FLOOR_B = 325;
+    const WALL_FRAME = 266;
 
-    // Cobblestone pattern
-    for (let row = 0; row < MARKET_ROWS; row++) {
-      for (let col = 0; col < MARKET_COLS; col++) {
-        if ((row + col) % 3 === 0) {
-          gfx.fillStyle(0xA89878);
-          gfx.fillRect(col * T + 2, row * T + 2, T - 4, T - 4);
-        }
+    // Floor tiles (inner area, excluding wall perimeter)
+    for (let r = 1; r < ROWS - 1; r++) {
+      for (let c = 1; c < COLS - 1; c++) {
+        const frame = (r + c) % 2 === 0 ? FLOOR_A : FLOOR_B;
+        this.add.image(c * T + T / 2, r * T + T / 2, 'indoors', frame);
       }
     }
+
+    // Wall perimeter tiles
+    for (let c = 0; c < COLS; c++) {
+      this.add.image(c * T + T / 2, T / 2,                   'indoors', WALL_FRAME); // top
+      this.add.image(c * T + T / 2, (ROWS - 1) * T + T / 2, 'indoors', WALL_FRAME); // bottom
+    }
+    for (let r = 1; r < ROWS - 1; r++) {
+      this.add.image(T / 2,                  r * T + T / 2, 'indoors', WALL_FRAME); // left
+      this.add.image((COLS - 1) * T + T / 2, r * T + T / 2, 'indoors', WALL_FRAME); // right
+    }
+
+    // Furniture (near corners, avoiding player spawn col 9 row 10, NPCs at col 4 row 4, col 9 row 3, col 14 row 4)
+    this.add.image(2 * T + T / 2,   2 * T + T / 2,  'indoors', 23);  // top-left corner
+    this.add.image(16 * T + T / 2,  2 * T + T / 2,  'indoors', 341); // top-right corner
+    this.add.image(16 * T + T / 2,  10 * T + T / 2, 'indoors', 131); // bottom-right corner
 
     // Main aisle (horizontal)
     gfx.fillStyle(0xC8B898);
@@ -45,13 +63,7 @@ class MarketScene extends Phaser.Scene {
     this._drawStalls(gfx, T);
 
     // -------------------------------------------------------
-    // 3. Boundary — market fence
-    // -------------------------------------------------------
-    gfx.lineStyle(T * 0.4, 0x7B5533);
-    gfx.strokeRect(T * 0.2, T * 0.2, marketW - T * 0.4, marketH - T * 0.4);
-
-    // -------------------------------------------------------
-    // 4. Player
+    // 3. Player
     // -------------------------------------------------------
     const spawnX = 9 * T;
     const spawnY = 10 * T + T / 2;
@@ -59,7 +71,7 @@ class MarketScene extends Phaser.Scene {
     this._player.gameObject.setCollideWorldBounds(true);
 
     // -------------------------------------------------------
-    // 5. NPCs — Fatima, Misha, Styopan at their stalls
+    // 4. NPCs — Fatima, Misha, Styopan at their stalls
     // -------------------------------------------------------
     const fatimaData = MARKET_DIALOGUE.FATIMA;
     this._fatima = new NPC(this, 4 * T + T / 2, 4 * T + T / 2, {
@@ -77,7 +89,7 @@ class MarketScene extends Phaser.Scene {
     });
 
     // -------------------------------------------------------
-    // 6. World bounds + camera
+    // 5. World bounds + camera
     // -------------------------------------------------------
     this.physics.world.setBounds(0, 0, marketW, marketH);
     this.cameras.main.setBounds(0, 0, marketW, marketH);
@@ -85,7 +97,7 @@ class MarketScene extends Phaser.Scene {
     this.cameras.main.fadeIn(300);
 
     // -------------------------------------------------------
-    // 7. Input
+    // 6. Input
     // -------------------------------------------------------
     this._eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
     this._cursors = this.input.keyboard.createCursorKeys();
@@ -97,7 +109,7 @@ class MarketScene extends Phaser.Scene {
     });
 
     // -------------------------------------------------------
-    // 8. Dialogue listeners
+    // 7. Dialogue listeners
     // -------------------------------------------------------
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
@@ -118,7 +130,7 @@ class MarketScene extends Phaser.Scene {
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
     // -------------------------------------------------------
-    // 9. HUD + unlock chain
+    // 8. HUD + unlock chain
     // -------------------------------------------------------
     window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_ENTER, {
       detail: { name: 'Market' },

@@ -3,6 +3,9 @@
    Unlocked after apartment story beat.
    ============================================ */
 
+// TILE INDEX (roguelike-indoors, 27-col sheet, N = row*27+col)
+// floor_a: 68, floor_b: 69, wall: 197, furniture: [131, 132, 133]
+
 const PARK_COLS = 16;
 const PARK_ROWS = 12;
 
@@ -17,23 +20,38 @@ class ParkScene extends Phaser.Scene {
     const parkH = PARK_ROWS * T;
 
     // -------------------------------------------------------
-    // 1. Draw park ground — grass with path
+    // 1. Draw park ground — grass tiles with path
     // -------------------------------------------------------
     const gfx = this.add.graphics();
 
-    // Grass base
-    gfx.fillStyle(0x6DB85A);
-    gfx.fillRect(0, 0, parkW, parkH);
+    const COLS = PARK_COLS;
+    const ROWS = PARK_ROWS;
+    const FLOOR_A = 68;
+    const FLOOR_B = 69;
+    const WALL_FRAME = 197;
 
-    // Darker grass checker pattern
-    for (let row = 0; row < PARK_ROWS; row++) {
-      for (let col = 0; col < PARK_COLS; col++) {
-        if ((row + col) % 2 === 0) {
-          gfx.fillStyle(0x5FA84C);
-          gfx.fillRect(col * T, row * T, T, T);
-        }
+    // Floor tiles (inner area, excluding wall perimeter)
+    for (let r = 1; r < ROWS - 1; r++) {
+      for (let c = 1; c < COLS - 1; c++) {
+        const frame = (r + c) % 2 === 0 ? FLOOR_A : FLOOR_B;
+        this.add.image(c * T + T / 2, r * T + T / 2, 'indoors', frame);
       }
     }
+
+    // Wall perimeter tiles
+    for (let c = 0; c < COLS; c++) {
+      this.add.image(c * T + T / 2, T / 2,                   'indoors', WALL_FRAME); // top
+      this.add.image(c * T + T / 2, (ROWS - 1) * T + T / 2, 'indoors', WALL_FRAME); // bottom
+    }
+    for (let r = 1; r < ROWS - 1; r++) {
+      this.add.image(T / 2,                  r * T + T / 2, 'indoors', WALL_FRAME); // left
+      this.add.image((COLS - 1) * T + T / 2, r * T + T / 2, 'indoors', WALL_FRAME); // right
+    }
+
+    // Furniture near border corners (avoiding player spawn col 8 row 10, Artyom col 4 row 6, Tamara col 12 row 3)
+    this.add.image(2 * T + T / 2,  2 * T + T / 2,  'indoors', 131); // top-left area
+    this.add.image(14 * T + T / 2, 2 * T + T / 2,  'indoors', 132); // top-right area
+    this.add.image(2 * T + T / 2,  10 * T + T / 2, 'indoors', 133); // bottom-left area
 
     // Central path (horizontal)
     gfx.fillStyle(0xC8A96E);
@@ -56,13 +74,7 @@ class ParkScene extends Phaser.Scene {
     this._drawDecorations(gfx, T);
 
     // -------------------------------------------------------
-    // 3. Boundary — subtle fence/hedge
-    // -------------------------------------------------------
-    gfx.lineStyle(T * 0.5, 0x3D7A2E);
-    gfx.strokeRect(T * 0.25, T * 0.25, parkW - T * 0.5, parkH - T * 0.5);
-
-    // -------------------------------------------------------
-    // 4. Player
+    // 3. Player
     // -------------------------------------------------------
     const spawnX = 8 * T;
     const spawnY = 10 * T + T / 2;
@@ -70,7 +82,7 @@ class ParkScene extends Phaser.Scene {
     this._player.gameObject.setCollideWorldBounds(true);
 
     // -------------------------------------------------------
-    // 5. NPCs — Artyom (bench area) and Tamara (near fountain)
+    // 4. NPCs — Artyom (bench area) and Tamara (near fountain)
     // -------------------------------------------------------
     const artyomData = PARK_DIALOGUE.ARTYOM;
     const artyomX = 4 * T + T / 2;
@@ -91,19 +103,19 @@ class ParkScene extends Phaser.Scene {
     });
 
     // -------------------------------------------------------
-    // 6. World bounds
+    // 5. World bounds
     // -------------------------------------------------------
     this.physics.world.setBounds(0, 0, parkW, parkH);
 
     // -------------------------------------------------------
-    // 7. Camera
+    // 6. Camera
     // -------------------------------------------------------
     this.cameras.main.setBounds(0, 0, parkW, parkH);
     this.cameras.main.startFollow(this._player.gameObject, true, GAME_CONFIG.CAMERA_LERP, GAME_CONFIG.CAMERA_LERP);
     this.cameras.main.fadeIn(300);
 
     // -------------------------------------------------------
-    // 8. Input
+    // 7. Input
     // -------------------------------------------------------
     this._eKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
     this._cursors = this.input.keyboard.createCursorKeys();
@@ -115,7 +127,7 @@ class ParkScene extends Phaser.Scene {
     });
 
     // -------------------------------------------------------
-    // 9. Dialogue listeners — start TutorAI with correct NPC
+    // 8. Dialogue listeners — start TutorAI with correct NPC
     // -------------------------------------------------------
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
@@ -134,14 +146,14 @@ class ParkScene extends Phaser.Scene {
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
     // -------------------------------------------------------
-    // 10. Location enter event for HUD
+    // 9. Location enter event for HUD
     // -------------------------------------------------------
     window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_ENTER, {
       detail: { name: 'Park' },
     }));
 
     // -------------------------------------------------------
-    // 11. Unlock cafe after first park visit
+    // 10. Unlock cafe after first park visit
     // -------------------------------------------------------
     getProgress().then((progress) => {
       if (!progress.unlockedLocations.includes('cafe')) {

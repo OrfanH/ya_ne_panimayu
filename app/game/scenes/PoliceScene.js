@@ -3,6 +3,9 @@
    Unlocked after train station visit.
    ============================================ */
 
+// TILE INDEX (roguelike-indoors, 27-col sheet, N = row*27+col)
+// floor_a: 216, floor_b: 217, wall: 239, furniture: [125, 341, 266]
+
 const POLICE_COLS = 14;
 const POLICE_ROWS = 10;
 
@@ -18,23 +21,34 @@ class PoliceScene extends Phaser.Scene {
 
     const gfx = this.add.graphics();
 
-    // Floor — institutional beige
-    gfx.fillStyle(0xD8D0C0);
-    gfx.fillRect(0, 0, polW, polH);
+    const COLS = POLICE_COLS;
+    const ROWS = POLICE_ROWS;
+    const FLOOR_A = 216;
+    const FLOOR_B = 217;
+    const WALL_FRAME = 239;
 
-    // Linoleum pattern
-    for (let row = 0; row < POLICE_ROWS; row++) {
-      for (let col = 0; col < POLICE_COLS; col++) {
-        if ((row + col) % 2 === 0) {
-          gfx.fillStyle(0xCEC6B6);
-          gfx.fillRect(col * T, row * T, T, T);
-        }
+    // Floor tiles (inner area, excluding wall perimeter)
+    for (let r = 1; r < ROWS - 1; r++) {
+      for (let c = 1; c < COLS - 1; c++) {
+        const frame = (r + c) % 2 === 0 ? FLOOR_A : FLOOR_B;
+        this.add.image(c * T + T / 2, r * T + T / 2, 'indoors', frame);
       }
     }
 
-    // Walls
-    gfx.lineStyle(T, 0x9090A0);
-    gfx.strokeRect(T / 2, T / 2, polW - T, polH - T);
+    // Wall perimeter tiles
+    for (let c = 0; c < COLS; c++) {
+      this.add.image(c * T + T / 2, T / 2,                   'indoors', WALL_FRAME); // top
+      this.add.image(c * T + T / 2, (ROWS - 1) * T + T / 2, 'indoors', WALL_FRAME); // bottom
+    }
+    for (let r = 1; r < ROWS - 1; r++) {
+      this.add.image(T / 2,                  r * T + T / 2, 'indoors', WALL_FRAME); // left
+      this.add.image((COLS - 1) * T + T / 2, r * T + T / 2, 'indoors', WALL_FRAME); // right
+    }
+
+    // Furniture (near corners, avoiding player spawn col 7 row 8, Alina col 7 row 2, Sergei col 11 row 5)
+    this.add.image(1 * T + T / 2,  1 * T + T / 2,  'indoors', 125); // top-left corner
+    this.add.image(12 * T + T / 2, 1 * T + T / 2,  'indoors', 341); // top-right corner
+    this.add.image(12 * T + T / 2, 8 * T + T / 2,  'indoors', 266); // bottom-right corner
 
     // Front desk
     gfx.fillStyle(0x6B6B7B);

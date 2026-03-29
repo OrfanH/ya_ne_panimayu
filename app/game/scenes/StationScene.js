@@ -3,6 +3,9 @@
    Unlocked after market visit.
    ============================================ */
 
+// TILE INDEX (roguelike-indoors, 27-col sheet, N = row*27+col)
+// floor_a: 216, floor_b: 217, wall: 268, furniture: [125, 239, 341]
+
 const STATION_COLS = 16;
 const STATION_ROWS = 10;
 
@@ -18,23 +21,34 @@ class StationScene extends Phaser.Scene {
 
     const gfx = this.add.graphics();
 
-    // Floor — concrete grey
-    gfx.fillStyle(0xB0B0B0);
-    gfx.fillRect(0, 0, stW, stH);
+    const COLS = STATION_COLS;
+    const ROWS = STATION_ROWS;
+    const FLOOR_A = 216;
+    const FLOOR_B = 217;
+    const WALL_FRAME = 268;
 
-    // Tile pattern
-    for (let row = 0; row < STATION_ROWS; row++) {
-      for (let col = 0; col < STATION_COLS; col++) {
-        if ((row + col) % 2 === 0) {
-          gfx.fillStyle(0xA0A0A0);
-          gfx.fillRect(col * T, row * T, T, T);
-        }
+    // Floor tiles (inner area, excluding wall perimeter)
+    for (let r = 1; r < ROWS - 1; r++) {
+      for (let c = 1; c < COLS - 1; c++) {
+        const frame = (r + c) % 2 === 0 ? FLOOR_A : FLOOR_B;
+        this.add.image(c * T + T / 2, r * T + T / 2, 'indoors', frame);
       }
     }
 
-    // Walls
-    gfx.lineStyle(T, 0x888888);
-    gfx.strokeRect(T / 2, T / 2, stW - T, stH - T);
+    // Wall perimeter tiles
+    for (let c = 0; c < COLS; c++) {
+      this.add.image(c * T + T / 2, T / 2,                   'indoors', WALL_FRAME); // top
+      this.add.image(c * T + T / 2, (ROWS - 1) * T + T / 2, 'indoors', WALL_FRAME); // bottom
+    }
+    for (let r = 1; r < ROWS - 1; r++) {
+      this.add.image(T / 2,                  r * T + T / 2, 'indoors', WALL_FRAME); // left
+      this.add.image((COLS - 1) * T + T / 2, r * T + T / 2, 'indoors', WALL_FRAME); // right
+    }
+
+    // Furniture (near corners, avoiding player spawn col 8 row 8, Konstantin col 3 row 5, Nadya col 12 row 4)
+    this.add.image(14 * T + T / 2, 1 * T + T / 2, 'indoors', 125); // top-right area
+    this.add.image(1 * T + T / 2,  1 * T + T / 2, 'indoors', 239); // top-left area
+    this.add.image(14 * T + T / 2, 8 * T + T / 2, 'indoors', 341); // bottom-right area
 
     // Platform line (yellow safety stripe)
     gfx.fillStyle(0xDDCC44);
