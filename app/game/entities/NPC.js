@@ -48,7 +48,7 @@ class NPC {
     }
 
     this._indicator = scene.add.text(x, y - tileSize * 0.75, '[E]', {
-      fontFamily: 'monospace',
+      fontFamily: 'Kenney Pixel',
       fontSize:   '12px',
       color:      '#FFFFFF',
     });

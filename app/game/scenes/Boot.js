@@ -13,7 +13,7 @@ class BootScene extends Phaser.Scene {
     this.add.rectangle(width / 2, height / 2, width, height, 0x191919);
 
     this.add.text(width / 2, height / 2 - 48, 'Один Семестр', {
-      fontFamily: 'monospace',
+      fontFamily: 'Kenney Pixel',
       fontSize:   '20px',
       color:      '#F7F7F5',
     }).setOrigin(0.5);

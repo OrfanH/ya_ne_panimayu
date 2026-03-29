@@ -23,9 +23,9 @@
   --text-md: 15px;
   --text-lg: 17px;
   --text-xl: 20px;
-  --font-family-ui: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-family-prose: 'Crimson Pro', Georgia, serif;
-  --font-family: var(--font-family-ui);
+  --font-game: 'Kenney Pixel', monospace;
+  --font-hud: 'Kenney Mini', monospace;
+  --font-family: var(--font-game);
   --line-height-tight: 1.4;
   --line-height-base: 1.6;
   --line-height-relaxed: 1.7;

@@ -59,7 +59,7 @@ class TownScene extends Phaser.Scene {
       this.add.text(b.x, b.y - b.h / 2 - 12, b.label, {
         fontSize: '10px',
         color: '#ffffff',
-        fontFamily: 'Inter, sans-serif',
+        fontFamily: 'Kenney Pixel',
       }).setOrigin(0.5);
     }
   }
