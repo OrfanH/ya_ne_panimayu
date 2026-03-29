@@ -22,6 +22,18 @@ Read this file first every session. Then read only the scoped files your role re
 7. Only researcher runs on Opus. All other agents run on Sonnet or Haiku.
 8. When adding a new file, agent, handoff, or track: run the **Token optimisation policy** checklist in CLAUDE-AGENTS.md first.
 
+## Concurrency — mandatory for parallel sessions
+
+**Do NOT use worktrees for /build.** Always run /build on the main branch directly.
+If you are in a worktree, exit it first (`ExitWorktree` → remove) and run from the main repo.
+
+**Task locking:** Before claiming a task, the orchestrator must check `.claude/task-lock.json`.
+If the task is already locked by another session, skip it and pick the next unblocked task.
+See orchestrator.md for the lock protocol.
+
+**One session = one task at a time.** Never run two /build sessions simultaneously on the same task.
+If you want to parallelize, each session must claim a *different* task.
+
 ## Project status
 
 Scaffold: DONE (2026-03-28)

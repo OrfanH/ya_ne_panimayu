@@ -61,6 +61,7 @@ class NPC {
           russian: '...',
           translation: '',
           choices: [],
+          portrait: `assets/portraits/${this._id}.png`,
         },
       }));
       this._scene.physics.pause();

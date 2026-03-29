@@ -28,24 +28,56 @@ You run once per session. Do not loop or re-read.
 
 ## What you do every session
 
-1. Read CLAUDE.md index
+1. Read CLAUDE.md index (including Concurrency section)
 2. Read CLAUDE-AGENTS.md
-3. Read IMPROVEMENTS.md — Current task and Backlog only
-4. Find first BACKLOG task where all depends_on are DONE
-5. **If backlog is empty → enter Assessment Mode (see below)**
-6. Check stop conditions — if any fire, stop and report to user
-7. Set task to IN_PROGRESS in IMPROVEMENTS.md
-8. Wipe all files in .claude/handoffs/
-9. Run assigned_agents in order, passing only the files in reads
-10. After each agent: check their output file for PASS or FAIL
+3. **If running in a worktree → STOP. Tell user: "Exit the worktree first. /build must run on main."**
+4. Read IMPROVEMENTS.md — Current task and Backlog only
+5. Find first BACKLOG task where all depends_on are DONE
+6. **If backlog is empty → enter Assessment Mode (see below)**
+7. Check stop conditions — if any fire, stop and report to user
+8. **Acquire task lock** (see Task Lock Protocol below)
+9. Set task to IN_PROGRESS in IMPROVEMENTS.md
+10. Wipe all files in .claude/handoffs/
+11. Run assigned_agents in order, passing only the files in reads
+12. After each agent: check their output file for PASS or FAIL
     - PASS: proceed to next agent
     - FAIL: re-run the previous agent with the review/report file added to their context
     - If still FAIL after 2 retries: set task to BLOCKED with reason, stop, report to user
-11. If all agents return PASS: call git agent
-12. Read commit hash from git agent output
-13. Compress task to one Done line in IMPROVEMENTS.md
-14. Write one Session log entry in IMPROVEMENTS.md
-15. Check if any BACKLOG task is now unblocked by this completion — update its status if so
+13. If all agents return PASS: call git agent
+14. Read commit hash from git agent output
+15. Compress task to one Done line in IMPROVEMENTS.md
+16. **Release task lock** — delete the task's entry from `.claude/task-lock.json`
+17. Write one Session log entry in IMPROVEMENTS.md
+18. Check if any BACKLOG task is now unblocked by this completion — update its status if so
+
+## Task Lock Protocol
+
+Prevents two parallel sessions from claiming the same task.
+
+**Lock file:** `.claude/task-lock.json`
+**Format:**
+```json
+{
+  "TASK-026": { "locked_at": "2026-03-29T12:00:00Z", "session": "description" },
+  "TASK-027": { "locked_at": "2026-03-29T12:05:00Z", "session": "description" }
+}
+```
+
+**Acquire lock (step 8):**
+1. Read `.claude/task-lock.json` (create `{}` if missing)
+2. If the target task ID exists in the lock file:
+   - Check `locked_at` — if older than **2 hours**, the lock is stale → delete it and proceed
+   - If fresh → **skip this task**, try the next unblocked BACKLOG task
+   - If no unblocked tasks remain → stop and tell user: "All tasks are locked by other sessions"
+3. Write the task ID into the lock file with current timestamp
+4. Proceed to set IN_PROGRESS
+
+**Release lock (step 16):**
+1. Read `.claude/task-lock.json`
+2. Delete the task's entry
+3. Write file back
+
+**On BLOCKED or error:** Always release the lock before stopping.
 
 ## Assessment Mode — when backlog is empty
 

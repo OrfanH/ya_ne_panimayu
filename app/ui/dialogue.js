@@ -116,8 +116,9 @@ const DialogueUI = (() => {
     _portrait.innerHTML = '';
     if (line.portrait) {
       const img = document.createElement('img');
-      img.src = line.portrait;
       img.alt = line.npcName || 'NPC';
+      img.onerror = () => { _portrait.innerHTML = ''; };
+      img.src = line.portrait;
       _portrait.appendChild(img);
     }
 
