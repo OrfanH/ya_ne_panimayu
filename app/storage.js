@@ -40,6 +40,20 @@ async function saveProgress(progress) {
   await kvSet(STORAGE_KEYS.PROGRESS, progress);
 }
 
+async function markIntroSeen() {
+  const progress = await getProgress();
+  progress.hasSeenIntro = true;
+  await saveProgress(progress);
+  return progress;
+}
+
+async function markGraduationSeen() {
+  const progress = await getProgress();
+  progress.hasSeenGraduation = true;
+  await saveProgress(progress);
+  return progress;
+}
+
 async function markLessonComplete(lessonId, drillScore, testScore) {
   const progress = await getProgress();
   if (!progress.completedLessons.includes(lessonId)) {

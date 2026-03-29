@@ -33,6 +33,14 @@ const STORAGE_KEYS = {
   VOCABULARY: 'vocabulary',
   MISTAKES: 'mistakes',
   JOURNAL: 'journal',
+  SETTINGS: 'settings',
+  GRADUATION_SEEN: 'graduation_seen',
+};
+
+const DEFAULT_SETTINGS = {
+  scriptMode: 'cyrillic-transliteration',
+  theme: 'system',
+  volume: 80,
 };
 
 const LOCATIONS = {
@@ -52,6 +60,8 @@ const DEFAULT_PROGRESS = {
   testScores: {},
   npcRelationships: {},
   lastSession: null,
+  hasSeenIntro: false,
+  hasSeenGraduation: false,
   playerPosition: {
     scene: 'Town',
     x: 400,
@@ -81,4 +91,10 @@ const EVENTS = {
   TEST_END:       'test:end',
   TEST_RESULT:    'test:result',
   TEST_DISMISS:   'test:dismiss',
+  INTRO_DONE:          'intro:done',
+  GRADUATION_SHOW:     'graduation:show',
+  GRADUATION_DISMISS:  'graduation:dismiss',
+  SETTINGS_SCRIPT_MODE_CHANGE: 'settings:scriptMode:change',
+  SETTINGS_THEME_CHANGE:       'settings:theme:change',
+  SETTINGS_VOLUME_CHANGE:      'settings:volume:change',
 };

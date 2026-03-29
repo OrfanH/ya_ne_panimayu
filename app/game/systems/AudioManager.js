@@ -11,6 +11,7 @@ const AudioManager = (() => {
   let _isStarted = false;
   let _activeEntry = null; // { synths: [], parts: [], cleanup: fn }
   let _muteBtn = null;
+  let _userVolume = 80; // 0–100, maps to dB on Tone destination
 
   /* ---- Shared effects (created once on init) ---- */
   let _reverb = null;
@@ -21,6 +22,7 @@ const AudioManager = (() => {
   const VOL_DUCKED = -14;    // dialogue open — 20% perceived level
   const VOL_MUTED  = -Infinity;
   const VOL_MASTER_GAIN = 0.4;
+  const VOL_MUTED_FLOOR = -40; // dB floor for user volume level 1
 
   /* ---- Ramp durations (seconds) ---- */
   const RAMP_DUCK   = 0.5;
@@ -665,6 +667,20 @@ const AudioManager = (() => {
     _updateMuteBtn();
   }
 
+  function setVolume(level) {
+    _userVolume = level;
+
+    if (_isMuted) return; // mute takes priority; level stored for when unmute happens
+
+    const dest = Tone.getDestination();
+    if (level === 0) {
+      dest.volume.rampTo(VOL_MUTED, RAMP_UNDUCK);
+    } else {
+      const db = (level / 100) * (VOL_NORMAL - VOL_MUTED_FLOOR) + VOL_MUTED_FLOOR;
+      dest.volume.rampTo(db, RAMP_UNDUCK);
+    }
+  }
+
   function _updateMuteBtn() {
     if (!_muteBtn) return;
     _muteBtn.setAttribute('aria-label', _isMuted ? 'Unmute music' : 'Mute music');
@@ -780,5 +796,5 @@ const AudioManager = (() => {
     init();
   }
 
-  return { init, destroy, toggleMute };
+  return { init, destroy, toggleMute, setVolume };
 })();

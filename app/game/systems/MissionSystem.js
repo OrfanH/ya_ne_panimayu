@@ -1,4 +1,1 @@
-/* ============================================
-   Mission System — active missions, completion logic
-   Placeholder until mission system is built.
-   ============================================ */
+/* MissionSystem — actual implementation is in app/game/systems/MissionGenerator.js */

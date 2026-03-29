@@ -126,30 +126,84 @@ class WorldScene extends Phaser.Scene {
     this._currentZoneId      = null;
     this._lastZoneEnterEmit  = null;
     this._proximityOutlines  = this._createProximityOutlines(T);
+    this._transitioning      = false;
 
     // -------------------------------------------------------
     // 12. Scene transitions via ZONE_ENTER
     // -------------------------------------------------------
+    const ZONE_SCENE_MAP = {
+      apartment: 'Apartment',
+      park:      'Park',
+      cafe:      'Cafe',
+      market:    'Market',
+      station:   'Station',
+      police:    'Police',
+    };
+
     this.game.events.on(EVENTS.ZONE_ENTER, ({ id }) => {
-      if (id === 'apartment') {
-        this.scene.start('Apartment');
-      } else if (id === 'park') {
-        this.scene.start('Park');
-      } else if (id === 'cafe') {
-        this.scene.start('Cafe');
-      } else if (id === 'market') {
-        this.scene.start('Market');
-      } else if (id === 'station') {
-        this.scene.start('Station');
-      } else if (id === 'police') {
-        this.scene.start('Police');
+      if (ZONE_SCENE_MAP[id]) {
+        this._autoWalking = false;
+        this._transitionTo(ZONE_SCENE_MAP[id]);
       }
     });
+
+    // -------------------------------------------------------
+    // 13. Intro done — auto-walk player to apartment door
+    // -------------------------------------------------------
+    this._autoWalking = false;
+    this._onIntroDone = () => {
+      // Only auto-walk on first play (intro overlay was shown).
+      // Returning players dispatch INTRO_DONE immediately — skip the walk.
+      getProgress().then((progress) => {
+        if (!progress.hasSeenIntro) { return; }
+        // hasSeenIntro was JUST set by markIntroSeen() — check if this is
+        // the first time (npcRelationships.galina absent means never visited).
+        if (progress.npcRelationships && progress.npcRelationships.galina !== undefined) {
+          return;
+        }
+
+        const T = GAME_CONFIG.TILE_SIZE;
+        const targetX = 8 * T + T / 2;
+        const targetY = 7 * T + T / 2;
+        const dx = targetX - this._player.gameObject.x;
+        const dy = targetY - this._player.gameObject.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        const duration = (dist / GAME_CONFIG.PLAYER_SPEED) * 1000;
+
+        this._autoWalking = true;
+        this.tweens.add({
+          targets: this._player.gameObject,
+          x: targetX,
+          y: targetY,
+          duration,
+          ease: 'Linear',
+        });
+      });
+    };
+    window.addEventListener(EVENTS.INTRO_DONE, this._onIntroDone);
   }
 
   update() {
-    this._player.update(this._cursors, this._wasd);
+    if (!this._autoWalking) {
+      this._player.update(this._cursors, this._wasd);
+    }
     this._checkZoneProximity();
+  }
+
+  shutdown() {
+    window.removeEventListener(EVENTS.INTRO_DONE, this._onIntroDone);
+  }
+
+  // ---------------------------------------------------------------
+  // Private — fade-out then start target scene
+  // ---------------------------------------------------------------
+  _transitionTo(sceneKey) {
+    if (this._transitioning) { return; }
+    this._transitioning = true;
+    this.cameras.main.fadeOut(300, 0, 0, 0);
+    this.cameras.main.once('camerafadeoutcomplete', () => {
+      this.scene.start(sceneKey);
+    });
   }
 
   // ---------------------------------------------------------------
