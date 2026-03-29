@@ -63,7 +63,7 @@ const DEFAULT_PROGRESS = {
   hasSeenIntro: false,
   hasSeenGraduation: false,
   playerPosition: {
-    scene: 'Town',
+    scene: 'World',
     x: 400,
     y: 300,
   },

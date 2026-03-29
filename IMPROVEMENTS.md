@@ -8,6 +8,69 @@
 
 ---
 
+### TASK-026
+**title:** Critical bug fixes — vocab.join, dead code, config defaults
+**track:** BUG
+**status:** IN_PROGRESS
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, git]
+**reads:** [app/tutor.js, app/config.js, app/storage.js, app/index.html, app/game/scenes/Town.js, app/game/systems/DialogueSystem.js, app/game/systems/MissionSystem.js]
+**writes:** [app/tutor.js, app/config.js, app/storage.js, app/index.html]
+**done_when:** (1) tutor.js _buildSystemPrompt uses vocab.map(v => v.russian).join(', ') instead of vocab.join(', '); (2) storage.js dead functions removed: markLessonComplete, getErrors, logError, getNotes, addBookmark, removeBookmark; (3) config.js DEFAULT_PROGRESS.playerPosition.scene changed from 'Town' to 'World'; (4) Town.js script tag removed from index.html; (5) DialogueSystem.js and MissionSystem.js script tags removed from index.html; (6) menu.js checkGame polling loop and unused HUD.init(game)/DialogueUI.init(game) calls removed.
+**notes:** All confirmed bugs from codebase assessment. Town.js file itself can remain (git tracks it) but must not load. Dead stub files (DialogueSystem.js, MissionSystem.js) same treatment.
+
+---
+
+### TASK-027
+**title:** Pin CDN versions and add missing fonts
+**track:** FAST
+**status:** BACKLOG
+**depends_on:** [TASK-026]
+**assigned_agents:** [coder, reviewer, git]
+**reads:** [app/index.html, app/tokens.css]
+**writes:** [app/index.html, app/tokens.css]
+**done_when:** (1) Phaser CDN pinned to specific version (e.g. phaser@3.87.0); (2) Tone.js CDN pinned to specific version (e.g. tone@14.7.77); (3) Plus Jakarta Sans and Crimson Pro loaded via Google Fonts link in index.html; (4) tokens.css font stacks reference the loaded fonts correctly.
+**notes:** Check latest stable versions of Phaser 3 and Tone.js 14 before pinning. Use jsdelivr with exact version.
+
+---
+
+### TASK-028
+**title:** Scripted fallback dialogues for Park and Cafe NPCs
+**track:** CONTENT
+**status:** BACKLOG
+**depends_on:** [TASK-026]
+**assigned_agents:** [content-writer, dialogue-writer, linguist, git]
+**reads:** [app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js, .claude/curriculum-map.md, STORY.md]
+**writes:** [app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js]
+**done_when:** (1) park-dialogue.js has 5+ scripted variation trees for Artyom and 5+ for Tamara matching apartment-dialogue.js richness pattern; (2) cafe-dialogue.js has 5+ for Lena and 5+ for Boris; (3) All Russian is A1/A1+ appropriate; (4) Vocabulary from curriculum-map.md is woven into dialogues; (5) linguist PASS on Russian accuracy.
+**notes:** Follow the exact pattern in apartment-dialogue.js — variation objects with nodes, choices, stage_direction. These serve as offline fallbacks when Gemini is unavailable and as first-visit scripted encounters.
+
+---
+
+### TASK-029
+**title:** Scripted fallback dialogues for Market, Station, Police NPCs
+**track:** CONTENT
+**status:** BACKLOG
+**depends_on:** [TASK-028]
+**assigned_agents:** [content-writer, dialogue-writer, linguist, git]
+**reads:** [app/game/content/apartment-dialogue.js, app/game/content/market-dialogue.js, app/game/content/station-dialogue.js, app/game/content/police-dialogue.js, .claude/curriculum-map.md, STORY.md]
+**writes:** [app/game/content/market-dialogue.js, app/game/content/station-dialogue.js, app/game/content/police-dialogue.js]
+**done_when:** (1) market-dialogue.js has 4+ scripted variations per NPC (Fatima, Misha, Styopan); (2) station-dialogue.js has 5+ per NPC (Konstantin, Nadya); (3) police-dialogue.js has 5+ per NPC (Alina, Sergei); (4) All Russian is level-appropriate (A1+ for market, A2 for station/police); (5) linguist PASS.
+**notes:** Same pattern as TASK-028. Market has 3 NPCs so slightly fewer variations per NPC is acceptable.
+
+---
+
+### TASK-030
+**title:** Playtest — full game flow end-to-end QA
+**track:** PLAYTEST
+**status:** BACKLOG
+**depends_on:** [TASK-026, TASK-027]
+**assigned_agents:** [playtester]
+**reads:** [app/index.html, app/game/scenes/WorldScene.js, app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/game/scenes/TestScene.js, app/ui/dialogue.js, app/ui/hud.js, app/ui/journal.js, app/ui/onboarding.js, app/ui/settings.js, app/ui/test.js, app/ui/graduation.js, app/ui/menu.js]
+**writes:** [.claude/handoffs/play-report.md]
+**done_when:** Playtester produces play-report.md covering: (1) onboarding flow; (2) all 6 location entries; (3) NPC interaction in each; (4) journal open/close; (5) settings panel; (6) chapter test flow; (7) graduation trigger. Report lists all bugs found with severity.
+**notes:** Code-level playtest — read source code and trace all event flows, check for missing handlers, unreachable code paths, event listener leaks. No browser needed.
+
 ### TASK-IMPROVE-001
 **title:** Agent skill improvement — create evals for existing skills, create skills from pipeline patterns
 **track:** IMPROVE

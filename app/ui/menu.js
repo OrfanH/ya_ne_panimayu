@@ -56,13 +56,4 @@ document.addEventListener('DOMContentLoaded', () => {
   MenuUI.init();
   SettingsUI.init();
   /* Journal is an IIFE that self-initializes — no init() call needed */
-
-  /* Wait for Phaser game to be available, then init event-driven UI */
-  const checkGame = setInterval(() => {
-    if (typeof game !== 'undefined' && game.events) {
-      HUD.init(game);
-      DialogueUI.init(game);
-      clearInterval(checkGame);
-    }
-  }, 100);
 });
