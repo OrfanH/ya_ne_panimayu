@@ -28,4 +28,17 @@ Read CLAUDE-VISION.md for visual design principles.
   - Environment style: buildings, paths, vegetation
   - Light source direction: consistent across all scenes
 
+## Reference files
+
+Read `REFERENCE-PIXELART.md` before writing any spec. It contains:
+- Definitive tile scale decision (16×16) and rationale
+- Palette construction rules (ramp structure, hue shifting, saturation curves)
+- NPC sprite and portrait conventions
+- Interior vs exterior visual language
+- Kenney Tiny Town/Dungeon coverage and known gaps
+- Rules for extending Kenney without visual jarring
+- Mobile display constraints
+
+Do not contradict rules in REFERENCE-PIXELART.md. If you believe a rule should change, flag it in your spec — do not silently deviate.
+
 ## Blocked if STORY-core.md does not exist.

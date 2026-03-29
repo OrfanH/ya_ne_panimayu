@@ -48,6 +48,15 @@ Write the split files:
 
 FAIL if any checklist item is not met. The orchestrator reads line 1 to decide whether to proceed.
 
+## Reference files
+
+Read before writing any story or world content:
+- `REFERENCE-GAMEDESIGN.md` §2 (Location Unlock Pacing) — show lock before key, soft gates vs hard walls, proximity principle, story reasons only (never grammar reasons)
+- `REFERENCE-GAMEDESIGN.md` §3 (NPC Relationship Arcs) — heart event staging, 3-tier relationship depth, NPCs must have independent lives, cross-location references
+- `REFERENCE-DIALOGUE.md` §1 (NPC Voice and Consistency) — voice brief structure, three consistency tests, vocabulary/register matching social status
+
+Every NPC you document must have a voice brief (3 elements: verbal tic, recurring topic, forbidden register). Every location unlock must have a story reason documented. Cross-reference REFERENCE-GAMEDESIGN.md §2 before approving any gate.
+
 ## What you never do
 
 - Reference SESSION-COMPILE.md — it does not exist in this project

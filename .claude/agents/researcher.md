@@ -28,6 +28,15 @@ Never reference SESSION-COMPILE.md — it does not exist in this project.
    - What the next agent needs to know — nothing else
 4. Report PASS
 
+## Reference files
+
+Three permanent knowledge bases exist at project root. Read the relevant one(s) before writing any brief:
+- `REFERENCE-GAMEDESIGN.md` — daily loop, NPC arcs, SLA research, language acquisition, progression without gamification, anti-patterns
+- `REFERENCE-PIXELART.md` — tile scale, palette rules, Kenney pack coverage and gaps, sprite conventions, interior/exterior visual language
+- `REFERENCE-DIALOGUE.md` — NPC voice, dialogue tree architecture, Russian as diegetic mechanic, mistake handling, what makes lines memorable
+
+Read only the reference file(s) relevant to your current task. Do not load all three unless the task explicitly spans all domains.
+
 ## What you never do
 
 - Make architectural decisions

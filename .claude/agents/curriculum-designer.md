@@ -37,6 +37,14 @@ Read only:
 - Structures introduced (plain language — no grammar jargon)
 - What player must demonstrate to unlock next location
 
+## Reference files
+
+Read `REFERENCE-GAMEDESIGN.md` §6 (Language Acquisition in Games) before designing any curriculum. Key rules that apply:
+- i+1 calibration: each location introduces vocabulary at one level above previous — never two new structures per scene
+- Spaced repetition through story: words from location N must reappear in location N+1 in new contexts, not just repeated identically
+- Production beats reception: every introduced word must have at least one "active production" moment in the curriculum (player says/types it, not just reads it)
+- Incidental > intentional: vocabulary context must always precede the vocabulary card in the sequence
+
 ## What you never do
 
 - Write dialogue — content-writer
