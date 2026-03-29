@@ -8,23 +8,30 @@ const KV_API_BASE = '/api/kv';
 async function kvGet(key) {
   try {
     const res = await fetch(`${KV_API_BASE}?key=${encodeURIComponent(key)}`);
-    if (!res.ok) return null;
+    if (!res.ok) {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : null;
+    }
     const data = await res.json();
     return data.value ?? null;
   } catch {
-    return null;
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : null;
   }
 }
 
 async function kvSet(key, value) {
   try {
-    await fetch(KV_API_BASE, {
+    const res = await fetch(KV_API_BASE, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ key, value }),
     });
+    if (!res.ok) {
+      localStorage.setItem(key, JSON.stringify(value));
+    }
   } catch {
-    /* silent — lesson continues */
+    localStorage.setItem(key, JSON.stringify(value));
   }
 }
 
