@@ -2,6 +2,22 @@
    NPC Entity — sprite, interaction radius, event firing
    ============================================ */
 
+const NPC_FRAMES = {
+  galina:     { base: 32, clothing: 48, accessory: 16 },
+  artyom:     { base:  1, clothing:  9 },
+  tamara:     { base: 33, clothing: 49, accessory: 17 },
+  lena:       { base: 34, clothing: 58 },
+  boris:      { base:  2, clothing: 10, accessory: 18 },
+  fatima:     { base: 35, clothing: 59, accessory: 19 },
+  misha:      { base:  3, clothing: 11, accessory: 20 },
+  styopan:    { base:  4, clothing: 12 },
+  konstantin: { base:  5, clothing: 13, accessory: 21 },
+  nadya:      { base: 36, clothing: 60, accessory: 22 },
+  alina:      { base: 37, clothing: 61, accessory: 23 },
+  sergei:     { base:  6, clothing: 14 },
+  professor:  { base:  7, clothing: 15, accessory: 24 },
+};
+
 class NPC {
   constructor(scene, x, y, config) {
     this._scene = scene;
@@ -9,12 +25,27 @@ class NPC {
     this._name  = config.name;
     this.interactionRadius = GAME_CONFIG.INTERACTION_RADIUS;
 
-    const tileSize = config.tileSize;
+    const tileSize    = config.tileSize;
+    const displaySize = tileSize - 4;
+    const frames      = NPC_FRAMES[config.id] || { base: 0 };
 
-    this._createTexture(scene, tileSize);
+    const totalFrames = scene.textures.get('chars').frameTotal;
+    const safeFrame = (f) => (f !== undefined && f < totalFrames ? f : 0);
 
-    this._sprite = scene.physics.add.staticImage(x, y, 'npc-default');
-    this._sprite.setDisplaySize(tileSize - 4, tileSize - 4);
+    this._sprite = scene.physics.add.staticImage(x, y, 'chars', safeFrame(frames.base));
+    this._sprite.setDisplaySize(displaySize, displaySize);
+
+    this._clothingLayer = null;
+    if (frames.clothing !== undefined) {
+      this._clothingLayer = scene.add.image(x, y, 'chars', safeFrame(frames.clothing));
+      this._clothingLayer.setDisplaySize(displaySize, displaySize);
+    }
+
+    this._accessoryLayer = null;
+    if (frames.accessory !== undefined) {
+      this._accessoryLayer = scene.add.image(x, y, 'chars', safeFrame(frames.accessory));
+      this._accessoryLayer.setDisplaySize(displaySize, displaySize);
+    }
 
     this._indicator = scene.add.text(x, y - tileSize * 0.75, '[E]', {
       fontFamily: 'monospace',
@@ -74,57 +105,8 @@ class NPC {
 
   destroy() {
     this._indicator.destroy();
+    if (this._clothingLayer)  { this._clothingLayer.destroy(); }
+    if (this._accessoryLayer) { this._accessoryLayer.destroy(); }
     this._sprite.destroy();
-  }
-
-  // ---------------------------------------------------------------
-  // Private — texture generation
-  // ---------------------------------------------------------------
-
-  _createTexture(scene, tileSize) {
-    const KEY  = 'npc-default';
-    if (scene.textures.exists(KEY)) { return; }
-
-    const SIZE = tileSize - 4;
-
-    if (scene.textures.exists('urban')) {
-      // Frame 131 — row 4, col 23 of the urban tileset (second character design)
-      const FRAME      = 131;
-      const COLS       = 27;
-      const FRAME_SIZE = 16;
-      const col = FRAME % COLS;
-      const row = Math.floor(FRAME / COLS);
-      const canvas = scene.textures.createCanvas(KEY, SIZE, SIZE);
-      const ctx    = canvas.getContext();
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(
-        scene.textures.get('urban').getSourceImage(),
-        col * FRAME_SIZE, row * FRAME_SIZE, FRAME_SIZE, FRAME_SIZE,
-        0, 0, SIZE, SIZE
-      );
-      canvas.refresh();
-      return;
-    }
-
-    // Fallback: programmatic blue rectangle + circle head
-    const texture = scene.textures.createCanvas(KEY, SIZE, SIZE);
-    const ctx     = texture.getContext();
-
-    ctx.fillStyle = '#5588CC';
-    ctx.fillRect(SIZE * 0.2, SIZE * 0.42, SIZE * 0.6, SIZE * 0.58);
-
-    const headR  = SIZE * 0.22;
-    const headCx = SIZE / 2;
-    const headCy = SIZE * 0.28;
-    ctx.beginPath();
-    ctx.arc(headCx, headCy, headR, 0, Math.PI * 2);
-    ctx.fillStyle = '#7AAAEE';
-    ctx.fill();
-
-    ctx.strokeStyle = '#3366AA';
-    ctx.lineWidth   = 1;
-    ctx.strokeRect(0.5, 0.5, SIZE - 1, SIZE - 1);
-
-    texture.refresh();
   }
 }
