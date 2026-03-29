@@ -74,6 +74,7 @@ const TOAST_DURATION_MS = 3000;
 const EVENTS = {
   DIALOGUE_START: 'dialogue:start',
   DIALOGUE_END: 'dialogue:end',
+  DIALOGUE_UPDATE: 'dialogue:update',
   DIALOGUE_CHOICE: 'dialogue:choice',
   TUTOR_AI_REQUEST: 'tutor:ai:request',
   TUTOR_AI_RESPONSE: 'tutor:ai:response',

@@ -54,6 +54,14 @@ class NPC {
     });
     this._indicator.setOrigin(0.5, 0.5);
     this._indicator.setVisible(false);
+
+    // Guard: prevents firing DIALOGUE_START while a dialogue is already open
+    this._interacting = false;
+
+    this._onDialogueEnd = () => {
+      this._interacting = false;
+    };
+    window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
   }
 
   // ---------------------------------------------------------------
@@ -84,7 +92,8 @@ class NPC {
     const inRange = dist <= this.interactionRadius;
     this._indicator.setVisible(inRange);
 
-    if (inRange && eKeyJustDown) {
+    if (inRange && eKeyJustDown && !this._interacting) {
+      this._interacting = true;
       window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
         detail: {
           npcId: this._id,
@@ -93,6 +102,7 @@ class NPC {
           translation: '',
           choices: [],
           portrait: `assets/portraits/${this._id}.png`,
+          loading: true,
         },
       }));
       this._scene.physics.pause();
@@ -104,6 +114,7 @@ class NPC {
   // ---------------------------------------------------------------
 
   destroy() {
+    window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
     this._indicator.destroy();
     if (this._clothingLayer)  { this._clothingLayer.destroy(); }
     if (this._accessoryLayer) { this._accessoryLayer.destroy(); }

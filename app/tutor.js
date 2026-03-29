@@ -235,11 +235,14 @@ const TutorAI = (() => {
   }
 
   // -----------------------------------------------------------
-  // Dispatch a DIALOGUE_START event with the AI reply and
-  // standard continue / end choices so the player can respond
+  // Dispatch a DIALOGUE_UPDATE event with the AI reply and
+  // standard continue / end choices so the player can respond.
+  // Uses DIALOGUE_UPDATE (not DIALOGUE_START) so the dialogue box
+  // that was already opened by the NPC is updated in-place,
+  // preventing double-open and race conditions.
   // -----------------------------------------------------------
   function _dispatchAILine(replyText) {
-    window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+    window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
       detail: {
         npcId: _npcId,
         npcName: _npcData.name,

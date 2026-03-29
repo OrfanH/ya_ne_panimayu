@@ -6,10 +6,18 @@
 
 const DialogueUI = (() => {
   // -----------------------------------------------------------
-  // State
+  // State machine
+  // States: CLOSED, OPENING, OPEN, CLOSING
   // -----------------------------------------------------------
+  const _STATES = Object.freeze({
+    CLOSED:  'CLOSED',
+    OPENING: 'OPENING',
+    OPEN:    'OPEN',
+    CLOSING: 'CLOSING',
+  });
+
   const _state = {
-    active: false,
+    phase: _STATES.CLOSED,
     translationVisible: true,
     currentLine: null,
   };
@@ -159,40 +167,88 @@ const DialogueUI = (() => {
 
   // -----------------------------------------------------------
   // Public — open(line: DialogueLine)
+  // Only works when state is CLOSED. Sets state to OPENING.
+  // After CSS transition completes, sets state to OPEN.
   // -----------------------------------------------------------
   function open(line) {
+    if (_state.phase !== _STATES.CLOSED) { return; }
+
+    _state.phase = _STATES.OPENING;
     _state.currentLine = line;
-    _state.active = true;
 
     _populate(line);
-
     _overlay.classList.add('is-active');
+
+    // Track when opening transition ends → move to OPEN
+    let _openFallback = null;
+
+    const onOpenEnd = () => {
+      _box.removeEventListener('transitionend', onOpenEnd);
+      clearTimeout(_openFallback);
+      if (_state.phase === _STATES.OPENING) {
+        _state.phase = _STATES.OPEN;
+      }
+    };
+
+    _box.addEventListener('transitionend', onOpenEnd);
+
+    _openFallback = setTimeout(() => {
+      _box.removeEventListener('transitionend', onOpenEnd);
+      if (_state.phase === _STATES.OPENING) {
+        _state.phase = _STATES.OPEN;
+      }
+    }, 400);
+  }
+
+  // -----------------------------------------------------------
+  // Public — update(line: DialogueLine)
+  // Works when state is OPENING or OPEN.
+  // Replaces content in-place without re-opening or flickering.
+  // -----------------------------------------------------------
+  function update(line) {
+    if (_state.phase !== _STATES.OPENING && _state.phase !== _STATES.OPEN) { return; }
+    _state.currentLine = line;
+    _populate(line);
   }
 
   // -----------------------------------------------------------
   // Public — close()
+  // Only works when state is OPEN or OPENING.
+  // Fires DIALOGUE_END exactly once after transition.
   // -----------------------------------------------------------
   function close() {
-    if (!_state.active) { return; }
-    _state.active = false;
+    if (_state.phase !== _STATES.OPEN && _state.phase !== _STATES.OPENING) { return; }
+
+    _state.phase = _STATES.CLOSING;
     _state.currentLine = null;
 
     _box.classList.add('is-closing');
 
+    let _fired = false;
+    let _closeFallback = null;
+
     const onEnd = () => {
+      if (_fired) { return; }
+      _fired = true;
       _box.removeEventListener('transitionend', onEnd);
+      clearTimeout(_closeFallback);
       _overlay.classList.remove('is-active');
       _box.classList.remove('is-closing');
-
+      _state.phase = _STATES.CLOSED;
       window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
     };
 
     _box.addEventListener('transitionend', onEnd);
 
     // Fallback in case transition doesn't fire (e.g. prefers-reduced-motion)
-    setTimeout(() => {
-      if (!_state.active && _overlay.classList.contains('is-active')) {
-        onEnd();
+    _closeFallback = setTimeout(() => {
+      _box.removeEventListener('transitionend', onEnd);
+      if (!_fired) {
+        _fired = true;
+        _overlay.classList.remove('is-active');
+        _box.classList.remove('is-closing');
+        _state.phase = _STATES.CLOSED;
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
       }
     }, 400);
   }
@@ -213,9 +269,7 @@ const DialogueUI = (() => {
   }
 
   // -----------------------------------------------------------
-  // dialogue:start listener — builds a minimal DialogueLine
-  // from the event detail so the box appears immediately.
-  // Full content comes via DialogueUI.open() from the game layer.
+  // dialogue:start listener — state machine rejects re-entry
   // -----------------------------------------------------------
   function _onDialogueStart(e) {
     const detail = e.detail || {};
@@ -231,11 +285,28 @@ const DialogueUI = (() => {
   }
 
   // -----------------------------------------------------------
+  // dialogue:update listener — updates content in-place
+  // -----------------------------------------------------------
+  function _onDialogueUpdate(e) {
+    const detail = e.detail || {};
+    const line = {
+      npcId: detail.npcId || '',
+      npcName: detail.npcName || 'NPC',
+      russian: detail.russian || '',
+      translation: detail.translation || '',
+      portrait: detail.portrait || null,
+      choices: detail.choices || [],
+    };
+    update(line);
+  }
+
+  // -----------------------------------------------------------
   // Init — called once on page load
   // -----------------------------------------------------------
   function _init() {
     _buildDOM();
     window.addEventListener(EVENTS.DIALOGUE_START, _onDialogueStart);
+    window.addEventListener(EVENTS.DIALOGUE_UPDATE, _onDialogueUpdate);
     window.addEventListener(EVENTS.DIALOGUE_END, _onDialogueClose);
   }
 
@@ -246,5 +317,5 @@ const DialogueUI = (() => {
     _init();
   }
 
-  return { open, close };
+  return { open, close, update };
 })();
