@@ -33,8 +33,9 @@ If a task is already `IN_PROGRESS` → resume it from the last completed agent s
 
 Before running any agents, verify:
 
-1. If the task's `reads` field includes `STORY.md` → confirm `STORY.md` exists. If not → stop: `BLOCKED: STORY.md does not exist. Run TASK-002 first.`
-2. If the task's `reads` field includes `WORLD.md` → confirm `WORLD.md` exists. If not → stop with same message.
+1. If the task's `reads` field includes any `STORY-*.md` file → confirm that file exists. If not → stop: `BLOCKED: [file] does not exist. Run TASK-002 first.`
+2. If the task's `reads` field includes any `WORLD-*.md` file → confirm that file exists. If not → stop with same message.
+   Note: `STORY.md` and `WORLD.md` are index files and always exist — check for the specific split files instead.
 3. Confirm all file paths in `reads` exist. List any missing files and stop.
 4. Check for schema-breaking changes — if task modifies storage schemas in `app/storage.js` or `app/config.js`, warn the user before proceeding.
 
@@ -44,7 +45,7 @@ Before running any agents, verify:
 
 Edit `IMPROVEMENTS.md`: change the task's `status` from `BACKLOG` to `IN_PROGRESS`.
 
-Wipe `.claude/handoffs/` — delete every file except `.gitkeep`. Do NOT touch files in `.claude/` root — `curriculum-map.md` and `music-spec.md` are persistent across tasks and must survive.
+Wipe `.claude/handoffs/` — delete every file except `.gitkeep`. Do NOT touch files in `.claude/` root — `curriculum-map.md`, `curriculum-location-*.md`, `curriculum-map-core.md`, `music-spec.md`, and `pixel-art-spec.md` are persistent across tasks and must survive.
 
 Tell the user: `Starting [TASK-XXX]: [title] via [track] track.`
 
@@ -80,7 +81,7 @@ Handoff files available: {list any .claude/handoffs/ files that exist}
 Files written by earlier agents this task: {list any files from the task's writes field that now exist on disk — these are available for you to read even if not in the reads list}
 ```
 
-> **Why the last field matters:** Agents earlier in the pipeline may have created files (e.g. STORY.md, WORLD.md) that a later agent needs but that weren't in the original `reads` list because they didn't exist when the task was written. Always check this field before assuming a file doesn't exist.
+> **Why the last field matters:** Agents earlier in the pipeline may have created files (e.g. STORY-core.md, WORLD-location-1.md) that a later agent needs but that weren't in the original `reads` list because they didn't exist when the task was written. Always check this field before assuming a file doesn't exist.
 
 ### Pipeline rules
 
@@ -99,8 +100,8 @@ Files written by earlier agents this task: {list any files from the task's write
 
 | Agent | model param |
 |---|---|
-| orchestrator, researcher | `opus` |
-| architect, designer, composer, coder, fixer, narrative-director, curriculum-designer, content-writer, dialogue-writer, linguist, pixel-artist | `sonnet` |
+| researcher | `opus` |
+| orchestrator, architect, designer, composer, coder, fixer, narrative-director, curriculum-designer, content-writer, linguist, pixel-artist | `sonnet` |
 | reviewer, ux-reviewer, tester, git | `haiku` |
 
 ---
@@ -131,9 +132,11 @@ The task's `assigned_agents` list is always the authority. Use these defaults **
 
 Check the Done section of IMPROVEMENTS.md. Count completed BUILD tasks since the last `/improve` run (check `.claude/skills/improvement-log.md` for the last entry date).
 
-If 3 or more BUILD tasks have completed since the last improvement run:
-1. Tell the user: `3+ tasks completed since last skill improvement. Running /improve.`
-2. Invoke the `/improve` skill — review handoff outputs from the last 3 tasks, identify patterns, create or update at least 1 skill, run evals to 100%.
+If 3 or more tasks (any track) have completed since the last improvement run:
+1. Tell the user: `3+ tasks completed since last improvement check. Running /improve.`
+2. Invoke the `/improve` skill with **two mandatory passes**:
+   - **Quality pass** (Step 1B): review handoff outputs from the last 3 tasks, identify failure patterns, create or update skills, run evals to 100%
+   - **Token drift audit** (Step 1D): check handoff sizes, index-file drift, new large files, deprecated references — fix any issues found
 
 If fewer than 3 tasks → skip this step.
 
@@ -150,7 +153,7 @@ Task complete. Run /build again to start [next task title], or stop here.
 
 ## Hard stops — always halt and report to user
 
-- `STORY.md` or `WORLD.md` required but missing
+- A required `STORY-*.md` or `WORLD-*.md` split file is missing
 - A `depends_on` task is not DONE
 - A new external dependency would be needed that is not in `CLAUDE-STACK.md`
 - An agent returns FAIL after 2 retries

@@ -30,6 +30,47 @@ Identify cross-agent patterns:
 ### C) User-triggered (/improve {agent-name} or /improve {skill-name})
 User specifies which agent or skill to improve. Read the relevant files and ask the user what to improve.
 
+### D) Token drift audit (run automatically after every 3 completed tasks, alongside C if user-triggered)
+
+Token waste accumulates silently — no handoff file reports it. This audit catches drift before it compounds.
+
+**Run these checks in order:**
+
+**1. Handoff file size check**
+Read all files currently in `.claude/handoffs/`. For each, count words and compare against the limits in CLAUDE-AGENTS.md:
+- research-brief.md: max 400 words
+- architecture-spec.md: max 600 words
+- design-spec.md: max 400 words
+- dialogue-draft.md: max 800 words per location
+- All review/report files: max 200 words
+
+Flag any file exceeding its limit. If a file is >20% over limit, update the agent that writes it: add a tighter word-count instruction to its definition.
+
+**2. Index-file reference drift check**
+Grep all files in `.claude/agents/` for references to `STORY.md`, `WORLD.md`, or `curriculum-map.md` as content sources (not as index explanations).
+Pattern to catch: any line instructing an agent to *read* or *grep* these files for content.
+Flag each match with the file and line. For each flagged match, update the agent definition to use the correct split file (`STORY-core.md`, `STORY-location-X.md`, `WORLD-location-X.md`, `curriculum-location-X.md`).
+
+**3. New large file check**
+Check git log for files added in the last 3 tasks (use `git diff --name-only HEAD~3`).
+For any new `.md` file in the root or `.claude/` that exceeds 400 words: check if it will be read by multiple agents or across multiple tasks. If yes, flag it as a split candidate and apply the Token optimisation policy checklist from CLAUDE-AGENTS.md.
+
+**4. Deprecated agent reference check**
+Grep all files in `.claude/agents/`, `.claude/skills/`, and root `CLAUDE-*.md` for `dialogue-writer`.
+Any match that isn't the deprecation notice in `dialogue-writer.md` itself is a stale reference — fix it.
+
+**Report format for D:**
+```
+## Token drift audit — {date}
+- Handoff sizes: {X files checked, Y over limit}
+- Index-file drift: {X references found, Y fixed}
+- New large files: {X files checked, Y flagged}
+- Deprecated refs: {X found, Y fixed}
+Action taken: {list of agent definitions updated, or "none needed"}
+```
+
+If no issues found: write "Token drift audit: CLEAN — {date}" to the improvement log and skip to Step 8.
+
 ---
 
 ## Step 2 — Decide: new skill or update existing

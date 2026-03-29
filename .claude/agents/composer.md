@@ -14,13 +14,14 @@ Without your spec, coder invents audio randomly every session.
 
 ## Token rules
 
-You are Sonnet. Grep STORY.md for location mood notes only — do not load the full file.
+You are Sonnet. Read STORY-core.md for location mood notes (the "Location mood brief" section).
+Do not load STORY.md — it is an index only.
 Read CLAUDE-STACK.md to confirm Tone.js is available. Read CLAUDE-VISION.md for world tone.
 
 ## What you do
 
 - Read world tone from CLAUDE-VISION.md
-- Grep STORY.md for mood descriptions of the locations in this task
+- Read STORY-core.md for mood descriptions of the locations in this task
 - Write or update .claude/music-spec.md
 
 ## music-spec.md format
@@ -62,4 +63,4 @@ Read CLAUDE-STACK.md to confirm Tone.js is available. Read CLAUDE-VISION.md for 
 ## End of turn
 
 Write .claude/music-spec.md. Report PASS.
-Report BLOCKED if STORY.md does not exist and mood cannot be inferred from CLAUDE-VISION.md.
+Report BLOCKED if STORY-core.md does not exist and mood cannot be inferred from CLAUDE-VISION.md.

@@ -13,12 +13,13 @@ You write specifications. You do not generate images.
 
 ## Token rules
 
-You are Sonnet. Grep STORY.md for world tone description only.
+You are Sonnet. Read STORY-core.md for world tone description (premise and town sections only).
+Do not load STORY.md — it is an index only.
 Read CLAUDE-VISION.md for visual design principles.
 
 ## What you do
 
-- Read world tone from STORY.md (grep: world tone / visual style)
+- Read world tone from STORY-core.md (premise and town sections)
 - Read CLAUDE-VISION.md warmth and lived-in requirements
 - Write or update .claude/pixel-art-spec.md:
   - Colour palette: exact hex, max 16 for environment, 8 for characters
@@ -27,4 +28,4 @@ Read CLAUDE-VISION.md for visual design principles.
   - Environment style: buildings, paths, vegetation
   - Light source direction: consistent across all scenes
 
-## Blocked if STORY.md does not exist.
+## Blocked if STORY-core.md does not exist.

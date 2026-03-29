@@ -1,5 +1,8 @@
-# Curriculum Map — Malinov Vocabulary Progression
-# Locations 1–6 | A1 level | Last updated: TASK-002
+# Curriculum Map — Index (do not load this file for content)
+
+Split into focused files. Load only what you need:
+- `curriculum-map-core.md` — reinforcement rules (37 words) — curriculum-designer, orchestrator assessment
+- `curriculum-location-1.md` through `curriculum-location-6.md` — per-location vocab (~270 words each)
 
 ---
 

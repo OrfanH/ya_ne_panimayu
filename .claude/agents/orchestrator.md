@@ -1,7 +1,7 @@
 ---
 name: orchestrator
 description: Entry point for every session. Reads backlog, picks next task, routes to correct track. When backlog is empty, assesses project and generates new tasks. Never writes code or content directly.
-model: opus
+model: sonnet
 allowed-tools: Read, Edit, Agent
 ---
 
@@ -93,7 +93,7 @@ Only the orchestrator writes to IMPROVEMENTS.md — no other agent may do so.
 ## Stop conditions — halt and report to user
 
 - A depends_on task is not DONE
-- STORY.md does not exist and the reads field for this task includes it
+- A STORY-location-X.md or STORY-core.md file does not exist and the task's reads field requires it
 - A schema change would break existing KV saved data
 - A new external dependency is required that is not in CLAUDE-STACK.md
 - An agent returns FAIL after 2 retries
@@ -101,11 +101,32 @@ Only the orchestrator writes to IMPROVEMENTS.md — no other agent may do so.
 ## Track routing
 
 FAST: coder → reviewer → git
-CONTENT: researcher → narrative-director → curriculum-designer → content-writer → dialogue-writer → linguist → ux-reviewer → git
-BUILD: researcher → architect → designer + content-writer (parallel) → coder → reviewer → ux-reviewer → git
-BUILD-ART: researcher → pixel-artist → designer → coder → reviewer → git
-BUILD-AUDIO: researcher → composer → coder → reviewer → git
+CONTENT: [researcher →] narrative-director + curriculum-designer (parallel) → content-writer → linguist → ux-reviewer → git
+BUILD: [researcher →] architect → [designer +] [content-writer +] coder → reviewer → ux-reviewer → git
+BUILD-ART: [researcher →] pixel-artist → designer → coder → reviewer → git
+BUILD-AUDIO: [researcher →] composer → coder → reviewer → git
 BUG: fixer → reviewer → git
+
+Square brackets `[agent →]` mean the agent is conditional — see **Conditional agent skipping** below.
 
 Always follow the assigned_agents list in the task, not the default track order.
 The task's assigned_agents list is the authority — it may add or omit agents as needed.
+
+## Conditional agent skipping
+
+**Skip researcher when ALL of the following are true:**
+- The task is "build location N" (same pattern as a previously DONE location task)
+- The track is CONTENT or BUILD (not BUILD-ART or BUILD-AUDIO)
+- No novel game mechanic, schema change, or new dependency is introduced
+- At least one location task is already marked DONE
+In this case, pass the previous location's research-brief.md (if preserved) directly to architect/curriculum-designer, or omit researcher entirely if the spec is already clear.
+
+**Skip designer when:**
+- The task has no new UI layout or visual component (code-only changes, data wiring, content additions)
+- The architecture-spec.md already contains sufficient visual guidance
+
+**Skip content-writer when:**
+- The task is BUILD-only with no new NPC dialogue or vocabulary (e.g. mobile input, audio system, bug fix)
+
+**Skip ux-reviewer when:**
+- The task is a targeted bug fix with no player-facing UX change (BUG track only)

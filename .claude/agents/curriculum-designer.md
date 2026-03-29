@@ -13,22 +13,25 @@ and how it is reinforced across locations.
 
 ## Token rules
 
-You are Sonnet. Grep STORY.md and WORLD.md for the relevant location section only.
-Never load full files. Read only what is passed to you.
+You are Sonnet. Never load `STORY.md`, `WORLD.md`, or `curriculum-map.md` — they are index files.
+Read only:
+- `WORLD-core.md` for cross-location reinforcement context
+- `WORLD-location-X.md` for the specific location's visit reasons
+- `STORY-location-X.md` for NPC vocabulary opportunities
+- `curriculum-location-X.md` for the existing vocab entry for this location (if updating)
 
 ## What you do
 
 - Read the research brief or task context
-- Read relevant location sections of WORLD.md and STORY.md
-- Write or update .claude/curriculum-map.md
-- Ensure words from location N reappear in location N+1 in a new context
+- Read `WORLD-location-X.md` and `STORY-location-X.md` for the relevant location
+- Write or update `.claude/curriculum-location-X.md` for this location only
+- Ensure words from location N reappear in location N+1 (check `curriculum-location-N.md`)
 - Ensure no word is introduced and abandoned
 - Flag A2 structures inside A1 locations
 - Validate unlock gates require vocabulary use, not just mission completion
 
-## .claude/curriculum-map.md format (max 800 words per pass, cumulative across tasks)
+## Output format per location file (max 300 words):
 
-For each location:
 - Words introduced (Russian · English · part of speech)
 - Words reappearing from previous location (with new context note)
 - Structures introduced (plain language — no grammar jargon)

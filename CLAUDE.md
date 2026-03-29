@@ -15,11 +15,12 @@ Read this file first every session. Then read only the scoped files your role re
 
 1. Read only the scoped files for your role. Never read all four by default.
 2. Read source files by exact name only. Never glob-read directories.
-3. When reading STORY.md or WORLD.md, grep for the relevant section only. Never load the full file unless you are narrative-director writing it for the first time.
+3. `STORY.md`, `WORLD.md`, and `curriculum-map.md` are **index files** — never load them for content. Load the specific split file for your task's location (e.g. `STORY-location-2.md`, `WORLD-location-2.md`, `curriculum-location-2.md`).
 4. Handoff files in .claude/handoffs/ are wiped after every task. Never read a handoff file from a previous task.
 5. IMPROVEMENTS.md Done section is compressed to one line per task. Never expand done tasks. Read only Current task and Backlog sections.
 6. Haiku agents receive a trimmed context. Do not request files beyond what you are given.
-7. Opus agents run once per task at most. Do not re-read files already in context.
+7. Only researcher runs on Opus. All other agents run on Sonnet or Haiku.
+8. When adding a new file, agent, handoff, or track: run the **Token optimisation policy** checklist in CLAUDE-AGENTS.md first.
 
 ## Project status
 

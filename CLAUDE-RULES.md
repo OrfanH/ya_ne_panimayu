@@ -86,5 +86,5 @@ Always reference a token. If a token doesn't exist, add it to `tokens.css` first
 - UI JS files: `app/ui/`
 - Shared app files (config, tutor, storage): `app/`
 - Prompt variants: `prompts/` only
-- Root level files: only CLAUDE.md, CLAUDE-VISION.md, CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-AGENTS.md, STORY.md, WORLD.md, IMPROVEMENTS.md, README.md
+- Root level files: only CLAUDE.md, CLAUDE-VISION.md, CLAUDE-RULES.md, CLAUDE-STACK.md, CLAUDE-AGENTS.md, STORY.md (index), STORY-core.md, STORY-location-*.md, WORLD.md (index), WORLD-core.md, WORLD-location-*.md, IMPROVEMENTS.md, README.md
 - Never write to `data/` from frontend — always via `storage.js`
