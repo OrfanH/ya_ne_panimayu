@@ -152,6 +152,11 @@ const HUD = (() => {
       }
     });
 
+    window.addEventListener(EVENTS.MISSION_COMPLETE, () => {
+      _missionEl.classList.remove('is-visible');
+      _missionTitleEl.textContent = '';
+    });
+
     // Dismiss hint if journal is opened by any means
     window.addEventListener(EVENTS.JOURNAL_OPEN, () => {
       _dismissJournalHint();
@@ -160,9 +165,21 @@ const HUD = (() => {
     window.addEventListener('keydown', _onKeyDown);
   }
 
+  async function _loadActiveMission() {
+    try {
+      const progress = await getProgress();
+      if (progress.activeMission && progress.activeMission.titleEn) {
+        _showMission(progress.activeMission.titleEn);
+      }
+    } catch {
+      /* silent */
+    }
+  }
+
   function init() {
     _buildDOM();
     _registerListeners();
+    _loadActiveMission();
   }
 
   // Boot after DOM is ready

@@ -80,6 +80,10 @@ const MissionGenerator = (() => {
 
       progress.activeMission = mission;
       await saveProgress(progress);
+
+      window.dispatchEvent(new CustomEvent(EVENTS.MISSION_START, {
+        detail: { title: mission.title, titleEn: mission.titleEn },
+      }));
     } catch {
       /* silent — game continues */
     }

@@ -176,7 +176,7 @@ const Journal = (() => {
       const completed = progress.completedMissions || [];
 
       if (!active && completed.length === 0) {
-        _contentEl.appendChild(_emptyState('No missions yet.'));
+        _contentEl.appendChild(_emptyState('Нет заданий'));
         return;
       }
 
@@ -186,14 +186,26 @@ const Journal = (() => {
       if (active) {
         const card = document.createElement('div');
         card.className = 'mission-card is-active';
-        card.textContent = active;
+
+        const titleEl = document.createElement('p');
+        titleEl.className = 'mission-title';
+        titleEl.textContent = active.titleEn || active.title || '';
+
+        const descEl = document.createElement('p');
+        descEl.className = 'mission-desc';
+        descEl.textContent = active.objectiveEn || '';
+
+        card.appendChild(titleEl);
+        card.appendChild(descEl);
         list.appendChild(card);
       }
 
-      for (const mission of completed) {
+      for (const missionId of completed) {
         const card = document.createElement('div');
         card.className = 'mission-card is-completed';
-        card.textContent = '\u2713 ' + mission;
+
+        const word = typeof missionId === 'string' ? missionId.split(':')[1] || missionId : '';
+        card.textContent = '\u2713 ' + word;
         list.appendChild(card);
       }
 
