@@ -347,7 +347,7 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 - TASK-057 | DONE | 2026-03-30 | CafeScene floor_b tile 23→243 | b1669e2
 - TASK-058 | DONE | 2026-03-30 | ParkScene outdoor conversion — city grass+path tiles | 1c46c4e
 - TASK-059 | DONE | 2026-03-30 | TestScene tiled floor+walls via roguelike-indoors | 25d5f45
-- BUG-002 | DONE | 2026-03-30 | Duplicate #hud-mute fix — reuse existing AudioManager button | pending-commit
+- BUG-002 | DONE | 2026-03-30 | Duplicate #hud-mute fix — reuse existing AudioManager button | ed2a84e
 
 ## Session log
 
