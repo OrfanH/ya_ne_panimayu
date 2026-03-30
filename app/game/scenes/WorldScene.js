@@ -229,6 +229,7 @@ class WorldScene extends Phaser.Scene {
     window.removeEventListener(EVENTS.INTRO_DONE, this._onIntroDone);
     this.game.events.off(EVENTS.ZONE_ENTER, this._onZoneEnter);
     this._player.destroy();
+    this._transitioning = false;
   }
 
   // ---------------------------------------------------------------
