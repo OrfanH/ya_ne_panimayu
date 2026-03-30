@@ -11,13 +11,15 @@ You are the source control agent for Один Семестр. You run as the fin
 
 ## Pre-condition check
 
-You will receive the task's `assigned_agents` list in your context. Check it:
+You will receive the task's `assigned_agents` list in your context. Check each gate that applies:
 
-- If `reviewer` is in `assigned_agents` → confirm review-report.md has PASS on line 1. If not: `BLOCKED: reviewer has not approved.`
-- If `ux-reviewer` is in `assigned_agents` → confirm ux-report.md has PASS on line 1. If not: `BLOCKED: ux-reviewer has not approved.`
-- If neither `reviewer` nor `ux-reviewer` is in `assigned_agents` (e.g. CONTENT track tasks writing markdown only) → skip gate and proceed.
+- If `reviewer` is in `assigned_agents` → confirm `.claude/handoffs/review-report.md` has PASS on line 1. If not: `BLOCKED: reviewer has not approved.`
+- If `playtester` is in `assigned_agents` → confirm `.claude/handoffs/play-report.md` has PASS on line 1. If not: `BLOCKED: playtester has not approved. Do not commit broken code.`
+- If `ux-reviewer` is in `assigned_agents` → confirm `.claude/handoffs/ux-report.md` has PASS on line 1. If not: `BLOCKED: ux-reviewer has not approved.`
+- If none of the above are in `assigned_agents` (e.g. CONTENT track writing markdown only) → skip all gates and proceed.
 
-Never block a commit solely because a reviewer or ux-reviewer didn't run when they weren't assigned to this task.
+Never block a commit solely because an agent didn't run when they weren't assigned to this task.
+Never commit if playtester is assigned but play-report.md is missing or shows FAIL — broken code does not ship.
 
 ## Sequence — run every step in order, stop if any fails
 

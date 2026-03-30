@@ -15,9 +15,130 @@ TASK-054 — TestScene lifecycle fix
 
 ---
 
+### P0 — Playability gate
+*Nothing in P1 or P2 ships until TASK-040 passes. The game must be verified playable end-to-end. Any BUG tasks filed by TASK-040 become P0 blockers.*
+
 ---
 
+### TASK-040
+**title:** Full playtest — end-to-end game loop verification
+**track:** PLAYTEST
+**status:** READY
+**priority:** P0
+**depends_on:** [TASK-054]
+**assigned_agents:** [playtester]
+**reads:** [app/index.html, all scene and UI files]
+**writes:** [.claude/handoffs/play-report.md, IMPROVEMENTS.md]
+**done_when:** Playtester completes a full new-player run: onboarding → apartment → park → café → market → station → police → chapter tests → graduation. play-report.md filed with: (1) any broken interactions, (2) any empty or missing UI, (3) any Russian text errors visible in-game, (4) audio issues, (5) lock/unlock chain verified correct. PASS if no critical blockers found.
+**notes:** Test on both desktop keyboard and simulated mobile (375px viewport). Verify dialogue box, journal, HUD, settings all display correctly with Kenney fonts and pixel skin. Any critical BUG tasks found here are P0 blockers — fix them before proceeding to P1.
 
+---
+
+### P1 — Core gameplay
+*Makes the game feel like a game: interact, talk, get missions. Implement in order after P0 playtest PASS.*
+
+---
+
+### TASK-051
+**title:** NPC interaction indicator — proximity E-key / tap-zone visual
+**track:** FAST
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** [TASK-045]
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/game/entities/NPC.js, app/game/entities/Player.js, app/style.css, app/tokens.css]
+**writes:** [app/game/entities/NPC.js, app/style.css]
+**done_when:**
+- When player enters NPC interaction range, a small pixel-art prompt appears above the NPC sprite ("E" on desktop, tap icon on mobile)
+- Prompt disappears when player moves out of range or dialogue opens
+- Indicator uses pixel font (`--font-hud`) and stone/dark palette matching the game aesthetic
+- Works correctly for all NPCs across all scenes
+**notes:** Per REFERENCE-GAMEDESIGN.md: the player must know what they can interact with. The indicator should be subtle — not a floating exclamation mark, but a small keyboard hint. Use a Phaser Text object positioned above the NPC sprite, visible only in the interaction zone.
+
+---
+
+### TASK-052
+**title:** Mobile dialogue UX — tap to advance, viewport fit, 48px touch targets
+**track:** FAST
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** [TASK-042]
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/ui/dialogue.js, app/style.css, app/tokens.css]
+**writes:** [app/ui/dialogue.js, app/style.css]
+**done_when:**
+- Tapping anywhere on the dialogue text area advances to the next beat (no dedicated "next" button needed)
+- Choice buttons are minimum 48px height and full-width on mobile (375px)
+- Dialogue panel does not overflow or require horizontal scroll on 375px viewport
+- Tap-to-advance does not accidentally trigger NPC interaction again (event propagation handled correctly)
+**notes:** Tap-to-advance must be guarded: only fire when dialogue is OPEN state (from TASK-041 state machine). Use a single `click` listener on the dialogue text container, not on the whole window.
+
+---
+
+### TASK-048
+**title:** Wire MissionGenerator — trigger from dialogue, update HUD + Journal
+**track:** FAST
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** [TASK-041, TASK-045]
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/game/systems/MissionGenerator.js, app/game/systems/MistakeLogger.js, app/ui/hud.js, app/ui/journal.js, app/storage.js]
+**writes:** [app/game/systems/MissionGenerator.js, app/ui/hud.js, app/ui/journal.js]
+**done_when:**
+- `MissionGenerator.checkAndGenerate()` is called after every `DIALOGUE_END` event
+- If a new mission is generated, `#hud-mission` text updates immediately with the mission title
+- Journal missions tab re-renders active + completed missions when opened (reads from storage)
+- Completed missions display with a visual completion indicator (strikethrough or checkmark)
+- Empty state: missions tab shows "Нет заданий" when no missions exist
+**notes:** MissionGenerator reads from MistakeLogger — ensure MistakeLogger has at least one logged mistake before testing, otherwise no mission will generate.
+
+---
+
+### P2 — Content depth
+*Progression systems that enrich the experience. Implement after P1 is stable and tested.*
+
+---
+
+### TASK-047
+**title:** NPC relationship tiers — stranger / acquaintance / friend dialogue switching
+**track:** FAST
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** [TASK-041, TASK-045]
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/game/entities/NPC.js, app/game/content/apartment-dialogue.js, app/storage.js, app/config.js]
+**writes:** [app/game/entities/NPC.js, app/game/content/apartment-dialogue.js]
+**done_when:**
+- `NPC.js` reads `npcRelationships[npcId]` from storage to determine tier: 0 = stranger, 1 = acquaintance, 2 = friend
+- Relationship score increments by 1 after each completed dialogue (DIALOGUE_END fires)
+- Score thresholds: 0 = stranger, 1–2 = acquaintance, 3+ = friend
+- `TutorAI.startConversation()` receives the current tier as context so the system prompt adjusts formality (вы vs ты) per REFERENCE-DIALOGUE.md §1
+- Galina's `apartment-dialogue.js` scripted fallbacks have at least two tier-tagged variants per NPC interaction to demonstrate the system working
+**notes:** Per REFERENCE-DIALOGUE.md: strangers use вы and formal address; acquaintances switch to ты and use the player's name; friends ask questions about the player's life. The tier must be passed to TutorAI so AI-generated responses also respect it.
+
+---
+
+### TASK-050
+**title:** Daily NPC conversation limit — one rich exchange per day, then short farewell
+**track:** FAST
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** [TASK-047]
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/game/entities/NPC.js, app/game/systems/TutorAI.js, app/storage.js, app/config.js]
+**writes:** [app/game/entities/NPC.js, app/game/systems/TutorAI.js]
+**done_when:**
+- Storage tracks `lastTalkedDate[npcId]` — the in-game or real-world date of the last completed conversation
+- If player interacts with an NPC they already spoke to today, NPC gives a short contextual farewell line ("До свидания!" / "See you tomorrow!") and dialogue closes after one beat — no full AI conversation
+- System prompt sent to TutorAI includes an `alreadySpokenToday: true` flag when applicable, allowing AI to give a brief response naturally
+- Per REFERENCE-GAMEDESIGN.md §1: after one rich conversation, NPC gives "see you tomorrow" — scarcity makes choices feel meaningful
+**notes:** "Today" can be defined as the same UTC calendar day, or as a session-based flag if simpler. Start with session-based (reset on page load) then upgrade to date-based.
+
+---
+
+### RECURRING
+
+---
 
 
 ### TASK-047
@@ -110,11 +231,11 @@ TASK-054 — TestScene lifecycle fix
 ---
 
 ### TASK-054
-**title:** TestScene lifecycle fix ? shutdown cleanup and clean retry flow
+**title:** TestScene lifecycle fix — shutdown cleanup and clean retry flow
 **track:** FAST
 **status:** IN_PROGRESS
 **depends_on:** [TASK-045]
-**assigned_agents:** [coder, reviewer, git]
+**assigned_agents:** [coder, reviewer, playtester, git]
 **reads:** [app/game/scenes/TestScene.js]
 **writes:** [app/game/scenes/TestScene.js]
 **done_when:**

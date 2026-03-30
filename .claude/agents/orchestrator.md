@@ -1,7 +1,7 @@
 ---
 name: orchestrator
 description: Entry point for every session. Reads backlog, picks next task, routes to correct track. When backlog is empty, assesses project and generates new tasks. Never writes code or content directly.
-model: sonnet
+model: opus
 allowed-tools: Read, Edit, Agent
 ---
 
@@ -108,7 +108,9 @@ Your job is to assess the current state of the project and generate the next bat
 
 - Generate 5-10 tasks per assessment, ordered by dependency and impact
 - Each task must have the full schema: title, track, status (BACKLOG), depends_on, assigned_agents, reads, writes, done_when, notes
-- Assign the correct track (BUILD, BUILD-ART, BUILD-AUDIO, CONTENT, FAST, BUG)
+- Assign the correct track (BUILD, BUILD-CONTENT, BUILD-ART, BUILD-AUDIO, CONTENT, FAST, BUG, PLAYTEST)
+  - Use BUILD-CONTENT when the task adds NPC dialogue to code (linguist gate required)
+  - Use FAST only for fixes/polish with no new dialogue or systems
 - Use the correct agent sequence for each track — override with assigned_agents if the default doesn't fit
 - Number tasks continuing from the last Done task number (e.g. if TASK-021 is last, start at TASK-022)
 - Every task must have a clear done_when that an agent can verify
@@ -137,17 +139,23 @@ Only the orchestrator writes to IMPROVEMENTS.md — no other agent may do so.
 
 ## Track routing
 
-FAST: coder → reviewer → git
-CONTENT: [researcher →] narrative-director + curriculum-designer (parallel) → content-writer → linguist → ux-reviewer → git
-BUILD: [researcher →] architect → [designer +] [content-writer +] coder → reviewer → ux-reviewer → git
-BUILD-ART: [researcher →] pixel-artist → designer → coder → reviewer → git
-BUILD-AUDIO: [researcher →] composer → coder → reviewer → git
-BUG: fixer → reviewer → git
+FAST:          coder → reviewer → playtester → git
+CONTENT:       [researcher →] narrative-director + curriculum-designer (parallel) → content-writer → linguist → ux-reviewer(text-mode) → git
+BUILD:         [researcher →] architect → [designer +] [content-writer +] coder → reviewer → playtester → [ux-reviewer →] git
+BUILD-CONTENT: [researcher →] architect → designer + content-writer (parallel) → coder → reviewer → playtester → linguist → ux-reviewer → git
+BUILD-ART:     [researcher →] pixel-artist → designer → coder → reviewer → playtester → git
+BUILD-AUDIO:   [researcher →] composer → coder → reviewer → playtester → git
+BUG:           fixer → reviewer → playtester → git
+PLAYTEST:      playtester → (writes BUG tasks) → orchestrator picks BUG tasks → fixer → reviewer → playtester → git
 
 Square brackets `[agent →]` mean the agent is conditional — see **Conditional agent skipping** below.
 
 Always follow the assigned_agents list in the task, not the default track order.
 The task's assigned_agents list is the authority — it may add or omit agents as needed.
+
+**FAST track rule:** Every FAST task must be verified in-browser by playtester before git. No exceptions. If playtester finds a regression, it files a BUG task — it does not loop back to coder directly.
+
+**BUG track retest rule:** After fixer commits, playtester re-verifies the fix in-browser. If the bug persists or a new bug appears, playtester files a new BUG task. Loop continues until PASS.
 
 ## Conditional agent skipping
 
@@ -164,6 +172,12 @@ In this case, pass the previous location's research-brief.md (if preserved) dire
 
 **Skip content-writer when:**
 - The task is BUILD-only with no new NPC dialogue or vocabulary (e.g. mobile input, audio system, bug fix)
+- Use BUILD track instead of BUILD-CONTENT in this case
 
 **Skip ux-reviewer when:**
 - The task is a targeted bug fix with no player-facing UX change (BUG track only)
+- The task is FAST track (playtester already covers empirical QA for FAST)
+
+**Use BUILD-CONTENT instead of BUILD when:**
+- The task introduces new NPC dialogue, scripted fallbacks, or vocabulary that ships in code
+- Linguist must review Russian in-context after it is implemented
