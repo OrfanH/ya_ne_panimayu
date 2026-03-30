@@ -2,11 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(*)",
-      "Edit",
-      "Write",
-      "Read",
-      "Glob",
-      "Grep",
+      "Edit(*)",
+      "Write(*)",
+      "Read(*)",
+      "Glob(*)",
+      "Grep(*)",
       "WebSearch",
       "WebFetch",
       "Agent",
@@ -14,7 +14,8 @@
       "NotebookEdit",
       "Skill",
       "mcp__*",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "AskUserQuestion"
     ]
   }
 }
