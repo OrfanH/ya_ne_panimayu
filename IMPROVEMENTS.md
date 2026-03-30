@@ -2,7 +2,7 @@
 
 ## Current task
 
-TASK-054 — TestScene lifecycle fix
+TASK-040 — Full playtest (next ready task)
 
 ---
 
@@ -230,21 +230,6 @@ TASK-054 — TestScene lifecycle fix
 
 ---
 
-### TASK-054
-**title:** TestScene lifecycle fix — shutdown cleanup and clean retry flow
-**track:** FAST
-**status:** IN_PROGRESS
-**depends_on:** [TASK-045]
-**assigned_agents:** [coder, reviewer, playtester, git]
-**reads:** [app/game/scenes/TestScene.js]
-**writes:** [app/game/scenes/TestScene.js]
-**done_when:**
-- `TestScene.shutdown()` removes all `window.addEventListener` calls registered during `create()` (TEST_END, TEST_DISMISS, and any others)
-- Player can exit a test and re-enter it without duplicate event handlers accumulating
-- Test retry (after failing) works correctly ? score resets, questions reload, no stale state
-- If test is passed, return to WorldScene with correct unlock state
-**notes:** Mirrors TASK-045 pattern. Store bound listener references in this._onTestEnd etc. during create(), remove them in shutdown().
-
 ---
 
 ### TASK-040
@@ -326,6 +311,7 @@ TASK-054 — TestScene lifecycle fix
 - TASK-049 | DONE | 2026-03-30 | Vocabulary logging — dialogue choices feed Journal vocab tab | 7922795
 - TASK-055 | DONE | 2026-03-30 | Loading states + API error toast — boot bar + hud-toast | 73944ce
 - TASK-053 | DONE | 2026-03-30 | Dialogue API fallback chain — scripted fallback + offline badge | dc49a2b
+- TASK-054 | DONE | 2026-03-30 | TestScene lifecycle fix — verification only, TASK-045 already applied pattern | no-commit
 
 ## Session log
 
@@ -374,3 +360,4 @@ TASK-054 — TestScene lifecycle fix
 - 2026-03-30 · TASK-055 Loading states + API error toast — tutor-status toast in HUD, stone palette CSS · 73944ce
 - 2026-03-30 · TASK-053 Dialogue API fallback chain — NPC-specific scripted fallback + offline badge · dc49a2b
 - 2026-03-30 · TASK-053 Git — reset _offline flag in _handleDialogueEnd · fbe2d38 · backup/pre-build-20260330-183040
+- 2026-03-30 · TASK-054 TestScene lifecycle — verification only, TASK-045 already applied the pattern · no-commit · backup/pre-build-20260330-191527
