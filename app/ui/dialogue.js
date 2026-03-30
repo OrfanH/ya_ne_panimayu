@@ -20,6 +20,7 @@ const DialogueUI = (() => {
     phase: _STATES.CLOSED,
     translationVisible: true,
     currentLine: null,
+    sessionVocab: [],
   };
 
   // -----------------------------------------------------------
@@ -170,11 +171,23 @@ const DialogueUI = (() => {
   // Only works when state is CLOSED. Sets state to OPENING.
   // After CSS transition completes, sets state to OPEN.
   // -----------------------------------------------------------
+  function _collectVocabFromLine(line) {
+    if (line.russian && line.translation) {
+      _state.sessionVocab.push({
+        russian: line.russian,
+        translation: line.translation,
+        npcName: line.npcName || '',
+      });
+    }
+  }
+
   function open(line) {
     if (_state.phase !== _STATES.CLOSED) { return; }
 
     _state.phase = _STATES.OPENING;
     _state.currentLine = line;
+    _state.sessionVocab = [];
+    _collectVocabFromLine(line);
 
     _populate(line);
     _portrait.classList.toggle('has-portrait', !!line.portrait);
@@ -209,6 +222,7 @@ const DialogueUI = (() => {
   function update(line) {
     if (_state.phase !== _STATES.OPENING && _state.phase !== _STATES.OPEN) { return; }
     _state.currentLine = line;
+    _collectVocabFromLine(line);
     _populate(line);
   }
 
@@ -222,6 +236,8 @@ const DialogueUI = (() => {
 
     _state.phase = _STATES.CLOSING;
     _state.currentLine = null;
+    const vocabSnapshot = _state.sessionVocab.slice();
+    _state.sessionVocab = [];
 
     _box.classList.add('is-closing');
 
@@ -236,7 +252,9 @@ const DialogueUI = (() => {
       _overlay.classList.remove('is-active');
       _box.classList.remove('is-closing');
       _state.phase = _STATES.CLOSED;
-      window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+      window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END, {
+        detail: { vocab: vocabSnapshot },
+      }));
     };
 
     _box.addEventListener('transitionend', onEnd);
@@ -249,7 +267,9 @@ const DialogueUI = (() => {
         _overlay.classList.remove('is-active');
         _box.classList.remove('is-closing');
         _state.phase = _STATES.CLOSED;
-        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END, {
+          detail: { vocab: vocabSnapshot },
+        }));
       }
     }, 400);
   }

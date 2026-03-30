@@ -7,6 +7,7 @@
 const Journal = (() => {
   let _open = false;
   let _activeTab = 'vocabulary';
+  let _currentLocation = '';
 
   // DOM refs
   let _journalEl = null;
@@ -113,30 +114,48 @@ const Journal = (() => {
         return;
       }
 
+      // Deduplicate by cyrillic and count frequency
+      const seen = new Map();
+      for (const word of words) {
+        const key = word.cyrillic || '';
+        if (!key) { continue; }
+        if (seen.has(key)) {
+          seen.get(key).count += 1;
+        } else {
+          seen.set(key, { ...word, count: 1 });
+        }
+      }
+
       const list = document.createElement('div');
       list.className = 'vocabulary-list';
 
-      for (const word of words) {
+      for (const word of seen.values()) {
         const card = document.createElement('div');
         card.className = 'vocabulary-card';
 
         const wordEl = document.createElement('p');
         wordEl.className = 'vocabulary-word';
         wordEl.textContent = word.cyrillic || '';
-
         card.appendChild(wordEl);
-
-        if (word.transliteration) {
-          const translit = document.createElement('p');
-          translit.className = 'vocabulary-transliteration';
-          translit.textContent = word.transliteration;
-          card.appendChild(translit);
-        }
 
         const meaning = document.createElement('p');
         meaning.className = 'vocabulary-meaning';
         meaning.textContent = word.meaning || '';
         card.appendChild(meaning);
+
+        if (word.location) {
+          const locationEl = document.createElement('p');
+          locationEl.className = 'vocabulary-location';
+          locationEl.textContent = word.location;
+          card.appendChild(locationEl);
+        }
+
+        if (word.count > 1) {
+          const countEl = document.createElement('span');
+          countEl.className = 'vocabulary-count';
+          countEl.textContent = '\u00d7' + word.count;
+          card.appendChild(countEl);
+        }
 
         list.appendChild(card);
       }
@@ -228,10 +247,41 @@ const Journal = (() => {
   // -----------------------------------------------------------
   // Init
   // -----------------------------------------------------------
+  function _onLocationEnter(e) {
+    const detail = e.detail || {};
+    _currentLocation = detail.name || detail.id || '';
+  }
+
+  function _onDialogueEnd(e) {
+    const detail = e.detail || {};
+    const vocab = detail.vocab || [];
+    if (vocab.length === 0) { return; }
+
+    const words = vocab.map((v) => ({
+      cyrillic: v.russian || '',
+      transliteration: null,
+      meaning: v.translation || '',
+      gender: null,
+      exampleCyrillic: '',
+      exampleMeaning: '',
+      location: _currentLocation,
+    })).filter((w) => w.cyrillic);
+
+    if (words.length === 0) { return; }
+
+    addVocabulary(words, null).then(() => {
+      window.dispatchEvent(new CustomEvent(EVENTS.VOCABULARY_NEW, {
+        detail: { count: words.length },
+      }));
+    });
+  }
+
   function _init() {
     _buildDOM();
     window.addEventListener(EVENTS.JOURNAL_OPEN, open);
     window.addEventListener('keydown', _onKeyDown);
+    window.addEventListener(EVENTS.LOCATION_ENTER, _onLocationEnter);
+    window.addEventListener(EVENTS.DIALOGUE_END, _onDialogueEnd);
   }
 
   if (document.readyState === 'loading') {
