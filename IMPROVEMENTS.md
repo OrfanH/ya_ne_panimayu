@@ -232,17 +232,6 @@ TASK-040 — Full playtest (next ready task)
 
 ---
 
-### TASK-040
-**title:** Full playtest ? end-to-end game loop verification
-**track:** BUILD
-**status:** BACKLOG
-**depends_on:** [TASK-041, TASK-042, TASK-043, TASK-044, TASK-045, TASK-052, TASK-051, TASK-055]
-**assigned_agents:** [playtester]
-**reads:** [app/index.html, all scene and UI files]
-**writes:** [.claude/handoffs/play-report.md]
-**done_when:** Playtester completes a full new-player run: onboarding ? apartment ? park ? cafe ? market ? station ? police ? chapter tests ? graduation. play-report.md filed with: (1) any broken interactions, (2) any empty or missing UI, (3) any Russian text errors visible in-game, (4) audio issues, (5) lock/unlock chain verified correct. PASS if no critical blockers found.
-**notes:** Test on both desktop keyboard and simulated mobile (375px viewport). Verify dialogue box, journal, HUD, settings all display correctly with the new Kenney fonts and pixel skin.
-
 ---
 
 ### TASK-IMPROVE-001
