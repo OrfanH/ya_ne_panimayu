@@ -252,3 +252,4 @@ TASK-054 — TestScene lifecycle fix
 - 2026-03-30 · TASK-049 Vocabulary logging — dialogue vocab collection + Journal render with dedup/frequency · 7922795
 - 2026-03-30 · TASK-055 Loading states + API error toast — tutor-status toast in HUD, stone palette CSS · 73944ce
 - 2026-03-30 · TASK-053 Dialogue API fallback chain — NPC-specific scripted fallback + offline badge · dc49a2b
+- 2026-03-30 · TASK-053 Git — reset _offline flag in _handleDialogueEnd · fbe2d38 · backup/pre-build-20260330-183040
