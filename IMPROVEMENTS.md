@@ -2,7 +2,7 @@
 
 ## Current task
 
-BUG-002 — Duplicate #hud-mute elements (next ready task)
+BUG-003 — NPC interaction indicator stays visible (next ready task)
 
 ---
 
@@ -36,7 +36,7 @@ BUG-002 — Duplicate #hud-mute elements (next ready task)
 ### BUG-002
 **title:** Duplicate #hud-mute elements — HUD mute button empty and unresponsive
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
 **reads:** [app/game/systems/AudioManager.js, app/ui/hud.js]
@@ -135,63 +135,6 @@ BUG-002 — Duplicate #hud-mute elements (next ready task)
 
 ### P1-ART — Visual correctness (critical)
 *Tile frame assignments that are confirmed wrong or unverified. These affect every player session. Ordered by visual impact.*
-
----
-
-### TASK-057
-**title:** Fix CafeScene floor tile B — replace wrong frame 23 with a verified floor tile
-**track:** BUILD-ART
-**status:** IN_PROGRESS
-**priority:** P1-ART
-**depends_on:** []
-**assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
-**reads:** [app/game/scenes/CafeScene.js, app/assets/tilesets/roguelike-indoors.png, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
-**writes:** [app/game/scenes/CafeScene.js]
-**done_when:**
-- CafeScene `floor_b` frame index is changed from 23 to a verified floor tile from roguelike-indoors.png
-- The replacement tile visually reads as a floor surface (stone, wood, or tile — not a decorative prop)
-- Cafe floor checker pattern looks coherent with both tile A (frame 216) and the new tile B
-- Verified in-game: no jarring non-floor graphic in the cafe floor pattern
-**notes:** Addresses pixel-art-mapping.md finding #3 (CafeScene floor tile B frame 23 is almost certainly wrong — low-index roguelike-indoors frames are typically decorative items, not floor fills). The pixel-artist must inspect the roguelike-indoors sheet to identify appropriate floor tiles.
-
----
-
-### TASK-058
-**title:** ParkScene outdoor conversion — replace indoor tiles with existing outdoor-capable assets
-**track:** BUILD-ART
-**status:** BACKLOG
-**priority:** P1-ART
-**depends_on:** []
-**assigned_agents:** [pixel-artist, designer, coder, reviewer, playtester, git]
-**reads:** [app/game/scenes/ParkScene.js, app/assets/tilesets/roguelike-city.png, app/assets/tilesets/tilemap_packed.png, app/game/scenes/WorldScene.js, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
-**writes:** [app/game/scenes/ParkScene.js]
-**done_when:**
-- ParkScene no longer loads floor/wall tiles from roguelike-indoors.png
-- Ground tiles use grass frames from roguelike-city.png (the same sheet used for WorldScene overworld) or tilemap_packed.png (RPG Urban Pack grass frames 0/27)
-- Park perimeter uses a visually distinct border — either a different grass shade, a path-edge tile from roguelike-city, or no hard wall at all (collision-only invisible boundary)
-- Programmatic trees replaced with dark-green tile sprites from roguelike-city (tree/vegetation frames if available) or retained as programmatic but with pixel-art-style outlines (1px dark border)
-- Programmatic fountain and benches either replaced with roguelike-city/indoors decoration frames or given 1px dark outlines to match the pixel register
-- Park no longer reads as a dungeon room — it reads as an outdoor space
-- Path network uses tiles from roguelike-city path frames (same as WorldScene) rather than programmatic fills
-**notes:** Addresses pixel-art-mapping.md finding #4 (ParkScene uses indoor tiles for outdoor park) and finding #12 (programmatic path drawing). This is NOT about getting a new asset pack — it is about repurposing existing on-disk assets (roguelike-city.png, tilemap_packed.png) that already contain grass, path, and some vegetation tiles. The designer should specify the layout; the pixel-artist identifies which frames to use; the coder implements.
-
----
-
-### TASK-059
-**title:** TestScene tiled floor and walls — replace programmatic fill with roguelike-indoors tiles
-**track:** BUILD-ART
-**status:** BACKLOG
-**priority:** P1-ART
-**depends_on:** []
-**assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
-**reads:** [app/game/scenes/TestScene.js, app/assets/tilesets/roguelike-indoors.png, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
-**writes:** [app/game/scenes/TestScene.js]
-**done_when:**
-- TestScene floor uses tiled roguelike-indoors frames (same pattern as other interior scenes) instead of a flat programmatic 0xC8B99A fill
-- TestScene walls use tiled roguelike-indoors wall frames instead of a lineStyle stroke outline
-- Professor's desk uses a roguelike-indoors furniture frame instead of a programmatic 0x8B6914 rectangle
-- TestScene visually matches the interior aesthetic of other scenes (apartment, police, etc.)
-**notes:** Addresses pixel-art-mapping.md finding #5 (TestScene has no tiled floor or walls — flat programmatic colour fill with stroke outline). Should follow the same tiling pattern used in ApartmentScene/PoliceScene.
 
 ---
 
@@ -404,6 +347,7 @@ BUG-002 — Duplicate #hud-mute elements (next ready task)
 - TASK-057 | DONE | 2026-03-30 | CafeScene floor_b tile 23→243 | b1669e2
 - TASK-058 | DONE | 2026-03-30 | ParkScene outdoor conversion — city grass+path tiles | 1c46c4e
 - TASK-059 | DONE | 2026-03-30 | TestScene tiled floor+walls via roguelike-indoors | 25d5f45
+- BUG-002 | DONE | 2026-03-30 | Duplicate #hud-mute fix — reuse existing AudioManager button | pending-commit
 
 ## Session log
 
