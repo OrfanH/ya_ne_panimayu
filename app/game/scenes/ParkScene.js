@@ -3,8 +3,9 @@
    Unlocked after apartment story beat.
    ============================================ */
 
-// TILE INDEX (roguelike-indoors, 27-col sheet, N = row*27+col)
-// floor_a: 68, floor_b: 69, wall: 197, furniture: [131, 132, 133]
+// TILE INDEX (roguelike-city, 34-col sheet, N = row*34+col)
+// grass_a: 816, grass_b: 850, path_a: 558, path_b: 593
+// decorations: [131, 132, 133] (indoors sheet — green plant sprites)
 
 const PARK_COLS = 16;
 const PARK_ROWS = 12;
@@ -26,47 +27,42 @@ class ParkScene extends Phaser.Scene {
 
     const COLS = PARK_COLS;
     const ROWS = PARK_ROWS;
-    const FLOOR_A = 68;
-    const FLOOR_B = 69;
-    const WALL_FRAME = 197;
+    const GRASS_A = 816;
+    const GRASS_B = 850;
 
-    // Floor tiles (inner area, excluding wall perimeter)
-    for (let r = 1; r < ROWS - 1; r++) {
-      for (let c = 1; c < COLS - 1; c++) {
-        const frame = (r + c) % 2 === 0 ? FLOOR_A : FLOOR_B;
-        this.add.image(c * T + T / 2, r * T + T / 2, 'indoors', frame);
+    // Grass tiles edge-to-edge
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const frame = (r + c) % 2 === 0 ? GRASS_A : GRASS_B;
+        this.add.image(c * T + T / 2, r * T + T / 2, 'city', frame);
       }
     }
 
-    // Wall perimeter tiles
-    for (let c = 0; c < COLS; c++) {
-      this.add.image(c * T + T / 2, T / 2,                   'indoors', WALL_FRAME); // top
-      this.add.image(c * T + T / 2, (ROWS - 1) * T + T / 2, 'indoors', WALL_FRAME); // bottom
-    }
-    for (let r = 1; r < ROWS - 1; r++) {
-      this.add.image(T / 2,                  r * T + T / 2, 'indoors', WALL_FRAME); // left
-      this.add.image((COLS - 1) * T + T / 2, r * T + T / 2, 'indoors', WALL_FRAME); // right
-    }
-
-    // Furniture near border corners (avoiding player spawn col 8 row 10, Artyom col 4 row 6, Tamara col 12 row 3)
+    // Decoration tiles near border corners (avoiding player spawn col 8 row 10, Artyom col 4 row 6, Tamara col 12 row 3)
     this.add.image(2 * T + T / 2,  2 * T + T / 2,  'indoors', 131); // top-left area
     this.add.image(14 * T + T / 2, 2 * T + T / 2,  'indoors', 132); // top-right area
     this.add.image(2 * T + T / 2,  10 * T + T / 2, 'indoors', 133); // bottom-left area
 
-    // Central path (horizontal)
-    gfx.fillStyle(0xC8A96E);
-    gfx.fillRect(0, 5 * T, parkW, 2 * T);
+    // Paths using city tiles (replacing programmatic fills)
+    const PATH_A = 558;
+    const PATH_B = 593;
 
-    // Cross path (vertical)
-    gfx.fillStyle(0xC8A96E);
-    gfx.fillRect(7 * T, 0, 2 * T, parkH);
+    // Horizontal path (rows 5-6, full width)
+    for (let r = 5; r <= 6; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const frame = (r + c) % 2 === 0 ? PATH_A : PATH_B;
+        this.add.image(c * T + T / 2, r * T + T / 2, 'city', frame);
+      }
+    }
 
-    // Path edges
-    gfx.fillStyle(0xB89558);
-    gfx.fillRect(0, 5 * T, parkW, 2);
-    gfx.fillRect(0, 7 * T - 2, parkW, 2);
-    gfx.fillRect(7 * T, 0, 2, parkH);
-    gfx.fillRect(9 * T - 2, 0, 2, parkH);
+    // Vertical path (cols 7-8, full height, skip rows already drawn)
+    for (let r = 0; r < ROWS; r++) {
+      if (r >= 5 && r <= 6) continue; // already drawn
+      for (let c = 7; c <= 8; c++) {
+        const frame = (r + c) % 2 === 0 ? PATH_A : PATH_B;
+        this.add.image(c * T + T / 2, r * T + T / 2, 'city', frame);
+      }
+    }
 
     // -------------------------------------------------------
     // 2. Park decorations — benches, fountain, trees
