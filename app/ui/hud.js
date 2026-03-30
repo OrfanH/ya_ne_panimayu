@@ -50,9 +50,17 @@ const HUD = (() => {
     _journalHintEl.appendChild(keyBadgeEl);
     _journalHintEl.appendChild(journalLabelEl);
 
+    // --- Mute button (built into hud, wired by AudioManager)
+    const _muteBtn = document.createElement('button');
+    _muteBtn.id = 'hud-mute';
+    _muteBtn.type = 'button';
+    _muteBtn.className = 'hud-mute-btn';
+    _muteBtn.setAttribute('aria-label', 'Mute music');
+
     _hudEl.appendChild(_locationEl);
     _hudEl.appendChild(_missionEl);
     _hudEl.appendChild(_journalHintEl);
+    _hudEl.appendChild(_muteBtn);
 
     parent.appendChild(_hudEl);
   }

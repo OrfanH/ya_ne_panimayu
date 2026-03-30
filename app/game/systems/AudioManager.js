@@ -525,6 +525,16 @@ const AudioManager = (() => {
     return { synths, parts, cleanup: () => {} };
   }
 
+  /* ---- Name-to-id lookup (for LOCATION_ENTER events that use name instead of id) ---- */
+  const _nameToId = {
+    'Apartment Building': 'apartment',
+    'Park': 'park',
+    'Cafe': 'cafe',
+    'Market': 'market',
+    'Train Station': 'station',
+    'Police Station': 'police',
+  };
+
   /* ---- Location factory map ---- */
   const _locationFactories = {
     apartment: _createApartment,
@@ -692,15 +702,21 @@ const AudioManager = (() => {
   ============================================================ */
 
   function _buildMuteBtn() {
-    const parent = document.getElementById('hud') || document.getElementById('ui-overlay') || document.body;
+    // Prefer the pre-existing #hud-mute element created by HUD
+    _muteBtn = document.getElementById('hud-mute');
 
-    _muteBtn = document.createElement('button');
-    _muteBtn.type = 'button';
-    _muteBtn.id = 'audio-mute-btn';
-    _muteBtn.className = 'hud-mute-btn';
-    _muteBtn.setAttribute('aria-label', 'Mute music');
+    if (!_muteBtn) {
+      // Fallback: create and append if HUD hasn't built it yet
+      const parent = document.getElementById('hud') || document.getElementById('ui-overlay') || document.body;
+      _muteBtn = document.createElement('button');
+      _muteBtn.type = 'button';
+      _muteBtn.id = 'hud-mute';
+      _muteBtn.className = 'hud-mute-btn';
+      _muteBtn.setAttribute('aria-label', 'Mute music');
+      parent.appendChild(_muteBtn);
+    }
 
-    // Speaker SVG — two states via CSS classes
+    // Inject speaker SVG icons — two states toggled via CSS class
     _muteBtn.innerHTML = `
       <svg class="mute-icon-on" width="20" height="20" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -721,8 +737,6 @@ const AudioManager = (() => {
       _ensureStarted();
       toggleMute();
     });
-
-    parent.appendChild(_muteBtn);
   }
 
   /* ============================================================
@@ -731,7 +745,7 @@ const AudioManager = (() => {
 
   function _registerListeners() {
     window.addEventListener(EVENTS.LOCATION_ENTER, (e) => {
-      const id = e.detail && e.detail.id;
+      const id = (e.detail && (e.detail.id || _nameToId[e.detail.name])) || null;
       if (!id) return;
 
       if (!_isStarted) {
