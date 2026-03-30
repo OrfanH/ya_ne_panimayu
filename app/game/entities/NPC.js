@@ -52,11 +52,11 @@ class NPC {
     const hintText = isMobile ? 'tap' : '[E]';
 
     const _hintStyle = getComputedStyle(document.documentElement);
-    const hintFontSize = _hintStyle.getPropertyValue('--hint-font-size').trim() || '11px';
-    const hintColor    = _hintStyle.getPropertyValue('--hint-color').trim()     || '#E8E0D0';
-    const hintBg       = _hintStyle.getPropertyValue('--hint-bg').trim()        || '#2A2A2A';
-    const hintPadX     = parseInt(_hintStyle.getPropertyValue('--hint-padding-x').trim()) || 4;
-    const hintPadY     = parseInt(_hintStyle.getPropertyValue('--hint-padding-y').trim()) || 2;
+    const hintFontSize = _hintStyle.getPropertyValue('--hint-font-size').trim();
+    const hintColor    = _hintStyle.getPropertyValue('--hint-color').trim();
+    const hintBg       = _hintStyle.getPropertyValue('--hint-bg').trim();
+    const hintPadX     = parseInt(_hintStyle.getPropertyValue('--hint-padding-x').trim());
+    const hintPadY     = parseInt(_hintStyle.getPropertyValue('--hint-padding-y').trim());
 
     this._interactionHint = scene.add.text(x, y - tileSize * 0.85, hintText, {
       fontFamily:      'Kenney Mini',

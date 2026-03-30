@@ -96,22 +96,6 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 
 ---
 
-### TASK-052
-**title:** Mobile dialogue UX — tap to advance, viewport fit, 48px touch targets
-**track:** FAST
-**status:** BACKLOG
-**priority:** P1
-**depends_on:** [TASK-042]
-**assigned_agents:** [coder, reviewer, playtester, git]
-**reads:** [app/ui/dialogue.js, app/style.css, app/tokens.css]
-**writes:** [app/ui/dialogue.js, app/style.css]
-**done_when:**
-- Tapping anywhere on the dialogue text area advances to the next beat (no dedicated "next" button needed)
-- Choice buttons are minimum 48px height and full-width on mobile (375px)
-- Dialogue panel does not overflow or require horizontal scroll on 375px viewport
-- Tap-to-advance does not accidentally trigger NPC interaction again (event propagation handled correctly)
-**notes:** Tap-to-advance must be guarded: only fire when dialogue is OPEN state (from TASK-041 state machine). Use a single `click` listener on the dialogue text container, not on the whole window.
-
 ---
 
 ### TASK-048
@@ -146,7 +130,7 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 ### TASK-060
 **title:** Verify and fix overworld building tile frames in WorldScene CITY_TILES
 **track:** BUILD-ART
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P1-ART-B
 **depends_on:** []
 **assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
@@ -166,7 +150,7 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 ### TASK-061
 **title:** Consolidate interior wall tiles and replace programmatic furniture with tiled assets
 **track:** BUILD-ART
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P1-ART-B
 **depends_on:** [TASK-057, TASK-059]
 **assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
@@ -253,7 +237,7 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 ### TASK-063
 **title:** Player sprite visual identity — designate a distinct protagonist frame from roguelike-characters
 **track:** BUILD-ART
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P2-ART
 **depends_on:** [TASK-056]
 **assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
@@ -348,6 +332,7 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 - TASK-058 | DONE | 2026-03-30 | ParkScene outdoor conversion — city grass+path tiles | 1c46c4e
 - TASK-059 | DONE | 2026-03-30 | TestScene tiled floor+walls via roguelike-indoors | 25d5f45
 - BUG-002 | DONE | 2026-03-30 | Duplicate #hud-mute fix — reuse existing AudioManager button | ed2a84e
+- TASK-052 | DONE | 2026-03-30 | Mobile dialogue UX — tap-to-advance, 48px touch targets | 8a05e14
 
 ## Session log
 
@@ -400,3 +385,4 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 - 2026-03-30 · Assessment: pixel-art-mapping.md audit converted to TASK-056 through TASK-063 (8 BUILD-ART tasks), duplicates cleaned from backlog
 - 2026-03-30 · TASK-040 Full playtest — FAIL, BUG-001 (city tileset frame indices) + BUG-002 (hud-mute duplicate) filed as P0 blockers · sign-off
 - 2026-03-30 · TASK-051 NPC proximity interaction hint — [E]/tap badge above NPCs, CSS tokens, state-flag discipline · 80f6af3
+- 2026-03-30 · TASK-052 Mobile dialogue UX — tap-to-advance on .dialogue-body, stopPropagation guard, cursor:pointer · 8a05e14
