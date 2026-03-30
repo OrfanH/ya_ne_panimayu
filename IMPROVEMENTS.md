@@ -113,7 +113,7 @@ TASK-048 — Wire MissionGenerator (next ready P1 task)
 ### TASK-060
 **title:** Verify and fix overworld building tile frames in WorldScene CITY_TILES
 **track:** BUILD-ART
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P1-ART-B
 **depends_on:** []
 **assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
@@ -302,6 +302,7 @@ TASK-048 — Wire MissionGenerator (next ready P1 task)
 - BUG-003 | DONE | 2026-03-30 | NPC hint hides on dialogue open — _dialogueOpen guard + CSS fallback removal | 9e92978
 - TASK-048 | DONE | 2026-03-30 | Wire MissionGenerator to HUD + Journal, Russian empty state | 5265943
 - TASK-047 | DONE | 2026-03-30 | NPC relationship tiers — stranger/acquaintance/friend dialogue | e3251d7
+- TASK-060 | DONE | 2026-03-30 | Verify+fix overworld building tile frames, hatch overlay, dead props removed | 67ce7ea
 
 ## Session log
 
