@@ -20,10 +20,36 @@ TASK-040 — Full playtest (next ready task)
 
 ---
 
+### BUG-001
+**title:** City tileset frame indices wrong — ground tiles and park building invisible
+**track:** BUG
+**status:** READY
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/game/scenes/WorldScene.js]
+**writes:** [app/game/scenes/WorldScene.js]
+**done_when:** No "Texture has no frame" warnings for city frames 888/889/925/962. World scene ground tiles render as visible grass. Park building walls and door render correctly. Valid frame indices confirmed against roguelike-city.png (34 cols × 26 rows, max index 883).
+**notes:** Found by playtester. The CITY_TILES constants use frame indices based on a 37-column formula (N = row × 37 + col) but roguelike-city.png is 34 columns wide (592px / 17px per cell). grass_a=888, grass_b=962, park.wall=925, park.door=889 all exceed the 883 maximum valid index. The intended grass tile at row 24 col 0 in a 34-col sheet is frame 816 (24 × 34). The park wall/door frames also need recalculating. See play-report.md for full analysis.
+
+---
+
+### BUG-002
+**title:** Duplicate #hud-mute elements — HUD mute button empty and unresponsive
+**track:** BUG
+**status:** READY
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/game/systems/AudioManager.js, app/ui/hud.js]
+**writes:** [app/ui/hud.js]
+**done_when:** Exactly one #hud-mute element exists in the DOM. The mute button inside the HUD bar has SVG icons and correctly toggles audio mute on click.
+**notes:** Found by playtester. AudioManager.js loads before ui/hud.js in index.html. AudioManager._buildMuteBtn() runs on DOMContentLoaded, finds no existing #hud-mute, and creates one appended to #ui-overlay. Then hud.js _buildDOM() creates a second empty #hud-mute inside #hud. The HUD-visible button is the empty one; AudioManager wires the other one. Fix: remove the _muteBtn element from hud.js _buildDOM() — AudioManager already handles creation and wiring. See play-report.md.
+
+---
+
 ### TASK-040
 **title:** Full playtest — end-to-end game loop verification
 **track:** PLAYTEST
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P0
 **depends_on:** [TASK-054]
 **assigned_agents:** [playtester]
@@ -42,7 +68,7 @@ TASK-040 — Full playtest (next ready task)
 ### TASK-051
 **title:** NPC interaction indicator — proximity E-key / tap-zone visual
 **track:** FAST
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P1
 **depends_on:** [TASK-045]
 **assigned_agents:** [coder, reviewer, playtester, git]
@@ -102,7 +128,7 @@ TASK-040 — Full playtest (next ready task)
 ### TASK-056
 **title:** Verify and fix NPC character frame assignments in roguelike-characters sheet
 **track:** BUILD-ART
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P1-ART
 **depends_on:** []
 **assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
@@ -377,6 +403,7 @@ TASK-040 — Full playtest (next ready task)
 - TASK-055 | DONE | 2026-03-30 | Loading states + API error toast — boot bar + hud-toast | 73944ce
 - TASK-053 | DONE | 2026-03-30 | Dialogue API fallback chain — scripted fallback + offline badge | dc49a2b
 - TASK-054 | DONE | 2026-03-30 | TestScene lifecycle fix — verification only, TASK-045 already applied pattern | no-commit
+- TASK-040 | DONE | 2026-03-30 | Full playtest — 2 bugs filed (BUG-001 tileset frames, BUG-002 hud-mute duplicate) | sign-off
 
 ## Session log
 
@@ -427,3 +454,4 @@ TASK-040 — Full playtest (next ready task)
 - 2026-03-30 · TASK-053 Git — reset _offline flag in _handleDialogueEnd · fbe2d38 · backup/pre-build-20260330-183040
 - 2026-03-30 · TASK-054 TestScene lifecycle — verification only, TASK-045 already applied the pattern · no-commit · backup/pre-build-20260330-191527
 - 2026-03-30 · Assessment: pixel-art-mapping.md audit converted to TASK-056 through TASK-063 (8 BUILD-ART tasks), duplicates cleaned from backlog
+- 2026-03-30 · TASK-040 Full playtest — FAIL, BUG-001 (city tileset frame indices) + BUG-002 (hud-mute duplicate) filed as P0 blockers · sign-off
