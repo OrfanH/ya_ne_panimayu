@@ -63,6 +63,12 @@ const HUD = (() => {
     _hudEl.appendChild(_muteBtn);
 
     parent.appendChild(_hudEl);
+
+    // --- Toast notification (used by tutor.js showTutorStatus on API errors)
+    const toastEl = document.createElement('div');
+    toastEl.id = 'tutor-status';
+    toastEl.className = 'hud-toast';
+    parent.appendChild(toastEl);
   }
 
   function _showLocation(name) {

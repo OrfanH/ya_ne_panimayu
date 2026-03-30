@@ -737,6 +737,34 @@ body {
   }
 }
 
+/* --- HUD: Toast Notification --- */
+.hud-toast {
+  position: fixed;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3a3d4a;
+  border: 2px solid #6e7487;
+  border-radius: 0;
+  box-shadow: inset 1px 1px 0 #8a8fa0, inset -1px -1px 0 #1e2028, 0 2px 0 #1e2028;
+  padding: var(--space-2) var(--space-4);
+  font-family: var(--font-hud);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: #f0f0f5;
+  text-shadow: 1px 1px 0 #1e2028;
+  image-rendering: pixelated;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  z-index: 9999;
+}
+
+.hud-toast.visible {
+  opacity: 1;
+}
+
 /* --- Test Overlay --- */
 #test-overlay {
   position: fixed;
