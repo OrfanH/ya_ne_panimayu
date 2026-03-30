@@ -2,7 +2,7 @@
 
 ## Current task
 
-BUG-003 — NPC interaction indicator stays visible (next ready task)
+TASK-048 — Wire MissionGenerator (next ready P1 task)
 
 ---
 
@@ -49,7 +49,7 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 ### BUG-003
 **title:** NPC interaction indicator stays visible when dialogue is open
 **track:** BUG
-**status:** IN_PROGRESS
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [app/game/entities/NPC.js]
@@ -97,23 +97,6 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 ---
 
 ---
-
-### TASK-048
-**title:** Wire MissionGenerator — trigger from dialogue, update HUD + Journal
-**track:** FAST
-**status:** BACKLOG
-**priority:** P1
-**depends_on:** [TASK-041, TASK-045]
-**assigned_agents:** [coder, reviewer, playtester, git]
-**reads:** [app/game/systems/MissionGenerator.js, app/game/systems/MistakeLogger.js, app/ui/hud.js, app/ui/journal.js, app/storage.js]
-**writes:** [app/game/systems/MissionGenerator.js, app/ui/hud.js, app/ui/journal.js]
-**done_when:**
-- `MissionGenerator.checkAndGenerate()` is called after every `DIALOGUE_END` event
-- If a new mission is generated, `#hud-mission` text updates immediately with the mission title
-- Journal missions tab re-renders active + completed missions when opened (reads from storage)
-- Completed missions display with a visual completion indicator (strikethrough or checkmark)
-- Empty state: missions tab shows "Нет заданий" when no missions exist
-**notes:** MissionGenerator reads from MistakeLogger — ensure MistakeLogger has at least one logged mistake before testing, otherwise no mission will generate.
 
 ---
 
@@ -174,7 +157,7 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 ### TASK-047
 **title:** NPC relationship tiers — stranger / acquaintance / friend dialogue switching
 **track:** FAST
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P2
 **depends_on:** [TASK-041, TASK-045]
 **assigned_agents:** [coder, reviewer, playtester, git]
@@ -333,6 +316,8 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 - TASK-059 | DONE | 2026-03-30 | TestScene tiled floor+walls via roguelike-indoors | 25d5f45
 - BUG-002 | DONE | 2026-03-30 | Duplicate #hud-mute fix — reuse existing AudioManager button | ed2a84e
 - TASK-052 | DONE | 2026-03-30 | Mobile dialogue UX — tap-to-advance, 48px touch targets | 8a05e14
+- BUG-003 | DONE | 2026-03-30 | NPC hint hides on dialogue open — _dialogueOpen guard + CSS fallback removal | 9e92978
+- TASK-048 | DONE | 2026-03-30 | Wire MissionGenerator to HUD + Journal, Russian empty state | 5265943
 
 ## Session log
 
@@ -386,3 +371,4 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 - 2026-03-30 · TASK-040 Full playtest — FAIL, BUG-001 (city tileset frame indices) + BUG-002 (hud-mute duplicate) filed as P0 blockers · sign-off
 - 2026-03-30 · TASK-051 NPC proximity interaction hint — [E]/tap badge above NPCs, CSS tokens, state-flag discipline · 80f6af3
 - 2026-03-30 · TASK-052 Mobile dialogue UX — tap-to-advance on .dialogue-body, stopPropagation guard, cursor:pointer · 8a05e14
+- 2026-03-30 · TASK-048 Wire MissionGenerator — MISSION_START dispatch, HUD load on init, Journal object rendering · 5265943
