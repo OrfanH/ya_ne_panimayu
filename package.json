@@ -1,11 +1,15 @@
 {
+  "scripts": {
+    "test":       "playwright test",
+    "test:smoke": "playwright test tests/smoke.spec.js --project=desktop",
+    "test:ci":    "playwright test",
+    "serve":      "serve app -p 3000"
+  },
   "dependencies": {
     "pngjs": "^7.0.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.44.0"
-  },
-  "scripts": {
-    "test": "playwright test"
+    "@playwright/test": "^1.44.0",
+    "serve": "^14.2.0"
   }
 }

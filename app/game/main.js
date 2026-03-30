@@ -22,3 +22,7 @@ const gameConfig = {
 };
 
 const game = new Phaser.Game(gameConfig);
+
+// Test seam — exposes minimal game state for Playwright assertions.
+// Read-only. No test-only behaviour. Safe in production.
+window.__GAME__ = game;
