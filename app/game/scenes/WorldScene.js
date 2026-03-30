@@ -24,35 +24,36 @@ const BUILDING_ZONES = [
 
 /*
  * CITY TILESET INDEX MAP (roguelike-city.png)
- * Frame formula: N = row × 37 + col  (37 tiles per row, 0-indexed)
+ * Frame formula: N = row × 34 + col  (34 tiles per row, 0-indexed)
+ * Sheet size: 592px wide / 17px per cell = 34 columns, 26 rows, max index 883
  * Spritesheet key: 'city'  |  16×16 px tiles  |  1px spacing
  *
  * Ground:
- *   grass_a  = 888  (r24c0  #509860 bright green)
- *   grass_b  = 962  (r26c0  #7C8C59 olive green)
+ *   grass_a  = 816  (r24c0  #509860 bright green)
+ *   grass_b  = 850  (r25c0  #7C8C59 olive green)
  * Paths:
- *   path_a   = 606  (r16c14 #ACACAC neutral grey)
- *   path_b   = 644  (r17c15 #AAAAAA light grey)
+ *   path_a   = 558  (r16c14 #ACACAC neutral grey)
+ *   path_b   = 593  (r17c15 #AAAAAA light grey)
  * Buildings:
- *   apartment — wall=0   roof=37  door=74
- *   park      — wall=925 roof=365 door=889
- *   cafe      — wall=163 roof=141 door=529
- *   market    — wall=22  roof=290 door=59
- *   station   — wall=607 roof=485 door=643
- *   police    — wall=8   roof=566 door=45
+ *   apartment — wall=0   roof=34  door=68
+ *   park      — wall=850 roof=338 door=817
+ *   cafe      — wall=151 roof=132 door=487
+ *   market    — wall=22  roof=269 door=56
+ *   station   — wall=559 roof=446 door=592
+ *   police    — wall=8   roof=521 door=42
  */
 const CITY_TILES = {
-  grass_a: 888,
-  grass_b: 962,
-  path_a:  606,
-  path_b:  644,
+  grass_a: 816,
+  grass_b: 850,
+  path_a:  558,
+  path_b:  593,
   buildings: {
-    apartment: { wall: 0,   roof: 37,  door: 74  },
-    park:      { wall: 925, roof: 365, door: 889 },
-    cafe:      { wall: 163, roof: 141, door: 529 },
-    market:    { wall: 22,  roof: 290, door: 59  },
-    station:   { wall: 607, roof: 485, door: 643 },
-    police:    { wall: 8,   roof: 566, door: 45  },
+    apartment: { wall: 0,   roof: 34,  door: 68  },
+    park:      { wall: 850, roof: 338, door: 817 },
+    cafe:      { wall: 151, roof: 132, door: 487 },
+    market:    { wall: 22,  roof: 269, door: 56  },
+    station:   { wall: 559, roof: 446, door: 592 },
+    police:    { wall: 8,   roof: 521, door: 42  },
   },
 };
 
