@@ -45,7 +45,7 @@ Read CLAUDE-STACK.md to confirm Tone.js is available. Read CLAUDE-VISION.md for 
 - **Loop length:** number of bars
 - **Crossfade in:** ms when entering from another location
 
-## Location mood brief — starting point, expand from STORY.md
+## Location mood brief
 
 - Apartment: quiet, slightly lonely, hopeful. Home but not yet home.
 - Park: open, gentle, uncertain. First time outside alone.

@@ -154,23 +154,6 @@ TASK-048 — Wire MissionGenerator (next ready P1 task)
 
 ---
 
-### TASK-047
-**title:** NPC relationship tiers — stranger / acquaintance / friend dialogue switching
-**track:** FAST
-**status:** IN_PROGRESS
-**priority:** P2
-**depends_on:** [TASK-041, TASK-045]
-**assigned_agents:** [coder, reviewer, playtester, git]
-**reads:** [app/game/entities/NPC.js, app/game/content/apartment-dialogue.js, app/storage.js, app/config.js]
-**writes:** [app/game/entities/NPC.js, app/game/content/apartment-dialogue.js]
-**done_when:**
-- `NPC.js` reads `npcRelationships[npcId]` from storage to determine tier: 0 = stranger, 1 = acquaintance, 2 = friend
-- Relationship score increments by 1 after each completed dialogue (DIALOGUE_END fires)
-- Score thresholds: 0 = stranger, 1–2 = acquaintance, 3+ = friend
-- `TutorAI.startConversation()` receives the current tier as context so the system prompt adjusts formality (вы vs ты) per REFERENCE-DIALOGUE.md §1
-- Galina's `apartment-dialogue.js` scripted fallbacks have at least two tier-tagged variants per NPC interaction to demonstrate the system working
-**notes:** Per REFERENCE-DIALOGUE.md: strangers use вы and formal address; acquaintances switch to ты and use the player's name; friends ask questions about the player's life. The tier must be passed to TutorAI so AI-generated responses also respect it.
-
 ---
 
 ### TASK-050
@@ -318,6 +301,7 @@ TASK-048 — Wire MissionGenerator (next ready P1 task)
 - TASK-052 | DONE | 2026-03-30 | Mobile dialogue UX — tap-to-advance, 48px touch targets | 8a05e14
 - BUG-003 | DONE | 2026-03-30 | NPC hint hides on dialogue open — _dialogueOpen guard + CSS fallback removal | 9e92978
 - TASK-048 | DONE | 2026-03-30 | Wire MissionGenerator to HUD + Journal, Russian empty state | 5265943
+- TASK-047 | DONE | 2026-03-30 | NPC relationship tiers — stranger/acquaintance/friend dialogue | e3251d7
 
 ## Session log
 
@@ -372,3 +356,4 @@ TASK-048 — Wire MissionGenerator (next ready P1 task)
 - 2026-03-30 · TASK-051 NPC proximity interaction hint — [E]/tap badge above NPCs, CSS tokens, state-flag discipline · 80f6af3
 - 2026-03-30 · TASK-052 Mobile dialogue UX — tap-to-advance on .dialogue-body, stopPropagation guard, cursor:pointer · 8a05e14
 - 2026-03-30 · TASK-048 Wire MissionGenerator — MISSION_START dispatch, HUD load on init, Journal object rendering · 5265943
+- 2026-03-30 · TASK-047 NPC relationship tiers — _getTier, async _startDialogue, 4 tier-tagged Galina variants · e3251d7

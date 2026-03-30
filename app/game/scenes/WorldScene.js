@@ -8,18 +8,12 @@ const PLAYER_SPAWN_COL = 10;
 const PLAYER_SPAWN_ROW = 18;
 
 const BUILDING_ZONES = [
-  { id: 'apartment', name: 'Apartment Building', col: 5,  row: 3,  cols: 6, rows: 5, chapter: 1, locked: false,
-    roofColor: 0xD95F3B, wallColor: 0xE8C99A, doorColor: 0x7B5533 },
-  { id: 'park',      name: 'Park',               col: 14, row: 2,  cols: 5, rows: 4, chapter: 2, locked: true,
-    roofColor: 0x4E9E55, wallColor: 0xB5D98A, doorColor: 0x4E9E55 },
-  { id: 'cafe',      name: 'Café',               col: 22, row: 8,  cols: 5, rows: 4, chapter: 3, locked: true,
-    roofColor: 0xC97C3A, wallColor: 0xF0DDB8, doorColor: 0x7B5533 },
-  { id: 'market',    name: 'Market',             col: 4,  row: 14, cols: 6, rows: 5, chapter: 4, locked: true,
-    roofColor: 0x3A7FC1, wallColor: 0xA8C8E8, doorColor: 0x3A5A8C },
-  { id: 'station',   name: 'Train Station',      col: 20, row: 20, cols: 6, rows: 4, chapter: 5, locked: true,
-    roofColor: 0x888888, wallColor: 0xC8C8C8, doorColor: 0x555555 },
-  { id: 'police',    name: 'Police Station',     col: 11, row: 25, cols: 5, rows: 4, chapter: 6, locked: true,
-    roofColor: 0x3D3A8C, wallColor: 0xD0D8F0, doorColor: 0x2A2870 },
+  { id: 'apartment', name: 'Apartment Building', col: 5,  row: 3,  cols: 6, rows: 5, chapter: 1, locked: false },
+  { id: 'park',      name: 'Park',               col: 14, row: 2,  cols: 5, rows: 4, chapter: 2, locked: true  },
+  { id: 'cafe',      name: 'Café',               col: 22, row: 8,  cols: 5, rows: 4, chapter: 3, locked: true  },
+  { id: 'market',    name: 'Market',             col: 4,  row: 14, cols: 6, rows: 5, chapter: 4, locked: true  },
+  { id: 'station',   name: 'Train Station',      col: 20, row: 20, cols: 6, rows: 4, chapter: 5, locked: true  },
+  { id: 'police',    name: 'Police Station',     col: 11, row: 25, cols: 5, rows: 4, chapter: 6, locked: true  },
 ];
 
 /*
@@ -29,31 +23,34 @@ const BUILDING_ZONES = [
  * Spritesheet key: 'city'  |  16×16 px tiles  |  1px spacing
  *
  * Ground:
- *   grass_a  = 816  (r24c0  #509860 bright green)
- *   grass_b  = 850  (r25c0  #7C8C59 olive green)
+ *   grass_a  = 816  (r24c0  solid mid-green grass)
+ *   grass_b  = 850  (r25c0  same green, slight dapple — checker pair)
  * Paths:
- *   path_a   = 558  (r16c14 #ACACAC neutral grey)
- *   path_b   = 593  (r17c15 #AAAAAA light grey)
+ *   path_a   = 784  (r23c2  grey cobblestone plaza)
+ *   path_b   = 785  (r23c3  same cobblestone, slight shade shift)
  * Buildings:
- *   apartment — wall=0   roof=34  door=68
- *   park      — wall=850 roof=338 door=817
- *   cafe      — wall=151 roof=132 door=487
- *   market    — wall=22  roof=269 door=56
- *   station   — wall=559 roof=446 door=592
- *   police    — wall=8   roof=521 door=42
+ *   apartment — wall=205 roof=102 door=377
+ *   park      — wall=816 roof=370 door=817
+ *   cafe      — wall=213 roof=182 door=384
+ *   market    — wall=247 roof=268 door=384
+ *   station   — wall=284 roof=118 door=386
+ *   police    — wall=174 roof=110 door=378
+ * Locked overlay hatch:
+ *   hatch_a  = 627  (r18c15 white diagonal dashes on light grey)
+ *   hatch_b  = 628  (r18c16 same pattern, slight variation)
  */
 const CITY_TILES = {
-  grass_a: 816,
-  grass_b: 850,
-  path_a:  558,
-  path_b:  593,
+  grass_a: 816,   // r24c0  solid mid-green grass
+  grass_b: 850,   // r25c0  same green, slight dapple — checker pair
+  path_a:  784,   // r23c2  grey cobblestone plaza
+  path_b:  785,   // r23c3  same cobblestone, slight shade shift
   buildings: {
-    apartment: { wall: 0,   roof: 34,  door: 68  },
-    park:      { wall: 850, roof: 338, door: 817 },
-    cafe:      { wall: 151, roof: 132, door: 487 },
-    market:    { wall: 22,  roof: 269, door: 56  },
-    station:   { wall: 559, roof: 446, door: 592 },
-    police:    { wall: 8,   roof: 521, door: 42  },
+    apartment: { wall: 205, roof: 102, door: 377 },
+    park:      { wall: 816, roof: 370, door: 817 },
+    cafe:      { wall: 213, roof: 182, door: 384 },
+    market:    { wall: 247, roof: 268, door: 384 },
+    station:   { wall: 284, roof: 118, door: 386 },
+    police:    { wall: 174, roof: 110, door: 378 },
   },
 };
 
@@ -361,14 +358,19 @@ class WorldScene extends Phaser.Scene {
     const doorRow = zone.row + zone.rows - 1;
     tiles.add(this.add.image(doorCol * T + T / 2, doorRow * T + T / 2, 'city', spec.door));
 
-    // Locked visual treatment — overlay rectangle + padlock glyph
+    // Locked visual treatment — hatch tile overlay over building footprint
     let overlay = null;
     if (zone.locked) {
-      overlay = this.add.rectangle(x + w / 2, y + h / 2, w, h, 0x555577, 0.5);
+      overlay = this.add.container(0, 0);
+      for (let r = zone.row; r < zone.row + zone.rows; r++) {
+        for (let c = zone.col; c < zone.col + zone.cols; c++) {
+          const hatchFrame = (r + c) % 2 === 0 ? 627 : 628;
+          const hatchTile = this.add.image(c * T + T / 2, r * T + T / 2, 'city', hatchFrame);
+          hatchTile.setAlpha(0.65);
+          overlay.add(hatchTile);
+        }
+      }
       tiles.setAlpha(0.6);
-
-      // Padlock glyph at the centre of the building
-      this._drawPadlock(x + w / 2, y + h / 2);
     }
 
     // Label
@@ -384,24 +386,6 @@ class WorldScene extends Phaser.Scene {
 
     // Return container as 'gfx' so existing code that calls gfx.setAlpha still works
     return { gfx: tiles, overlay };
-  }
-
-  _drawPadlock(cx, cy) {
-    const gfx = this.add.graphics();
-    gfx.setAlpha(0.7);
-
-    // Shackle (arc top)
-    gfx.lineStyle(3, 0xAAAACC);
-    gfx.strokeCircle(cx, cy - 8, 7);
-
-    // Body (rectangle)
-    gfx.fillStyle(0xAAAACC);
-    gfx.fillRect(cx - 7, cy - 4, 14, 10);
-
-    // Keyhole
-    gfx.fillStyle(0x555577);
-    gfx.fillCircle(cx, cy, 2);
-    gfx.fillRect(cx - 1, cy, 2, 4);
   }
 
   // ---------------------------------------------------------------
@@ -474,7 +458,7 @@ class WorldScene extends Phaser.Scene {
         }
 
         // ZONE_ENTER: fire when player steps onto the door tile of an unlocked zone
-        if (!zone.locked && zone.doorColor !== null) {
+        if (!zone.locked) {
           const doorCol = zone.col + Math.floor(zone.cols / 2);
           const doorRow = zone.row + zone.rows - 1;
 
