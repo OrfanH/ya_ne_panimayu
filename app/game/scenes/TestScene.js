@@ -133,5 +133,7 @@ class TestScene extends Phaser.Scene {
   shutdown() {
     window.removeEventListener(EVENTS.TEST_END, this._onTestEnd);
     window.removeEventListener(EVENTS.TEST_DISMISS, this._onTestDismiss);
+    this._player.destroy();
+    this._professor.destroy();
   }
 }

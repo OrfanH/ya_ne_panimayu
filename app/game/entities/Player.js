@@ -130,6 +130,16 @@ class Player {
   }
 
   // ---------------------------------------------------------------
+  // Public — cleanup
+  // ---------------------------------------------------------------
+
+  destroy() {
+    window.removeEventListener('joystick:move', this._onJoystickMove);
+    window.removeEventListener('joystick:stop', this._onJoystickStop);
+    this._sprite.destroy();
+  }
+
+  // ---------------------------------------------------------------
   // Private — texture generation
   // ---------------------------------------------------------------
 

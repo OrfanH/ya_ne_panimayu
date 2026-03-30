@@ -174,12 +174,13 @@ class WorldScene extends Phaser.Scene {
       police:    'Police',
     };
 
-    this.game.events.on(EVENTS.ZONE_ENTER, ({ id }) => {
+    this._onZoneEnter = ({ id }) => {
       if (ZONE_SCENE_MAP[id]) {
         this._autoWalking = false;
         this._transitionTo(ZONE_SCENE_MAP[id]);
       }
-    });
+    };
+    this.game.events.on(EVENTS.ZONE_ENTER, this._onZoneEnter);
 
     // -------------------------------------------------------
     // 13. Intro done — auto-walk player to apartment door
@@ -226,6 +227,8 @@ class WorldScene extends Phaser.Scene {
 
   shutdown() {
     window.removeEventListener(EVENTS.INTRO_DONE, this._onIntroDone);
+    this.game.events.off(EVENTS.ZONE_ENTER, this._onZoneEnter);
+    this._player.destroy();
   }
 
   // ---------------------------------------------------------------

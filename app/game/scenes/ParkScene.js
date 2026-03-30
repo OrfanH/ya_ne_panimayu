@@ -176,6 +176,7 @@ class ParkScene extends Phaser.Scene {
   shutdown() {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+    this._player.destroy();
   }
 
   // ---------------------------------------------------------------
