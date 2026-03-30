@@ -2,6 +2,12 @@
    NPC Entity — sprite, interaction radius, event firing
    ============================================ */
 
+function _getTier(score) {
+  if (score >= 3) { return 2; } // friend
+  if (score >= 1) { return 1; } // acquaintance
+  return 0; // stranger
+}
+
 const NPC_FRAMES = {
   galina:     { base: 0, clothing: 10, accessory: 20 },
   artyom:     { base: 54, clothing: 64 },
@@ -86,6 +92,16 @@ class NPC {
     };
 
     this._onDialogueEnd = () => {
+      // Increment relationship score for this NPC if we were the one interacting
+      if (this._interacting) {
+        getProgress().then((progress) => {
+          if (!progress.npcRelationships) { progress.npcRelationships = {}; }
+          const current = progress.npcRelationships[this._id] || 0;
+          progress.npcRelationships[this._id] = current + 1;
+          saveProgress(progress);
+        }).catch(() => { /* silent */ });
+      }
+
       this._interacting  = false;
       this._dialogueOpen = false;
       this._updateHint(this._inRange);
@@ -129,18 +145,40 @@ class NPC {
 
     if (inRange && eKeyJustDown && !this._interacting) {
       this._interacting = true;
-      window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
-        detail: {
-          npcId: this._id,
-          npcName: this._name,
-          russian: '...',
-          translation: '',
-          choices: [],
-          portrait: `assets/portraits/${this._id}.png`,
-          loading: true,
-        },
-      }));
       this._scene.physics.pause();
+
+      // Read relationship tier from storage (async)
+      getProgress().then((progress) => {
+        const score = (progress.npcRelationships && progress.npcRelationships[this._id]) || 0;
+        const tier = _getTier(score);
+
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+          detail: {
+            npcId: this._id,
+            npcName: this._name,
+            russian: '...',
+            translation: '',
+            choices: [],
+            portrait: `assets/portraits/${this._id}.png`,
+            loading: true,
+            tier: tier,
+          },
+        }));
+      }).catch(() => {
+        // Fallback: dispatch without tier
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+          detail: {
+            npcId: this._id,
+            npcName: this._name,
+            russian: '...',
+            translation: '',
+            choices: [],
+            portrait: `assets/portraits/${this._id}.png`,
+            loading: true,
+            tier: 0,
+          },
+        }));
+      });
     }
   }
 
