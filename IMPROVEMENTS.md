@@ -23,7 +23,7 @@ TASK-040 — Full playtest (next ready task)
 ### TASK-040
 **title:** Full playtest — end-to-end game loop verification
 **track:** PLAYTEST
-**status:** READY
+**status:** IN_PROGRESS
 **priority:** P0
 **depends_on:** [TASK-054]
 **assigned_agents:** [playtester]
@@ -94,6 +94,131 @@ TASK-040 — Full playtest (next ready task)
 
 ---
 
+### P1-ART — Visual correctness (critical)
+*Tile frame assignments that are confirmed wrong or unverified. These affect every player session. Ordered by visual impact.*
+
+---
+
+### TASK-056
+**title:** Verify and fix NPC character frame assignments in roguelike-characters sheet
+**track:** BUILD-ART
+**status:** BACKLOG
+**priority:** P1-ART
+**depends_on:** []
+**assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
+**reads:** [app/game/entities/NPC.js, app/assets/tilesets/roguelike-characters.png, .claude/pixel-art-mapping.md, .claude/pixel-art-spec.md, REFERENCE-PIXELART.md]
+**writes:** [app/game/entities/NPC.js, .claude/pixel-art-spec.md]
+**done_when:**
+- Every frame index in `NPC_FRAMES` (all 13 NPCs: base body, clothing, accessory layers) has been visually verified against the actual roguelike-characters.png sheet
+- Any incorrect frame assignments are remapped to frames that match the NPC's character description (e.g. Galina = elderly woman, Artyom = young male student, etc.)
+- `pixel-art-spec.md` is updated with the verified frame numbers and a note of what each frame visually depicts
+- All 13 NPCs render distinct, appropriate sprites in-game (no two NPCs share the same visual appearance)
+- Phaser config confirmed to have `pixelArt: true` so 16x16 sprites upscaled to 28x28 are crisp, not blurry
+**notes:** Addresses pixel-art-mapping.md finding #2 (NPC character frame assignments unverified) and finding #14 (pixelArt:true check). The pixel-artist agent must load the spritesheet image and document which row/column contains which character type. The coder then remaps NPC_FRAMES accordingly.
+
+---
+
+### TASK-057
+**title:** Fix CafeScene floor tile B — replace wrong frame 23 with a verified floor tile
+**track:** BUILD-ART
+**status:** BACKLOG
+**priority:** P1-ART
+**depends_on:** []
+**assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/CafeScene.js, app/assets/tilesets/roguelike-indoors.png, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
+**writes:** [app/game/scenes/CafeScene.js]
+**done_when:**
+- CafeScene `floor_b` frame index is changed from 23 to a verified floor tile from roguelike-indoors.png
+- The replacement tile visually reads as a floor surface (stone, wood, or tile — not a decorative prop)
+- Cafe floor checker pattern looks coherent with both tile A (frame 216) and the new tile B
+- Verified in-game: no jarring non-floor graphic in the cafe floor pattern
+**notes:** Addresses pixel-art-mapping.md finding #3 (CafeScene floor tile B frame 23 is almost certainly wrong — low-index roguelike-indoors frames are typically decorative items, not floor fills). The pixel-artist must inspect the roguelike-indoors sheet to identify appropriate floor tiles.
+
+---
+
+### TASK-058
+**title:** ParkScene outdoor conversion — replace indoor tiles with existing outdoor-capable assets
+**track:** BUILD-ART
+**status:** BACKLOG
+**priority:** P1-ART
+**depends_on:** []
+**assigned_agents:** [pixel-artist, designer, coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/ParkScene.js, app/assets/tilesets/roguelike-city.png, app/assets/tilesets/tilemap_packed.png, app/game/scenes/WorldScene.js, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
+**writes:** [app/game/scenes/ParkScene.js]
+**done_when:**
+- ParkScene no longer loads floor/wall tiles from roguelike-indoors.png
+- Ground tiles use grass frames from roguelike-city.png (the same sheet used for WorldScene overworld) or tilemap_packed.png (RPG Urban Pack grass frames 0/27)
+- Park perimeter uses a visually distinct border — either a different grass shade, a path-edge tile from roguelike-city, or no hard wall at all (collision-only invisible boundary)
+- Programmatic trees replaced with dark-green tile sprites from roguelike-city (tree/vegetation frames if available) or retained as programmatic but with pixel-art-style outlines (1px dark border)
+- Programmatic fountain and benches either replaced with roguelike-city/indoors decoration frames or given 1px dark outlines to match the pixel register
+- Park no longer reads as a dungeon room — it reads as an outdoor space
+- Path network uses tiles from roguelike-city path frames (same as WorldScene) rather than programmatic fills
+**notes:** Addresses pixel-art-mapping.md finding #4 (ParkScene uses indoor tiles for outdoor park) and finding #12 (programmatic path drawing). This is NOT about getting a new asset pack — it is about repurposing existing on-disk assets (roguelike-city.png, tilemap_packed.png) that already contain grass, path, and some vegetation tiles. The designer should specify the layout; the pixel-artist identifies which frames to use; the coder implements.
+
+---
+
+### TASK-059
+**title:** TestScene tiled floor and walls — replace programmatic fill with roguelike-indoors tiles
+**track:** BUILD-ART
+**status:** BACKLOG
+**priority:** P1-ART
+**depends_on:** []
+**assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/TestScene.js, app/assets/tilesets/roguelike-indoors.png, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
+**writes:** [app/game/scenes/TestScene.js]
+**done_when:**
+- TestScene floor uses tiled roguelike-indoors frames (same pattern as other interior scenes) instead of a flat programmatic 0xC8B99A fill
+- TestScene walls use tiled roguelike-indoors wall frames instead of a lineStyle stroke outline
+- Professor's desk uses a roguelike-indoors furniture frame instead of a programmatic 0x8B6914 rectangle
+- TestScene visually matches the interior aesthetic of other scenes (apartment, police, etc.)
+**notes:** Addresses pixel-art-mapping.md finding #5 (TestScene has no tiled floor or walls — flat programmatic colour fill with stroke outline). Should follow the same tiling pattern used in ApartmentScene/PoliceScene.
+
+---
+
+### P1-ART-B — Visual coherence (high)
+*Present but visually incoherent. Fix after critical frame issues are resolved.*
+
+---
+
+### TASK-060
+**title:** Verify and fix overworld building tile frames in WorldScene CITY_TILES
+**track:** BUILD-ART
+**status:** BACKLOG
+**priority:** P1-ART-B
+**depends_on:** []
+**assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/WorldScene.js, app/assets/tilesets/roguelike-city.png, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
+**writes:** [app/game/scenes/WorldScene.js]
+**done_when:**
+- Every frame index in `CITY_TILES.buildings` (wall, roof, door for all 6 buildings) has been visually verified against the actual roguelike-city.png sheet
+- Any incorrect frame assignments are remapped to frames that actually depict wall surfaces, roof surfaces, and door openings
+- Grass frames (888, 962) and path frames (606, 644) verified — replaced if they do not depict what the comments claim
+- Dead code removed: `roofColor`, `wallColor`, `doorColor` fields in `BUILDING_ZONES` that are never read by `_drawBuilding()`
+- All 6 buildings render with visually distinct, appropriate tiles in-game
+- The locked building overlay uses a tile-based or outlined visual instead of the current flat purple programmatic rectangle (finding #13)
+**notes:** Addresses pixel-art-mapping.md findings #10 (building frame indices are unverified guesses), #13 (locked overlay is programmatic purple rectangle), and the dead code note from section 6 (roofColor/wallColor/doorColor). The pixel-artist must inspect the roguelike-city spritesheet and document which frames contain building wall, roof, and door tiles.
+
+---
+
+### TASK-061
+**title:** Consolidate interior wall tiles and replace programmatic furniture with tiled assets
+**track:** BUILD-ART
+**status:** BACKLOG
+**priority:** P1-ART-B
+**depends_on:** [TASK-057, TASK-059]
+**assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/ApartmentScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/assets/tilesets/roguelike-indoors.png, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
+**writes:** [app/game/scenes/ApartmentScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js]
+**done_when:**
+- All 5 interior scenes (excluding ParkScene which is handled by TASK-058) use a consistent, documented set of wall tiles — either one shared wall frame or a small set with documented rationale per scene type
+- Programmatic furniture in all scenes (counters, tables, benches, filing cabinets, stall awnings, ticket windows, chairs) is replaced with roguelike-indoors spritesheet frames wherever a suitable tile exists
+- Where no suitable roguelike-indoors frame exists for a furniture piece, the programmatic graphic is updated with a 1px dark outline (#2a2a2a) to match the pixel-art register
+- Corner furniture frame assignments (131, 125, 341, etc.) are verified against the actual sheet and documented
+- No scene uses a wall tile frame as a furniture piece or vice versa (fixes frame 266 used as both market wall and police furniture)
+**notes:** Addresses pixel-art-mapping.md findings #6 (inconsistent wall tiles across scenes) and #7 (all furniture is programmatic geometry). This is a large task touching 5 scene files — the pixel-artist must first produce a tile mapping document from the roguelike-indoors sheet, then the coder applies it. Depends on TASK-057 (cafe floor fix) and TASK-059 (TestScene tiling) so those simpler fixes land first.
+
+---
+
 ### P2 — Content depth
 *Progression systems that enrich the experience. Implement after P1 is stable and tested.*
 
@@ -136,101 +261,52 @@ TASK-040 — Full playtest (next ready task)
 
 ---
 
+### P2-ART — Visual polish (medium)
+*Works but misses the intended aesthetic. Lower priority than correctness fixes.*
+
+---
+
+### TASK-062
+**title:** Wire ui-pack.png for HUD, dialogue, and journal — replace pure-CSS boxes with 9-slice borders
+**track:** BUILD-ART
+**status:** BACKLOG
+**priority:** P2-ART
+**depends_on:** [TASK-061]
+**assigned_agents:** [pixel-artist, designer, coder, reviewer, playtester, git]
+**reads:** [app/assets/ui/ui-pack.png, app/game/Boot.js, app/ui/dialogue.js, app/ui/hud.js, app/ui/journal.js, app/style.css, app/tokens.css, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
+**writes:** [app/game/Boot.js, app/style.css, app/tokens.css, app/ui/dialogue.js, app/ui/hud.js, app/ui/journal.js]
+**done_when:**
+- `ui-pack.png` is loaded in Boot.js as a spritesheet with correct frame dimensions
+- Dialogue box border uses a 9-slice panel sprite from ui-pack instead of the current flat CSS border
+- HUD location badge and mission indicator use ui-pack panel/button frames
+- Journal panel uses ui-pack panel frame for its background
+- The mute button uses a ui-pack icon sprite (speaker icon) instead of pure text
+- All UI elements remain functional on mobile (375px viewport) after the visual update
+- `KenneyMini.ttf` is either wired into CSS for a specific use case (e.g. smaller labels) or removed from disk if truly unneeded
+**notes:** Addresses pixel-art-mapping.md finding #11 (dialogue/HUD/journal are generic dark-box CSS, ui-pack.png is orphaned) and finding #15 (KenneyMini.ttf never referenced). The designer must spec which ui-pack frames to use for each UI element. The pixel-artist identifies the frame coordinates. This depends on TASK-061 so that interior visual coherence is established before UI polish.
+
+---
+
+### TASK-063
+**title:** Player sprite visual identity — designate a distinct protagonist frame from roguelike-characters
+**track:** BUILD-ART
+**status:** BACKLOG
+**priority:** P2-ART
+**depends_on:** [TASK-056]
+**assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
+**reads:** [app/game/entities/Player.js, app/game/Boot.js, app/assets/tilesets/roguelike-characters.png, app/assets/tilesets/tilemap_packed.png, .claude/pixel-art-mapping.md, REFERENCE-PIXELART.md]
+**writes:** [app/game/entities/Player.js, app/game/Boot.js]
+**done_when:**
+- Player sprite uses a designated frame from roguelike-characters.png (same sheet as NPCs) instead of the generic RPG Urban Pack character (tilemap_packed frame 23)
+- The chosen player frame is visually distinct from all 13 NPC frame assignments (different body/clothing/accessory combination)
+- Walk animations (down, up, side) are wired to appropriate frames from the roguelike-characters sheet, or if the sheet lacks directional variants, a single static frame is used with a subtle bob animation
+- Player and NPC sprites are from the same tileset, eliminating the visual style mismatch (finding #9)
+- Boot.js animation creation updated to reference the new frame source
+**notes:** Addresses pixel-art-mapping.md findings #8 (player is a generic tileset character) and #9 (two separate tileset packs with different visual registers). Depends on TASK-056 (NPC frame verification) so that the player frame is chosen with full knowledge of which frames are already claimed by NPCs. NOTE: if roguelike-characters.png does not have enough directional walk frames for a player character, flag to user rather than fabricating animations.
+
+---
+
 ### RECURRING
-
----
-
-
-### TASK-047
-**title:** NPC relationship tiers ? stranger / acquaintance / friend dialogue switching
-**track:** FAST
-**status:** BACKLOG
-**depends_on:** [TASK-041, TASK-045]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/entities/NPC.js, app/game/content/apartment-dialogue.js, app/storage.js, app/config.js]
-**writes:** [app/game/entities/NPC.js, app/game/content/apartment-dialogue.js]
-**done_when:**
-- `NPC.js` reads `npcRelationships[npcId]` from storage to determine tier: 0 = stranger, 1 = acquaintance, 2 = friend
-- Relationship score increments by 1 after each completed dialogue (DIALOGUE_END fires)
-- Score thresholds: 0 = stranger, 1?2 = acquaintance, 3+ = friend
-- `TutorAI.startConversation()` receives the current tier as context so the system prompt adjusts formality (?? vs ??) per REFERENCE-DIALOGUE.md ?1
-- Galina's `apartment-dialogue.js` scripted fallbacks have at least two tier-tagged variants per NPC interaction to demonstrate the system working
-**notes:** Per REFERENCE-DIALOGUE.md: strangers use ?? and formal address; acquaintances switch to ?? and use the player's name; friends ask questions about the player's life. The tier must be passed to TutorAI so AI-generated responses also respect it.
-
----
-
-### TASK-048
-**title:** Wire MissionGenerator ? trigger from dialogue, update HUD + Journal
-**track:** FAST
-**status:** BACKLOG
-**depends_on:** [TASK-041, TASK-045]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/systems/MissionGenerator.js, app/game/systems/MistakeLogger.js, app/ui/hud.js, app/ui/journal.js, app/storage.js]
-**writes:** [app/game/systems/MissionGenerator.js, app/ui/hud.js, app/ui/journal.js]
-**done_when:**
-- `MissionGenerator.checkAndGenerate()` is called after every `DIALOGUE_END` event
-- If a new mission is generated, `#hud-mission` text updates immediately with the mission title
-- Journal missions tab re-renders active + completed missions when opened (reads from storage)
-- Completed missions display with a visual completion indicator (strikethrough or checkmark)
-- Empty state: missions tab shows "??? ???????" when no missions exist
-**notes:** MissionGenerator reads from MistakeLogger ? ensure MistakeLogger has at least one logged mistake before testing, otherwise no mission will generate.
-
----
-
----
-
-### TASK-050
-**title:** Daily NPC conversation limit ? one rich exchange per day, then short farewell
-**track:** FAST
-**status:** BACKLOG
-**depends_on:** [TASK-047]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/entities/NPC.js, app/game/systems/TutorAI.js, app/storage.js, app/config.js]
-**writes:** [app/game/entities/NPC.js, app/game/systems/TutorAI.js]
-**done_when:**
-- Storage tracks `lastTalkedDate[npcId]` ? the in-game or real-world date of the last completed conversation
-- If player interacts with an NPC they already spoke to today, NPC gives a short contextual farewell line ("?? ??????!" / "See you tomorrow!") and dialogue closes after one beat ? no full AI conversation
-- System prompt sent to TutorAI includes a `alreadySpokenToday: true` flag when applicable, allowing AI to give a brief response naturally
-- Per REFERENCE-GAMEDESIGN.md ?1: after one rich conversation, NPC gives "see you tomorrow" ? scarcity makes choices feel meaningful
-**notes:** "Today" can be defined as the same UTC calendar day, or as a session-based flag if simpler. Start with session-based (reset on page load) then upgrade to date-based.
-
----
-
-### TASK-051
-**title:** NPC interaction indicator ? proximity E-key / tap-zone visual
-**track:** FAST
-**status:** BACKLOG
-**depends_on:** [TASK-045]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/entities/NPC.js, app/game/entities/Player.js, app/style.css, app/tokens.css]
-**writes:** [app/game/entities/NPC.js, app/style.css]
-**done_when:**
-- When player enters NPC interaction range, a small pixel-art prompt appears above the NPC sprite ("E" on desktop, tap icon on mobile)
-- Prompt disappears when player moves out of range or dialogue opens
-- Indicator uses pixel font (`--font-hud`) and stone/dark palette matching the game aesthetic
-- Works correctly for all NPCs across all scenes
-**notes:** Per REFERENCE-GAMEDESIGN.md: the player must know what they can interact with. The indicator should be subtle ? not a floating exclamation mark, but a small keyboard hint. Use a Phaser Text object positioned above the NPC sprite, visible only in the interaction zone.
-
----
-
-### TASK-052
-**title:** Mobile dialogue UX ? tap to advance, viewport fit, 48px touch targets
-**track:** FAST
-**status:** BACKLOG
-**depends_on:** [TASK-042]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/ui/dialogue.js, app/style.css, app/tokens.css]
-**writes:** [app/ui/dialogue.js, app/style.css]
-**done_when:**
-- Tapping anywhere on the dialogue text area advances to the next beat (no dedicated "next" button needed)
-- Choice buttons are minimum 48px height and full-width on mobile (375px)
-- Dialogue panel does not overflow or require horizontal scroll on 375px viewport
-- Tap-to-advance does not accidentally trigger NPC interaction again (event propagation handled correctly)
-**notes:** Tap-to-advance must be guarded: only fire when dialogue is OPEN state (from TASK-041 state machine). Use a single `click` listener on the dialogue text container, not on the whole window.
-
----
-
----
 
 ---
 
@@ -350,3 +426,4 @@ TASK-040 — Full playtest (next ready task)
 - 2026-03-30 · TASK-053 Dialogue API fallback chain — NPC-specific scripted fallback + offline badge · dc49a2b
 - 2026-03-30 · TASK-053 Git — reset _offline flag in _handleDialogueEnd · fbe2d38 · backup/pre-build-20260330-183040
 - 2026-03-30 · TASK-054 TestScene lifecycle — verification only, TASK-045 already applied the pattern · no-commit · backup/pre-build-20260330-191527
+- 2026-03-30 · Assessment: pixel-art-mapping.md audit converted to TASK-056 through TASK-063 (8 BUILD-ART tasks), duplicates cleaned from backlog
