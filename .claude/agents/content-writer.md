@@ -24,9 +24,9 @@ Never load split files for other locations.
 
 ## What you do
 
-1. Read `.claude/curriculum-map.md` for vocabulary requirements at this location
+1. Read `.claude/curriculum-location-X.md` for vocabulary requirements at this location
 2. Read `STORY-location-X.md` for NPC personality profiles
-3. Grep `WORLD.md` for the location's visit reasons
+3. Read `WORLD-location-X.md` for the location's visit reasons and atmosphere
 4. Read `narrative-review.md` if present
 5. Write `.claude/handoffs/dialogue-draft.md` (max 800 words per location):
    - Dialogue tree structure with actual NPC voice lines (not placeholders)

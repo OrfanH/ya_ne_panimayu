@@ -97,7 +97,7 @@ Mandatory for every agent. Violating these rules wastes budget.
 
 **Model assignment:**
 - Opus: orchestrator, researcher — run once per task, do not re-read files in context
-- Sonnet: architect, designer, composer, coder, fixer, narrative-director, curriculum-designer, content-writer, dialogue-writer, linguist, pixel-artist
+- Sonnet: architect, designer, composer, coder, fixer, narrative-director, curriculum-designer, content-writer, linguist, pixel-artist
 - Haiku: reviewer, git — trimmed context, do not request extra files
 
 **Handoff file size limits:**
