@@ -22,7 +22,7 @@ Read this file when you are the orchestrator or need to route a task.
 | pixel-artist | sonnet | BUILD | Pixel art sprites, tilesets, portraits |
 | reviewer | haiku | BUILD, FAST, BUG | Code review against CLAUDE-RULES.md |
 | ux-reviewer | sonnet | BUILD, BUILD-CONTENT | Game feel gate — plays game in-browser, evaluates learning and mobile experience |
-| playtester | sonnet | BUILD, BUILD-CONTENT, FAST, BUG, PLAYTEST | Plays game in-browser, finds bugs, writes BUG tasks to IMPROVEMENTS.md for fixer |
+| playtester | sonnet | BUILD, BUILD-CONTENT, FAST, BUG, PLAYTEST | Runs Playwright smoke tests (headless, no browser window), reads results, writes BUG tasks to IMPROVEMENTS.md for fixer |
 | git | haiku | all | Commits, pushes, logs to IMPROVEMENTS.md |
 
 ## Track routing
@@ -38,9 +38,9 @@ Read this file when you are the orchestrator or need to route a task.
 | BUG | Targeted fix from review | fixer -> reviewer -> playtester -> git |
 | PLAYTEST | Ad-hoc game QA | playtester -> (writes BUG tasks to IMPROVEMENTS.md) -> orchestrator picks BUG tasks -> fixer -> reviewer -> playtester -> git |
 
-**FAST track rule:** Every bug fix and polish task must be verified in-browser by playtester before git. No code ships untested. If playtester finds a regression, it writes a BUG task and routes back to fixer — not back to coder.
+**FAST track rule:** Every bug fix and polish task must pass Playwright smoke tests before git. No code ships untested. If playtester finds a regression, it writes a BUG task and routes back to fixer — not back to coder.
 
-**BUG track retest rule:** After fixer commits, playtester re-verifies the specific fix in-browser. If the bug persists or a new bug is introduced, playtester files a new BUG task. Loop until PASS.
+**BUG track retest rule:** After fixer commits, playtester re-runs Playwright smoke tests to verify the fix. If the relevant test still fails or a new test breaks, playtester files a new BUG task. Loop until PASS.
 
 **Note:** Tasks may override the default track sequence via their `assigned_agents` list. The task's list is always the authority — it may add or omit agents as needed. Track routing is the default when `assigned_agents` is not specified.
 
