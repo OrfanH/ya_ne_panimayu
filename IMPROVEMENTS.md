@@ -2,7 +2,7 @@
 
 ## Current task
 
-(empty)
+TASK-054 — TestScene lifecycle fix
 
 ---
 

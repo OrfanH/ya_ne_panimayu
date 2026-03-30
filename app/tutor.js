@@ -347,6 +347,7 @@ const TutorAI = (() => {
     _npcData = null;
     _history = [];
     _isWaiting = false;
+    _offline = false;
   }
 
   // -----------------------------------------------------------
