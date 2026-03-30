@@ -109,23 +109,6 @@
 
 ---
 
-### TASK-053
-**title:** Dialogue API fallback chain ? scripted ? AI ? graceful error message
-**track:** FAST
-**status:** IN_PROGRESS
-**depends_on:** [TASK-041]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/systems/TutorAI.js, app/ui/dialogue.js, app/config.js, app/game/content/apartment-dialogue.js]
-**writes:** [app/game/systems/TutorAI.js, app/ui/dialogue.js]
-**done_when:**
-- If Gemini primary + fallback both fail, TutorAI returns a scripted line from the NPC's location dialogue file (not a generic error string)
-- Player can continue the conversation using scripted fallback ? no freeze, no empty box
-- A subtle in-dialogue indicator shows when AI is unavailable (e.g., a small "(offline)" label near NPC name) ? not a disruptive toast
-- On API recovery (next interaction), AI mode resumes automatically
-**notes:** Current behaviour: silently returns "????????, ? ?????? ?????" with no recovery path. Fix: on API failure, flag TutorAI._offline = true, route subsequent calls through the scripted dialogue arrays, clear flag on next successful API call.
-
----
-
 ### TASK-054
 **title:** TestScene lifecycle fix ? shutdown cleanup and clean retry flow
 **track:** FAST
@@ -140,10 +123,6 @@
 - Test retry (after failing) works correctly ? score resets, questions reload, no stale state
 - If test is passed, return to WorldScene with correct unlock state
 **notes:** Mirrors TASK-045 pattern. Store bound listener references in this._onTestEnd etc. during create(), remove them in shutdown().
-
----
-
----
 
 ---
 
@@ -225,6 +204,7 @@
 - TASK-044 | DONE | 2026-03-30 | AudioManager LOCATION_ENTER fix + #hud-mute wiring | 3f94d36
 - TASK-049 | DONE | 2026-03-30 | Vocabulary logging — dialogue choices feed Journal vocab tab | 7922795
 - TASK-055 | DONE | 2026-03-30 | Loading states + API error toast — boot bar + hud-toast | 73944ce
+- TASK-053 | DONE | 2026-03-30 | Dialogue API fallback chain — scripted fallback + offline badge | dc49a2b
 
 ## Session log
 
@@ -271,3 +251,4 @@
 - 2026-03-30 � TASK-044 AudioManager LOCATION_ENTER name?id map, #hud-mute wired to toggleMute � 3f94d36
 - 2026-03-30 · TASK-049 Vocabulary logging — dialogue vocab collection + Journal render with dedup/frequency · 7922795
 - 2026-03-30 · TASK-055 Loading states + API error toast — tutor-status toast in HUD, stone palette CSS · 73944ce
+- 2026-03-30 · TASK-053 Dialogue API fallback chain — NPC-specific scripted fallback + offline badge · dc49a2b
