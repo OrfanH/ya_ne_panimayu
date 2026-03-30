@@ -121,6 +121,17 @@ const DialogueUI = (() => {
   function _populate(line) {
     _speakerName.textContent = line.npcName || '';
 
+    // Offline indicator — remove any previous badge first
+    const existingBadge = _speakerName.querySelector('.dialogue-offline-badge');
+    if (existingBadge) { existingBadge.remove(); }
+
+    if (line.offline) {
+      const badge = document.createElement('span');
+      badge.className = 'dialogue-offline-badge';
+      badge.textContent = '(offline)';
+      _speakerName.appendChild(badge);
+    }
+
     // Portrait — clear previous content
     _portrait.innerHTML = '';
     if (line.portrait) {
@@ -301,6 +312,7 @@ const DialogueUI = (() => {
       translation: detail.translation || '',
       portrait: detail.portrait || null,
       choices: detail.choices || [],
+      offline: detail.offline || false,
     };
     open(line);
   }
@@ -317,6 +329,7 @@ const DialogueUI = (() => {
       translation: detail.translation || '',
       portrait: detail.portrait || null,
       choices: detail.choices || [],
+      offline: detail.offline || false,
     };
     update(line);
   }

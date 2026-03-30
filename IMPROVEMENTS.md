@@ -1,4 +1,4 @@
-# IMPROVEMENTS.md
+﻿# IMPROVEMENTS.md
 
 ## Current task
 
@@ -18,40 +18,7 @@
 ---
 
 
-### TASK-045
-**title:** Event listener audit ? scene shutdown cleanup + Player.destroy()
-**track:** FAST
-**status:** IN_PROGRESS
-**depends_on:** [TASK-038]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/entities/Player.js, app/game/entities/NPC.js, app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/game/scenes/TestScene.js, app/game/scenes/WorldScene.js]
-**writes:** [app/game/entities/Player.js, app/game/scenes/TestScene.js, app/game/scenes/WorldScene.js]
-**done_when:**
-- `Player.js` has a `destroy()` method that calls `window.removeEventListener` for `joystick:move` and `joystick:stop` using stored bound references
-- All interior scenes call `this.player.destroy()` in their `shutdown()` method
-- `TestScene.shutdown()` removes `TEST_END` and `TEST_DISMISS` event listeners
-- `WorldScene` ZONE_ENTER listener is removed on scene shutdown
-- After 5 round-trip World ? ApartmentScene transitions, no duplicate event handlers exist
-**notes:** Bind listener functions once in create() as `this._onJoystickMove = (...) => {...}` and reuse the same reference in removeEventListener. Anonymous arrow functions cannot be removed.
 
----
-
-### TASK-046
-**title:** Scene transition guard ? prevent double-enter race condition
-**track:** FAST
-**status:** BACKLOG
-**depends_on:** [TASK-045]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/scenes/WorldScene.js]
-**writes:** [app/game/scenes/WorldScene.js]
-**done_when:**
-- `WorldScene._transitionTo()` sets a boolean lock (`_transitioning = true`) on first call
-- Subsequent `_transitionTo()` calls while `_transitioning` is true are silently ignored
-- Lock is reset in `WorldScene.shutdown()` (guards against edge cases)
-- Multiple overlapping zone collisions do not queue multiple scene transitions
-**notes:** Single-file change. Zone overlap is the most common trigger ? player standing at a building entrance while walking can fire 2-3 ZONE_ENTER events in one frame.
-
----
 
 ### TASK-047
 **title:** NPC relationship tiers ? stranger / acquaintance / friend dialogue switching
@@ -145,7 +112,7 @@
 ### TASK-053
 **title:** Dialogue API fallback chain ? scripted ? AI ? graceful error message
 **track:** FAST
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-041]
 **assigned_agents:** [coder, reviewer, git]
 **reads:** [app/game/systems/TutorAI.js, app/ui/dialogue.js, app/config.js, app/game/content/apartment-dialogue.js]
@@ -162,7 +129,7 @@
 ### TASK-054
 **title:** TestScene lifecycle fix ? shutdown cleanup and clean retry flow
 **track:** FAST
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **depends_on:** [TASK-045]
 **assigned_agents:** [coder, reviewer, git]
 **reads:** [app/game/scenes/TestScene.js]
@@ -176,20 +143,7 @@
 
 ---
 
-### TASK-055
-**title:** Loading states + API error toast � boot progress bar, non-blocking error feedback
-**track:** FAST
-**status:** IN_PROGRESS
-**depends_on:** [TASK-038]
-**assigned_agents:** [coder, reviewer, git]
-**reads:** [app/game/scenes/Boot.js, app/ui/hud.js, app/game/systems/TutorAI.js, app/index.html, app/style.css]
-**writes:** [app/game/scenes/Boot.js, app/ui/hud.js, app/style.css]
-**done_when:**
-- Boot scene displays a pixel-art progress bar while assets load (Phaser `on('progress')` callback)
-- When TutorAI API fails (after both retries), a non-blocking toast notification appears for 3 seconds then auto-dismisses
-- Toast uses `--font-hud`, stone palette, matches game aesthetic ? does not block game interaction
-- No raw JS errors visible in browser console during a normal play session
-**notes:** Boot progress bar: use Phaser's built-in progress event (`this.load.on('progress', ...)`) to draw a bar in Boot scene graphics. Toast: a single `<div id="hud-toast">` injected into index.html, shown/hidden via CSS class, auto-hidden after 3s via setTimeout.
+---
 
 ---
 
@@ -266,7 +220,11 @@
 - TASK-043 | DONE | 2026-03-30 | First-visit flow ? scripted greeting ? AI handoff with recast correction | e889552
 - TASK-042 | DONE | 2026-03-30 | Dialogue CSS fix ? CSS tokens, portrait .has-portrait, min-height | 658740a
 - TASK-044 | DONE | 2026-03-30 | AudioManager LOCATION_ENTER fix + #hud-mute wiring | 3f94d36
-- TASK-049 | DONE | 2026-03-30 | Vocabulary logging � dialogue choices feed Journal vocab tab | 7922795
+- TASK-045 | DONE | 2026-03-30 | Event listener audit — Player.destroy(), scene shutdown cleanup | e64848b
+- TASK-046 | DONE | 2026-03-30 | Scene transition guard — reset _transitioning in shutdown | f7e76aa
+- TASK-044 | DONE | 2026-03-30 | AudioManager LOCATION_ENTER fix + #hud-mute wiring | 3f94d36
+- TASK-049 | DONE | 2026-03-30 | Vocabulary logging — dialogue choices feed Journal vocab tab | 7922795
+- TASK-055 | DONE | 2026-03-30 | Loading states + API error toast — boot bar + hud-toast | 73944ce
 
 ## Session log
 
@@ -306,6 +264,10 @@
 - 2026-03-30 ? TASK-041 Dialogue system fix ? state machine (CLOSED/OPENING/OPEN/CLOSING), single-fire NPC events, DIALOGUE_UPDATE replaces double DIALOGUE_START ? b781759
 - 2026-03-30 ? TASK-043 First-visit scripted greeting with choices + TutorAI handoff + recast correction ? e889552
 - 2026-03-30 ? TASK-042 Dialogue CSS ? --dialogue-height + --choice-min-height tokens, portrait .has-portrait visibility ? 658740a
+- 2026-03-30 · TASK-044 AudioManager LOCATION_ENTER name-id map, #hud-mute wired · 3f94d36
+- 2026-03-30 · TASK-045 Player.destroy(), ZONE_ENTER cleanup, all interior scenes shutdown · e64848b
+- 2026-03-30 · TASK-046 WorldScene shutdown resets _transitioning flag · f7e76aa
 - TASK-044 | DONE | 2026-03-30 | AudioManager LOCATION_ENTER fix + #hud-mute wiring | 3f94d36
-- 2026-03-30 � TASK-044 AudioManager LOCATION_ENTER name?id map, #hud-mute wired to toggleMute � 3f94d36
-- 2026-03-30 � TASK-049 Vocabulary logging � dialogue vocab collection + Journal render with dedup/frequency � 7922795
+- 2026-03-30 � TASK-044 AudioManager LOCATION_ENTER name?id map, #hud-mute wired to toggleMute � 3f94d36
+- 2026-03-30 · TASK-049 Vocabulary logging — dialogue vocab collection + Journal render with dedup/frequency · 7922795
+- 2026-03-30 · TASK-055 Loading states + API error toast — tutor-status toast in HUD, stone palette CSS · 73944ce

@@ -145,6 +145,7 @@ const TutorAI = (() => {
   let _npcId = null;
   let _npcData = null;
   let _isWaiting = false;
+  let _offline = false;
 
   // -----------------------------------------------------------
   // Build system prompt from NPC data
@@ -162,10 +163,47 @@ const TutorAI = (() => {
   }
 
   // -----------------------------------------------------------
-  // Scripted fallback reply when AI is unavailable
+  // NPC-to-dialogue-data lookup for scripted fallback
   // -----------------------------------------------------------
-  function _getFallbackReply() {
-    return 'Извините, я сейчас занят. (Sorry, I am busy right now.)';
+  function _getDialogueData(npcId) {
+    const map = {
+      galina:    typeof APARTMENT_DIALOGUE !== 'undefined' ? APARTMENT_DIALOGUE : null,
+      artyom:    typeof PARK_DIALOGUE !== 'undefined' ? PARK_DIALOGUE.ARTYOM : null,
+      tamara:    typeof PARK_DIALOGUE !== 'undefined' ? PARK_DIALOGUE.TAMARA : null,
+      lena:      typeof CAFE_DIALOGUE !== 'undefined' ? CAFE_DIALOGUE.LENA : null,
+      boris:     typeof CAFE_DIALOGUE !== 'undefined' ? CAFE_DIALOGUE.BORIS : null,
+      fatima:    typeof MARKET_DIALOGUE !== 'undefined' ? MARKET_DIALOGUE.FATIMA : null,
+      misha:     typeof MARKET_DIALOGUE !== 'undefined' ? MARKET_DIALOGUE.MISHA : null,
+      styopan:   typeof MARKET_DIALOGUE !== 'undefined' ? MARKET_DIALOGUE.STYOPAN : null,
+      konstantin: typeof STATION_DIALOGUE !== 'undefined' ? STATION_DIALOGUE.KONSTANTIN : null,
+      nadya:     typeof STATION_DIALOGUE !== 'undefined' ? STATION_DIALOGUE.NADYA : null,
+      alina:     typeof POLICE_DIALOGUE !== 'undefined' ? POLICE_DIALOGUE.ALINA : null,
+      sergei:    typeof POLICE_DIALOGUE !== 'undefined' ? POLICE_DIALOGUE.SERGEI : null,
+    };
+    return map[npcId] || null;
+  }
+
+  // -----------------------------------------------------------
+  // Scripted fallback — picks a line from the NPC's content file.
+  // Falls back to a generic busy message if no content found.
+  // -----------------------------------------------------------
+  function _getScriptedFallback() {
+    const data = _getDialogueData(_npcId);
+    const variations = (data && Array.isArray(data.VARIATIONS)) ? data.VARIATIONS : [];
+
+    if (variations.length === 0) {
+      return 'Извините, я сейчас занят. (Sorry, I am busy right now.)';
+    }
+
+    const variation = variations[Math.floor(Math.random() * variations.length)];
+    const firstLine = (variation && Array.isArray(variation.lines)) ? variation.lines[0] : null;
+    if (!firstLine || !firstLine.russian) {
+      return 'Извините, я сейчас занят. (Sorry, I am busy right now.)';
+    }
+
+    return firstLine.translation
+      ? `${firstLine.russian} (${firstLine.translation})`
+      : firstLine.russian;
   }
 
   // -----------------------------------------------------------
@@ -214,23 +252,29 @@ const TutorAI = (() => {
 
           if (retryData.reply) {
             _history.push({ role: 'model', content: retryData.reply });
+            _offline = false;
             return retryData.reply;
           }
 
-          return _getFallbackReply();
+          _offline = true;
+          return _getScriptedFallback();
         } catch (_retryErr) {
-          return _getFallbackReply();
+          _offline = true;
+          return _getScriptedFallback();
         }
       }
 
       if (data.reply) {
         _history.push({ role: 'model', content: data.reply });
+        _offline = false;
         return data.reply;
       }
 
-      return _getFallbackReply();
+      _offline = true;
+      return _getScriptedFallback();
     } catch (_err) {
-      return _getFallbackReply();
+      _offline = true;
+      return _getScriptedFallback();
     }
   }
 
@@ -249,6 +293,7 @@ const TutorAI = (() => {
         russian: replyText,
         translation: '',
         portrait: _npcData.portrait || null,
+        offline: _offline,
         choices: [
           { id: 'continue', russian: 'Продолжить...', isFinal: false },
           { id: 'end',      russian: 'До свидания',   isFinal: true  },
@@ -272,6 +317,13 @@ const TutorAI = (() => {
       : choiceRussian;
 
     _isWaiting = true;
+
+    if (_offline) {
+      const reply = _getScriptedFallback();
+      _isWaiting = false;
+      _dispatchAILine(reply);
+      return;
+    }
 
     window.dispatchEvent(new CustomEvent(EVENTS.TUTOR_AI_REQUEST, {
       detail: { npcId: _npcId },
@@ -315,6 +367,13 @@ const TutorAI = (() => {
     _history = [];
     _isWaiting = true;
 
+    if (_offline) {
+      const greeting = _getScriptedFallback();
+      _isWaiting = false;
+      _dispatchAILine(greeting);
+      return;
+    }
+
     window.dispatchEvent(new CustomEvent(EVENTS.TUTOR_AI_REQUEST, {
       detail: { npcId: _npcId },
     }));
@@ -347,6 +406,7 @@ const TutorAI = (() => {
     _npcData = null;
     _history = [];
     _isWaiting = false;
+    _offline = false;
   }
 
   // Boot after DOM is ready

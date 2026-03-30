@@ -297,6 +297,15 @@ body {
   text-shadow: 1px 1px 0 #1e2028;
 }
 
+.dialogue-offline-badge {
+  font-size: var(--text-xs);
+  font-family: var(--font-hud);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-tertiary);
+  margin-left: var(--space-2);
+  opacity: 0.75;
+}
+
 .dialogue-russian {
   font-size: var(--text-md);
   font-family: var(--font-game);
