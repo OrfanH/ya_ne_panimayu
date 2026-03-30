@@ -759,6 +759,126 @@ const APARTMENT_DIALOGUE = (() => {
         },
       ],
     },
+
+    {
+      id: 'tier_acquaintance_1',
+      trigger: { tier: 1 },
+      title: 'Acquaintance Tea Offer',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'А, это ты. Чай будешь? Я как раз ставлю чайник.',
+          translation: 'Oh, it\'s you. Want tea? I\'m just putting the kettle on.',
+          stage_direction: 'She switches to informal ты, a sign of familiarity. She leaves the door ajar.',
+          choices: [
+            { id: 'a', russian: 'Да, спасибо!', translation: 'Yes, thanks!', isFinal: false },
+            { id: 'b', russian: 'Нет, спасибо. Я спешу.', translation: 'No, thanks. I\'m in a hurry.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'galina',
+          russian: 'Садись. Сахар? Один или два?',
+          translation: 'Sit down. Sugar? One or two?',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'galina',
+          russian: 'Ладно. Но ты мало ешь. Студенты должны есть.',
+          translation: 'Fine. But you eat too little. Students should eat.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    {
+      id: 'tier_acquaintance_2',
+      trigger: { tier: 1 },
+      title: 'Building Rules Reminder',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Слушай, ты помнишь правила? После десяти — тишина.',
+          translation: 'Listen, do you remember the rules? After ten — quiet.',
+          stage_direction: 'Galina peeks out, wags a finger gently. Casual but firm.',
+          choices: [
+            { id: 'a', russian: 'Да, помню. После десяти — тишина.', translation: 'Yes, I remember. After ten — quiet.', isFinal: false },
+            { id: 'b', russian: 'Извините... я забыл.', translation: 'Sorry... I forgot.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'galina',
+          russian: 'Молодец. Хорошо учишься.',
+          translation: 'Good job. You learn well.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'galina',
+          russian: 'Ничего. Повтори: после десяти — тишина. Запомни.',
+          translation: 'It\'s okay. Repeat: after ten — quiet. Remember it.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    {
+      id: 'tier_friend_1',
+      trigger: { tier: 2 },
+      title: 'Friend Check-in',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Привет! Как дела? Ты сегодня ел? Я сварила суп.',
+          translation: 'Hi! How are things? Did you eat today? I made soup.',
+          stage_direction: 'She greets warmly, already holding a bowl. Genuinely concerned about the student\'s wellbeing.',
+          choices: [
+            { id: 'a', russian: 'Привет! Хорошо, спасибо. Суп — да, пожалуйста!', translation: 'Hi! Good, thanks. Soup — yes, please!', isFinal: false },
+            { id: 'b', russian: 'Привет, Галина Ивановна! Я уже ел.', translation: 'Hi, Galina Ivanovna! I already ate.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'galina',
+          russian: 'Вот, держи. Осторожно, горячий. Как учёба?',
+          translation: 'Here, take it. Careful, it\'s hot. How are your studies?',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'galina',
+          russian: 'Хорошо. А варенье? У меня свежее варенье. В следующий раз принесу.',
+          translation: 'Good. How about jam? I have fresh jam. I\'ll bring some next time.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    {
+      id: 'tier_friend_2',
+      trigger: { tier: 2 },
+      title: 'Friend Favor Request',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Слушай, отнеси это соседу сверху. Квартира семь. Скажи — от Галины.',
+          translation: 'Listen, take this to the neighbor upstairs. Apartment seven. Say — from Galina.',
+          stage_direction: 'She hands over a jar of jam. This is a sign of trust — she sends you on errands now.',
+          choices: [
+            { id: 'a', russian: 'Хорошо! Квартира семь. От Галины.', translation: 'Okay! Apartment seven. From Galina.', isFinal: false },
+            { id: 'b', russian: 'Квартира... семь? Сверху?', translation: 'Apartment... seven? Upstairs?', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'galina',
+          russian: 'Всё правильно. Спасибо. Ты хороший сосед.',
+          translation: 'All correct. Thank you. You are a good neighbor.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'galina',
+          russian: 'Да. Сверху. Семь. Сосед. Понятно?',
+          translation: 'Yes. Upstairs. Seven. Neighbor. Understood?',
+          isFinal: true,
+        },
+      ],
+    },
   ];
 
   const UNLOCK = {

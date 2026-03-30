@@ -91,20 +91,22 @@ class NPC {
       this._updateHint(this._inRange);
     };
 
-    this._onDialogueEnd = () => {
-      // Increment relationship score for this NPC if we were the one interacting
-      if (this._interacting) {
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships) { progress.npcRelationships = {}; }
-          const current = progress.npcRelationships[this._id] || 0;
-          progress.npcRelationships[this._id] = current + 1;
-          saveProgress(progress);
-        }).catch(() => { /* silent */ });
-      }
-
+    this._onDialogueEnd = async () => {
+      const wasInteracting = this._interacting;
       this._interacting  = false;
       this._dialogueOpen = false;
       this._updateHint(this._inRange);
+
+      // Increment relationship score (fire-and-forget, flags already reset above)
+      if (wasInteracting) {
+        try {
+          const progress = await getProgress();
+          if (!progress.npcRelationships) { progress.npcRelationships = {}; }
+          const current = progress.npcRelationships[this._id] || 0;
+          progress.npcRelationships[this._id] = current + 1;
+          await saveProgress(progress);
+        } catch { /* silent */ }
+      }
     };
 
     window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
@@ -146,40 +148,34 @@ class NPC {
     if (inRange && eKeyJustDown && !this._interacting) {
       this._interacting = true;
       this._scene.physics.pause();
-
-      // Read relationship tier from storage (async)
-      getProgress().then((progress) => {
-        const score = (progress.npcRelationships && progress.npcRelationships[this._id]) || 0;
-        const tier = _getTier(score);
-
-        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
-          detail: {
-            npcId: this._id,
-            npcName: this._name,
-            russian: '...',
-            translation: '',
-            choices: [],
-            portrait: `assets/portraits/${this._id}.png`,
-            loading: true,
-            tier: tier,
-          },
-        }));
-      }).catch(() => {
-        // Fallback: dispatch without tier
-        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
-          detail: {
-            npcId: this._id,
-            npcName: this._name,
-            russian: '...',
-            translation: '',
-            choices: [],
-            portrait: `assets/portraits/${this._id}.png`,
-            loading: true,
-            tier: 0,
-          },
-        }));
-      });
+      this._startDialogue();
     }
+  }
+
+  // ---------------------------------------------------------------
+  // Private — read tier from storage and dispatch DIALOGUE_START
+  // ---------------------------------------------------------------
+
+  async _startDialogue() {
+    let tier = 0;
+    try {
+      const progress = await getProgress();
+      const score = (progress.npcRelationships && progress.npcRelationships[this._id]) || 0;
+      tier = _getTier(score);
+    } catch { /* silent — use default tier 0 */ }
+
+    window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+      detail: {
+        npcId: this._id,
+        npcName: this._name,
+        russian: '...',
+        translation: '',
+        choices: [],
+        portrait: `assets/portraits/${this._id}.png`,
+        loading: true,
+        tier,
+      },
+    }));
   }
 
   // ---------------------------------------------------------------
