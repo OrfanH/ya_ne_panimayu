@@ -4,7 +4,7 @@
    ============================================ */
 
 // TILE INDEX (roguelike-indoors, 27-col sheet, N = row*27+col)
-// floor_a: 216, floor_b: 23, wall: 239, furniture: [125, 131, 341]
+// floor_a: 216, floor_b: 243, wall: 239, furniture: [125, 131, 341]
 
 const CAFE_COLS = 14;
 const CAFE_ROWS = 10;
@@ -27,7 +27,7 @@ class CafeScene extends Phaser.Scene {
     const COLS = CAFE_COLS;
     const ROWS = CAFE_ROWS;
     const FLOOR_A = 216;
-    const FLOOR_B = 23;
+    const FLOOR_B = 243;
     const WALL_FRAME = 239;
 
     // Floor tiles (inner area, excluding wall perimeter)
