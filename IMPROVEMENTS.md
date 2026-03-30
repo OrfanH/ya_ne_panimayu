@@ -2,7 +2,7 @@
 
 ## Current task
 
-TASK-040 — Full playtest (next ready task)
+BUG-002 — Duplicate #hud-mute elements (next ready task)
 
 ---
 
@@ -23,7 +23,7 @@ TASK-040 — Full playtest (next ready task)
 ### BUG-001
 **title:** City tileset frame indices wrong — ground tiles and park building invisible
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
 **reads:** [app/game/scenes/WorldScene.js]
@@ -43,6 +43,19 @@ TASK-040 — Full playtest (next ready task)
 **writes:** [app/ui/hud.js]
 **done_when:** Exactly one #hud-mute element exists in the DOM. The mute button inside the HUD bar has SVG icons and correctly toggles audio mute on click.
 **notes:** Found by playtester. AudioManager.js loads before ui/hud.js in index.html. AudioManager._buildMuteBtn() runs on DOMContentLoaded, finds no existing #hud-mute, and creates one appended to #ui-overlay. Then hud.js _buildDOM() creates a second empty #hud-mute inside #hud. The HUD-visible button is the empty one; AudioManager wires the other one. Fix: remove the _muteBtn element from hud.js _buildDOM() — AudioManager already handles creation and wiring. See play-report.md.
+
+---
+
+### BUG-003
+**title:** NPC interaction indicator stays visible when dialogue is open
+**track:** BUG
+**status:** READY
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester]
+**reads:** [app/game/entities/NPC.js]
+**writes:** [app/game/entities/NPC.js]
+**done_when:** The `[E]` hint above an NPC disappears as soon as dialogue opens (E key pressed while in range). Verified in Cafe, Apartment, and Park scenes. Hint still appears when approaching NPC and disappears when moving out of range.
+**notes:** Found by playtester testing TASK-051. Root cause: `checkInteraction()` line 93 calls `setVisible(inRange)` every frame. Physics pause stops movement but not `update()`, so the player stays in range and the indicator stays visible. Fix: change to `setVisible(inRange && !this._interacting)`. See play-report.md for full reproduction steps.
 
 ---
 
@@ -68,7 +81,7 @@ TASK-040 — Full playtest (next ready task)
 ### TASK-051
 **title:** NPC interaction indicator — proximity E-key / tap-zone visual
 **track:** FAST
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P1
 **depends_on:** [TASK-045]
 **assigned_agents:** [coder, reviewer, playtester, git]
@@ -125,29 +138,10 @@ TASK-040 — Full playtest (next ready task)
 
 ---
 
-### TASK-056
-**title:** Verify and fix NPC character frame assignments in roguelike-characters sheet
-**track:** BUILD-ART
-**status:** IN_PROGRESS
-**priority:** P1-ART
-**depends_on:** []
-**assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
-**reads:** [app/game/entities/NPC.js, app/assets/tilesets/roguelike-characters.png, .claude/pixel-art-mapping.md, .claude/pixel-art-spec.md, REFERENCE-PIXELART.md]
-**writes:** [app/game/entities/NPC.js, .claude/pixel-art-spec.md]
-**done_when:**
-- Every frame index in `NPC_FRAMES` (all 13 NPCs: base body, clothing, accessory layers) has been visually verified against the actual roguelike-characters.png sheet
-- Any incorrect frame assignments are remapped to frames that match the NPC's character description (e.g. Galina = elderly woman, Artyom = young male student, etc.)
-- `pixel-art-spec.md` is updated with the verified frame numbers and a note of what each frame visually depicts
-- All 13 NPCs render distinct, appropriate sprites in-game (no two NPCs share the same visual appearance)
-- Phaser config confirmed to have `pixelArt: true` so 16x16 sprites upscaled to 28x28 are crisp, not blurry
-**notes:** Addresses pixel-art-mapping.md finding #2 (NPC character frame assignments unverified) and finding #14 (pixelArt:true check). The pixel-artist agent must load the spritesheet image and document which row/column contains which character type. The coder then remaps NPC_FRAMES accordingly.
-
----
-
 ### TASK-057
 **title:** Fix CafeScene floor tile B — replace wrong frame 23 with a verified floor tile
 **track:** BUILD-ART
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P1-ART
 **depends_on:** []
 **assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
@@ -404,6 +398,12 @@ TASK-040 — Full playtest (next ready task)
 - TASK-053 | DONE | 2026-03-30 | Dialogue API fallback chain — scripted fallback + offline badge | dc49a2b
 - TASK-054 | DONE | 2026-03-30 | TestScene lifecycle fix — verification only, TASK-045 already applied pattern | no-commit
 - TASK-040 | DONE | 2026-03-30 | Full playtest — 2 bugs filed (BUG-001 tileset frames, BUG-002 hud-mute duplicate) | sign-off
+- TASK-056 | DONE | 2026-03-30 | NPC character frame assignments verified + fixed for 54-col sheet | b22d704+6802e05
+- TASK-051 | DONE | 2026-03-30 | NPC interaction indicator — [E]/tap proximity hint above NPCs | 80f6af3
+- BUG-001 | DONE | 2026-03-30 | City tileset frame indices — CITY_TILES recalculated row×34 | 25a12d7
+- TASK-057 | DONE | 2026-03-30 | CafeScene floor_b tile 23→243 | b1669e2
+- TASK-058 | DONE | 2026-03-30 | ParkScene outdoor conversion — city grass+path tiles | 1c46c4e
+- TASK-059 | DONE | 2026-03-30 | TestScene tiled floor+walls via roguelike-indoors | 25d5f45
 
 ## Session log
 
@@ -455,3 +455,4 @@ TASK-040 — Full playtest (next ready task)
 - 2026-03-30 · TASK-054 TestScene lifecycle — verification only, TASK-045 already applied the pattern · no-commit · backup/pre-build-20260330-191527
 - 2026-03-30 · Assessment: pixel-art-mapping.md audit converted to TASK-056 through TASK-063 (8 BUILD-ART tasks), duplicates cleaned from backlog
 - 2026-03-30 · TASK-040 Full playtest — FAIL, BUG-001 (city tileset frame indices) + BUG-002 (hud-mute duplicate) filed as P0 blockers · sign-off
+- 2026-03-30 · TASK-051 NPC proximity interaction hint — [E]/tap badge above NPCs, CSS tokens, state-flag discipline · 80f6af3
