@@ -144,6 +144,8 @@ CONTENT:       [researcher →] narrative-director + curriculum-designer (parall
 BUILD:         [researcher →] architect → [designer +] [content-writer +] coder → reviewer → playtester → [ux-reviewer →] git
 BUILD-CONTENT: [researcher →] architect → designer + content-writer (parallel) → coder → reviewer → playtester → linguist → ux-reviewer → git
 BUILD-ART:     [researcher →] pixel-artist → designer → coder → reviewer → playtester → git
+               NOTE: Only use for Kenney asset wiring / visual spec updates. pixel-artist cannot generate images.
+               If new art files are needed that Kenney does not cover, do NOT generate a BUILD-ART task — flag to user instead.
 BUILD-AUDIO:   [researcher →] composer → coder → reviewer → playtester → git
 BUG:           fixer → reviewer → playtester → git
 PLAYTEST:      playtester → (writes BUG tasks) → orchestrator picks BUG tasks → fixer → reviewer → playtester → git

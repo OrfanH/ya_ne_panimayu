@@ -33,7 +33,7 @@ Read this file when you are the orchestrator or need to route a task.
 | CONTENT | Russian writing, dialogue, missions | researcher -> narrative-director -> curriculum-designer -> content-writer -> linguist -> ux-reviewer -> git |
 | BUILD | New features, scenes, systems | researcher -> architect -> designer + content-writer (parallel) -> coder -> reviewer -> playtester -> ux-reviewer -> git |
 | BUILD-CONTENT | New features with new NPC dialogue | researcher -> architect -> designer + content-writer (parallel) -> coder -> reviewer -> playtester -> linguist -> ux-reviewer -> git |
-| BUILD-ART | Pixel art, sprites, portraits | researcher -> pixel-artist -> designer -> coder -> reviewer -> playtester -> git |
+| BUILD-ART | Kenney asset wiring, new sprite combos, portrait variants, visual spec updates. Not for tasks requiring new art files — pixel-artist will BLOCK if no Kenney asset covers the need. | researcher -> pixel-artist -> designer -> coder -> reviewer -> playtester -> git |
 | BUILD-AUDIO | Music, soundscapes | researcher -> composer -> coder -> reviewer -> playtester -> git |
 | BUG | Targeted fix from review | fixer -> reviewer -> playtester -> git |
 | PLAYTEST | Ad-hoc game QA | playtester -> (writes BUG tasks to IMPROVEMENTS.md) -> orchestrator picks BUG tasks -> fixer -> reviewer -> playtester -> git |
