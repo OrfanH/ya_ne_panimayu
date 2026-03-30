@@ -3,19 +3,19 @@
    ============================================ */
 
 const NPC_FRAMES = {
-  galina:     { base: 32, clothing: 48, accessory: 16 },
-  artyom:     { base:  1, clothing:  9 },
-  tamara:     { base: 33, clothing: 49, accessory: 17 },
-  lena:       { base: 34, clothing: 58 },
-  boris:      { base:  2, clothing: 10, accessory: 18 },
-  fatima:     { base: 35, clothing: 59, accessory: 19 },
-  misha:      { base:  3, clothing: 11, accessory: 20 },
-  styopan:    { base:  4, clothing: 12 },
-  konstantin: { base:  5, clothing: 13, accessory: 21 },
-  nadya:      { base: 36, clothing: 60, accessory: 22 },
-  alina:      { base: 37, clothing: 61, accessory: 23 },
-  sergei:     { base:  6, clothing: 14 },
-  professor:  { base:  7, clothing: 15, accessory: 24 },
+  galina:     { base: 0, clothing: 10, accessory: 20 },
+  artyom:     { base: 54, clothing: 64 },
+  tamara:     { base: 0, clothing: 7, accessory: 22 },
+  lena:       { base: 108, clothing: 118 },
+  boris:      { base: 0, clothing: 15, accessory: 19 },
+  fatima:     { base: 108, clothing: 114, accessory: 24 },
+  misha:      { base: 54, clothing: 60, accessory: 21 },
+  styopan:    { base: 270, clothing: 276 },
+  konstantin: { base: 0, clothing: 17, accessory: 26 },
+  nadya:      { base: 324, clothing: 334 },
+  alina:      { base: 378, clothing: 392 },
+  sergei:     { base: 486, clothing: 492 },
+  professor:  { base: 108, clothing: 122, accessory: 129 },
 };
 
 class NPC {
@@ -47,21 +47,52 @@ class NPC {
       this._accessoryLayer.setDisplaySize(displaySize, displaySize);
     }
 
-    this._indicator = scene.add.text(x, y - tileSize * 0.75, '[E]', {
-      fontFamily: 'Kenney Pixel',
-      fontSize:   '12px',
-      color:      '#FFFFFF',
+    // Detect mobile: pointer is coarse (touch) or no fine pointer available
+    const isMobile = window.matchMedia('(pointer: coarse)').matches;
+    const hintText = isMobile ? 'tap' : 'E';
+
+    const _hintStyle = getComputedStyle(document.documentElement);
+    const hintFontSize = _hintStyle.getPropertyValue('--hint-font-size').trim() || '11px';
+    const hintColor    = _hintStyle.getPropertyValue('--hint-color').trim()     || '#E8E0D0';
+    const hintBg       = _hintStyle.getPropertyValue('--hint-bg').trim()        || '#2A2A2A';
+    const hintPadX     = parseInt(_hintStyle.getPropertyValue('--hint-padding-x').trim()) || 4;
+    const hintPadY     = parseInt(_hintStyle.getPropertyValue('--hint-padding-y').trim()) || 2;
+
+    this._interactionHint = scene.add.text(x, y - tileSize * 0.85, hintText, {
+      fontFamily:      'Kenney Mini',
+      fontSize:        hintFontSize,
+      color:           hintColor,
+      backgroundColor: hintBg,
+      padding:         { left: hintPadX, right: hintPadX, top: hintPadY, bottom: hintPadY },
+      resolution:      2,
     });
-    this._indicator.setOrigin(0.5, 0.5);
-    this._indicator.setVisible(false);
+    this._interactionHint.setOrigin(0.5, 1.0);
+    this._interactionHint.setAlpha(0.92);
+    this._interactionHint.setVisible(false);
+    this._interactionHint.setDepth(10);
+
+    // _inRange: true when player is within interaction radius
+    this._inRange = false;
+
+    // _dialogueOpen: true while any dialogue is showing — hide hint regardless of range
+    this._dialogueOpen = false;
 
     // Guard: prevents firing DIALOGUE_START while a dialogue is already open
     this._interacting = false;
 
-    this._onDialogueEnd = () => {
-      this._interacting = false;
+    this._onDialogueStart = () => {
+      this._dialogueOpen = true;
+      this._updateHint(this._inRange);
     };
-    window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+
+    this._onDialogueEnd = () => {
+      this._interacting  = false;
+      this._dialogueOpen = false;
+      this._updateHint(this._inRange);
+    };
+
+    window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
+    window.addEventListener(EVENTS.DIALOGUE_END,   this._onDialogueEnd);
   }
 
   // ---------------------------------------------------------------
@@ -90,7 +121,11 @@ class NPC {
     const dist = Math.sqrt(dx * dx + dy * dy);
 
     const inRange = dist <= this.interactionRadius;
-    this._indicator.setVisible(inRange);
+
+    if (inRange !== this._inRange) {
+      this._inRange = inRange;
+      this._updateHint(inRange);
+    }
 
     if (inRange && eKeyJustDown && !this._interacting) {
       this._interacting = true;
@@ -110,12 +145,25 @@ class NPC {
   }
 
   // ---------------------------------------------------------------
+  // Private — show/hide hint based on proximity and dialogue state
+  // ---------------------------------------------------------------
+
+  _updateHint(inRange) {
+    const shouldShow = inRange && !this._dialogueOpen;
+    this._interactionHint.setVisible(shouldShow);
+  }
+
+  // ---------------------------------------------------------------
   // Public — cleanup
   // ---------------------------------------------------------------
 
   destroy() {
-    window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
-    this._indicator.destroy();
+    window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
+    window.removeEventListener(EVENTS.DIALOGUE_END,   this._onDialogueEnd);
+    this._inRange      = false;
+    this._dialogueOpen = false;
+    this._interacting  = false;
+    this._interactionHint.destroy();
     if (this._clothingLayer)  { this._clothingLayer.destroy(); }
     if (this._accessoryLayer) { this._accessoryLayer.destroy(); }
     this._sprite.destroy();

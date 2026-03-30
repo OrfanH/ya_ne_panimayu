@@ -93,6 +93,13 @@
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.10), 0 0 0 1px rgba(0, 0, 0, 0.05);
 
+  /* --- Interaction Hint (Phaser Text — read via getComputedStyle in NPC.js) --- */
+  --hint-font-size: 11px;
+  --hint-color: #E8E0D0;
+  --hint-bg: #2A2A2A;
+  --hint-padding-x: 4px;
+  --hint-padding-y: 2px;
+
   /* --- Layout --- */
   --sidebar-width: 240px;
   --tutor-panel-width: 340px;
