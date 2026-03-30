@@ -85,6 +85,8 @@ const DialogueUI = (() => {
     body.appendChild(_translation);
     body.appendChild(_toggleBtn);
 
+    body.addEventListener('click', _onTapAdvance);
+
     // .dialogue-choices
     _choices = document.createElement('div');
     _choices.className = 'dialogue-choices';
@@ -94,12 +96,28 @@ const DialogueUI = (() => {
     _box.appendChild(_choices);
 
     _overlay.appendChild(_box);
+    _overlay.addEventListener('click', (e) => { e.stopPropagation(); });
     uiOverlay.appendChild(_overlay);
   }
 
   // -----------------------------------------------------------
   // Translation toggle
   // -----------------------------------------------------------
+  function _onTapAdvance(e) {
+    // Only advance when dialogue is fully OPEN
+    if (_state.phase !== _STATES.OPEN) { return; }
+    // Don't advance if the user tapped the toggle button
+    if (e.target === _toggleBtn || _toggleBtn.contains(e.target)) { return; }
+    // Don't advance if there are choices visible — user must pick a choice
+    if (_choices.children.length > 0) { return; }
+    // Stop propagation so the tap doesn't bubble to game layer
+    e.stopPropagation();
+    // Fire a dialogue advance event — TutorAI listens for this to send the next beat
+    window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_CHOICE, {
+      detail: { choiceId: '__advance__', russian: '' },
+    }));
+  }
+
   function _onToggleTranslation() {
     _state.translationVisible = !_state.translationVisible;
     _applyTranslationVisibility();
