@@ -49,7 +49,7 @@ class NPC {
 
     // Detect mobile: pointer is coarse (touch) or no fine pointer available
     const isMobile = window.matchMedia('(pointer: coarse)').matches;
-    const hintText = isMobile ? 'tap' : 'E';
+    const hintText = isMobile ? 'tap' : '[E]';
 
     const _hintStyle = getComputedStyle(document.documentElement);
     const hintFontSize = _hintStyle.getPropertyValue('--hint-font-size').trim() || '11px';
