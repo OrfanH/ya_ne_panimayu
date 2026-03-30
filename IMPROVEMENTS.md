@@ -49,7 +49,7 @@ BUG-003 — NPC interaction indicator stays visible (next ready task)
 ### BUG-003
 **title:** NPC interaction indicator stays visible when dialogue is open
 **track:** BUG
-**status:** READY
+**status:** IN_PROGRESS
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [app/game/entities/NPC.js]
