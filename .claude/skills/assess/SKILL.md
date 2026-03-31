@@ -47,7 +47,8 @@ Read these files. Do not read files outside this list unless a specific finding 
 
 **Always read:**
 - `IMPROVEMENTS.md` — full backlog (Current task, Recovery, Backlog, Done). Scan Done section only to understand what has already been built. Do not re-flag completed work.
-- `CLAUDE-VISION.md` — the intended game experience. This is the benchmark. Every finding is measured against it.
+- `CLAUDE-VISION.md` — the intended game experience. This is the primary design benchmark. Every finding is measured against it.
+- `REFERENCE-GAMEDESIGN.md` — deep research synthesis: daily loop design, location unlock pacing, NPC relationship arc standards, replayability minimum thresholds, language acquisition principles (Krashen i+1, affective filter, production beats reception), and anti-patterns to avoid (Duolingo drill trap, red flash, progress percentage). Use this as the *how and why* benchmark — CLAUDE-VISION.md says what to build, REFERENCE-GAMEDESIGN.md says what good looks like in practice.
 - `app/config.js` — understand the EVENTS constants, LOCATIONS, STORAGE_KEYS, and game structure
 
 **Read for technical scan:**
@@ -59,6 +60,7 @@ Read these files. Do not read files outside this list unless a specific finding 
 **Read for experience scan (sample only — do not load all 6):**
 - `app/game/content/apartment-dialogue.js` — sample NPC content quality, variation depth, A1 vocabulary range
 - `app/ui/hud.js` — how the game communicates mission status and progress to the player
+- `REFERENCE-DIALOGUE.md` — NPC voice consistency standards (voice brief test, 3-tier relationship dialogue, register/vocabulary match by social status), dialogue tree architecture (short lines, micro-reactivity callbacks, failure states that advance not punish). Use this to evaluate whether the sampled NPC content meets quality standards, not just whether it exists.
 
 **If ASSESS_MODE = playability:** skip experience scan files, focus on technical scan + ApartmentScene onboarding path.
 **If ASSESS_MODE = feel:** skip StoryMissions/MissionGenerator, focus on CLAUDE-VISION.md, dialogue, and HUD.
@@ -112,27 +114,31 @@ Read the experience scan files. Measure the actual content against the design in
 - Does the player know what completing a location means?
 - Are chapter tests findable and triggered clearly?
 
-**NPC depth (sample from apartment-dialogue.js)**
-- How many distinct conversation variations does the primary NPC have?
-- Does the NPC reference prior interactions, or does every visit feel like the first meeting?
-- Does the NPC's Russian feel natural and A1-appropriate, or stiff and textbook?
-- Does the NPC feel like a character or a vocabulary delivery system?
+**NPC depth (sample from apartment-dialogue.js — benchmark against REFERENCE-DIALOGUE.md)**
+- Does each NPC have a voice brief (verbal tic, recurring topic, one thing they never say)? Could you identify the NPC from a line without the name tag?
+- How many distinct conversation variations does the primary NPC have? (REFERENCE-GAMEDESIGN.md §3: minimum 3 scripted depth moments per NPC, each unlocked by a different threshold)
+- Does the NPC reference prior interactions, or does every visit feel like the first meeting? (REFERENCE-DIALOGUE.md §1: three-tier stranger/acquaintance/friend dialogue required)
+- Does the NPC have at least one mentioned life element the player never directly participates in? (REFERENCE-GAMEDESIGN.md §3: "NPCs must have lives that do not revolve around the player")
+- Does the NPC explicitly recognise when the player correctly uses a vocabulary word the NPC taught them? (REFERENCE-GAMEDESIGN.md §3: "Oh! You remembered what I said!")
+- Does the NPC's Russian feel natural and A1-appropriate, or stiff and textbook? (REFERENCE-DIALOGUE.md §1: "Simplify vocabulary, not register")
 
 **Mission coherence**
-- Are missions given with a story reason (CLAUDE-VISION.md spec), not just a grammar target?
+- Are missions given with a story reason, not just a grammar target? (REFERENCE-GAMEDESIGN.md §2: "gates must have story reasons, never grammar reasons")
 - Do missions feel like things a real person would ask a foreign student to do?
-- Is there meaningful feedback when a mission completes?
+- Is there meaningful feedback when a mission completes — emotional/relational, not a recap? (REFERENCE-DIALOGUE.md §2: "never explain what the player just experienced")
+- Does at least one mission per vocabulary word require active production (saying or typing the word), not just recognition? (REFERENCE-GAMEDESIGN.md §6: "production beats reception")
 
-**World aliveness**
-- Do NPCs have greeting variations that change over time?
-- Does revisiting a location feel different from the first visit?
-- Is the world silent between interactions (no ambient audio cues, no visual movement)?
+**World aliveness (benchmark against REFERENCE-GAMEDESIGN.md §4)**
+- Does each NPC have at least 3 variation triggers: time-of-day, relationship-tier progression, and one other? (§4: "daily variation minimum threshold")
+- Are there any cross-location NPC references? Does one NPC mention another NPC at a different location? (§4: "cross-location NPC references create return motivation")
+- Does revisiting a completed location feel different from the first visit?
+- Are there any "secrets visible from the start" — things placed in early locations that only make sense later? (§4)
 
-**Game feel**
-- Is there clear feedback when the player does something right?
-- Is there clear, gentle feedback when the player makes a Russian mistake?
-- Does completing a vocabulary word feel rewarding?
-- Is the pacing between missions and free conversation appropriate?
+**Game feel (benchmark against REFERENCE-GAMEDESIGN.md §5–6)**
+- When the player makes a Russian mistake, does the NPC use implicit recast correction (model the correct form in response), not explicit punishment? (§6: "no red X, no health loss, no 'you lost' screens")
+- Is there any world-state change as progression feedback? (§5: "world-state change is more satisfying than points") — e.g. does completing a location visually change anything?
+- Does the journal feel like a discovery log rather than a checklist? Are progress percentages or "X/Y words" counts visible? (§5: "never show the player how much content remains")
+- Is the NPC dialogue pacing appropriate — max 2-3 sentences per turn, with player continue prompts for longer explanations? (REFERENCE-DIALOGUE.md §2)
 
 Write down what you find for each dimension. Be honest. Weak is weak.
 
