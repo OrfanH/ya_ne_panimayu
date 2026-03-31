@@ -9,11 +9,18 @@
 ## Done
 
 - BUG-010 | DONE | 2026-03-31 | Controls hint on WorldScene load | f40323e
+- TASK-064 | DONE | 2026-04-01 | Recovery playtest — 84 passing, 0 failing, BUG-008–BUG-019 confirmed stable | sign-off
 
 ---
 
 ## Knowledge Base
 - [4e0810e] REFERENCE-GAMEDESIGN.md, REFERENCE-PIXELART.md, REFERENCE-DIALOGUE.md added
+
+---
+
+## Recovery
+
+*Tasks here run before any Backlog task, regardless of priority. Recovery mode clears this queue first.*
 
 ---
 
@@ -522,6 +529,8 @@
 - BUG-009 | DONE | 2026-03-31 | First-visit scripted dialogue race condition — _firstVisitScripted synchronous before async getProgress | 43c8b3d
 
 ## Session log
+
+- 2026-04-01 · TASK-064 Recovery playtest — 84 passing, 0 failing, 4 skipped. All BUG-008–BUG-019 fixes confirmed stable. Recovery queue cleared. sign-off
 
 - 2026-03-28 ? Agent files ? 17 agents created/overwritten for RPG system ? faafffe
 - 2026-03-28 ? Infrastructure setup ? scoped CLAUDE files, backlog schema, token rules ? 2797d6d
