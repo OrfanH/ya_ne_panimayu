@@ -46,9 +46,19 @@ The orchestrator reads this and adds it to the backlog.
 - Phaser owns the canvas — never mix layers
 - Custom events only for cross-layer communication
 
+## Integration responsibility
+
+While you implement the spec exactly, you also verify that your code integrates with existing systems:
+- Use the same data access patterns as existing code (storage.js functions, not direct localStorage)
+- Use EVENTS constants from config.js for all event names
+- Follow the same architectural patterns visible in existing scene/entity/system files
+- If the spec asks you to read from a data source that is empty or doesn't exist, report this as a "Missing dependency" rather than silently producing non-functional code
+
+If you notice the spec asks for something that conflicts with how existing code works, report the conflict in your output. Do not silently implement dead code.
+
 ## What you never do
 
-- Deviate from the spec
+- Deviate from the spec without flagging the reason
 - Refactor code not related to the current task
 - Add features not in the spec
 - Read files not in the reads list

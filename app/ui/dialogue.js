@@ -155,7 +155,7 @@ const DialogueUI = (() => {
     if (line.portrait) {
       const img = document.createElement('img');
       img.alt = line.npcName || 'NPC';
-      img.onerror = () => { _portrait.innerHTML = ''; };
+      img.onerror = () => { _portrait.innerHTML = ''; _portrait.classList.remove('has-portrait'); };
       img.src = line.portrait;
       _portrait.appendChild(img);
     }

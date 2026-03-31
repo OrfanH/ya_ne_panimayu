@@ -146,18 +146,29 @@ const TutorAI = (() => {
   let _npcData = null;
   let _isWaiting = false;
   let _offline = false;
+  let _learnedWords = [];
 
   // -----------------------------------------------------------
   // Build system prompt from NPC data
   // -----------------------------------------------------------
-  function _buildSystemPrompt(npcData) {
+  function _buildSystemPrompt(npcData, learnedWords) {
     const vocab = Array.isArray(npcData.tutorVocabulary) ? npcData.tutorVocabulary : [];
+    const newVocab = vocab.map(v => v.russian).join(', ');
+
+    let reinforcement = '';
+    if (learnedWords && learnedWords.length > 0) {
+      // Pick up to 8 previously learned words to reinforce naturally
+      const sample = learnedWords.slice(0, 8).map(w => w.cyrillic || w.russian).join(', ');
+      reinforcement = `\nThe student has previously learned these words — use them naturally when they fit: ${sample}.`;
+    }
+
     return (
       `You are ${npcData.name}, ${npcData.persona}.\n` +
       `You are speaking with a beginner Russian learner.\n` +
       `Respond ONLY in Russian. After each sentence add the English translation in parentheses.\n` +
       `Keep responses to 1–3 sentences.\n` +
-      `Naturally work in vocabulary from this list when relevant: ${vocab.map(v => v.russian).join(', ')}.\n` +
+      `Naturally work in NEW vocabulary from this list when relevant: ${newVocab}.` +
+      reinforcement + `\n` +
       `Never break character. Never mention that you are an AI.`
     );
   }
@@ -219,7 +230,7 @@ const TutorAI = (() => {
   async function _sendToAI(userText) {
     _history.push({ role: 'user', content: userText });
 
-    const systemPrompt = _buildSystemPrompt(_npcData);
+    const systemPrompt = _buildSystemPrompt(_npcData, _learnedWords);
 
     try {
       const res = await fetch(API_ENDPOINT, {
@@ -346,6 +357,7 @@ const TutorAI = (() => {
     _npcId = null;
     _npcData = null;
     _history = [];
+    _learnedWords = [];
     _isWaiting = false;
     _offline = false;
   }
@@ -367,6 +379,12 @@ const TutorAI = (() => {
     _npcData = npcData;
     _history = [];
     _isWaiting = true;
+
+    // Load previously learned words for reinforcement
+    try {
+      const vocab = await getVocabulary();
+      _learnedWords = (vocab.words || []).slice(-20); // recent 20 words
+    } catch { _learnedWords = []; }
 
     if (_offline) {
       const greeting = _getScriptedFallback();

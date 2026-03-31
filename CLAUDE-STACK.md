@@ -60,42 +60,39 @@ app/
   storage.js         <- all Vercel KV reads and writes
   game/
     main.js          <- Phaser game config and scene registry
-    scenes/          <- Boot, Town, Apartment, Park, Cafe, Market, Station, Police
+    scenes/          <- Boot, WorldScene, Apartment, Park, Cafe, Market, Station, Police, Test
     entities/        <- Player.js, NPC.js
-    systems/         <- DialogueSystem, MissionSystem, ProgressSystem
+    systems/         <- AudioManager, MistakeLogger, MissionGenerator, StoryMissions, MapBuilder
+    content/         <- *-dialogue.js — NPC data, vocab, scripted dialogue per location
   ui/
-    dialogue.js, journal.js, hud.js, menu.js, testroom.js
+    dialogue.js, journal.js, hud.js, menu.js, settings.js, test.js, onboarding.js, graduation.js, VirtualJoystick.js
 api/
   tutor.js           <- Vercel serverless function, Gemini proxy
 assets/
-  maps/, sprites/, portraits/, ui/
+  tilesets/, fonts/, ui/
 data/
-  npcs.json, missions.json, vocabulary.json, progress.json, mistakes.json
+  progress.json      <- default seed only; runtime data lives in Vercel KV / localStorage
 prompts/
-  npc-core.txt, npc-confused.txt, npc-tutor.txt, test-feedback.txt
+  npc-core.txt, npc-confused.txt, npc-tutor.txt, test-feedback.txt, etc.
 ```
 
-## Data schemas
+**Note on data/*.json:** The original architecture planned for NPC, mission, and vocabulary data to live in JSON files loaded at runtime. In practice, all NPC data, dialogue, and vocabulary are embedded directly in `app/game/content/*-dialogue.js`. Story missions are defined in `app/game/systems/StoryMissions.js`. Practice missions are generated dynamically by `MissionGenerator.js`. The JSON files in `data/` (npcs.json, missions.json, vocabulary.json, mistakes.json, errors.json) are empty stubs from the original design and are **not loaded by any code**. Do not build loaders for them — use the embedded JS data.
 
-### NPC definition (data/npcs.json)
+**Note on dead files:** `Town.js` is deprecated (superseded by WorldScene). `DialogueSystem.js` and `MissionSystem.js` are 1-line stubs pointing to actual implementations. None are loaded at runtime.
 
-Fields: `id`, `name`, `nameEn`, `location`, `portrait`, `sprite`, `position`, `persona`, `tutorVocabulary`, `dialogue[]` (each with `id`, `type` scripted|ai, `trigger`, `nodes[]` or `context`)
+## Data schemas (runtime, via storage.js)
 
-### Mission definition (data/missions.json)
+### Progress (Vercel KV key: 'progress')
 
-Fields: `id`, `title`, `titleEn`, `location`, `givenBy`, `unlockCondition`, `type` (conversation|fetch|delivery|translation), `objectiveEn`, `requiredVocabulary[]`, `requiredGrammar`, `successCondition`, `onSuccess{}`, `onFail{}`
+Fields: `chapter`, `unlockedLocations[]`, `completedMissions[]`, `activeMission`, `testScores{}`, `npcRelationships{}`, `lastSession`, `hasSeenIntro`, `hasSeenGraduation`, `playerPosition{}`
 
-### Progress (data/progress.json)
+### Vocabulary (Vercel KV key: 'vocabulary')
 
-Fields: `chapter`, `unlockedLocations[]`, `completedMissions[]`, `activeMission`, `testScores{}`, `npcRelationships{}`, `lastSession`, `playerPosition{}`
+Fields: `words[]` each with `cyrillic`, `transliteration`, `meaning`, `gender`, `lessonId` (location ID), `seenAt`, `exampleCyrillic`, `exampleMeaning`
 
-### Vocabulary (data/vocabulary.json)
+### Mistakes (Vercel KV key: 'mistakes')
 
-Fields: `words[]` each with `russian`, `english`, `partOfSpeech`, `cefr` (A1|A1+|A2), `location` (where introduced), `reappears[]` (locations where reinforced), `category` (greetings|food|directions|time|formal|etc.)
-
-### Mistakes (data/mistakes.json)
-
-Fields: `patterns[]` each with `grammarPoint`, `count`, `threshold`, `lastSeen`, `triggeredMission`, `examples[]`
+Fields: `entries[]` each with `word`, `context`, `correctAnswer`, `npcId`, `location`, `count`, `lastSeen`
 
 ## Keyboard shortcuts
 

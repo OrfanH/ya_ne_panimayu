@@ -79,7 +79,10 @@ const TestUI = (() => {
     const locations = CHAPTER_LOCATIONS[chapter] || [];
     const vocab = await getVocabulary();
     const pool = (vocab.words || []).filter(
-      (w) => w.lessonId && locations.includes(w.lessonId)
+      (w) => {
+        const loc = w.lessonId || w.location || '';
+        return loc && locations.includes(loc);
+      }
     );
 
     // Shuffle pool

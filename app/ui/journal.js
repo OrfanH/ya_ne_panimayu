@@ -259,9 +259,23 @@ const Journal = (() => {
   // -----------------------------------------------------------
   // Init
   // -----------------------------------------------------------
+  function _normalizeLocationId(name) {
+    if (!name) { return ''; }
+    // Map display names to CHAPTER_LOCATIONS IDs
+    const lower = name.toLowerCase();
+    if (lower.includes('apartment')) { return 'apartment'; }
+    if (lower.includes('park'))      { return 'park'; }
+    if (lower.includes('caf'))       { return 'cafe'; }
+    if (lower.includes('market'))    { return 'market'; }
+    if (lower.includes('station') && lower.includes('train')) { return 'station'; }
+    if (lower.includes('police'))    { return 'police'; }
+    if (lower.includes('station'))   { return 'station'; }
+    return name;
+  }
+
   function _onLocationEnter(e) {
     const detail = e.detail || {};
-    _currentLocation = detail.name || detail.id || '';
+    _currentLocation = _normalizeLocationId(detail.id || detail.name || '');
   }
 
   function _onDialogueEnd(e) {
@@ -281,7 +295,7 @@ const Journal = (() => {
 
     if (words.length === 0) { return; }
 
-    addVocabulary(words, null).then(() => {
+    addVocabulary(words, _currentLocation || null).then(() => {
       window.dispatchEvent(new CustomEvent(EVENTS.VOCABULARY_NEW, {
         detail: { count: words.length },
       }));

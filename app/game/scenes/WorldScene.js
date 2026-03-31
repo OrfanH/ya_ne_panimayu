@@ -69,6 +69,13 @@ class WorldScene extends Phaser.Scene {
     const worldW = COLS * T;
     const worldH = ROWS * T;
 
+    // Reset zone locked states to defaults — prevents stale state from prior scene visits
+    const ZONE_DEFAULTS = { apartment: false, park: true, cafe: true, market: true, station: true, police: true };
+    for (const zone of BUILDING_ZONES) {
+      zone.locked = ZONE_DEFAULTS[zone.id] !== undefined ? ZONE_DEFAULTS[zone.id] : true;
+      zone._pulseTween = null;
+    }
+
     // -------------------------------------------------------
     // 1. Draw ground layer (grass checker + paths)
     // -------------------------------------------------------
@@ -153,17 +160,20 @@ class WorldScene extends Phaser.Scene {
     });
 
     // -------------------------------------------------------
-    // 10. Unlock locations based on progress
-    // -------------------------------------------------------
-    this._checkUnlocks();
-
-    // -------------------------------------------------------
-    // 11. Building zone interaction tracking
+    // 10. Unlock locations based on progress (async — rebuilds outlines when done)
     // -------------------------------------------------------
     this._currentZoneId      = null;
     this._lastZoneEnterEmit  = null;
     this._proximityOutlines  = this._createProximityOutlines(T);
     this._transitioning      = false;
+
+    this._checkUnlocks().then(() => {
+      // Rebuild outlines now that unlock state is resolved
+      for (const key of Object.keys(this._proximityOutlines)) {
+        this._proximityOutlines[key].destroy();
+      }
+      this._proximityOutlines = this._createProximityOutlines(T);
+    });
 
     // -------------------------------------------------------
     // 12. Scene transitions via ZONE_ENTER
@@ -252,7 +262,7 @@ class WorldScene extends Phaser.Scene {
   // ---------------------------------------------------------------
   _checkUnlocks() {
     // Park unlocks after player has visited apartment (chapter >= 2 or park in unlockedLocations)
-    getProgress().then((progress) => {
+    return getProgress().then((progress) => {
       const unlocked = progress.unlockedLocations || [];
       for (const zone of BUILDING_ZONES) {
         if (zone.locked && unlocked.includes(zone.id)) {

@@ -2,7 +2,13 @@
 
 ## Current task
 
-BUG-009 — First-visit scripted dialogue race condition (P1)
+(none — see Backlog for next priorities)
+
+---
+
+## Done
+
+- BUG-010 | DONE | 2026-03-31 | Controls hint on WorldScene load | f40323e
 
 ---
 
@@ -115,7 +121,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-009
 **title:** First-visit scripted dialogue race condition — TutorAI can fire before greeting completes
 **track:** BUG
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
@@ -129,7 +135,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-010
 **title:** No player affordance on WorldScene load — no controls guidance after onboarding
 **track:** BUG
-**status:** BACKLOG
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]

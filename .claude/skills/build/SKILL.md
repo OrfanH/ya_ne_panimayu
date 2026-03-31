@@ -126,6 +126,17 @@ The task's `assigned_agents` list is always the authority. Use these defaults **
 3. Check if any other Backlog tasks now have all their `depends_on` satisfied — update their status note if useful.
 4. Tell the user: `TASK-XXX complete. Committed {hash}. Next ready task: {TASK-YYY or "none — all tasks blocked"}.`
 
+### Verify-before-expand checkpoint
+
+After completing a task that adds or modifies gameplay-affecting code (scenes, entities, systems, dialogue, missions, tests), verify:
+- The game still boots without errors (playtester smoke test)
+- The changed system integrates with the rest of the game (not just individually functional)
+- No existing gameplay path is broken by the change
+
+If the playtester agent is in the pipeline and returned PASS, this is satisfied. If playtester is NOT in the pipeline (e.g., CONTENT-only tasks), add a brief integration note to the session log: what was changed and why it doesn't need gameplay verification.
+
+**Rule: never generate new feature tasks in assessment mode if the last completed task introduced a gameplay regression that was not caught.** Fix first, expand second.
+
 ---
 
 ## Step 8 — Trigger skill improvement (if due)

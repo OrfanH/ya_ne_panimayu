@@ -19,6 +19,7 @@ Do not request additional files.
 
 ## What you check
 
+### Code style (CLAUDE-RULES.md)
 1. No var anywhere
 2. No console.log anywhere
 3. No inline styles
@@ -29,6 +30,14 @@ Do not request additional files.
 8. No API key in frontend files
 9. Phaser and HTML layers do not call each other directly
 10. Custom events used for all cross-layer communication
+
+### Integration (new — catches architecture drift)
+11. New code uses the same data paths as existing code (e.g., if existing code reads from embedded JS dialogue files, new code should too — not from empty data/*.json files)
+12. Event names use EVENTS constants from config.js, not string literals
+13. New storage keys are added to STORAGE_KEYS in config.js
+14. New event types are added to EVENTS in config.js
+15. Functions that read progress/vocabulary/settings use the existing storage.js functions, not direct localStorage/fetch calls
+16. Scene files that register window listeners have matching cleanup in shutdown()
 
 ## Output
 
