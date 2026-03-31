@@ -179,7 +179,7 @@
 ### TASK-061
 **title:** Consolidate interior wall tiles and replace programmatic furniture with tiled assets
 **track:** BUILD-ART
-**status:** IN_PROGRESS
+**status:** BACKLOG
 **priority:** P1-ART-B
 **depends_on:** [TASK-057, TASK-059]
 **assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
@@ -249,7 +249,7 @@
 ### TASK-063
 **title:** Player sprite visual identity — designate a distinct protagonist frame from roguelike-characters
 **track:** BUILD-ART
-**status:** IN_PROGRESS
+**status:** BACKLOG
 **priority:** P2-ART
 **depends_on:** [TASK-056]
 **assigned_agents:** [pixel-artist, coder, reviewer, playtester, git]
