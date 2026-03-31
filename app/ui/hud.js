@@ -162,6 +162,22 @@ const HUD = (() => {
       _dismissJournalHint();
     });
 
+    // Generic toast: { detail: { message: string, duration?: number } }
+    let _toastTimer = null;
+    window.addEventListener(EVENTS.HUD_TOAST, (e) => {
+      const toastEl = document.getElementById('tutor-status');
+      if (!toastEl) { return; }
+      const msg = e.detail && e.detail.message ? e.detail.message : '';
+      const duration = e.detail && e.detail.duration ? e.detail.duration : 4000;
+      toastEl.textContent = msg;
+      toastEl.classList.add('visible');
+      if (_toastTimer !== null) { clearTimeout(_toastTimer); }
+      _toastTimer = setTimeout(() => {
+        toastEl.classList.remove('visible');
+        _toastTimer = null;
+      }, duration);
+    });
+
     document.addEventListener('keydown', _onKeyDown);
   }
 

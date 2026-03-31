@@ -125,6 +125,11 @@ class WorldScene extends Phaser.Scene {
     this.physics.add.collider(this._player.gameObject, this.collisionGroup);
 
     // -------------------------------------------------------
+    // 5b. Controls hint — show once per session
+    // -------------------------------------------------------
+    this._showControlsHint();
+
+    // -------------------------------------------------------
     // 7. World bounds
     // -------------------------------------------------------
     this.physics.world.setBounds(0, 0, worldW, worldH);
@@ -408,6 +413,40 @@ class WorldScene extends Phaser.Scene {
       }
     }
     return outlines;
+  }
+
+  // ---------------------------------------------------------------
+  // Private — controls hint (first WorldScene visit per session)
+  // ---------------------------------------------------------------
+  _showControlsHint() {
+    if (sessionStorage.getItem('controls-hint-shown')) { return; }
+    sessionStorage.setItem('controls-hint-shown', '1');
+
+    const isMobile = window.matchMedia('(pointer: coarse)').matches ||
+                     window.innerWidth <= 600;
+    const message = isMobile
+      ? 'Use joystick to move, tap NPC to talk'
+      : 'WASD / \u2191\u2193\u2190\u2192 to move, E to talk';
+    const DURATION = 5000;
+
+    // Delay slightly so the scene fade-in completes first
+    const showTimer = setTimeout(() => {
+      window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
+        detail: { message, duration: DURATION },
+      }));
+    }, 400);
+
+    // Dismiss early on first player movement
+    const _onMove = () => {
+      clearTimeout(showTimer);
+      window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
+        detail: { message: '', duration: 1 },
+      }));
+      this.input.keyboard.off('keydown', _onMove);
+      this.input.off('pointermove', _onMove);
+    };
+    this.input.keyboard.once('keydown', _onMove);
+    this.input.once('pointermove', _onMove);
   }
 
   // ---------------------------------------------------------------

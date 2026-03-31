@@ -98,4 +98,5 @@ const EVENTS = {
   SETTINGS_SCRIPT_MODE_CHANGE: 'settings:scriptMode:change',
   SETTINGS_THEME_CHANGE:       'settings:theme:change',
   SETTINGS_VOLUME_CHANGE:      'settings:volume:change',
+  HUD_TOAST:                   'hud:toast',
 };
