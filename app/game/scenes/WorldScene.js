@@ -274,6 +274,17 @@ class WorldScene extends Phaser.Scene {
         const park = BUILDING_ZONES.find((z) => z.id === 'park');
         if (park) { park.locked = false; }
       }
+
+      // Restore active mission in HUD when WorldScene loads (e.g. returning from interior).
+      // Only fires if StoryMissions has not already set the display this session.
+      if (progress.activeMission && progress.activeMission.title) {
+        window.dispatchEvent(new CustomEvent(EVENTS.MISSION_START, {
+          detail: {
+            title:   progress.activeMission.title,
+            titleEn: progress.activeMission.titleEn,
+          },
+        }));
+      }
     });
   }
 
