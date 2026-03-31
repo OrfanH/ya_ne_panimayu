@@ -246,11 +246,11 @@ const Journal = (() => {
   }
 
   // -----------------------------------------------------------
-  // Keyboard — J or Escape closes when open
+  // Keyboard — Escape closes when open.
+  // J-key is handled by hud.js which dispatches EVENTS.JOURNAL_OPEN.
   // -----------------------------------------------------------
   function _onKeyDown(e) {
-    if (!_open) { return; }
-    if (e.code === KEYBOARD_SHORTCUTS.JOURNAL || e.code === 'Escape') {
+    if (e.code === 'Escape' && _open) {
       e.preventDefault();
       close();
     }
@@ -291,7 +291,7 @@ const Journal = (() => {
   function _init() {
     _buildDOM();
     window.addEventListener(EVENTS.JOURNAL_OPEN, open);
-    window.addEventListener('keydown', _onKeyDown);
+    document.addEventListener('keydown', _onKeyDown);
     window.addEventListener(EVENTS.LOCATION_ENTER, _onLocationEnter);
     window.addEventListener(EVENTS.DIALOGUE_END, _onDialogueEnd);
   }

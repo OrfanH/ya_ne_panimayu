@@ -73,6 +73,8 @@ class ApartmentScene extends Phaser.Scene {
     // -------------------------------------------------------
     // 4. World bounds
     // -------------------------------------------------------
+    this._transitioning = false;
+    this._sceneH = roomH;
     this.physics.world.setBounds(0, 0, roomW, roomH);
 
     // -------------------------------------------------------
@@ -210,6 +212,15 @@ class ApartmentScene extends Phaser.Scene {
 
     this._player.update(this._cursors, this._wasd);
     this._npc.checkInteraction(px, py, Phaser.Input.Keyboard.JustDown(this._eKey));
+
+    if (!this._transitioning && py >= this._sceneH - GAME_CONFIG.TILE_SIZE) {
+      this._transitioning = true;
+      this.physics.pause();
+      this.cameras.main.fadeOut(300);
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        this.scene.start('World');
+      });
+    }
   }
 
   shutdown() {

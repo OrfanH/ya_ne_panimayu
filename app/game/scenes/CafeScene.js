@@ -90,6 +90,8 @@ class CafeScene extends Phaser.Scene {
     // -------------------------------------------------------
     // 5. World bounds
     // -------------------------------------------------------
+    this._transitioning = false;
+    this._sceneH = cafeH;
     this.physics.world.setBounds(0, 0, cafeW, cafeH);
 
     // -------------------------------------------------------
@@ -156,6 +158,15 @@ class CafeScene extends Phaser.Scene {
     this._player.update(this._cursors, this._wasd);
     this._lena.checkInteraction(px, py, eDown);
     this._boris.checkInteraction(px, py, eDown);
+
+    if (!this._transitioning && py >= this._sceneH - GAME_CONFIG.TILE_SIZE) {
+      this._transitioning = true;
+      this.physics.pause();
+      this.cameras.main.fadeOut(300);
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        this.scene.start('World');
+      });
+    }
   }
 
   shutdown() {

@@ -162,7 +162,7 @@ const HUD = (() => {
       _dismissJournalHint();
     });
 
-    window.addEventListener('keydown', _onKeyDown);
+    document.addEventListener('keydown', _onKeyDown);
   }
 
   async function _loadActiveMission() {

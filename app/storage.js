@@ -21,17 +21,16 @@ async function kvGet(key) {
 }
 
 async function kvSet(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));  // write-through cache
   try {
     const res = await fetch(KV_API_BASE, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ key, value }),
     });
-    if (!res.ok) {
-      localStorage.setItem(key, JSON.stringify(value));
-    }
+    // Note: localStorage already written above regardless of API result
   } catch {
-    localStorage.setItem(key, JSON.stringify(value));
+    // localStorage already written above
   }
 }
 
@@ -39,7 +38,12 @@ async function kvSet(key, value) {
 
 async function getProgress() {
   const data = await kvGet(STORAGE_KEYS.PROGRESS);
-  return data || { ...DEFAULT_PROGRESS };
+  if (!data) {
+    const defaults = { ...DEFAULT_PROGRESS };
+    localStorage.setItem(STORAGE_KEYS.PROGRESS, JSON.stringify(defaults));
+    return defaults;
+  }
+  return data;
 }
 
 async function saveProgress(progress) {

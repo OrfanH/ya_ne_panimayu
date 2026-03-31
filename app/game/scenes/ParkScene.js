@@ -101,6 +101,8 @@ class ParkScene extends Phaser.Scene {
     // -------------------------------------------------------
     // 5. World bounds
     // -------------------------------------------------------
+    this._transitioning = false;
+    this._sceneH = parkH;
     this.physics.world.setBounds(0, 0, parkW, parkH);
 
     // -------------------------------------------------------
@@ -167,6 +169,15 @@ class ParkScene extends Phaser.Scene {
     this._player.update(this._cursors, this._wasd);
     this._artyom.checkInteraction(px, py, eDown);
     this._tamara.checkInteraction(px, py, eDown);
+
+    if (!this._transitioning && py >= this._sceneH - GAME_CONFIG.TILE_SIZE) {
+      this._transitioning = true;
+      this.physics.pause();
+      this.cameras.main.fadeOut(300);
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        this.scene.start('World');
+      });
+    }
   }
 
   shutdown() {

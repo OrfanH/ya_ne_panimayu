@@ -84,6 +84,8 @@ class PoliceScene extends Phaser.Scene {
     });
 
     // Physics + camera
+    this._transitioning = false;
+    this._sceneH = polH;
     this.physics.world.setBounds(0, 0, polW, polH);
     this.cameras.main.setBounds(0, 0, polW, polH);
     this.cameras.main.startFollow(this._player.gameObject, true, GAME_CONFIG.CAMERA_LERP, GAME_CONFIG.CAMERA_LERP);
@@ -125,6 +127,15 @@ class PoliceScene extends Phaser.Scene {
     this._player.update(this._cursors, this._wasd);
     this._alina.checkInteraction(px, py, eDown);
     this._sergei.checkInteraction(px, py, eDown);
+
+    if (!this._transitioning && py >= this._sceneH - GAME_CONFIG.TILE_SIZE) {
+      this._transitioning = true;
+      this.physics.pause();
+      this.cameras.main.fadeOut(300);
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        this.scene.start('World');
+      });
+    }
   }
 
   shutdown() {

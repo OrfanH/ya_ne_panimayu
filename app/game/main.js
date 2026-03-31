@@ -18,6 +18,11 @@ const gameConfig = {
       gravity: { y: 0 },
     },
   },
+  input: {
+    keyboard: {
+      capture: [],  // Don't capture any keys globally — let them bubble normally
+    },
+  },
   scene: [BootScene, WorldScene, ApartmentScene, ParkScene, CafeScene, MarketScene, StationScene, PoliceScene, TestScene],
 };
 

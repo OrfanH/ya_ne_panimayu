@@ -91,6 +91,8 @@ class MarketScene extends Phaser.Scene {
     // -------------------------------------------------------
     // 5. World bounds + camera
     // -------------------------------------------------------
+    this._transitioning = false;
+    this._sceneH = marketH;
     this.physics.world.setBounds(0, 0, marketW, marketH);
     this.cameras.main.setBounds(0, 0, marketW, marketH);
     this.cameras.main.startFollow(this._player.gameObject, true, GAME_CONFIG.CAMERA_LERP, GAME_CONFIG.CAMERA_LERP);
@@ -153,6 +155,15 @@ class MarketScene extends Phaser.Scene {
     this._fatima.checkInteraction(px, py, eDown);
     this._misha.checkInteraction(px, py, eDown);
     this._styopan.checkInteraction(px, py, eDown);
+
+    if (!this._transitioning && py >= this._sceneH - GAME_CONFIG.TILE_SIZE) {
+      this._transitioning = true;
+      this.physics.pause();
+      this.cameras.main.fadeOut(300);
+      this.cameras.main.once('camerafadeoutcomplete', () => {
+        this.scene.start('World');
+      });
+    }
   }
 
   shutdown() {

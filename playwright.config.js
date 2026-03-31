@@ -7,6 +7,7 @@ module.exports = defineConfig({
   testDir: './tests',
   timeout: 40_000,
   retries: 0,
+  workers: 1,
 
   reporter: [
     ['list'],

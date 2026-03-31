@@ -304,21 +304,6 @@ const DialogueUI = (() => {
   }
 
   // -----------------------------------------------------------
-  // Physics resume bridge — listens for dialogue-close and
-  // resumes physics on all active Phaser scenes.
-  // Kept in ui/ but uses window event pattern (no direct Phaser import).
-  // -----------------------------------------------------------
-  function _onDialogueClose() {
-    if (typeof game !== 'undefined' && game.scene) {
-      game.scene.scenes.forEach((s) => {
-        if (s.physics && s.physics.world) {
-          s.physics.resume();
-        }
-      });
-    }
-  }
-
-  // -----------------------------------------------------------
   // dialogue:start listener — state machine rejects re-entry
   // -----------------------------------------------------------
   function _onDialogueStart(e) {
@@ -353,13 +338,25 @@ const DialogueUI = (() => {
   }
 
   // -----------------------------------------------------------
+  // dialogue:end listener — closes overlay if externally fired
+  // Guard: close() itself sets phase to CLOSING before dispatching
+  // DIALOGUE_END, so close() rejects re-entry via its own phase check.
+  // The _overlay.classList check is a belt-and-suspenders guard.
+  // -----------------------------------------------------------
+  function _onExternalDialogueEnd() {
+    if (_overlay && _overlay.classList.contains('is-active')) {
+      close();
+    }
+  }
+
+  // -----------------------------------------------------------
   // Init — called once on page load
   // -----------------------------------------------------------
   function _init() {
     _buildDOM();
     window.addEventListener(EVENTS.DIALOGUE_START, _onDialogueStart);
     window.addEventListener(EVENTS.DIALOGUE_UPDATE, _onDialogueUpdate);
-    window.addEventListener(EVENTS.DIALOGUE_END, _onDialogueClose);
+    window.addEventListener(EVENTS.DIALOGUE_END, _onExternalDialogueEnd);
   }
 
   // Boot after DOM is ready
