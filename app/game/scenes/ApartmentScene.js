@@ -99,8 +99,11 @@ class ApartmentScene extends Phaser.Scene {
     // -------------------------------------------------------
     // 7. Dialogue-start listener → init TutorAI with NPC data
     //    Skipped during first-visit scripted mode (_firstVisitScripted flag).
+    //    NOTE: _firstVisitScripted is initialised in section 11 before
+    //    the async getProgress() call, so it is always set before this
+    //    listener can fire.
     // -------------------------------------------------------
-    this._firstVisitScripted = false;
+    this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 11
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
@@ -182,11 +185,17 @@ class ApartmentScene extends Phaser.Scene {
     //     Uses the 'opening' variation from APARTMENT_DIALOGUE.
     //     _firstVisitScripted blocks TutorAI takeover until
     //     the scripted exchange completes and galina_met is saved.
+    //
+    //     IMPORTANT: set _firstVisitScripted = true synchronously
+    //     BEFORE the async getProgress() call so TutorAI cannot
+    //     race in during the period when the promise is in-flight.
+    //     The flag is downgraded back to false inside the callback
+    //     only when it turns out this is NOT a first visit.
     // -------------------------------------------------------
+    this._firstVisitScripted = true;
     getProgress().then((progress) => {
       const isFirstVisit = progress.npcRelationships.galina === undefined;
       if (isFirstVisit) {
-        this._firstVisitScripted = true;
         const opening = APARTMENT_DIALOGUE.VARIATIONS[0];
         const firstLine = opening.lines[0];
         this.time.delayedCall(350, () => {
@@ -202,6 +211,8 @@ class ApartmentScene extends Phaser.Scene {
             },
           }));
         });
+      } else {
+        this._firstVisitScripted = false;
       }
     });
   }
