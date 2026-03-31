@@ -115,7 +115,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-009
 **title:** First-visit scripted dialogue race condition — TutorAI can fire before greeting completes
 **track:** BUG
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
@@ -262,7 +262,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-004
 **title:** Journal does not open on J key press — Phaser keyboard intercept blocks window listener
 **track:** BUG
-**status:** IN_PROGRESS
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [app/ui/hud.js, app/game/main.js]
@@ -288,7 +288,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-006
 **title:** persistence.spec.js uses about:blank to clear localStorage — SecurityError in Chromium sandbox
 **track:** BUG
-**status:** IN_PROGRESS
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [tests/persistence.spec.js]
@@ -301,7 +301,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-007
 **title:** settings:volume:change window event does not trigger saveSettings — wrong event mechanism and localStorage-only assumption
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [tests/persistence.spec.js, app/ui/settings.js, app/storage.js]
@@ -314,7 +314,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-011
 **title:** Journal never opens on J key press — _onKeyDown only handles close, no open branch
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [app/ui/journal.js]
@@ -327,7 +327,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-012
 **title:** localStorage.progress missing chapter/unlockedLocations/npcRelationships — default shape never persisted on first boot
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [app/storage.js, app/config.js]
@@ -340,7 +340,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-013
 **title:** vocabulary:new event does not write to localStorage — test uses wrong trigger event
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [tests/persistence.spec.js, app/ui/journal.js, app/storage.js]
@@ -353,7 +353,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-014
 **title:** Settings volume slider query uses [data-setting="volume"] but markup has no data-setting attribute
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [tests/persistence.spec.js, app/ui/settings.js]
@@ -366,7 +366,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-015
 **title:** Journal never opens on J key — WorldScene and journal.js both handle KeyJ, causing immediate open+close
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [app/game/scenes/WorldScene.js, app/ui/journal.js]
@@ -379,7 +379,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-016
 **title:** Progress default-shape test fails — localStorage contaminated with partial `{ hasSeenIntro: true }` from prior boot sequence
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [tests/persistence.spec.js, app/storage.js]
@@ -392,7 +392,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-017
 **title:** Playwright workers saturate `npx serve` — 26 cascade timeouts after test ~50
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [playwright.config.js]
@@ -405,7 +405,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-018
 **title:** Journal does not open on J key press — Phaser keyboard plugin not reliable in Playwright
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [app/ui/journal.js]
@@ -418,7 +418,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 ### BUG-019
 **title:** Journal J-key opens and immediately closes — dual keydown handlers cancel each other
 **track:** BUG
-**status:** READY
+**status:** DONE
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester]
 **reads:** [app/ui/journal.js, app/ui/hud.js]
@@ -513,6 +513,7 @@ BUG-009 — First-visit scripted dialogue race condition (P1)
 - TASK-047 | DONE | 2026-03-30 | NPC relationship tiers — stranger/acquaintance/friend dialogue | e3251d7
 - TASK-060 | DONE | 2026-03-30 | Verify+fix overworld building tile frames, hatch overlay, dead props removed | 67ce7ea
 - BUG-008, BUG-005, BUG-004, BUG-011, BUG-006, BUG-007, BUG-012, BUG-013, BUG-014, BUG-016, BUG-017 | DONE | 2026-03-31 | Interior scene exits, dialogue close, J-key journal, storage cache, test fixes | 09f50ac
+- BUG-009 | DONE | 2026-03-31 | First-visit scripted dialogue race condition — _firstVisitScripted synchronous before async getProgress | 43c8b3d
 
 ## Session log
 
