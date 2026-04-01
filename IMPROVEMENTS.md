@@ -22,6 +22,46 @@
 
 *Tasks here run before any Backlog task, regardless of priority. Recovery mode clears this queue first.*
 
+### BUG-020
+**title:** [RECOVERY] First-visit scripted dialogue — no onboarding scaffold; player thrown into Russian choices with no setup
+**track:** BUG
+**status:** BACKLOG
+**priority:** P0
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/game/scenes/ApartmentScene.js, app/game/content/apartment-dialogue.js, app/ui/dialogue.js, app/config.js]
+**writes:** [app/game/scenes/ApartmentScene.js, app/game/content/apartment-dialogue.js]
+**done_when:** Before the scripted 3-choice dialogue appears, the player sees at least one line of narration or Galina's voice that establishes context (e.g. "Your neighbor knocks. She greets you in Russian."). The scripted dismiss choice "Хорошо." has an English translation rendered below or beside it (e.g. "Хорошо. / Okay."). A tester unfamiliar with the game can explain what happened after the first scripted exchange without looking at the source code.
+**notes:** [RECOVERY] Human playtesting found: new players are thrown directly into 3 Russian dialogue choices with no setup or explanation. The interaction model (press E → choose a Russian response → Galina replies) is never explained. After choosing, only a single "Хорошо." button appears with no English, leaving the player with no understanding of what they agreed to. This is the first thing every player experiences — if it's opaque, they stop playing. The fix is either: (a) a brief narration line before the scripted exchange opens, or (b) adding English subtitle text to the scripted opening line and the dismiss choice. At minimum, "Хорошо." must show its English translation.
+
+---
+
+### BUG-021
+**title:** [RECOVERY] TutorAI opening shows '...' with no choices — dialogue appears frozen while API call is in flight
+**track:** BUG
+**status:** BACKLOG
+**priority:** P0
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/game/entities/NPC.js, app/tutor.js, app/ui/dialogue.js, app/config.js]
+**writes:** [app/game/entities/NPC.js, app/tutor.js]
+**done_when:** When a player presses E on Galina for the second time (post-scripted-exchange), the dialogue box shows a localised loading message (e.g. "Galina is thinking... / Галина думает...") AND at minimum the "До свидания / Goodbye" choice is visible immediately — so the player can always exit. The box never shows zero choices. If the API response takes >5 seconds or fails, the scripted fallback fires and dialogue updates with real content. Verified in Playwright with API blocked (503) and confirmed no zero-choice state.
+**notes:** [RECOVERY] Human playtesting found: after the scripted exchange ends and the player presses E again, `NPC._startDialogue()` dispatches DIALOGUE_START with `{ russian: '...', choices: [], loading: true }`. The box opens with the literal text "..." and zero interactive elements while TutorAI's async API call is in flight. On slow connections (or when Gemini is rate-limiting), this lasts 5–20 seconds. Player sees a box they cannot interact with and cannot close — the game appears completely frozen. Fix: either (a) immediately show the "До свидания" exit choice from the start so the player can always escape, or (b) start TutorAI before dispatching DIALOGUE_START and dispatch DIALOGUE_START only when the first reply is ready.
+
+---
+
+### BUG-022
+**title:** [RECOVERY] TutorAI conversation buttons are Russian-only — "Продолжить..." / "До свидания" have no English label
+**track:** BUG
+**status:** BACKLOG
+**priority:** P0
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/tutor.js, app/ui/dialogue.js, app/config.js]
+**writes:** [app/tutor.js]
+**done_when:** The two TutorAI choice buttons display both Russian and English text. "Продолжить..." shows as "Продолжить... / Continue..." and "До свидания" shows as "До свидания / Goodbye". A first-time player can correctly identify which button continues the conversation and which exits it without any prior Russian knowledge. Verified by Playwright snapshot showing both texts in the choice buttons.
+**notes:** [RECOVERY] Human playtesting found: after the TutorAI greeting loads, the player sees two buttons — "Продолжить..." and "До свидания" — both in Russian with zero English. A beginner Russian learner has no way to know "Продолжить..." means continue or that "До свидания" exits the conversation. `_dispatchAILine()` in app/tutor.js hardcodes `choices: [{ id: 'continue', russian: 'Продолжить...' }, { id: 'end', russian: 'До свидания', isFinal: true }]` with no `translation` field. Fix: add a `translation` field to each choice object and update dialogue.js `_populate()` to render the translation below the Russian label on choice buttons.
+
 ---
 
 ## Backlog
