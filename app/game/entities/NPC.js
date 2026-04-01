@@ -164,18 +164,34 @@ class NPC {
       tier = _getTier(score);
     } catch { /* silent — use default tier 0 */ }
 
+    const portrait = `assets/portraits/${this._id}.png`;
+
+    // Show the dialogue box immediately with a localised loading message and
+    // the goodbye choice so the player can always exit — never zero choices.
     window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
       detail: {
         npcId: this._id,
         npcName: this._name,
-        russian: '...',
-        translation: '',
-        choices: [],
-        portrait: `assets/portraits/${this._id}.png`,
+        russian: `${this._name} думает...`,
+        translation: `${this._name} is thinking...`,
+        choices: [
+          { id: 'end', russian: 'До свидания', translation: 'Goodbye', isFinal: true },
+        ],
+        portrait,
         loading: true,
         tier,
       },
     }));
+
+    // Start the TutorAI conversation — when the API responds it dispatches
+    // DIALOGUE_UPDATE which replaces the loading state with real content.
+    TutorAI.startConversation({
+      id: this._id,
+      name: this._name,
+      persona: '',
+      tutorVocabulary: [],
+      portrait,
+    });
   }
 
   // ---------------------------------------------------------------

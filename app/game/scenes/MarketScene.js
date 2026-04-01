@@ -142,6 +142,9 @@ class MarketScene extends Phaser.Scene {
       if (!progress.unlockedLocations.includes('station')) {
         progress.unlockedLocations.push('station');
         saveProgress(progress);
+        window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
+          detail: { message: 'The train station is now open!', duration: 4000 },
+        }));
       }
     });
   }

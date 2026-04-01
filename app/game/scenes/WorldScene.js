@@ -8,12 +8,13 @@ const PLAYER_SPAWN_COL = 10;
 const PLAYER_SPAWN_ROW = 18;
 
 const BUILDING_ZONES = [
-  { id: 'apartment', name: 'Apartment Building', col: 5,  row: 3,  cols: 6, rows: 5, chapter: 1, locked: false },
-  { id: 'park',      name: 'Park',               col: 14, row: 2,  cols: 5, rows: 4, chapter: 2, locked: true  },
-  { id: 'cafe',      name: 'Café',               col: 22, row: 8,  cols: 5, rows: 4, chapter: 3, locked: true  },
-  { id: 'market',    name: 'Market',             col: 4,  row: 14, cols: 6, rows: 5, chapter: 4, locked: true  },
-  { id: 'station',   name: 'Train Station',      col: 20, row: 20, cols: 6, rows: 4, chapter: 5, locked: true  },
-  { id: 'police',    name: 'Police Station',     col: 11, row: 25, cols: 5, rows: 4, chapter: 6, locked: true  },
+  { id: 'apartment',  name: 'Apartment Building', col: 5,  row: 3,  cols: 6, rows: 5, chapter: 1, locked: false },
+  { id: 'park',       name: 'Park',               col: 14, row: 2,  cols: 5, rows: 4, chapter: 2, locked: true  },
+  { id: 'cafe',       name: 'Café',               col: 22, row: 8,  cols: 5, rows: 4, chapter: 3, locked: true  },
+  { id: 'market',     name: 'Market',             col: 4,  row: 14, cols: 6, rows: 5, chapter: 4, locked: true  },
+  { id: 'station',    name: 'Train Station',      col: 20, row: 20, cols: 6, rows: 4, chapter: 5, locked: true  },
+  { id: 'police',     name: 'Police Station',     col: 11, row: 25, cols: 5, rows: 4, chapter: 6, locked: true  },
+  { id: 'professor',  name: "Professor's Office", col: 30, row: 10, cols: 5, rows: 4, chapter: 1, locked: true  },
 ];
 
 /*
@@ -51,6 +52,7 @@ const CITY_TILES = {
     market:    { wall: 247, roof: 268, door: 384 },
     station:   { wall: 284, roof: 118, door: 386 },
     police:    { wall: 174, roof: 110, door: 378 },
+    professor: { wall: 213, roof: 182, door: 377 },
   },
 };
 
@@ -70,7 +72,7 @@ class WorldScene extends Phaser.Scene {
     const worldH = ROWS * T;
 
     // Reset zone locked states to defaults — prevents stale state from prior scene visits
-    const ZONE_DEFAULTS = { apartment: false, park: true, cafe: true, market: true, station: true, police: true };
+    const ZONE_DEFAULTS = { apartment: false, park: true, cafe: true, market: true, station: true, police: true, professor: true };
     for (const zone of BUILDING_ZONES) {
       zone.locked = ZONE_DEFAULTS[zone.id] !== undefined ? ZONE_DEFAULTS[zone.id] : true;
       zone._pulseTween = null;
@@ -188,6 +190,16 @@ class WorldScene extends Phaser.Scene {
     };
 
     this._onZoneEnter = ({ id }) => {
+      if (id === 'professor') {
+        this._autoWalking = false;
+        if (this._transitioning) { return; }
+        this._transitioning = true;
+        this.cameras.main.fadeOut(300, 0, 0, 0);
+        this.cameras.main.once('camerafadeoutcomplete', () => {
+          this.scene.start('Test', { chapter: 1 });
+        });
+        return;
+      }
       if (ZONE_SCENE_MAP[id]) {
         this._autoWalking = false;
         this._transitionTo(ZONE_SCENE_MAP[id]);
@@ -273,6 +285,15 @@ class WorldScene extends Phaser.Scene {
       if (unlocked.includes('apartment') || progress.chapter >= 2) {
         const park = BUILDING_ZONES.find((z) => z.id === 'park');
         if (park) { park.locked = false; }
+      }
+
+      // Unlock Professor's Office when all chapter 1 story missions are complete
+      const ch1Missions = ['story:apartment:1', 'story:apartment:2', 'story:apartment:3'];
+      const completed = progress.completedMissions || [];
+      const ch1Done = ch1Missions.every((id) => completed.includes(id));
+      if (ch1Done) {
+        const prof = BUILDING_ZONES.find((z) => z.id === 'professor');
+        if (prof) { prof.locked = false; }
       }
 
       // Restore active mission in HUD when WorldScene loads (e.g. returning from interior).
@@ -514,6 +535,26 @@ class WorldScene extends Phaser.Scene {
               yoyo: true,
               repeat: -1,
             });
+          }
+        }
+
+        // Toast hint when player tries to enter Professor's Office while locked
+        if (zone.locked && zone.id === 'professor') {
+          const doorCol = zone.col + Math.floor(zone.cols / 2);
+          const doorRow = zone.row + zone.rows - 1;
+          if (playerCol === doorCol && playerRow === doorRow) {
+            const toastKey = 'professor:locked:' + doorCol + ':' + doorRow;
+            if (this._lastZoneEnterEmit !== toastKey) {
+              this._lastZoneEnterEmit = toastKey;
+              window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
+                detail: { message: 'Complete your missions first!', duration: 3000 },
+              }));
+            }
+          } else {
+            const toastKey = 'professor:locked:' + (zone.col + Math.floor(zone.cols / 2)) + ':' + (zone.row + zone.rows - 1);
+            if (this._lastZoneEnterEmit === toastKey) {
+              this._lastZoneEnterEmit = null;
+            }
           }
         }
 

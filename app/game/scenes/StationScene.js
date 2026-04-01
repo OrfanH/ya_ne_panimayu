@@ -122,6 +122,9 @@ class StationScene extends Phaser.Scene {
       if (!progress.unlockedLocations.includes('police')) {
         progress.unlockedLocations.push('police');
         saveProgress(progress);
+        window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
+          detail: { message: 'The police station is now open!', duration: 4000 },
+        }));
       }
     });
   }

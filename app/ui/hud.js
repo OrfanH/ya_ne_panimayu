@@ -7,8 +7,10 @@ const HUD = (() => {
   let _locationEl = null;
   let _missionEl = null;
   let _missionTitleEl = null;
+  let _missionTitleEnEl = null;
   let _journalHintEl = null;
   let _locationExitTimer = null;
+  let _missionClearTimer = null;
   let _journalHintDismissed = false;
 
   function _buildDOM() {
@@ -32,8 +34,12 @@ const HUD = (() => {
     _missionTitleEl = document.createElement('span');
     _missionTitleEl.className = 'hud-mission-title';
 
+    _missionTitleEnEl = document.createElement('span');
+    _missionTitleEnEl.className = 'hud-mission-en';
+
     _missionEl.appendChild(missionLabelEl);
     _missionEl.appendChild(_missionTitleEl);
+    _missionEl.appendChild(_missionTitleEnEl);
 
     // --- Journal hint (bottom-right)
     _journalHintEl = document.createElement('div');
@@ -104,8 +110,15 @@ const HUD = (() => {
     }, 150);
   }
 
-  function _showMission(title) {
+  function _showMission(title, titleEn) {
     _missionTitleEl.textContent = title;
+    if (titleEn) {
+      _missionTitleEnEl.textContent = titleEn;
+      _missionTitleEnEl.classList.add('is-visible');
+    } else {
+      _missionTitleEnEl.textContent = '';
+      _missionTitleEnEl.classList.remove('is-visible');
+    }
     // Force reflow so scale animation runs on re-show
     _missionEl.classList.remove('is-visible');
     void _missionEl.offsetWidth;
@@ -147,14 +160,29 @@ const HUD = (() => {
     });
 
     window.addEventListener(EVENTS.MISSION_START, (e) => {
+      if (_missionClearTimer !== null) {
+        clearTimeout(_missionClearTimer);
+        _missionClearTimer = null;
+      }
       if (e.detail && e.detail.title) {
-        _showMission(e.detail.title);
+        _showMission(e.detail.title, e.detail.titleEn || '');
       }
     });
 
     window.addEventListener(EVENTS.MISSION_COMPLETE, () => {
-      _missionEl.classList.remove('is-visible');
-      _missionTitleEl.textContent = '';
+      window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
+        detail: { message: 'Задание выполнено! / Mission complete!', duration: 3000 },
+      }));
+      if (_missionClearTimer !== null) {
+        clearTimeout(_missionClearTimer);
+      }
+      _missionClearTimer = setTimeout(() => {
+        _missionEl.classList.remove('is-visible');
+        _missionTitleEl.textContent = '';
+        _missionTitleEnEl.textContent = '';
+        _missionTitleEnEl.classList.remove('is-visible');
+        _missionClearTimer = null;
+      }, 500);
     });
 
     // Dismiss hint if journal is opened by any means
@@ -184,8 +212,8 @@ const HUD = (() => {
   async function _loadActiveMission() {
     try {
       const progress = await getProgress();
-      if (progress.activeMission && progress.activeMission.titleEn) {
-        _showMission(progress.activeMission.titleEn);
+      if (progress.activeMission && progress.activeMission.title) {
+        _showMission(progress.activeMission.title, progress.activeMission.titleEn || '');
       }
     } catch {
       /* silent */

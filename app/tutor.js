@@ -158,7 +158,7 @@ const TutorAI = (() => {
     let reinforcement = '';
     if (learnedWords && learnedWords.length > 0) {
       // Pick up to 8 previously learned words to reinforce naturally
-      const sample = learnedWords.slice(0, 8).map(w => w.cyrillic || w.russian).join(', ');
+      const sample = learnedWords.slice(-8).map(w => w.cyrillic || w.russian).join(', ');
       reinforcement = `\nThe student has previously learned these words — use them naturally when they fit: ${sample}.`;
     }
 

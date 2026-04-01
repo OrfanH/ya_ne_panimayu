@@ -196,6 +196,9 @@ class ApartmentScene extends Phaser.Scene {
       if (!progress.unlockedLocations.includes('park')) {
         progress.unlockedLocations.push('park');
         saveProgress(progress);
+        window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
+          detail: { message: 'The park is now open!', duration: 4000 },
+        }));
       }
     });
 

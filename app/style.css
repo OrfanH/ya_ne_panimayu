@@ -146,6 +146,18 @@ body {
   text-shadow: 1px 1px 0 #1e2028;
 }
 
+.hud-mission-en {
+  font-size: var(--text-xs);
+  font-family: var(--font-hud);
+  color: var(--text-tertiary);
+  text-shadow: 1px 1px 0 #1e2028;
+  display: none;
+}
+
+.hud-mission-en.is-visible {
+  display: block;
+}
+
 /* --- HUD: Journal Hint (bottom-right) --- */
 .hud-journal-hint {
   position: absolute;

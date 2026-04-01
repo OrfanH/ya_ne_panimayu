@@ -146,6 +146,9 @@ class CafeScene extends Phaser.Scene {
       if (!progress.unlockedLocations.includes('market')) {
         progress.unlockedLocations.push('market');
         saveProgress(progress);
+        window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
+          detail: { message: 'The market is now open!', duration: 4000 },
+        }));
       }
     });
   }

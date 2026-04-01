@@ -157,6 +157,9 @@ class ParkScene extends Phaser.Scene {
       if (!progress.unlockedLocations.includes('cafe')) {
         progress.unlockedLocations.push('cafe');
         saveProgress(progress);
+        window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
+          detail: { message: 'The cafe is now open!', duration: 4000 },
+        }));
       }
     });
   }
