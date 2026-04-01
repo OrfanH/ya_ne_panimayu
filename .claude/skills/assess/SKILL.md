@@ -68,13 +68,28 @@ Read these files. Do not read files outside this list unless a specific finding 
 
 ---
 
-## Step 1.5 — Read experience test results
+## Step 1.5 — Run tests and read results (DYNAMIC)
 
-Read `playwright-report/results.json` if it exists.
+**Always run the full test suite first.** This makes /assess dynamic — it tests the live game, not just reads code.
 
-This file is written by every Playwright run (pre-commit hook, `/build` playtester, or manual `npx playwright test`). It contains confirmed runtime failures — not code-inferred suspicions.
+Run:
+```bash
+npx playwright test --reporter=json 2>&1
+```
 
-**Parse it as follows:**
+Wait for it to complete (up to 3 minutes). The results are written to `playwright-report/results.json`.
+
+**If the server is not running**, start it first:
+```bash
+npx serve app -p 3000 &
+```
+Then re-run the playwright command.
+
+**If playwright is unavailable** (no node, no browsers): note "dynamic test run skipped — findings are code-inferred only" and read the existing `playwright-report/results.json` as a fallback.
+
+---
+
+**Parse results.json as follows:**
 
 For each test suite and result in the JSON:
 
@@ -83,10 +98,17 @@ For each test suite and result in the JSON:
 
 | Test suite (title) | Classification | Priority |
 |---|---|---|
+| `First-visit onboarding flow` | `[RECOVERY]` | P0 |
 | `Dialogue — loading state is never a dead end` | `[RECOVERY]` | P0 |
 | `Dialogue — no permanent placeholder text` | `[RECOVERY]` | P0 |
 | `Dialogue — choice buttons have English labels` | `[RECOVERY]` | P0 |
+| `Scene transitions` | `[RECOVERY]` | P0 |
+| `No crashes during flows` | `[RECOVERY]` | P0 |
 | `Dialogue — bilingual content invariant` | `[PLAYABILITY]` | P1 |
+| `Return-visit apartment flow` | `[PLAYABILITY]` | P1 |
+| `Mission system flows` | `[PLAYABILITY]` | P1 |
+| `Dialogue keyboard shortcuts` | `[PLAYABILITY]` | P1 |
+| Any other `flows.spec.js` failure | `[PLAYABILITY]` | P1 |
 | Any other `experience.spec.js` failure | `[PLAYABILITY]` | P1 |
 | Any `smoke.spec.js` failure | `[RECOVERY]` | P0 |
 | Any `gameplay.spec.js` failure | `[PLAYABILITY]` | P1 |
@@ -96,10 +118,15 @@ For each test suite and result in the JSON:
 
 4. **Build a pre-classified gap list** from confirmed failures. Label each: `[CONFIRMED BY TEST]`
 
-**If the results.json does not exist:** note "no test run found — findings in Step 4 are code-inferred only" and proceed.
-**If all tests pass:** note "all experience invariants pass — Step 3 experience scan must find non-testable gaps only."
+**If all tests pass:** note "all tests pass — Step 3 experience scan must find non-testable gaps only."
 
 These confirmed failures are **facts**. In Step 4, they take priority over code-inferred suspicions and do not require re-derivation from source files. Do NOT re-inspect source code for gaps already confirmed by tests.
+
+---
+
+**After Step 1.5, also ask: "Is there a player path not covered by any test?"**
+
+For each new gap found in Steps 2–3, check whether a test already guards it. If not, the gap task `notes` field must include: `[NO TEST COVERAGE] — add a flows.spec.js test in TASK-077 or a follow-up test task.` This ensures the self-improvement loop: every new bug class gets a test written alongside the fix.
 
 ---
 

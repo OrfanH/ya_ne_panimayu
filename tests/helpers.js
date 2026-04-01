@@ -51,4 +51,40 @@ async function dispatchGameEvent(page, eventName, detail) {
   );
 }
 
-module.exports = { waitForGameReady, dispatchGameEvent, BOOT_TIMEOUT };
+/**
+ * Seed a specific progress object into localStorage, then boot and wait for World.
+ *
+ * Use this instead of waitForGameReady when the test needs a specific game state
+ * (e.g. first-visit vs return-visit, specific completedMissions, etc.)
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {object} progress - The full progress object to seed
+ */
+async function seedProgressAndBoot(page, progress) {
+  await page.addInitScript((p) => {
+    try { localStorage.setItem('progress', JSON.stringify(p)); } catch (_) {}
+  }, progress);
+
+  await page.goto('/');
+  await page.waitForFunction(
+    () => typeof window.__GAME__ !== 'undefined' && window.__GAME__.scene?.isActive('World'),
+    { timeout: BOOT_TIMEOUT }
+  );
+}
+
+/**
+ * Wait for a specific Phaser scene to become active.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {string} sceneKey - e.g. 'Apartment', 'World', 'Park'
+ * @param {number} timeout
+ */
+async function waitForSceneActive(page, sceneKey, timeout = 8000) {
+  await page.waitForFunction(
+    (key) => window.__GAME__?.scene?.isActive(key),
+    sceneKey,
+    { timeout }
+  );
+}
+
+module.exports = { waitForGameReady, dispatchGameEvent, seedProgressAndBoot, waitForSceneActive, BOOT_TIMEOUT };

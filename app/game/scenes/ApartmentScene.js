@@ -107,7 +107,7 @@ class ApartmentScene extends Phaser.Scene {
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
-      if (detail.npcId === npcData.id && !TutorAI.isActive() && !this._firstVisitScripted) {
+      if (detail.npcId === npcData.id && detail.loading === true && !TutorAI.isActive() && !this._firstVisitScripted) {
         getVocabulary().then((vocab) => {
           const knownWords = (vocab.words || []).slice(-20);
           const aiNpcData = Object.assign({}, npcData, {

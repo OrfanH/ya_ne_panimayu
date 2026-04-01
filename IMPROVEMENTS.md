@@ -8,6 +8,8 @@
 
 ## Done
 
+- CONTENT-GALINA | DONE | 2026-04-01 | Life-detail variations — sister Lyudmila + plant story thread | 7a9e911
+- CONTENT-NPC | DONE | 2026-04-01 | Cross-location gossip lines — Galina, Tamara, Boris reference other NPCs | e82207c
 - BUG-010 | DONE | 2026-03-31 | Controls hint on WorldScene load | f40323e
 - TASK-064 | DONE | 2026-04-01 | Recovery playtest — 84 passing, 0 failing, BUG-008–BUG-019 confirmed stable | sign-off
 - BUG-020 | DONE | 2026-04-01 | First-visit scripted dialogue — narration scaffold + bilingual choice buttons | 8c9dec7
@@ -360,31 +362,11 @@
 
 ---
 
-### TASK-069
-**title:** [ALIVENESS] Cross-location NPC references — add gossip lines connecting NPCs across locations
-**track:** CONTENT
-**status:** IN_PROGRESS
-**priority:** P2
-**depends_on:** []
-**assigned_agents:** [content-writer, linguist, git]
-**reads:** [app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js, REFERENCE-GAMEDESIGN.md, REFERENCE-DIALOGUE.md, CLAUDE-VISION.md]
-**writes:** [app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js]
-**done_when:** At least 3 NPC dialogue files contain at least 1 new variation line where the NPC references another NPC or location by name. Examples: Galina mentions the market vendor; Artyom mentions the café. Lines must be natural, A1-appropriate Russian with English translation. Each reference is a separate VARIATIONS entry with an appropriate trigger.
-**notes:** [ALIVENESS] No NPC currently references any other NPC or location. Every conversation is self-contained. Per REFERENCE-GAMEDESIGN.md §4: "cross-location NPC references create return motivation — when an NPC at the market mentions something happening at the café, players walk back to the café to check." This is the single highest-leverage aliveness change available without new systems — it only requires new dialogue lines.
+- TASK-069 | DONE | 2026-04-01 | Cross-location gossip lines — Galina, Tamara, Boris reference other NPCs/locations | e82207c
 
 ---
 
-### TASK-070
-**title:** [ALIVENESS] Galina life detail — add 1-2 dialogue variations with independent story thread
-**track:** CONTENT
-**status:** BACKLOG
-**priority:** P2
-**depends_on:** []
-**assigned_agents:** [content-writer, linguist, git]
-**reads:** [app/game/content/apartment-dialogue.js, REFERENCE-GAMEDESIGN.md, REFERENCE-DIALOGUE.md, CLAUDE-VISION.md]
-**writes:** [app/game/content/apartment-dialogue.js]
-**done_when:** `apartment-dialogue.js` VARIATIONS array contains at least 1 new variation where Galina mentions a recurring life element the player never directly participates in — her plants, a neighbour dispute, a relative, a routine. The line must be characterful, A1-appropriate, and use natural Russian (not textbook Russian). The variation must have a trigger condition so it doesn't fire on every visit.
-**notes:** [ALIVENESS] Galina's current persona is entirely player-facing: "She models language without condescension and waits for full answers." Per REFERENCE-GAMEDESIGN.md §3: "NPCs must have lives that do not revolve around the player — these details make NPCs feel real, not assistant-bots." Currently Galina has a watering can (one prop) but no independent story thread. Even one line like "Oh, my sister is visiting on Saturday — she never knocks" adds enormous depth at minimal cost.
+- TASK-070 | DONE | 2026-04-01 | Galina life-detail variations — sister Lyudmila + plant story thread | 7a9e911
 
 ---
 
@@ -710,6 +692,8 @@
 
 ## Session log
 
+- 2026-04-01 · TASK-070 Galina life-detail variations — sister Lyudmila (trigger: galina_key_given) + plant story (trigger: tier 1). Linguist PASS 16 lines, 0 corrections. 7a9e911
+- 2026-04-01 · TASK-069 Cross-location gossip — Galina→Artyom+café, Tamara→Lena, Boris→Galina. Linguist PASS after 1 fix (gendered past tense). e82207c
 - 2026-04-01 · TASK-072 World-state completion overlay — amber rectangle over completed buildings, completedLocations in progress storage, LOCATION_COMPLETE event. 98 passing, 0 failing. ce47196
 - 2026-04-01 · TASK-071 TutorAI vocab recognition — slice(-20) knownWords from storage injected into system prompt. 98 passing, 0 failing. d442b82
 - 2026-04-01 · TASK-050 Daily NPC conversation limit — lastTalkedDate[npcId] UTC date tracking in progress storage, scripted farewell on repeat visit, alreadySpokenToday injected into TutorAI system prompt. 98 passing, 0 failing. 38f4ac5
