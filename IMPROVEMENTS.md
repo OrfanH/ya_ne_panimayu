@@ -19,6 +19,7 @@
 - TASK-067 | DONE | 2026-04-01 | Professor zone in WorldScene launches TestScene | e355ed3
 - TASK-068 | DONE | 2026-04-01 | MISSION_COMPLETE HUD toast + 500ms delayed slot clear | e355ed3
 - TASK-073 | DONE | 2026-04-01 | TutorAI vocab reinforcement uses slice(-8) for most recent words | e355ed3
+- TASK-069 | DONE | 2026-04-01 | Building completion overlay — amber glow on WorldScene buildings when all location missions done | ce47196
 
 ---
 
