@@ -14,11 +14,11 @@
 - BUG-020-R | DONE | 2026-04-01 | CHOICE_FALLBACK_TRANSLATIONS in dialogue.js — dismiss/greet/thanks/continue/end all get English | 69b5e4d
 - BUG-021 | DONE | 2026-04-01 | TutorAI loading state — fallback exit choice + 2500ms timer + loading flag propagation | 69b5e4d
 - BUG-022 | DONE | 2026-04-01 | TutorAI choice buttons bilingual via fallback map + explicit translation fields | 69b5e4d
-- TASK-065 | DONE | 2026-04-01 | HUD mission indicator — English subtitle below Russian title | pending
-- TASK-066 | DONE | 2026-04-01 | Location unlock HUD toast fires on unlockedLocations push | pending
-- TASK-067 | DONE | 2026-04-01 | Professor zone in WorldScene launches TestScene | pending
-- TASK-068 | DONE | 2026-04-01 | MISSION_COMPLETE HUD toast + 500ms delayed slot clear | pending
-- TASK-073 | DONE | 2026-04-01 | TutorAI vocab reinforcement uses slice(-8) for most recent words | pending
+- TASK-065 | DONE | 2026-04-01 | HUD mission indicator — English subtitle below Russian title | e355ed3
+- TASK-066 | DONE | 2026-04-01 | Location unlock HUD toast fires on unlockedLocations push | e355ed3
+- TASK-067 | DONE | 2026-04-01 | Professor zone in WorldScene launches TestScene | e355ed3
+- TASK-068 | DONE | 2026-04-01 | MISSION_COMPLETE HUD toast + 500ms delayed slot clear | e355ed3
+- TASK-073 | DONE | 2026-04-01 | TutorAI vocab reinforcement uses slice(-8) for most recent words | e355ed3
 
 ---
 
@@ -221,7 +221,7 @@
 ### TASK-065
 **title:** [PLAYABILITY] HUD mission indicator — show English subtitle alongside Russian title
 **track:** FAST
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** [coder, reviewer, playtester, git]
@@ -235,7 +235,7 @@
 ### TASK-066
 **title:** [PLAYABILITY] Location unlock notification — HUD toast when new location becomes accessible
 **track:** FAST
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** [coder, reviewer, playtester, git]
@@ -249,7 +249,7 @@
 ### TASK-067
 **title:** [PLAYABILITY] Chapter test — add overworld access point; TestScene has no launch trigger
 **track:** BUG
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
@@ -267,21 +267,7 @@
 
 ---
 
-### TASK-050
-**title:** Daily NPC conversation limit — one rich exchange per day, then short farewell
-**track:** FAST
-**status:** BACKLOG
-**priority:** P2
-**depends_on:** [TASK-047]
-**assigned_agents:** [coder, reviewer, playtester, git]
-**reads:** [app/game/entities/NPC.js, app/game/systems/TutorAI.js, app/storage.js, app/config.js]
-**writes:** [app/game/entities/NPC.js, app/game/systems/TutorAI.js]
-**done_when:**
-- Storage tracks `lastTalkedDate[npcId]` — the in-game or real-world date of the last completed conversation
-- If player interacts with an NPC they already spoke to today, NPC gives a short contextual farewell line ("До свидания!" / "See you tomorrow!") and dialogue closes after one beat — no full AI conversation
-- System prompt sent to TutorAI includes an `alreadySpokenToday: true` flag when applicable, allowing AI to give a brief response naturally
-- Per REFERENCE-GAMEDESIGN.md §1: after one rich conversation, NPC gives "see you tomorrow" — scarcity makes choices feel meaningful
-**notes:** "Today" can be defined as the same UTC calendar day, or as a session-based flag if simpler. Start with session-based (reset on page load) then upgrade to date-based.
+- TASK-050 | DONE | 2026-04-01 | Daily NPC conversation limit — session farewell after one rich exchange | 38f4ac5
 
 ---
 
@@ -338,7 +324,7 @@
 ### TASK-068
 **title:** [GAME_FEEL] Mission completion feedback — HUD toast + brief acknowledgement on MISSION_COMPLETE
 **track:** FAST
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P2
 **depends_on:** []
 **assigned_agents:** [coder, reviewer, playtester, git]
@@ -377,24 +363,14 @@
 
 ---
 
-### TASK-071
-**title:** [GAME_FEEL] TutorAI vocabulary recognition — inject known-word list into system prompt
-**track:** FAST
-**status:** BACKLOG
-**priority:** P2
-**depends_on:** []
-**assigned_agents:** [coder, reviewer, playtester, git]
-**reads:** [app/game/scenes/ApartmentScene.js, app/game/systems/TutorAI.js, app/storage.js, app/config.js]
-**writes:** [app/game/scenes/ApartmentScene.js, app/game/systems/TutorAI.js]
-**done_when:** Before `TutorAI.startConversation()` is called, the player's current vocabulary list is loaded from storage and a subset (max 20 most recent words) is appended to the NPC system prompt with the instruction: "When the player correctly uses one of these words in conversation, naturally acknowledge it — e.g. 'Oh, you remembered квартира!' This creates a moment of recognition." Verified in ApartmentScene.
-**notes:** [GAME_FEEL] The TutorAI system prompt currently includes the NPC persona and recast correction instruction but no player vocabulary context. Per REFERENCE-GAMEDESIGN.md §3: "when the player correctly uses a vocabulary word the NPC taught them earlier, the NPC should explicitly recognise it — 'Oh! You remembered what I said!' This creates a loop of investment." Without this, every AI conversation feels like the first meeting. The vocabulary list already exists in storage; it just needs to be read and injected before startConversation() fires.
+- TASK-071 | DONE | 2026-04-01 | TutorAI vocab recognition — known-word list injected into system prompt before startConversation | d442b82
 
 ---
 
 ### TASK-073
 **title:** [GAME_FEEL] TutorAI vocab reinforcement — fix slice direction to use most recently learned words
 **track:** FAST
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P2
 **depends_on:** []
 **assigned_agents:** [coder, reviewer, playtester, git]
@@ -408,7 +384,7 @@
 ### TASK-072
 **title:** [GAME_FEEL] World-state visual change on location completion — visual marker when all missions done
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P2
 **depends_on:** [TASK-067]
 **assigned_agents:** [architect, coder, reviewer, playtester, git]
@@ -416,6 +392,48 @@
 **writes:** [app/game/scenes/WorldScene.js, app/game/systems/StoryMissions.js]
 **done_when:** When all story missions for a location are complete, the building on the overworld receives a small visual change — e.g. a lit window tile, a flower pot sprite, or a changed label color — that persists across sessions. Implemented via a new `completedLocations` array in progress storage. WorldScene reads this on load and applies the visual variant. At minimum the apartment building changes after chapter 1 missions complete.
 **notes:** [GAME_FEEL] Per REFERENCE-GAMEDESIGN.md §5: "world-state change is more satisfying than points — environmental change as progression feedback requires no UI numbers and feels diegetic." Currently the apartment, park, and all buildings look identical whether the player has completed 0 or 30 missions. The world never reflects the player's history with it. Even a small per-building visual state change (lit window, open door, NPC standing outside) creates the feeling of "a life being built."
+
+---
+
+### TASK-074
+**title:** [GAME_FEEL] NPC relationship tiers — implement stranger/acquaintance/friend dialogue switching
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** []
+**assigned_agents:** [architect, content-writer, linguist, coder, reviewer, playtester, git]
+**reads:** [app/game/content/apartment-dialogue.js, app/storage.js, app/config.js, REFERENCE-DIALOGUE.md, CLAUDE-VISION.md]
+**writes:** [app/game/content/apartment-dialogue.js, app/storage.js, app/config.js]
+**done_when:** Galina's dialogue (at minimum) responds to a numeric relationship tier stored in `progress.npcRelationships.galina.tier` (0=stranger, 1=acquaintance, 2=friend). Tier 0: Galina addresses the player with "вы" (formal you). Tier 1 (after 3+ visits): Galina switches to "ты" and references something from a prior interaction. Tier 2 (after 7+ visits): Galina initiates small talk, asks about the player. VARIATIONS with `tier` trigger conditions replace the current flat flag-based triggers for at least 2 new lines per tier.
+**notes:** [GAME_FEEL] [EXPERIENCE SCAN] All Galina VARIATIONS use binary flags (`galina_met: true/false`, `galina_intro: true/false`) with no tier system. Galina speaks identically to a first-time visitor and to a player who has visited 10 times. Per REFERENCE-DIALOGUE.md §1: "three dialogue tiers minimum — stranger, acquaintance, friend. Lines at each tier should reference shared history." Without tiers, the player never feels a relationship arc. The "вы" → "ты" shift is itself a Russian language lesson (formal/informal address) that the player experiences before understanding it grammatically — matching REFERENCE-DIALOGUE.md §3.
+
+---
+
+### TASK-075
+**title:** [GAME_FEEL] Active production input — add typing field to dialogue for vocabulary production moments
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** []
+**assigned_agents:** [architect, coder, reviewer, playtester, git]
+**reads:** [app/ui/dialogue.js, app/style.css, app/tokens.css, app/config.js, REFERENCE-GAMEDESIGN.md]
+**writes:** [app/ui/dialogue.js, app/style.css]
+**done_when:** The dialogue UI supports an optional `inputPrompt` field in `DIALOGUE_UPDATE` event detail. When present, a text input field renders below the NPC speech bubble with a placeholder (e.g., "Type the Russian word..."). Player types and submits with Enter. The submitted text is dispatched as `EVENTS.DIALOGUE_CHOICE` with `{ choiceId: '__typed__', text: <playerInput> }`. At minimum one StoryMissions conversation uses an inputPrompt to require the player to type a taught vocabulary word before the mission completes.
+**notes:** [GAME_FEEL] [EXPERIENCE SCAN] Every player interaction is a choice button click — no vocabulary word has ever required the player to produce (type) Russian text. Per REFERENCE-GAMEDESIGN.md §6: "production beats reception — studies show learners who use new words retain them significantly better than those who only encounter them. Design at least one active production moment per vocabulary word." The current system supports only reception (clicking displayed Russian). Adding an optional text input to the dialogue box (used sparingly, not on every turn) enables the "production" missions the curriculum plan requires. The input should be low-stakes — no red flash on wrong answers, NPC reacts in character.
+
+---
+
+### TASK-076
+**title:** [ALIVENESS] Time-of-day and visit-count NPC variation triggers — add temporal variation to dialogue
+**track:** CONTENT
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** [TASK-074]
+**assigned_agents:** [content-writer, linguist, coder, git]
+**reads:** [app/game/content/apartment-dialogue.js, app/storage.js, app/config.js, REFERENCE-GAMEDESIGN.md, REFERENCE-DIALOGUE.md]
+**writes:** [app/game/content/apartment-dialogue.js, app/storage.js]
+**done_when:** At least 2 new Galina VARIATIONS use time-of-day triggers (morning 06:00–12:00, evening 18:00–23:00 via `new Date().getHours()`) rather than only flag conditions. At least 1 variation fires on a high visit count (e.g., 5+ total visits to the apartment, tracked in `progress.npcRelationships.galina.visitCount`). The trigger evaluation logic in ApartmentScene (or a shared helper) checks these conditions before selecting a variation, with fallback to the existing flag-based system.
+**notes:** [ALIVENESS] [EXPERIENCE SCAN] All NPC dialogue triggers in `apartment-dialogue.js` are binary flag conditions (`galina_met`, `galina_intro`). There is no time-of-day or visit-frequency variation. Per REFERENCE-GAMEDESIGN.md §4: "each location needs minimum 3 variation triggers per NPC: (1) time-of-day variation, (2) weather variation, (3) relationship-tier progression." Without temporal variation, NPCs feel frozen — Galina says the same things at 8am and 10pm. Even one morning greeting ("Доброе утро" vs. afternoon default) makes the world feel alive. Visit-count variation allows Galina to comment "Вы снова здесь" (You're here again) after several visits, acknowledging the player's history.
 
 ---
 
@@ -676,6 +694,9 @@
 - BUG-009 | DONE | 2026-03-31 | First-visit scripted dialogue race condition — _firstVisitScripted synchronous before async getProgress | 43c8b3d
 
 ## Session log
+
+- 2026-04-01 · TASK-071 TutorAI vocab recognition — slice(-20) knownWords from storage injected into system prompt. 98 passing, 0 failing. d442b82
+- 2026-04-01 · TASK-050 Daily NPC conversation limit — lastTalkedDate[npcId] UTC date tracking in progress storage, scripted farewell on repeat visit, alreadySpokenToday injected into TutorAI system prompt. 98 passing, 0 failing. 38f4ac5
 
 - 2026-04-01 · TASK-064 Recovery playtest — 84 passing, 0 failing, 4 skipped. All BUG-008–BUG-019 fixes confirmed stable. Recovery queue cleared. sign-off
 
