@@ -32,7 +32,31 @@
 
 *Tasks here run before any Backlog task, regardless of priority. Recovery mode clears this queue first.*
 
-*(empty — all recovery tasks complete as of 2026-04-01)*
+### BUG-023
+**title:** [RECOVERY] Narration phase dead-end — no visible advance affordance + Enter key unwired
+**track:** BUG
+**status:** BACKLOG
+**priority:** P0
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/ui/dialogue.js, app/config.js, app/game/scenes/ApartmentScene.js]
+**writes:** [app/ui/dialogue.js]
+**done_when:** (1) When `_populate()` renders with `effectiveChoices = []` and `!line.loading`, a visible "▼ tap / press Enter to continue" hint element is rendered inside `_choices` so the player has a clear affordance. (2) `dialogue.js` listens for `keydown` Enter (`KEYBOARD_SHORTCUTS.ADVANCE_DIALOGUE`) and calls `_onTapAdvance()` when dialogue is OPEN and choices are empty. Verified by Playwright: boot → enter ApartmentScene → assert advance hint OR button visible → click it → assert 3 choice buttons appear.
+**notes:** [RECOVERY] [CONFIRMED BY HUMAN PLAYTEST] The first-visit onboarding flow is completely broken for a new player. ApartmentScene fires DIALOGUE_START with `choices: []` for the narration phase. `dialogue.js` opens the overlay and renders the narration text but zero buttons. A tap-to-advance mechanism exists (`_onTapAdvance` on body click fires `__advance__`) but there is no visual indicator that the dialogue is clickable. `config.js` defines `ADVANCE_DIALOGUE: 'Enter'` but `dialogue.js` has no keydown listener — Enter key does nothing. Player sees frozen dialogue, tries E/Enter/Escape (none work), concludes game is broken. The game IS broken from the player's perspective even though the underlying code path is correct.
+
+---
+
+### TASK-077
+**title:** [PLAYABILITY] Interactive flow tests — Playwright spec covering full onboarding and NPC interaction paths
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** [BUG-023]
+**assigned_agents:** [playtester, git]
+**reads:** [tests/experience.spec.js, tests/gameplay.spec.js, app/game/scenes/ApartmentScene.js, app/ui/dialogue.js]
+**writes:** [tests/flows.spec.js]
+**done_when:** New `tests/flows.spec.js` contains at minimum: (1) onboarding flow test — boots, enters ApartmentScene, asserts dialogue opens, clicks advance, asserts 3 choice buttons appear, picks a choice, asserts dialogue closes; (2) NPC interaction test — enters Apartment, walks toward NPC zone, presses E, asserts dialogue opens, closes; (3) mission HUD test — asserts mission title visible in HUD after entering ApartmentScene. All 3 tests pass on both desktop and mobile viewports.
+**notes:** [PLAYABILITY] Current test suite is structural only — it checks that DOM elements exist and that text is bilingual. It does NOT walk through any complete interactive flow. BUG-023 (narration dead-end) passed all 98 tests because no test executed the narration → advance → choices path end-to-end. This class of bug (correct logic, invisible UX) can only be caught by interactive flow tests. `flows.spec.js` should cover the paths a new player takes in the first 3 minutes, running them as a real user would.
 
 ---
 
@@ -339,7 +363,7 @@
 ### TASK-069
 **title:** [ALIVENESS] Cross-location NPC references — add gossip lines connecting NPCs across locations
 **track:** CONTENT
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P2
 **depends_on:** []
 **assigned_agents:** [content-writer, linguist, git]
@@ -382,17 +406,7 @@
 
 ---
 
-### TASK-072
-**title:** [GAME_FEEL] World-state visual change on location completion — visual marker when all missions done
-**track:** BUILD
-**status:** IN_PROGRESS
-**priority:** P2
-**depends_on:** [TASK-067]
-**assigned_agents:** [architect, coder, reviewer, playtester, git]
-**reads:** [app/game/scenes/WorldScene.js, app/game/systems/StoryMissions.js, app/storage.js, app/config.js]
-**writes:** [app/game/scenes/WorldScene.js, app/game/systems/StoryMissions.js]
-**done_when:** When all story missions for a location are complete, the building on the overworld receives a small visual change — e.g. a lit window tile, a flower pot sprite, or a changed label color — that persists across sessions. Implemented via a new `completedLocations` array in progress storage. WorldScene reads this on load and applies the visual variant. At minimum the apartment building changes after chapter 1 missions complete.
-**notes:** [GAME_FEEL] Per REFERENCE-GAMEDESIGN.md §5: "world-state change is more satisfying than points — environmental change as progression feedback requires no UI numbers and feels diegetic." Currently the apartment, park, and all buildings look identical whether the player has completed 0 or 30 missions. The world never reflects the player's history with it. Even a small per-building visual state change (lit window, open door, NPC standing outside) creates the feeling of "a life being built."
+- TASK-072 | DONE | 2026-04-01 | Amber completion overlay on buildings when all location missions done | ce47196
 
 ---
 
@@ -696,6 +710,7 @@
 
 ## Session log
 
+- 2026-04-01 · TASK-072 World-state completion overlay — amber rectangle over completed buildings, completedLocations in progress storage, LOCATION_COMPLETE event. 98 passing, 0 failing. ce47196
 - 2026-04-01 · TASK-071 TutorAI vocab recognition — slice(-20) knownWords from storage injected into system prompt. 98 passing, 0 failing. d442b82
 - 2026-04-01 · TASK-050 Daily NPC conversation limit — lastTalkedDate[npcId] UTC date tracking in progress storage, scripted farewell on repeat visit, alreadySpokenToday injected into TutorAI system prompt. 98 passing, 0 failing. 38f4ac5
 
