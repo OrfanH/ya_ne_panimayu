@@ -147,11 +147,12 @@ const TutorAI = (() => {
   let _isWaiting = false;
   let _offline = false;
   let _learnedWords = [];
+  let _alreadySpokenToday = false;
 
   // -----------------------------------------------------------
   // Build system prompt from NPC data
   // -----------------------------------------------------------
-  function _buildSystemPrompt(npcData, learnedWords) {
+  function _buildSystemPrompt(npcData, learnedWords, alreadySpokenToday) {
     const vocab = Array.isArray(npcData.tutorVocabulary) ? npcData.tutorVocabulary : [];
     const newVocab = vocab.map(v => v.russian).join(', ');
 
@@ -162,6 +163,11 @@ const TutorAI = (() => {
       reinforcement = `\nThe student has previously learned these words — use them naturally when they fit: ${sample}.`;
     }
 
+    let alreadySpokenNote = '';
+    if (alreadySpokenToday) {
+      alreadySpokenNote = `\nNote: you have already had a full conversation with this student today. Keep your response brief and natural — a short friendly exchange is appropriate.`;
+    }
+
     const personaClause = npcData.persona ? `, ${npcData.persona}` : '';
     return (
       `You are ${npcData.name}${personaClause}.\n` +
@@ -169,7 +175,8 @@ const TutorAI = (() => {
       `Respond ONLY in Russian. After each sentence add the English translation in parentheses.\n` +
       `Keep responses to 1–3 sentences.\n` +
       `Naturally work in NEW vocabulary from this list when relevant: ${newVocab}.` +
-      reinforcement + `\n` +
+      reinforcement +
+      alreadySpokenNote + `\n` +
       `Never break character. Never mention that you are an AI.`
     );
   }
@@ -231,7 +238,7 @@ const TutorAI = (() => {
   async function _sendToAI(userText) {
     _history.push({ role: 'user', content: userText });
 
-    const systemPrompt = _buildSystemPrompt(_npcData, _learnedWords);
+    const systemPrompt = _buildSystemPrompt(_npcData, _learnedWords, _alreadySpokenToday);
 
     try {
       const res = await fetch(API_ENDPOINT, {
@@ -363,6 +370,7 @@ const TutorAI = (() => {
     _learnedWords = [];
     _isWaiting = false;
     _offline = false;
+    _alreadySpokenToday = false;
   }
 
   // -----------------------------------------------------------
@@ -382,6 +390,7 @@ const TutorAI = (() => {
     _npcData = npcData;
     _history = [];
     _isWaiting = true;
+    _alreadySpokenToday = npcData.alreadySpokenToday || false;
 
     // Load previously learned words for reinforcement
     try {
@@ -435,6 +444,7 @@ const TutorAI = (() => {
     _history = [];
     _isWaiting = false;
     _offline = false;
+    _alreadySpokenToday = false;
   }
 
   // Boot after DOM is ready

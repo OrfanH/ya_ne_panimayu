@@ -2,6 +2,10 @@
    NPC Entity — sprite, interaction radius, event firing
    ============================================ */
 
+function _getTodayUTC() {
+  return new Date().toISOString().slice(0, 10); // "YYYY-MM-DD"
+}
+
 function _getTier(score) {
   if (score >= 3) { return 2; } // friend
   if (score >= 1) { return 1; } // acquaintance
@@ -86,6 +90,10 @@ class NPC {
     // Guard: prevents firing DIALOGUE_START while a dialogue is already open
     this._interacting = false;
 
+    // True when the current dialogue is a scripted farewell (already-spoken-today)
+    // Prevents relationship score increment and lastTalkedDate update on farewell-only exchanges
+    this._wasFarewellOnly = false;
+
     this._onDialogueStart = () => {
       this._dialogueOpen = true;
       this._updateHint(this._inRange);
@@ -97,16 +105,21 @@ class NPC {
       this._dialogueOpen = false;
       this._updateHint(this._inRange);
 
-      // Increment relationship score (fire-and-forget, flags already reset above)
-      if (wasInteracting) {
+      // Increment relationship score and record last talked date
+      // (fire-and-forget, flags already reset above)
+      if (wasInteracting && !this._wasFarewellOnly) {
         try {
           const progress = await getProgress();
           if (!progress.npcRelationships) { progress.npcRelationships = {}; }
           const current = progress.npcRelationships[this._id] || 0;
           progress.npcRelationships[this._id] = current + 1;
+          if (!progress.lastTalkedDate) { progress.lastTalkedDate = {}; }
+          progress.lastTalkedDate[this._id] = _getTodayUTC();
           await saveProgress(progress);
         } catch { /* silent */ }
       }
+
+      this._wasFarewellOnly = false;
     };
 
     window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
@@ -158,13 +171,39 @@ class NPC {
 
   async _startDialogue() {
     let tier = 0;
+    let alreadySpokenToday = false;
     try {
       const progress = await getProgress();
       const score = (progress.npcRelationships && progress.npcRelationships[this._id]) || 0;
       tier = _getTier(score);
+      const lastDate = progress.lastTalkedDate && progress.lastTalkedDate[this._id];
+      alreadySpokenToday = (lastDate === _getTodayUTC());
     } catch { /* silent — use default tier 0 */ }
 
     const portrait = `assets/portraits/${this._id}.png`;
+
+    // If already had a full conversation with this NPC today, show a scripted
+    // farewell instead of launching a new AI conversation.
+    if (alreadySpokenToday) {
+      this._wasFarewellOnly = true;
+      window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+        detail: {
+          npcId: this._id,
+          npcName: this._name,
+          russian: 'До свидания! Увидимся завтра!',
+          translation: 'Goodbye! See you tomorrow!',
+          choices: [
+            { id: 'end', russian: 'До свидания', translation: 'Goodbye', isFinal: true },
+          ],
+          portrait,
+          loading: false,
+          tier,
+        },
+      }));
+      return;
+    }
+
+    this._wasFarewellOnly = false;
 
     // Show the dialogue box immediately with a localised loading message and
     // the goodbye choice so the player can always exit — never zero choices.
@@ -191,6 +230,7 @@ class NPC {
       persona: '',
       tutorVocabulary: [],
       portrait,
+      alreadySpokenToday: false,
     });
   }
 
