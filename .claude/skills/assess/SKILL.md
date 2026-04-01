@@ -68,6 +68,41 @@ Read these files. Do not read files outside this list unless a specific finding 
 
 ---
 
+## Step 1.5 — Read experience test results
+
+Read `playwright-report/results.json` if it exists.
+
+This file is written by every Playwright run (pre-commit hook, `/build` playtester, or manual `npx playwright test`). It contains confirmed runtime failures — not code-inferred suspicions.
+
+**Parse it as follows:**
+
+For each test suite and result in the JSON:
+
+1. **Identify failing tests** — look for `status: "failed"` or `status: "timedOut"` entries
+2. **Map test suite name → classification tag:**
+
+| Test suite (title) | Classification | Priority |
+|---|---|---|
+| `Dialogue — loading state is never a dead end` | `[RECOVERY]` | P0 |
+| `Dialogue — no permanent placeholder text` | `[RECOVERY]` | P0 |
+| `Dialogue — choice buttons have English labels` | `[RECOVERY]` | P0 |
+| `Dialogue — bilingual content invariant` | `[PLAYABILITY]` | P1 |
+| Any other `experience.spec.js` failure | `[PLAYABILITY]` | P1 |
+| Any `smoke.spec.js` failure | `[RECOVERY]` | P0 |
+| Any `gameplay.spec.js` failure | `[PLAYABILITY]` | P1 |
+| Any `persistence.spec.js` failure | `[PLAYABILITY]` | P1 |
+
+3. **Extract the error message** for each failure — this is the concrete description of the bug
+
+4. **Build a pre-classified gap list** from confirmed failures. Label each: `[CONFIRMED BY TEST]`
+
+**If the results.json does not exist:** note "no test run found — findings in Step 4 are code-inferred only" and proceed.
+**If all tests pass:** note "all experience invariants pass — Step 3 experience scan must find non-testable gaps only."
+
+These confirmed failures are **facts**. In Step 4, they take priority over code-inferred suspicions and do not require re-derivation from source files. Do NOT re-inspect source code for gaps already confirmed by tests.
+
+---
+
 ## Step 2 — Technical scan
 
 Read the technical scan files. For each system, answer:
@@ -146,26 +181,36 @@ Write down what you find for each dimension. Be honest. Weak is weak.
 
 ## Step 4 — Gap analysis
 
-Combine findings from Steps 2 and 3 into a unified gap list.
+Build a unified gap list from three sources, in priority order:
 
-For each gap:
+### Source A — Confirmed test failures (from Step 1.5)
+These are facts. Include every `[CONFIRMED BY TEST]` gap from Step 1.5 that does not already have an open task in IMPROVEMENTS.md. Do not re-derive them from code. Use the test error message as the concrete description.
+
+### Source B — Technical scan findings (from Step 2)
+BROKEN or PARTIAL systems that a player would hit. Assign classification tags.
+
+### Source C — Experience scan findings (from Step 3)
+WEAK or ABSENT dimensions that make the game feel hollow or confusing. Assign classification tags.
+
+**For every gap from all three sources:**
 1. Assign a classification tag: `[RECOVERY]`, `[PLAYABILITY]`, `[GAME_FEEL]`, `[ALIVENESS]`, or `[POLISH]`
-2. Write one sentence describing the gap concretely
-3. Note whether a task for this already exists in the backlog (check IMPROVEMENTS.md) — if it does, skip it
+2. Write one sentence describing the gap from the **player's perspective** — what they experience, not what the code does
+3. Note the source: `[CONFIRMED BY TEST]`, `[CODE SCAN]`, or `[EXPERIENCE SCAN]`
+4. Check IMPROVEMENTS.md — if an open task already covers this gap, skip it
 
 **Rules:**
 - Do NOT flag completed work (check Done section)
-- Do NOT flag gaps that are already covered by an existing BACKLOG task
+- Do NOT flag gaps already covered by an existing BACKLOG task
 - Do NOT create wish-list items ("it would be nice if...")
-- Only flag things that a player would actually notice and care about
+- Source A gaps (`[CONFIRMED BY TEST]`) are always included unless already in backlog — they are not optional
 
 **Good gap example:**
-> `[PLAYABILITY]` — After completing the first Galina conversation, no mission appears in HUD. Player has no direction.
+> `[RECOVERY]` `[CONFIRMED BY TEST]` — Choice buttons show "Хорошо." with no English; beginner cannot understand what they are agreeing to. Error: `Choice button 0 has no English text: "Хорошо."`
 
 **Bad gap example:**
 > `[POLISH]` — The game could have better visual effects.
 
-Aim for 5–12 meaningful gaps. If you find fewer, that is a good sign. Do not inflate.
+Aim for 5–12 meaningful gaps. Source A gaps count toward this limit.
 
 ---
 
