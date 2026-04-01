@@ -879,6 +879,52 @@ const APARTMENT_DIALOGUE = (() => {
         },
       ],
     },
+
+    {
+      id: 'cross_reference_park_and_cafe',
+      trigger: { flag: 'artyom_met', value: true },
+      title: 'Galina Mentions the Park and Café',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Ты ходишь в парк? Там есть молодой человек — Артём. Знаешь его?',
+          translation: 'Do you go to the park? There is a young man there — Artyom. Do you know him?',
+          stage_direction: 'She asks this at the mailboxes, not looking up from sorting letters. It is not quite casual.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Да, я знаю Артёма.',
+              translation: 'Yes, I know Artyom.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Да. Он хороший.',
+              translation: 'Yes. He is good.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'galina',
+          russian: 'Хорошо. Он хороший. Немного... много читает. Кафе видел? Лена там. Она знает всё.',
+          translation: 'Good. He is good. A little... reads too much. Have you seen the café? Lena is there. She knows everything.',
+          stage_direction: 'She says "много читает" with the mild disapproval of someone who prefers action. The café mention is given like practical information.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'galina',
+          russian: 'Да. Хороший. Скажи ему: варенье я помню. Он знает. И — кафе видел? Лена там.',
+          translation: 'Yes. Good. Tell him: I remember the jam. He will know. And — have you seen the café? Lena is there.',
+          stage_direction: 'She says "варенье я помню" with quiet weight, as if this jam is a long-standing account receivable. Then pivots cleanly to the café.',
+          isFinal: true,
+        },
+      ],
+    },
   ];
 
   const UNLOCK = {

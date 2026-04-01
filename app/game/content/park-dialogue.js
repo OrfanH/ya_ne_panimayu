@@ -744,6 +744,52 @@ const PARK_DIALOGUE = (() => {
         },
       ],
     },
+
+    {
+      id: 'cross_reference_cafe',
+      trigger: { flag: 'lena_met', value: true },
+      title: 'Tamara Mentions the Café',
+      lines: [
+        {
+          speaker: 'tamara',
+          russian: 'Вы были в кафе? Там есть Лена. По субботам я тоже хожу туда. Хороший кофе.',
+          translation: 'Have you been to the café? Lena is there. On Saturdays I go there too. Good coffee.',
+          stage_direction: 'She says this after a pause, looking across the park toward the direction of the café. It is not quite a recommendation — it is simply a fact she is sharing.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Да. Я знаю кафе. Лена хорошая.',
+              translation: 'Yes. I know the café. Lena is good.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Нет. Кафе — где?',
+              translation: 'No. Where is the café?',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'tamara',
+          russian: 'Да. Хорошая. Умная. Она из Москвы, вы знаете. Вернулась. Это правильно.',
+          translation: 'Yes. Good. Clever. She is from Moscow, you know. She came back. That is the right thing to do.',
+          stage_direction: 'She says "это правильно" with the quiet certainty of a person who has formed an opinion and is not changing it.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'tamara',
+          russian: 'Направо, потом прямо. Артём вам скажет. Он знает парк хорошо.',
+          translation: 'To the right, then straight ahead. Artyom will tell you. He knows the park well.',
+          stage_direction: 'She gestures with a precise hand, and the reference to Artyom is entirely matter-of-fact — of course she knows who he is.',
+          isFinal: true,
+        },
+      ],
+    },
   ];
 
   return {

@@ -679,6 +679,52 @@ const CAFE_DIALOGUE = (() => {
         },
       ],
     },
+
+    {
+      id: 'cross_reference_galina',
+      trigger: { flag: 'galina_met', value: true },
+      title: 'Boris Mentions Galina',
+      lines: [
+        {
+          speaker: 'boris',
+          russian: 'Вы живёте у Галины Ивановны? Я видел вас там. Она строгая, но хорошая.',
+          translation: 'You live near Galina Ivanovna? I saw you there. She is strict, but good.',
+          stage_direction: 'He says this without looking up from his paper, as if reporting a fact he noted earlier and is only now filing aloud.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Да. Она хорошая.',
+              translation: 'Yes. She is good.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Да. Немного строгая.',
+              translation: 'Yes. A little strict.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'boris',
+          russian: 'Хорошая. Тридцать лет там живёт. Знает всё про этот дом. Как я про трубы.',
+          translation: 'Good. She has lived there thirty years. Knows everything about that building. Like I know the pipes.',
+          stage_direction: 'He says this last sentence with complete sincerity — it is the highest compliment he knows.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'boris',
+          russian: 'Строгая — это правильно. Порядок нужен. Хаос — плохо. Она понимает это.',
+          translation: 'Strict — that is correct. Order is necessary. Chaos — bad. She understands this.',
+          stage_direction: 'He lowers the paper slightly to deliver this verdict, then raises it again.',
+          isFinal: true,
+        },
+      ],
+    },
   ];
 
   return {
