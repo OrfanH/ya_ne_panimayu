@@ -25,7 +25,7 @@
 ### BUG-020
 **title:** [RECOVERY] First-visit scripted dialogue — no onboarding scaffold; player thrown into Russian choices with no setup
 **track:** BUG
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P0
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
@@ -417,6 +417,20 @@
 **writes:** [app/game/scenes/ApartmentScene.js, app/game/systems/TutorAI.js]
 **done_when:** Before `TutorAI.startConversation()` is called, the player's current vocabulary list is loaded from storage and a subset (max 20 most recent words) is appended to the NPC system prompt with the instruction: "When the player correctly uses one of these words in conversation, naturally acknowledge it — e.g. 'Oh, you remembered квартира!' This creates a moment of recognition." Verified in ApartmentScene.
 **notes:** [GAME_FEEL] The TutorAI system prompt currently includes the NPC persona and recast correction instruction but no player vocabulary context. Per REFERENCE-GAMEDESIGN.md §3: "when the player correctly uses a vocabulary word the NPC taught them earlier, the NPC should explicitly recognise it — 'Oh! You remembered what I said!' This creates a loop of investment." Without this, every AI conversation feels like the first meeting. The vocabulary list already exists in storage; it just needs to be read and injected before startConversation() fires.
+
+---
+
+### TASK-073
+**title:** [GAME_FEEL] TutorAI vocab reinforcement — fix slice direction to use most recently learned words
+**track:** FAST
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** []
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/tutor.js]
+**writes:** [app/tutor.js]
+**done_when:** `_buildSystemPrompt` in `app/tutor.js` uses `.slice(-8)` (or equivalent) to select the 8 most recently learned words from `_learnedWords`. Verified by reading the function: the 8 words injected into the reinforcement prompt are the last 8 entries from the vocabulary array (most recently acquired), not the first 8 of the recent 20 (oldest of the recent batch).
+**notes:** [GAME_FEEL] Strategy 2 (vocab reinforcement) was implemented in 738ce48. `startConversation()` correctly loads the last 20 learned words via `(vocab.words || []).slice(-20)`. But `_buildSystemPrompt` then uses `learnedWords.slice(0, 8)`, which takes the 8 OLDEST of those 20 — i.e., words the player learned 12-20 interactions ago. The NPC reinforces stale vocabulary instead of what the player just learned. Fix: change `.slice(0, 8)` to `.slice(-8)`. This aligns with SRS principle (recency: newly acquired words need reinforcement most). The player's most recently learned words should be the ones the NPC naturally re-uses in conversation.
 
 ---
 
