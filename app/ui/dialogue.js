@@ -109,7 +109,7 @@ const DialogueUI = (() => {
     // Don't advance if the user tapped the toggle button
     if (e.target === _toggleBtn || _toggleBtn.contains(e.target)) { return; }
     // Don't advance if there are choices visible — user must pick a choice
-    if (_choices.children.length > 0) { return; }
+    if (_choices.children.length > 0 && !_choices.querySelector('.dialogue-advance-hint')) { return; }
     // Stop propagation so the tap doesn't bubble to game layer
     e.stopPropagation();
     // Fire a dialogue advance event — TutorAI listens for this to send the next beat
@@ -220,8 +220,15 @@ const DialogueUI = (() => {
       }, 2500);
     }
 
-    // Choices
+    // Advance hint — shown when there are no choices and not loading
     _choices.innerHTML = '';
+    if (effectiveChoices.length === 0 && !line.loading) {
+      const hint = document.createElement('p');
+      hint.className = 'dialogue-advance-hint';
+      hint.textContent = '▼ tap / press Enter to continue';
+      _choices.appendChild(hint);
+    }
+
     for (const choice of effectiveChoices) {
       const btn = document.createElement('button');
       btn.className = 'dialogue-choice-btn';
@@ -422,11 +429,21 @@ const DialogueUI = (() => {
   // -----------------------------------------------------------
   // Init — called once on page load
   // -----------------------------------------------------------
+  function _onKeyDown(e) {
+    if (e.key !== KEYBOARD_SHORTCUTS.ADVANCE_DIALOGUE) { return; }
+    if (_state.phase !== _STATES.OPEN) { return; }
+    if (_choices.children.length > 0 && !_choices.querySelector('.dialogue-advance-hint')) { return; }
+    window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_CHOICE, {
+      detail: { choiceId: '__advance__', russian: '' },
+    }));
+  }
+
   function _init() {
     _buildDOM();
     window.addEventListener(EVENTS.DIALOGUE_START, _onDialogueStart);
     window.addEventListener(EVENTS.DIALOGUE_UPDATE, _onDialogueUpdate);
     window.addEventListener(EVENTS.DIALOGUE_END, _onExternalDialogueEnd);
+    window.addEventListener('keydown', _onKeyDown);
   }
 
   // Boot after DOM is ready

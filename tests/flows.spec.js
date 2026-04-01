@@ -365,22 +365,9 @@ test.describe('Dialogue keyboard shortcuts', () => {
     await expect(page.locator('#dialogue-overlay')).toHaveClass(/is-active/, { timeout: 1000 });
     await page.waitForTimeout(500); // wait for OPEN phase
 
-    // Listen for __advance__ being dispatched
-    const advanceFired = await page.evaluate(() => {
-      return new Promise((resolve) => {
-        const timeout = setTimeout(() => resolve(false), 2000);
-        window.addEventListener('dialogue:choice', (e) => {
-          if (e.detail?.choiceId === '__advance__') {
-            clearTimeout(timeout);
-            resolve(true);
-          }
-        }, { once: true });
-      });
-    }, { timeout: 3000 }).catch(() => false);
-
-    // Trigger the check after setting up listener (re-evaluate with key press)
-    // Note: the evaluate above will race — use a different approach
-    // Just verify Enter key dispatches dialogue:choice __advance__
+    // Set up listener for __advance__ BEFORE pressing Enter.
+    // We must await a tick so the evaluate registers in the browser
+    // before page.keyboard.press dispatches the key event.
     const resultPromise = page.evaluate(() => {
       return new Promise((resolve) => {
         const timeout = setTimeout(() => resolve(false), 2000);
@@ -393,9 +380,10 @@ test.describe('Dialogue keyboard shortcuts', () => {
       });
     });
 
+    // Give the browser a moment to register the listener before pressing
+    await page.waitForTimeout(100);
     await page.keyboard.press('Enter');
     const fired = await resultPromise;
-    // FAILS until BUG-023 wires Enter key in dialogue.js
     expect(fired, 'Enter key should dispatch dialogue:choice __advance__').toBe(true);
   });
 });

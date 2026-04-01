@@ -164,6 +164,9 @@ class ApartmentScene extends Phaser.Scene {
       const response = opening.lines.find((l) => l.choiceId === choiceId);
       if (!response) { return; }
 
+      // Show Galina's response text. When response is final, show no choices so
+      // the advance hint appears. After 1 500ms (enough to read), fire DIALOGUE_END
+      // so the dialogue closes automatically without a manual dismiss click.
       window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
         detail: {
           npcId:       npcData.id,
@@ -171,11 +174,17 @@ class ApartmentScene extends Phaser.Scene {
           russian:     response.russian,
           translation: response.translation,
           portrait:    npcData.portrait || null,
-          choices: [
+          choices:     response.isFinal ? [] : [
             { id: 'dismiss', russian: 'Хорошо.', translation: 'Okay.', isFinal: true },
           ],
         },
       }));
+
+      if (response.isFinal) {
+        this.time.delayedCall(1500, () => {
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+        });
+      }
     };
     window.addEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
 

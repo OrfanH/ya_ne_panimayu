@@ -22,6 +22,9 @@
 - TASK-068 | DONE | 2026-04-01 | MISSION_COMPLETE HUD toast + 500ms delayed slot clear | e355ed3
 - TASK-073 | DONE | 2026-04-01 | TutorAI vocab reinforcement uses slice(-8) for most recent words | e355ed3
 - TASK-069 | DONE | 2026-04-01 | Building completion overlay — amber glow on WorldScene buildings when all location missions done | ce47196
+- BUG-023 | DONE | 2026-04-02 | Narration dead-end — advance hint injected, Enter key wired, body click fixed (flex-wrap CSS + isFinal auto-close) | playtester-2026-04-02
+- BUG-024 | DONE | 2026-04-02 | _onTapAdvance blocked by hint child — .dialogue-choices flex-wrap:wrap so .dialogue-body gets non-zero width | playtester-2026-04-02
+- BUG-025 | DONE | 2026-04-02 | Enter key __advance__ test race fixed — added waitForTimeout(100) before keyboard.press | playtester-2026-04-02
 
 ---
 
@@ -37,7 +40,7 @@
 ### BUG-023
 **title:** [RECOVERY] Narration phase dead-end — no visible advance affordance + Enter key unwired
 **track:** BUG
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P0
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
@@ -69,7 +72,7 @@
 ### BUG-024
 **title:** [BUG] `_onTapAdvance` click-to-advance blocked by hint element — whole first-visit flow broken
 **track:** BUG
-**status:** BACKLOG
+**status:** DONE
 **priority:** P0
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
@@ -83,7 +86,7 @@
 ### BUG-025
 **title:** [BUG] Enter key does not dispatch `__advance__` on mobile viewport in WorldScene context
 **track:** BUG
-**status:** BACKLOG
+**status:** DONE
 **priority:** P1
 **depends_on:** [BUG-024]
 **assigned_agents:** [fixer, reviewer, playtester, git]

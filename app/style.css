@@ -258,6 +258,7 @@ body {
   border-radius: 0;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: var(--space-4);
   padding: var(--space-4);
   pointer-events: auto;
@@ -374,6 +375,7 @@ body {
   flex-direction: column;
   gap: var(--space-2);
   width: 100%;
+  flex-basis: 100%;
   padding-top: var(--space-2);
 }
 
@@ -796,7 +798,7 @@ body {
   text-shadow: 1px 1px 0 #1e2028;
   image-rendering: pixelated;
   white-space: nowrap;
-  pointer-events: none;
+  pointer-events: none !important;
   opacity: 0;
   transition: opacity var(--transition-fast);
   z-index: 9999;
