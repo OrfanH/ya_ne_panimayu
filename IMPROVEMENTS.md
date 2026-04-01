@@ -37,7 +37,7 @@
 ### BUG-023
 **title:** [RECOVERY] Narration phase dead-end — no visible advance affordance + Enter key unwired
 **track:** BUG
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P0
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
@@ -63,6 +63,34 @@
 ---
 
 ## Backlog
+
+---
+
+### BUG-024
+**title:** [BUG] `_onTapAdvance` click-to-advance blocked by hint element — whole first-visit flow broken
+**track:** BUG
+**status:** BACKLOG
+**priority:** P0
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/ui/dialogue.js]
+**writes:** [app/ui/dialogue.js]
+**done_when:** `flows.spec.js` tests at lines 79, 103, 120, 132 all pass on both desktop and mobile. Specifically: clicking `.dialogue-body` when choices are empty (only `.dialogue-advance-hint` present) dispatches `dialogue:choice __advance__`; ApartmentScene then shows 3 scripted choice buttons; picking a choice closes dialogue; galina.met is saved.
+**notes:** [CONFIRMED BY PLAYWRIGHT 2026-04-01] `_onTapAdvance` in `app/ui/dialogue.js` line 112 checks `if (_choices.children.length > 0) { return; }`. After BUG-023 fix, `_populate()` injects a `.dialogue-advance-hint` paragraph into `_choices` when effectiveChoices === []. This hint element counts as a child, so `children.length > 0` is always true in narration phase, and `_onTapAdvance` always returns early without dispatching `__advance__`. Fix: mirror the guard from `_onKeyDown` — change the condition to `if (_choices.children.length > 0 && !_choices.querySelector('.dialogue-advance-hint')) { return; }`. 8 tests fail (4 per viewport): clicking dialogue body, English choices present, picking choice, galina.met saved.
+
+---
+
+### BUG-025
+**title:** [BUG] Enter key does not dispatch `__advance__` on mobile viewport in WorldScene context
+**track:** BUG
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** [BUG-024]
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/ui/dialogue.js, tests/flows.spec.js]
+**writes:** [app/ui/dialogue.js]
+**done_when:** `flows.spec.js` test at line 352 passes on mobile viewport: pressing Enter when dialogue is open with no choices (only hint present) dispatches `dialogue:choice __advance__` within 2s.
+**notes:** [CONFIRMED BY PLAYWRIGHT 2026-04-01] `_onKeyDown` logic in `dialogue.js` is correctly written (exempts hint via `!_choices.querySelector('.dialogue-advance-hint')`). Desktop equivalent (flows.spec.js:93 in ApartmentScene context) passes. Mobile-only failure at line 352 (WorldScene context). Hypothesis: after ~2500ms idle (500ms open wait + 2000ms first evaluate timeout), the page/canvas focus state on mobile viewport (375px) may prevent the `window` keydown listener from receiving the Enter key press. Investigate by adding a `page.click('body')` or canvas focus before pressing Enter in the test, or by adding debug logging to `_onKeyDown` to confirm it fires.
 
 ---
 
@@ -600,6 +628,118 @@
 **writes:** [app/ui/journal.js]
 **done_when:** `tests/gameplay.spec.js > Journal > opens on J key press`, `closes on second J key press`, and `closes on Escape key when open` all pass on both desktop and mobile (6 tests total, currently 6 failing). Target: 84 passing, 0 failing, 4 skipped.
 **notes:** Found by playtester 2026-03-31. Two separate `document` keydown handlers both respond to `KeyJ`. `app/ui/hud.js:127-135` dispatches `EVENTS.JOURNAL_OPEN` when `KeyJ` fires. `app/ui/journal.js:251-258` also listens for `KeyJ` on `document` and calls `open()` directly. On a single keypress both fire synchronously in the same event loop tick: hud.js calls `open()` (sets `_open=true`, adds `.is-open`), then journal.js keydown fires and calls `open()` again which sees `_open===true` and immediately calls `close()` (removes `.is-open`). Journal opens and closes before Playwright can observe the class. Fix: remove the `_onKeyDown` function and its `document.addEventListener('keydown', _onKeyDown)` registration from `app/ui/journal.js` entirely — rely solely on the `EVENTS.JOURNAL_OPEN` / `EVENTS.JOURNAL_CLOSE` event path that hud.js and menu.js already use. Keep the Escape handler only if no other module covers it. Failing tests: `tests/gameplay.spec.js > Journal > opens on J key press` (×2), `closes on second J key press` (×2), `closes on Escape key when open` (×2).
+
+---
+
+### BUG-024
+**title:** Tap-to-advance blocked when advance hint shown — ApartmentScene first-visit onboarding dead-end (body click)
+**track:** BUG
+**status:** BACKLOG
+**priority:** P0
+**depends_on:** [BUG-023]
+**assigned_agents:** fixer, reviewer
+**reads:** [app/ui/dialogue.js]
+**writes:** [app/ui/dialogue.js]
+**done_when:** `await page.locator('.dialogue-body').click({ position: { x: 80, y: 30 }, force: true })` followed by `expect(page.locator('.dialogue-choice-btn')).toHaveCount(3, { timeout: 2000 })` passes in test "1-4 clicking dialogue body advances narration to scripted choices".
+**notes:** [RECOVERY] [PLAYABILITY] The BUG-023 fix added a `.dialogue-advance-hint` `<p>` element inside `_choices` when no choices are present. However `_onTapAdvance` in `dialogue.js` guards with `if (_choices.children.length > 0) { return; }` without exempting the advance hint. So a click on `.dialogue-body` never fires `__advance__` as long as the hint is visible. The `_onKeyDown` handler already exempts the hint (`!_choices.querySelector('.dialogue-advance-hint')`), so Enter key works. Body click does not. Confirmed by playthrough test: "Block 1 – Apartment first visit > 1-4 clicking dialogue body advances narration to scripted choices". Error: `expect(locator('.dialogue-choice-btn')).toHaveCount(3)` — Expected: 3, Received: 0, Timeout: 2000ms. Tests 1-5, 1-6, 1-7 also fail as cascade.
+
+---
+
+### BUG-025
+**title:** Location unlock toasts overwritten by controls hint — player never sees "park/cafe/market/station/police is now open"
+**track:** BUG
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** fixer, reviewer
+**reads:** [app/game/scenes/WorldScene.js, app/ui/hud.js]
+**writes:** [app/game/scenes/WorldScene.js]
+**done_when:** After entering ApartmentScene with seed `unlockedLocations: ['apartment']`, `expect(page.locator('#tutor-status')).toContainText(/park/i)` passes within 3s (and equivalents for cafe/market/station/police in their respective scenes).
+**notes:** [PLAYABILITY] All 5 location-unlock toast tests (1-9, 2-9, 3-9, 4-9, 5-9) fail with `#tutor-status` showing "WASD / ↑↓←→ to move, E to talk" instead of the expected location name. The controls-hint toast fires synchronously on `location:enter` via a WorldScene listener that is not removed in `shutdown()`. When the new scene's `create()` dispatches `location:enter`, the stale WorldScene listener fires the controls hint, which lands in `#tutor-status` after the async unlock toast, overwriting it. Player enters every new location but never sees which location just unlocked. Confirmed by playthrough test: "1-9 park unlock toast fires on first apartment visit". Error: Expected pattern `/park/i`, Received string: `"WASD / ↑↓←→ to move, E to talk"`, Timeout: 5000ms.
+
+---
+
+### BUG-026
+**title:** Return-visit JS-errors test times out — 6-scene iteration loop exceeds 40s default test timeout
+**track:** BUG
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** []
+**assigned_agents:** fixer, reviewer
+**reads:** [tests/playthrough.spec.js]
+**writes:** [tests/playthrough.spec.js]
+**done_when:** Test "7-errors no JS errors during return visits to all 6 scenes" completes within its timeout with 0 JS errors reported.
+**notes:** [TEST INFRA] The "7-errors" test iterates all 6 scenes in one test body. Each `waitForSceneActive` has an 8s timeout; 6 scenes × ~9s = ~54s which exceeds the 40s default Playwright test timeout. Error: `page.evaluate: Test timeout of 40000ms exceeded`. Fix options: (a) split into per-scene error tests, or (b) add `test.setTimeout(90_000)` at the top of the test. NOTE: do NOT modify game source files. Confirmed by playthrough test: "Block 7 – Return visits (all complete) > 7-errors no JS errors during return visits to all 6 scenes". Error: `Test timeout of 40000ms exceeded` at `page.evaluate((k) => window.__GAME__.scene.start(k), key)`.
+
+---
+
+### TASK-078
+**title:** ParkScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Artyom
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** fixer, reviewer
+**reads:** [app/game/scenes/ParkScene.js, app/game/scenes/ApartmentScene.js]
+**writes:** [app/game/scenes/ParkScene.js]
+**done_when:** All six of these pass: "2-2 first-visit dialogue opens automatically within 2s", "2-3 advance hint visible", "2-4 clicking body advances narration", "2-5 all choices have English text", "2-6 first choice closes dialogue", "2-7 artyom.met saved to progress".
+**notes:** [PLAYABILITY] ParkScene has no first-visit scripted flow. On first entry the player sees only empty park tiles — no NPC narration fires, no guided exchange introduces Artyom, and `progress.npcRelationships.artyom` is never set. Pattern to follow: ApartmentScene sections 7b + 11 + `_scriptedPhase` state machine + `_onDialogueEnd` save. Confirmed by playthrough test: "Block 2 – Park first visit > 2-2 first-visit dialogue opens automatically within 2s". Error: `expect(locator('#dialogue-overlay')).toHaveClass(/is-active/)` — Received: `""`, Timeout: 2000ms. Tests 2-3 through 2-7 also fail (same root cause).
+
+---
+
+### TASK-079
+**title:** CafeScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Lena
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** fixer, reviewer
+**reads:** [app/game/scenes/CafeScene.js, app/game/scenes/ApartmentScene.js]
+**writes:** [app/game/scenes/CafeScene.js]
+**done_when:** All six of these pass: "3-2 first-visit dialogue opens automatically within 2s", "3-3 advance hint visible", "3-4 clicking body advances narration", "3-5 all choices have English text", "3-6 first choice closes dialogue", "3-7 lena.met saved to progress".
+**notes:** [PLAYABILITY] CafeScene has no first-visit scripted flow. Same missing pattern as ParkScene. Primary NPC to introduce: Lena (id: `lena`). Confirmed by playthrough test: "Block 3 – Café first visit > 3-2 first-visit dialogue opens automatically within 2s". Error: `expect(locator('#dialogue-overlay')).toHaveClass(/is-active/)` — Received: `""`, Timeout: 2000ms.
+
+---
+
+### TASK-080
+**title:** MarketScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Fatima
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** fixer, reviewer
+**reads:** [app/game/scenes/MarketScene.js, app/game/scenes/ApartmentScene.js]
+**writes:** [app/game/scenes/MarketScene.js]
+**done_when:** All six of these pass: "4-2 first-visit dialogue opens automatically within 2s", "4-3 advance hint visible", "4-4 clicking body advances narration", "4-5 all choices have English text", "4-6 first choice closes dialogue", "4-7 fatima.met saved to progress".
+**notes:** [PLAYABILITY] MarketScene has no first-visit scripted flow. Primary NPC to introduce: Fatima (id: `fatima`). Confirmed by playthrough test: "Block 4 – Market first visit > 4-2 first-visit dialogue opens automatically within 2s". Error: `expect(locator('#dialogue-overlay')).toHaveClass(/is-active/)` — Received: `""`, Timeout: 2000ms.
+
+---
+
+### TASK-081
+**title:** StationScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Konstantin
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** fixer, reviewer
+**reads:** [app/game/scenes/StationScene.js, app/game/scenes/ApartmentScene.js]
+**writes:** [app/game/scenes/StationScene.js]
+**done_when:** All six of these pass: "5-2 first-visit dialogue opens automatically within 2s", "5-3 advance hint visible", "5-4 clicking body advances narration", "5-5 all choices have English text", "5-6 first choice closes dialogue", "5-7 konstantin.met saved to progress".
+**notes:** [PLAYABILITY] StationScene has no first-visit scripted flow. Primary NPC to introduce: Konstantin (id: `konstantin`). Confirmed by playthrough test: "Block 5 – Station first visit > 5-2 first-visit dialogue opens automatically within 2s". Error: `expect(locator('#dialogue-overlay')).toHaveClass(/is-active/)` — Received: `""`, Timeout: 2000ms.
+
+---
+
+### TASK-082
+**title:** PoliceScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Alina
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** fixer, reviewer
+**reads:** [app/game/scenes/PoliceScene.js, app/game/scenes/ApartmentScene.js]
+**writes:** [app/game/scenes/PoliceScene.js]
+**done_when:** All six of these pass: "6-2 first-visit dialogue opens automatically within 2s", "6-3 advance hint visible", "6-4 clicking body advances narration", "6-5 all choices have English text", "6-6 first choice closes dialogue", "6-7 alina.met saved to progress".
+**notes:** [PLAYABILITY] PoliceScene has no first-visit scripted flow. Primary NPC to introduce: Alina (id: `alina`). PoliceScene is the final location — no next-location unlock toast. Confirmed by playthrough test: "Block 6 – Police first visit > 6-2 first-visit dialogue opens automatically within 2s". Error: `expect(locator('#dialogue-overlay')).toHaveClass(/is-active/)` — Received: `""`, Timeout: 2000ms.
 
 ---
 
