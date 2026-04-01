@@ -98,6 +98,7 @@ If all tests pass, write `PASS` on line 1 of play-report.md and stop — do not 
 | `smoke.spec.js` | Page load, canvas render, World scene active after boot, HUD mounted, no texture errors, no failed requests, movement/E/J/Escape keys don't throw |
 | `gameplay.spec.js` | Dialogue opens/shows text/shows choices/closes on final click/shows offline badge, journal open/close via J key and event, pause menu open/close/journal/settings, HUD location name and mission, only one active scene after boot |
 | `persistence.spec.js` | localStorage.progress exists and has correct shape, progress persists across reload, vocabulary written after vocab:new event, settings written after change, game boots without crash when API is blocked or returns 503, offline badge visible when API fails, mobile: no overflow, joystick present, canvas renders, dialogue box within viewport |
+| `experience.spec.js` | **Experience invariants** — structural rules that proxy for player comprehension: NPC translation exists in DOM + EN toggle present; every choice button has Latin/English text; loading state never leaves zero choices for >2s; '...' placeholder resolves within 3s. Failures map to BUG-020 (dismiss choice no English), BUG-021 (loading freeze), BUG-022 (TutorAI choices Russian-only). |
 
 Both desktop (1280×720) and mobile (375×667) viewports run via Playwright projects.
 
