@@ -881,6 +881,128 @@ const APARTMENT_DIALOGUE = (() => {
     },
 
     {
+      id: 'life_detail_sister',
+      trigger: { flag: 'galina_key_given', value: true },
+      title: 'Sister Lyudmila',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'В субботу — сестра. Людмила. Она всегда звонит. Не в дверь — по телефону. Она такая.',
+          translation: 'On Saturday — my sister. Lyudmila. She always calls. Not the door — on the phone. That\'s just her.',
+          stage_direction: 'Galina says this while checking her mailbox, not looking up. A statement of fact about the world. She is not inviting further discussion.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Хорошо.',
+              translation: 'Good. / Okay.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Людмила?',
+              translation: 'Lyudmila?',
+              isFinal: false,
+            },
+            {
+              id: 'c',
+              russian: 'Понятно.',
+              translation: 'Understood.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'galina',
+          russian: 'Да. Хорошо. В субботу — тишина утром. Запомните.',
+          translation: 'Yes. Good. On Saturday — quiet in the morning. Remember that.',
+          stage_direction: 'She closes the mailbox. The sister is already behind her. The rule is what matters.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'galina',
+          russian: 'Людмила. Сестра. Она старше. Это всё.',
+          translation: 'Lyudmila. My sister. She is older. That is all.',
+          stage_direction: 'She repeats it matter-of-factly. Not unfond — just complete. Turns back toward her door.',
+          isFinal: true,
+        },
+        {
+          id: 'response_c',
+          choiceId: 'c',
+          speaker: 'galina',
+          russian: 'Понятно. Она придёт в субботу. Не беспокойтесь.',
+          translation: 'Understood. She is coming on Saturday. Don\'t worry about it.',
+          stage_direction: 'She gives a small dismissive wave — not unfriendly, just concluding. Already moving.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    {
+      id: 'life_detail_plant',
+      trigger: { tier: 1 },
+      title: 'The Plant on the Windowsill',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Этот цветок — с подоконника. Сухой был. Три дня без воды. Три дня.',
+          translation: 'This flower — from the windowsill. It was dry. Three days without water. Three days.',
+          stage_direction: 'Galina is watering can in hand, not looking at the player. She holds the can up slightly toward a potted plant near her door — the same can from the first scene. She repeats "три дня" the way she repeats numbers: for emphasis, not for explanation.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Три дня?',
+              translation: 'Three days?',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Красивый цветок.',
+              translation: 'Beautiful flower.',
+              isFinal: false,
+            },
+            {
+              id: 'c',
+              russian: 'Понятно.',
+              translation: 'Understood.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'galina',
+          russian: 'Три дня. Да. Он выжил. Хороший цветок.',
+          translation: 'Three days. Yes. It survived. A good flower.',
+          stage_direction: 'She says "выжил" with quiet respect, the same tone she uses for "правильно." She tilts the can, waters.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'galina',
+          russian: 'Да. Но воду надо давать. Каждый день. Такие правила.',
+          translation: 'Yes. But water must be given. Every day. Those are the rules.',
+          stage_direction: 'A small, dry pleasure in "такие правила." The same phrase she uses for the building quiet-after-ten rule. Everything in its place.',
+          isFinal: true,
+        },
+        {
+          id: 'response_c',
+          choiceId: 'c',
+          speaker: 'galina',
+          russian: 'Понятно. Цветы — не студенты. Они не скажут, что хотят воды.',
+          translation: 'Understood. Flowers are not students. They won\'t tell you they want water.',
+          stage_direction: 'She says this almost to herself. Possibly a joke. She does not look up to check.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    {
       id: 'cross_reference_park_and_cafe',
       trigger: { flag: 'artyom_met', value: true },
       title: 'Galina Mentions the Park and Café',
