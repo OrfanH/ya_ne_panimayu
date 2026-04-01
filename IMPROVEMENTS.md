@@ -22,7 +22,8 @@
 - TASK-068 | DONE | 2026-04-01 | MISSION_COMPLETE HUD toast + 500ms delayed slot clear | e355ed3
 - TASK-073 | DONE | 2026-04-01 | TutorAI vocab reinforcement uses slice(-8) for most recent words | e355ed3
 - TASK-069 | DONE | 2026-04-01 | Building completion overlay — amber glow on WorldScene buildings when all location missions done | ce47196
-- BUG-023 | DONE | 2026-04-02 | Narration dead-end — advance hint injected, Enter key wired, body click fixed (flex-wrap CSS + isFinal auto-close) | playtester-2026-04-02
+- BUG-023 | DONE | 2026-04-02 | Narration dead-end — advance hint injected, Enter key wired, body click fixed (flex-wrap CSS + isFinal auto-close) | ff16d2c
+- TASK-077 | DONE | 2026-04-02 | Interactive flow tests — tests/flows.spec.js created (40/40 pass desktop+mobile) | ff16d2c (sign-off — committed as part of BUG-023)
 - BUG-024 | DONE | 2026-04-02 | _onTapAdvance blocked by hint child — .dialogue-choices flex-wrap:wrap so .dialogue-body gets non-zero width | playtester-2026-04-02
 - BUG-025 | DONE | 2026-04-02 | Enter key __advance__ test race fixed — added waitForTimeout(100) before keyboard.press | playtester-2026-04-02
 
@@ -54,7 +55,7 @@
 ### TASK-077
 **title:** [PLAYABILITY] Interactive flow tests — Playwright spec covering full onboarding and NPC interaction paths
 **track:** BUILD
-**status:** BACKLOG
+**status:** DONE
 **priority:** P1
 **depends_on:** [BUG-023]
 **assigned_agents:** [playtester, git]
@@ -69,31 +70,8 @@
 
 ---
 
-### BUG-024
-**title:** [BUG] `_onTapAdvance` click-to-advance blocked by hint element — whole first-visit flow broken
-**track:** BUG
-**status:** DONE
-**priority:** P0
-**depends_on:** []
-**assigned_agents:** [fixer, reviewer, playtester, git]
-**reads:** [app/ui/dialogue.js]
-**writes:** [app/ui/dialogue.js]
-**done_when:** `flows.spec.js` tests at lines 79, 103, 120, 132 all pass on both desktop and mobile. Specifically: clicking `.dialogue-body` when choices are empty (only `.dialogue-advance-hint` present) dispatches `dialogue:choice __advance__`; ApartmentScene then shows 3 scripted choice buttons; picking a choice closes dialogue; galina.met is saved.
-**notes:** [CONFIRMED BY PLAYWRIGHT 2026-04-01] `_onTapAdvance` in `app/ui/dialogue.js` line 112 checks `if (_choices.children.length > 0) { return; }`. After BUG-023 fix, `_populate()` injects a `.dialogue-advance-hint` paragraph into `_choices` when effectiveChoices === []. This hint element counts as a child, so `children.length > 0` is always true in narration phase, and `_onTapAdvance` always returns early without dispatching `__advance__`. Fix: mirror the guard from `_onKeyDown` — change the condition to `if (_choices.children.length > 0 && !_choices.querySelector('.dialogue-advance-hint')) { return; }`. 8 tests fail (4 per viewport): clicking dialogue body, English choices present, picking choice, galina.met saved.
-
----
-
-### BUG-025
-**title:** [BUG] Enter key does not dispatch `__advance__` on mobile viewport in WorldScene context
-**track:** BUG
-**status:** DONE
-**priority:** P1
-**depends_on:** [BUG-024]
-**assigned_agents:** [fixer, reviewer, playtester, git]
-**reads:** [app/ui/dialogue.js, tests/flows.spec.js]
-**writes:** [app/ui/dialogue.js]
-**done_when:** `flows.spec.js` test at line 352 passes on mobile viewport: pressing Enter when dialogue is open with no choices (only hint present) dispatches `dialogue:choice __advance__` within 2s.
-**notes:** [CONFIRMED BY PLAYWRIGHT 2026-04-01] `_onKeyDown` logic in `dialogue.js` is correctly written (exempts hint via `!_choices.querySelector('.dialogue-advance-hint')`). Desktop equivalent (flows.spec.js:93 in ApartmentScene context) passes. Mobile-only failure at line 352 (WorldScene context). Hypothesis: after ~2500ms idle (500ms open wait + 2000ms first evaluate timeout), the page/canvas focus state on mobile viewport (375px) may prevent the `window` keydown listener from receiving the Enter key press. Investigate by adding a `page.click('body')` or canvas focus before pressing Enter in the test, or by adding debug logging to `_onKeyDown` to confirm it fires.
+- BUG-024 | DONE | 2026-04-02 | _onTapAdvance hint-child guard fixed — flows 40/40 desktop+mobile | ff16d2c
+- BUG-025 | DONE | 2026-04-02 | Enter key mobile advance — resolved in ff16d2c, flows line 352 passes | ff16d2c
 
 ---
 
@@ -679,7 +657,7 @@
 ### TASK-078
 **title:** ParkScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Artyom
 **track:** BUILD
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** fixer, reviewer
@@ -842,6 +820,7 @@
 - 2026-04-01 · TASK-050 Daily NPC conversation limit — lastTalkedDate[npcId] UTC date tracking in progress storage, scripted farewell on repeat visit, alreadySpokenToday injected into TutorAI system prompt. 98 passing, 0 failing. 38f4ac5
 
 - 2026-04-01 · TASK-064 Recovery playtest — 84 passing, 0 failing, 4 skipped. All BUG-008–BUG-019 fixes confirmed stable. Recovery queue cleared. sign-off
+- 2026-04-02 · BUG-024 + BUG-025 — both resolved in ff16d2c (BUG-023's commit). _onTapAdvance hint-child guard + mobile Enter advance. flows.spec.js 40/40 desktop+mobile, smoke+gameplay 64/64. IMPROVEMENTS.md cleanup only.
 
 - 2026-03-28 ? Agent files ? 17 agents created/overwritten for RPG system ? faafffe
 - 2026-03-28 ? Infrastructure setup ? scoped CLAUDE files, backlog schema, token rules ? 2797d6d
