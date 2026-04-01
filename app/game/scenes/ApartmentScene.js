@@ -108,13 +108,26 @@ class ApartmentScene extends Phaser.Scene {
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
       if (detail.npcId === npcData.id && !TutorAI.isActive() && !this._firstVisitScripted) {
-        const aiNpcData = Object.assign({}, npcData, {
-          persona: npcData.persona +
-            ' When the student makes a grammar error, naturally model the correct form' +
-            ' in your reply without labelling it as an error (recast correction).' +
-            ' For example: if the student says "Я хочу идти", you reply using "пойти" naturally in your response.',
+        getVocabulary().then((vocab) => {
+          const knownWords = (vocab.words || []).slice(-20);
+          const aiNpcData = Object.assign({}, npcData, {
+            persona: npcData.persona +
+              ' When the student makes a grammar error, naturally model the correct form' +
+              ' in your reply without labelling it as an error (recast correction).' +
+              ' For example: if the student says "Я хочу идти", you reply using "пойти" naturally in your response.',
+            knownWords,
+          });
+          TutorAI.startConversation(aiNpcData);
+        }).catch(() => {
+          const aiNpcData = Object.assign({}, npcData, {
+            persona: npcData.persona +
+              ' When the student makes a grammar error, naturally model the correct form' +
+              ' in your reply without labelling it as an error (recast correction).' +
+              ' For example: if the student says "Я хочу идти", you reply using "пойти" naturally in your response.',
+            knownWords: [],
+          });
+          TutorAI.startConversation(aiNpcData);
         });
-        TutorAI.startConversation(aiNpcData);
       }
     };
     window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);

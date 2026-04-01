@@ -163,6 +163,12 @@ const TutorAI = (() => {
       reinforcement = `\nThe student has previously learned these words — use them naturally when they fit: ${sample}.`;
     }
 
+    let recognitionInstruction = '';
+    if (Array.isArray(npcData.knownWords) && npcData.knownWords.length > 0) {
+      const wordList = npcData.knownWords.map(w => w.cyrillic || w.russian).join(', ');
+      recognitionInstruction = `\nThe student has previously learned these vocabulary words: ${wordList}. When the player correctly uses one of these words in conversation, naturally acknowledge it — e.g. 'Oh, you remembered квартира!' This creates a moment of recognition.`;
+    }
+
     let alreadySpokenNote = '';
     if (alreadySpokenToday) {
       alreadySpokenNote = `\nNote: you have already had a full conversation with this student today. Keep your response brief and natural — a short friendly exchange is appropriate.`;
@@ -176,6 +182,7 @@ const TutorAI = (() => {
       `Keep responses to 1–3 sentences.\n` +
       `Naturally work in NEW vocabulary from this list when relevant: ${newVocab}.` +
       reinforcement +
+      recognitionInstruction +
       alreadySpokenNote + `\n` +
       `Never break character. Never mention that you are an AI.`
     );
