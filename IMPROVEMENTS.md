@@ -29,7 +29,7 @@
 ---
 
 ### P0 — Playability gate
-*Nothing in P1 or P2 ships until TASK-040 passes. The game must be verified playable end-to-end. Any BUG tasks filed by TASK-040 become P0 blockers.*
+*TASK-040 DONE (2026-03-30). TASK-064 recovery playtest DONE (2026-04-01, 84/0/4). P0 gate cleared — P1 and P2 work may proceed.*
 
 ---
 
@@ -202,6 +202,53 @@
 
 ---
 
+### P1 — Playability (assess 2026-04-01)
+*Gaps found by /assess full run. Game technically works but these gaps cause confusion, loss of direction, or inaccessible content.*
+
+---
+
+### TASK-065
+**title:** [PLAYABILITY] HUD mission indicator — show English subtitle alongside Russian title
+**track:** FAST
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/ui/hud.js, app/game/systems/StoryMissions.js, app/game/systems/MissionGenerator.js]
+**writes:** [app/ui/hud.js]
+**done_when:** The HUD mission indicator displays the Russian mission title on one line and the English `titleEn` on a smaller line below it. A new player can read "Знакомство / Meet your neighbor Galina" without opening the Journal. Both StoryMissions and MissionGenerator pass `titleEn` in the MISSION_START event detail — the HUD must render it.
+**notes:** [PLAYABILITY] Currently `hud.js _showMission()` only renders `e.detail.title` (Russian). The `titleEn` field is dispatched by both mission systems but silently ignored. A beginner Russian learner sees "Новые слова" in the HUD and has no idea what to do without opening the Journal. The English subtitle should be visually subordinate (smaller, muted) so it doesn't break the Russian-first design principle.
+
+---
+
+### TASK-066
+**title:** [PLAYABILITY] Location unlock notification — HUD toast when new location becomes accessible
+**track:** FAST
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/ui/hud.js, app/config.js]
+**writes:** [app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js]
+**done_when:** Whenever a scene pushes a new location to `unlockedLocations`, a `HUD_TOAST` event fires immediately after with a message naming the newly accessible location (e.g. "The park is now open!"). Toast is visible for 4 seconds. Player does not need to discover the unlock by accident.
+**notes:** [PLAYABILITY] Each interior scene silently calls `progress.unlockedLocations.push(nextLocation)` with no user-facing feedback. The player may not notice the new building is accessible until they walk past it. Per REFERENCE-GAMEDESIGN.md §2: "lock the system, not the display" — the unlock event should be felt, not just stored. Use the existing `EVENTS.HUD_TOAST` mechanism.
+
+---
+
+### TASK-067
+**title:** [PLAYABILITY] Chapter test — add overworld access point; TestScene has no launch trigger
+**track:** BUG
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/game/scenes/WorldScene.js, app/game/scenes/TestScene.js, app/ui/test.js, app/game/systems/StoryMissions.js, app/config.js]
+**writes:** [app/game/scenes/WorldScene.js]
+**done_when:** A player who has completed all story missions for chapter 1 can access the chapter test. Either: (a) a "Professor's Apartment" building zone is added to WorldScene that launches `scene.start('Test', { chapter: N })` when entered, or (b) an alternative access path (HUD button, story mission trigger) is implemented and documented. TestScene is confirmed reachable in Playwright.
+**notes:** [PLAYABILITY] `scene.start('Test', ...)` is never called anywhere in the codebase. TestScene is registered in main.js and fully implemented (TASK-020), but there is no button, zone, or trigger that launches it. Chapter tests are completely inaccessible to players. This was confirmed by grep — zero matches for `start.*'Test'` across all app/ JS files.
+
+---
+
 ### P2 — Content depth
 *Progression systems that enrich the experience. Implement after P1 is stable and tested.*
 
@@ -269,6 +316,81 @@
 - Player and NPC sprites are from the same tileset, eliminating the visual style mismatch (finding #9)
 - Boot.js animation creation updated to reference the new frame source
 **notes:** Addresses pixel-art-mapping.md findings #8 (player is a generic tileset character) and #9 (two separate tileset packs with different visual registers). Depends on TASK-056 (NPC frame verification) so that the player frame is chosen with full knowledge of which frames are already claimed by NPCs. NOTE: if roguelike-characters.png does not have enough directional walk frames for a player character, flag to user rather than fabricating animations.
+
+---
+
+### P2 — Game feel & aliveness (assess 2026-04-01)
+*Gaps found by /assess full run. Game is playable but these gaps make the world feel empty, interactions feel hollow, and progression feel unrewarding.*
+
+---
+
+### TASK-068
+**title:** [GAME_FEEL] Mission completion feedback — HUD toast + brief acknowledgement on MISSION_COMPLETE
+**track:** FAST
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** []
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/ui/hud.js, app/config.js]
+**writes:** [app/ui/hud.js]
+**done_when:** When `EVENTS.MISSION_COMPLETE` fires, a HUD toast appears for 3 seconds with a positive brief message (e.g. "Задание выполнено! ✓" / "Mission complete!"). The mission slot clears AFTER the toast, not before. Player has a visible beat of acknowledgement before the next mission silently takes over.
+**notes:** [GAME_FEEL] Currently `MISSION_COMPLETE` causes hud.js to remove the `is-visible` class and clear the title text — that's it. No toast, no beat, no reaction. Per REFERENCE-DIALOGUE.md §2: "the NPC's response should be emotional or relational, not a recap." Even without NPC lines, a brief HUD moment prevents the player from feeling their accomplishment was unnoticed. Use `EVENTS.HUD_TOAST` to fire the message, then clear the mission slot after a 500ms delay.
+
+---
+
+### TASK-069
+**title:** [ALIVENESS] Cross-location NPC references — add gossip lines connecting NPCs across locations
+**track:** CONTENT
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** []
+**assigned_agents:** [content-writer, linguist, git]
+**reads:** [app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js, REFERENCE-GAMEDESIGN.md, REFERENCE-DIALOGUE.md, CLAUDE-VISION.md]
+**writes:** [app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js]
+**done_when:** At least 3 NPC dialogue files contain at least 1 new variation line where the NPC references another NPC or location by name. Examples: Galina mentions the market vendor; Artyom mentions the café. Lines must be natural, A1-appropriate Russian with English translation. Each reference is a separate VARIATIONS entry with an appropriate trigger.
+**notes:** [ALIVENESS] No NPC currently references any other NPC or location. Every conversation is self-contained. Per REFERENCE-GAMEDESIGN.md §4: "cross-location NPC references create return motivation — when an NPC at the market mentions something happening at the café, players walk back to the café to check." This is the single highest-leverage aliveness change available without new systems — it only requires new dialogue lines.
+
+---
+
+### TASK-070
+**title:** [ALIVENESS] Galina life detail — add 1-2 dialogue variations with independent story thread
+**track:** CONTENT
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** []
+**assigned_agents:** [content-writer, linguist, git]
+**reads:** [app/game/content/apartment-dialogue.js, REFERENCE-GAMEDESIGN.md, REFERENCE-DIALOGUE.md, CLAUDE-VISION.md]
+**writes:** [app/game/content/apartment-dialogue.js]
+**done_when:** `apartment-dialogue.js` VARIATIONS array contains at least 1 new variation where Galina mentions a recurring life element the player never directly participates in — her plants, a neighbour dispute, a relative, a routine. The line must be characterful, A1-appropriate, and use natural Russian (not textbook Russian). The variation must have a trigger condition so it doesn't fire on every visit.
+**notes:** [ALIVENESS] Galina's current persona is entirely player-facing: "She models language without condescension and waits for full answers." Per REFERENCE-GAMEDESIGN.md §3: "NPCs must have lives that do not revolve around the player — these details make NPCs feel real, not assistant-bots." Currently Galina has a watering can (one prop) but no independent story thread. Even one line like "Oh, my sister is visiting on Saturday — she never knocks" adds enormous depth at minimal cost.
+
+---
+
+### TASK-071
+**title:** [GAME_FEEL] TutorAI vocabulary recognition — inject known-word list into system prompt
+**track:** FAST
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** []
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/ApartmentScene.js, app/game/systems/TutorAI.js, app/storage.js, app/config.js]
+**writes:** [app/game/scenes/ApartmentScene.js, app/game/systems/TutorAI.js]
+**done_when:** Before `TutorAI.startConversation()` is called, the player's current vocabulary list is loaded from storage and a subset (max 20 most recent words) is appended to the NPC system prompt with the instruction: "When the player correctly uses one of these words in conversation, naturally acknowledge it — e.g. 'Oh, you remembered квартира!' This creates a moment of recognition." Verified in ApartmentScene.
+**notes:** [GAME_FEEL] The TutorAI system prompt currently includes the NPC persona and recast correction instruction but no player vocabulary context. Per REFERENCE-GAMEDESIGN.md §3: "when the player correctly uses a vocabulary word the NPC taught them earlier, the NPC should explicitly recognise it — 'Oh! You remembered what I said!' This creates a loop of investment." Without this, every AI conversation feels like the first meeting. The vocabulary list already exists in storage; it just needs to be read and injected before startConversation() fires.
+
+---
+
+### TASK-072
+**title:** [GAME_FEEL] World-state visual change on location completion — visual marker when all missions done
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** [TASK-067]
+**assigned_agents:** [architect, coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/WorldScene.js, app/game/systems/StoryMissions.js, app/storage.js, app/config.js]
+**writes:** [app/game/scenes/WorldScene.js, app/game/systems/StoryMissions.js]
+**done_when:** When all story missions for a location are complete, the building on the overworld receives a small visual change — e.g. a lit window tile, a flower pot sprite, or a changed label color — that persists across sessions. Implemented via a new `completedLocations` array in progress storage. WorldScene reads this on load and applies the visual variant. At minimum the apartment building changes after chapter 1 missions complete.
+**notes:** [GAME_FEEL] Per REFERENCE-GAMEDESIGN.md §5: "world-state change is more satisfying than points — environmental change as progression feedback requires no UI numbers and feels diegetic." Currently the apartment, park, and all buildings look identical whether the player has completed 0 or 30 missions. The world never reflects the player's history with it. Even a small per-building visual state change (lit window, open door, NPC standing outside) creates the feeling of "a life being built."
 
 ---
 
