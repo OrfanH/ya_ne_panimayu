@@ -134,9 +134,37 @@ const DialogueUI = (() => {
   }
 
   // -----------------------------------------------------------
+  // Fallback translation map — used when choice.translation is absent
+  // -----------------------------------------------------------
+  const _CHOICE_FALLBACK_TRANSLATIONS = {
+    dismiss:  'Okay.',
+    continue: 'Continue...',
+    end:      'Goodbye',
+    greet:    'Hello!',
+    question: 'Do you speak English?',
+    thanks:   'Thank you.',
+  };
+
+  // -----------------------------------------------------------
+  // Loading fallback timer — cleared when the line is updated away
+  // from a loading state (or dialogue closes)
+  // -----------------------------------------------------------
+  let _loadingFallbackTimer = null;
+
+  function _clearLoadingFallback() {
+    if (_loadingFallbackTimer !== null) {
+      clearTimeout(_loadingFallbackTimer);
+      _loadingFallbackTimer = null;
+    }
+  }
+
+  // -----------------------------------------------------------
   // Populate DOM from a DialogueLine
   // -----------------------------------------------------------
   function _populate(line) {
+    // Cancel any pending loading fallback from a prior call
+    _clearLoadingFallback();
+
     _speakerName.textContent = line.npcName || '';
 
     // Offline indicator — remove any previous badge first
@@ -164,45 +192,73 @@ const DialogueUI = (() => {
     _translation.textContent = line.translation || '';
     _applyTranslationVisibility();
 
+    // Class A fix: when loading and no choices provided, inject a fallback exit choice
+    // so the player is never left with an empty choices area.
+    const effectiveChoices = (line.choices && line.choices.length > 0)
+      ? line.choices
+      : (line.loading
+          ? [{ id: 'end', russian: 'До свидания', translation: 'Goodbye', isFinal: true }]
+          : []);
+
+    // Class B fix: when loading, start a 2500ms timer. If the text is still '...'
+    // when it fires, replace with a bilingual fallback message and ensure exit choice.
+    if (line.loading) {
+      _loadingFallbackTimer = setTimeout(() => {
+        _loadingFallbackTimer = null;
+        if (_russian.textContent === '...') {
+          _populate({
+            npcId:       line.npcId      || '',
+            npcName:     line.npcName    || '',
+            russian:     `${line.npcName || 'NPC'} отвлеклась... / ${line.npcName || 'NPC'} is distracted...`,
+            translation: '',
+            portrait:    line.portrait   || null,
+            choices:     [{ id: 'end', russian: 'До свидания', translation: 'Goodbye', isFinal: true }],
+            offline:     line.offline    || false,
+            loading:     false,
+          });
+        }
+      }, 2500);
+    }
+
     // Choices
     _choices.innerHTML = '';
-    if (line.choices && line.choices.length > 0) {
-      for (const choice of line.choices) {
-        const btn = document.createElement('button');
-        btn.className = 'dialogue-choice-btn';
-        btn.type = 'button';
+    for (const choice of effectiveChoices) {
+      const btn = document.createElement('button');
+      btn.className = 'dialogue-choice-btn';
+      btn.type = 'button';
 
-        const russianSpan = document.createElement('span');
-        russianSpan.className = 'choice-russian';
-        russianSpan.textContent = choice.russian || '';
-        btn.appendChild(russianSpan);
+      const russianSpan = document.createElement('span');
+      russianSpan.className = 'choice-russian';
+      russianSpan.textContent = choice.russian || '';
+      btn.appendChild(russianSpan);
 
-        if (choice.translation) {
-          const translationSpan = document.createElement('span');
-          translationSpan.className = 'choice-translation';
-          translationSpan.textContent = choice.translation;
-          btn.appendChild(translationSpan);
-        }
-
-        btn.addEventListener('click', () => {
-          if (choice.isFinal) {
-            close();
-          } else {
-            window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_CHOICE, {
-              detail: { choiceId: choice.id, russian: choice.russian || '' },
-            }));
-          }
-        });
-
-        btn.addEventListener('mouseenter', () => {
-          btn.classList.add('is-hover');
-        });
-        btn.addEventListener('mouseleave', () => {
-          btn.classList.remove('is-hover');
-        });
-
-        _choices.appendChild(btn);
+      // Class C fix: use fallback translation map when choice.translation is absent
+      const translationText = choice.translation || _CHOICE_FALLBACK_TRANSLATIONS[choice.id] || '';
+      if (translationText) {
+        const translationSpan = document.createElement('span');
+        translationSpan.className = 'choice-translation';
+        translationSpan.textContent = translationText;
+        btn.appendChild(translationSpan);
       }
+
+      btn.addEventListener('click', () => {
+        if (choice.isFinal) {
+          close();
+        } else {
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_CHOICE, {
+            detail: { choiceId: choice.id, russian: choice.russian || '' },
+          }));
+        }
+      });
+
+      btn.addEventListener('mouseenter', () => {
+        btn.classList.add('is-hover');
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.classList.remove('is-hover');
+      });
+
+      _choices.appendChild(btn);
     }
   }
 
@@ -274,6 +330,7 @@ const DialogueUI = (() => {
   function close() {
     if (_state.phase !== _STATES.OPEN && _state.phase !== _STATES.OPENING) { return; }
 
+    _clearLoadingFallback();
     _state.phase = _STATES.CLOSING;
     _state.currentLine = null;
     const vocabSnapshot = _state.sessionVocab.slice();
@@ -327,6 +384,7 @@ const DialogueUI = (() => {
       portrait: detail.portrait || null,
       choices: detail.choices || [],
       offline: detail.offline || false,
+      loading: detail.loading || false,
     };
     open(line);
   }
@@ -344,6 +402,7 @@ const DialogueUI = (() => {
       portrait: detail.portrait || null,
       choices: detail.choices || [],
       offline: detail.offline || false,
+      loading: detail.loading || false,
     };
     update(line);
   }

@@ -162,8 +162,9 @@ const TutorAI = (() => {
       reinforcement = `\nThe student has previously learned these words — use them naturally when they fit: ${sample}.`;
     }
 
+    const personaClause = npcData.persona ? `, ${npcData.persona}` : '';
     return (
-      `You are ${npcData.name}, ${npcData.persona}.\n` +
+      `You are ${npcData.name}${personaClause}.\n` +
       `You are speaking with a beginner Russian learner.\n` +
       `Respond ONLY in Russian. After each sentence add the English translation in parentheses.\n` +
       `Keep responses to 1–3 sentences.\n` +
@@ -297,6 +298,8 @@ const TutorAI = (() => {
   // preventing double-open and race conditions.
   // -----------------------------------------------------------
   function _dispatchAILine(replyText) {
+    // Guard: _npcData may be null if dialogue was closed while awaiting API
+    if (_npcId === null || _npcData === null) { return; }
     window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
       detail: {
         npcId: _npcId,
@@ -306,8 +309,8 @@ const TutorAI = (() => {
         portrait: _npcData.portrait || null,
         offline: _offline,
         choices: [
-          { id: 'continue', russian: 'Продолжить...', isFinal: false },
-          { id: 'end',      russian: 'До свидания',   isFinal: true  },
+          { id: 'continue', russian: 'Продолжить...', translation: 'Continue...', isFinal: false },
+          { id: 'end',      russian: 'До свидания',   translation: 'Goodbye',     isFinal: true  },
         ],
       },
     }));
@@ -389,15 +392,21 @@ const TutorAI = (() => {
     if (_offline) {
       const greeting = _getScriptedFallback();
       _isWaiting = false;
-      _dispatchAILine(greeting);
+      // Guard: player may have pressed Goodbye while loading was in progress
+      if (_npcId !== null) { _dispatchAILine(greeting); }
       return;
     }
 
+    const requestedNpcId = _npcId;
+
     window.dispatchEvent(new CustomEvent(EVENTS.TUTOR_AI_REQUEST, {
-      detail: { npcId: _npcId },
+      detail: { npcId: requestedNpcId },
     }));
 
     const greeting = await _sendToAI('Greet the player. This is the start of the conversation.');
+
+    // Guard: dialogue may have been dismissed while API call was in flight
+    if (_npcId === null || _npcId !== requestedNpcId) { return; }
 
     window.dispatchEvent(new CustomEvent(EVENTS.TUTOR_AI_RESPONSE, {
       detail: { npcId: _npcId, reply: greeting },
