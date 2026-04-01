@@ -128,6 +128,25 @@ class ApartmentScene extends Phaser.Scene {
       if (!this._firstVisitScripted) { return; }
       const detail = e.detail || {};
       const choiceId = detail.choiceId;
+
+      // Narration phase: player tapped to advance past the context line
+      if (this._scriptedPhase === 'narration' && choiceId === '__advance__') {
+        this._scriptedPhase = 'choices';
+        const opening = APARTMENT_DIALOGUE.VARIATIONS[0];
+        const firstLine = opening.lines[0];
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       npcData.id,
+            npcName:     npcData.name,
+            russian:     firstLine.russian,
+            translation: firstLine.translation,
+            portrait:    npcData.portrait || null,
+            choices:     firstLine.choices,
+          },
+        }));
+        return;
+      }
+
       const opening = APARTMENT_DIALOGUE.VARIATIONS[0];
       const response = opening.lines.find((l) => l.choiceId === choiceId);
       if (!response) { return; }
@@ -140,7 +159,7 @@ class ApartmentScene extends Phaser.Scene {
           translation: response.translation,
           portrait:    npcData.portrait || null,
           choices: [
-            { id: 'dismiss', russian: 'Хорошо.', isFinal: true },
+            { id: 'dismiss', russian: 'Хорошо.', translation: 'Okay.', isFinal: true },
           ],
         },
       }));
@@ -193,26 +212,28 @@ class ApartmentScene extends Phaser.Scene {
     //     only when it turns out this is NOT a first visit.
     // -------------------------------------------------------
     this._firstVisitScripted = true;
+    this._scriptedPhase = 'narration';
     getProgress().then((progress) => {
       const isFirstVisit = progress.npcRelationships.galina === undefined;
       if (isFirstVisit) {
-        const opening = APARTMENT_DIALOGUE.VARIATIONS[0];
-        const firstLine = opening.lines[0];
         this.time.delayedCall(350, () => {
           this.physics.pause();
+          // Show a narration line first so the player knows what is happening
+          // before being presented with Russian response choices.
           window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
             detail: {
               npcId:       npcData.id,
               npcName:     npcData.name,
-              russian:     firstLine.russian,
-              translation: firstLine.translation,
+              russian:     'Ваша соседка стучит в дверь и говорит по-русски.',
+              translation: 'Your neighbor knocks on the door and speaks to you in Russian.',
               portrait:    npcData.portrait || null,
-              choices:     firstLine.choices,
+              choices:     [],
             },
           }));
         });
       } else {
         this._firstVisitScripted = false;
+        this._scriptedPhase = null;
       }
     });
   }

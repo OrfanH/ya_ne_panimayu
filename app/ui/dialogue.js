@@ -171,7 +171,18 @@ const DialogueUI = (() => {
         const btn = document.createElement('button');
         btn.className = 'dialogue-choice-btn';
         btn.type = 'button';
-        btn.textContent = choice.russian || '';
+
+        const russianSpan = document.createElement('span');
+        russianSpan.className = 'choice-russian';
+        russianSpan.textContent = choice.russian || '';
+        btn.appendChild(russianSpan);
+
+        if (choice.translation) {
+          const translationSpan = document.createElement('span');
+          translationSpan.className = 'choice-translation';
+          translationSpan.textContent = choice.translation;
+          btn.appendChild(translationSpan);
+        }
 
         btn.addEventListener('click', () => {
           if (choice.isFinal) {

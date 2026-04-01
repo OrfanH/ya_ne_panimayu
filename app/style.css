@@ -366,6 +366,10 @@ body {
 }
 
 .dialogue-choice-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
   width: 100%;
   min-height: var(--choice-min-height);
   padding: var(--space-2) var(--space-4);
@@ -379,6 +383,21 @@ body {
   text-align: left;
   transition: background var(--transition-fast), color var(--transition-fast);
   box-shadow: inset 1px 1px 0 #8a8fa0, inset -1px -1px 0 #1e2028;
+}
+
+.choice-russian {
+  display: block;
+}
+
+.choice-translation {
+  display: block;
+  font-size: var(--text-sm);
+  color: #8a8fa0;
+  font-style: italic;
+}
+
+.dialogue-choice-btn:hover .choice-translation {
+  color: #b0b4c4;
 }
 
 .dialogue-choice-btn:hover {
