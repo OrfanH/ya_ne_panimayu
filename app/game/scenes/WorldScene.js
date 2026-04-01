@@ -98,6 +98,15 @@ class WorldScene extends Phaser.Scene {
     }
 
     // -------------------------------------------------------
+    // 3b. Completion overlays (persisted visual state)
+    // -------------------------------------------------------
+    this._completionOverlays = {};
+    this._onLocationComplete = (e) => this._applyCompletionOverlay(e.detail.locationId);
+    window.addEventListener(EVENTS.LOCATION_COMPLETE, this._onLocationComplete);
+
+    this._applyStoredCompletionOverlays();
+
+    // -------------------------------------------------------
     // 4. Collision layer (invisible physics bodies)
     // -------------------------------------------------------
     const collisionMap = MapBuilder.buildCollisionUint8(COLS, ROWS, BUILDING_ZONES);
@@ -252,6 +261,7 @@ class WorldScene extends Phaser.Scene {
 
   shutdown() {
     window.removeEventListener(EVENTS.INTRO_DONE, this._onIntroDone);
+    window.removeEventListener(EVENTS.LOCATION_COMPLETE, this._onLocationComplete);
     this.game.events.off(EVENTS.ZONE_ENTER, this._onZoneEnter);
     this._player.destroy();
     this._transitioning = false;
@@ -620,6 +630,36 @@ class WorldScene extends Phaser.Scene {
           },
         }));
       }
+    }
+  }
+
+  // ---------------------------------------------------------------
+  // Private — apply amber overlay for a completed location
+  // ---------------------------------------------------------------
+  _applyCompletionOverlay(locationId) {
+    if (this._completionOverlays[locationId]) { return; }
+    const zone = BUILDING_ZONES.find((z) => z.id === locationId);
+    if (!zone) { return; }
+    const T = GAME_CONFIG.TILE_SIZE;
+    const rect = this.add.rectangle(
+      zone.col * T + (zone.cols * T) / 2,
+      zone.row * T + (zone.rows * T) / 2,
+      zone.cols * T,
+      zone.rows * T,
+      0xFFD580,
+      0.35
+    );
+    rect.setDepth(1);
+    this._completionOverlays[locationId] = rect;
+  }
+
+  // ---------------------------------------------------------------
+  // Private — read stored completedLocations and apply overlays
+  // ---------------------------------------------------------------
+  async _applyStoredCompletionOverlays() {
+    const progress = await getProgress();
+    for (const locationId of (progress.completedLocations || [])) {
+      this._applyCompletionOverlay(locationId);
     }
   }
 }

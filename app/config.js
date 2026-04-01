@@ -56,6 +56,7 @@ const DEFAULT_PROGRESS = {
   chapter: 1,
   unlockedLocations: ['apartment'],
   completedMissions: [],
+  completedLocations: [],
   activeMission: null,
   testScores: {},
   npcRelationships: {},
@@ -99,4 +100,5 @@ const EVENTS = {
   SETTINGS_THEME_CHANGE:       'settings:theme:change',
   SETTINGS_VOLUME_CHANGE:      'settings:volume:change',
   HUD_TOAST:                   'hud:toast',
+  LOCATION_COMPLETE:           'location:complete',
 };

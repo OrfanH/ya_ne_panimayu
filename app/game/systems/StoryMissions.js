@@ -240,6 +240,34 @@ const StoryMissions = (() => {
   }
 
   // -----------------------------------------------------------
+  // Check if all missions for a location are complete; if so,
+  // persist completedLocations and fire LOCATION_COMPLETE
+  // -----------------------------------------------------------
+  async function _checkLocationComplete(missionId, progress) {
+    const parts = missionId.split(':');
+    const locationId = parts[1];
+    if (!locationId) { return; }
+
+    const locationMissions = MISSIONS.filter((m) => m.location === locationId);
+    if (locationMissions.length === 0) { return; }
+
+    const completedMissions = progress.completedMissions || [];
+    const allDone = locationMissions.every((m) => completedMissions.includes(m.id));
+    if (!allDone) { return; }
+
+    const completedLocations = progress.completedLocations || [];
+    if (completedLocations.includes(locationId)) { return; }
+
+    completedLocations.push(locationId);
+    progress.completedLocations = completedLocations;
+    await saveProgress(progress);
+
+    window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_COMPLETE, {
+      detail: { locationId },
+    }));
+  }
+
+  // -----------------------------------------------------------
   // On dialogue end — check if the active story mission is done
   // -----------------------------------------------------------
   async function _onDialogueEnd() {
@@ -268,6 +296,8 @@ const StoryMissions = (() => {
         window.dispatchEvent(new CustomEvent(EVENTS.MISSION_COMPLETE, {
           detail: { id: mission.id, titleEn: mission.titleEn },
         }));
+
+        await _checkLocationComplete(mission.id, progress);
 
         // Check for next story mission after a short delay
         setTimeout(() => { _checkAndAssign(); }, 500);
