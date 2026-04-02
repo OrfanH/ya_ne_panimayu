@@ -125,11 +125,17 @@ class ParkScene extends Phaser.Scene {
     });
 
     // -------------------------------------------------------
-    // 8. Dialogue listeners — start TutorAI with correct NPC
+    // 8. Dialogue-start listener — TutorAI with correct NPC.
+    //    Skipped during first-visit scripted mode.
+    //    NOTE: _firstVisitScripted is initialised in section 11
+    //    before the async getProgress() call, so it is always set
+    //    before this listener can fire.
     // -------------------------------------------------------
+    this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 11
+
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
-      if (TutorAI.isActive()) { return; }
+      if (TutorAI.isActive() || this._firstVisitScripted) { return; }
       if (detail.npcId === artyomData.id) {
         TutorAI.startConversation(artyomData);
       } else if (detail.npcId === tamaraData.id) {
@@ -138,8 +144,74 @@ class ParkScene extends Phaser.Scene {
     };
     window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
 
+    // -------------------------------------------------------
+    // 8b. Dialogue-choice handler for first-visit scripted responses
+    //     TutorAI ignores choices when scripted mode is active.
+    // -------------------------------------------------------
+    this._onDialogueChoice = (e) => {
+      if (!this._firstVisitScripted) { return; }
+      const detail = e.detail || {};
+      const choiceId = detail.choiceId;
+
+      // Narration phase: player tapped to advance past the context line
+      if (this._scriptedPhase === 'narration' && choiceId === '__advance__') {
+        this._scriptedPhase = 'choices';
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       artyomData.id,
+            npcName:     artyomData.name,
+            russian:     'Здравствуйте! Я Артём. Давно здесь работаю.',
+            translation: 'Hello! I am Artyom. I have been working here for a long time.',
+            portrait:    artyomData.portrait || null,
+            choices: [
+              { id: 'greet',   text: 'Здравствуйте!',      translation: 'Hello!' },
+              { id: 'observe', text: 'Красивый парк.',      translation: 'What a beautiful park.' },
+              { id: 'walk',    text: 'Я просто гуляю.',     translation: 'I am just taking a walk.' },
+            ],
+          },
+        }));
+        return;
+      }
+
+      const scriptedResponses = {
+        greet:   { russian: 'Рад познакомиться!',         translation: 'Nice to meet you!' },
+        observe:  { russian: 'Спасибо, я стараюсь.',       translation: 'Thank you, I try my best.' },
+        walk:    { russian: 'Приятной прогулки!',          translation: 'Enjoy your walk!' },
+      };
+
+      const response = scriptedResponses[choiceId];
+      if (!response) { return; }
+
+      window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+        detail: {
+          npcId:       artyomData.id,
+          npcName:     artyomData.name,
+          russian:     response.russian,
+          translation: response.translation,
+          portrait:    artyomData.portrait || null,
+          choices:     [],
+        },
+      }));
+
+      this.time.delayedCall(1500, () => {
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+      });
+    };
+    window.addEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
+
+    // -------------------------------------------------------
+    // 8c. Dialogue-end listener — resume physics, save artyom.met
+    //     on first visit, then hand off to TutorAI for next visit.
+    // -------------------------------------------------------
     this._onDialogueEnd = () => {
       this.physics.resume();
+      if (this._firstVisitScripted) {
+        this._firstVisitScripted = false;
+        getProgress().then((progress) => {
+          progress.npcRelationships.artyom = { met: true };
+          saveProgress(progress);
+        });
+      }
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
@@ -160,6 +232,41 @@ class ParkScene extends Phaser.Scene {
         window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
           detail: { message: 'The cafe is now open!', duration: 4000 },
         }));
+      }
+    });
+
+    // -------------------------------------------------------
+    // 11. First-visit: auto-trigger scripted opening with Artyom.
+    //     _firstVisitScripted blocks TutorAI takeover until the
+    //     scripted exchange completes and artyom.met is saved.
+    //
+    //     IMPORTANT: set _firstVisitScripted = true synchronously
+    //     BEFORE the async getProgress() call so TutorAI cannot
+    //     race in during the period when the promise is in-flight.
+    //     The flag is downgraded back to false inside the callback
+    //     only when it turns out this is NOT a first visit.
+    // -------------------------------------------------------
+    this._firstVisitScripted = true;
+    this._scriptedPhase = 'narration';
+    getProgress().then((progress) => {
+      const isFirstVisit = progress.npcRelationships.artyom === undefined;
+      if (isFirstVisit) {
+        this.time.delayedCall(350, () => {
+          this.physics.pause();
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+            detail: {
+              npcId:       artyomData.id,
+              npcName:     artyomData.name,
+              russian:     'Вы заходите в парк. Здесь тихо и уютно. Пожилой мужчина в синей куртке подметает дорожку.',
+              translation: 'You enter the park. It is quiet and cosy here. An elderly man in a blue jacket is sweeping the path.',
+              portrait:    artyomData.portrait || null,
+              choices:     [],
+            },
+          }));
+        });
+      } else {
+        this._firstVisitScripted = false;
+        this._scriptedPhase = null;
       }
     });
   }
@@ -185,6 +292,7 @@ class ParkScene extends Phaser.Scene {
 
   shutdown() {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
+    window.removeEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
     this._player.destroy();
   }
