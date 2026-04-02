@@ -20,6 +20,7 @@ const {
   waitForSceneActive,
   seedProgressAndBoot,
   BOOT_TIMEOUT,
+  SCENE_TIMEOUT,
 } = require('./helpers');
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -56,7 +57,7 @@ const RETURN_VISIT_PROGRESS = {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('First-visit onboarding flow', () => {
   test.beforeEach(async ({ page }) => {
-    test.setTimeout(90_000);
+    test.setTimeout(SCENE_TIMEOUT);
     await seedProgressAndBoot(page, FIRST_VISIT_PROGRESS);
     await page.evaluate(() => window.__GAME__.scene.start('Apartment'));
     await waitForSceneActive(page, 'Apartment');
@@ -152,7 +153,7 @@ test.describe('First-visit onboarding flow', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Return-visit apartment flow', () => {
   test.beforeEach(async ({ page }) => {
-    test.setTimeout(90_000);
+    test.setTimeout(SCENE_TIMEOUT);
     await seedProgressAndBoot(page, RETURN_VISIT_PROGRESS);
     await page.evaluate(() => window.__GAME__.scene.start('Apartment'));
     await waitForSceneActive(page, 'Apartment');
@@ -194,7 +195,7 @@ test.describe('Return-visit apartment flow', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Scene transitions', () => {
   test.beforeEach(async ({ page }) => {
-    test.setTimeout(90_000);
+    test.setTimeout(SCENE_TIMEOUT);
     await waitForGameReady(page);
   });
 
@@ -260,7 +261,7 @@ test.describe('Scene transitions', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Mission system flows', () => {
   test.beforeEach(async ({ page }) => {
-    test.setTimeout(90_000);
+    test.setTimeout(SCENE_TIMEOUT);
     await waitForGameReady(page);
   });
 
@@ -350,7 +351,7 @@ test.describe('Mission system flows', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Dialogue keyboard shortcuts', () => {
   test.beforeEach(async ({ page }) => {
-    test.setTimeout(90_000);
+    test.setTimeout(SCENE_TIMEOUT);
     await waitForGameReady(page);
   });
 

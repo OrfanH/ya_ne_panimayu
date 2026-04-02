@@ -55,6 +55,12 @@ Always reference a token. If a token doesn't exist, add it to `tokens.css` first
 - `kebab-case` for all other file names
 - One responsibility per file
 
+## Timer discipline — mandatory
+
+- Every `setTimeout` / `setInterval` call **must** store the handle on `this` (e.g. `this._myTimer = setTimeout(...)`)
+- Every stored handle **must** be cancelled in `shutdown()` with `clearTimeout` / `clearInterval`
+- Reviewer must grep for bare `setTimeout`/`setInterval` calls (no `this.` prefix) in any new or edited scene file — treat as a hard block
+
 ## HTML rules
 
 - Semantic elements: `<nav>`, `<main>`, `<section>`, `<article>`, `<aside>`
@@ -79,6 +85,12 @@ Always reference a token. If a token doesn't exist, add it to `tokens.css` first
 - API key in `api/tutor.js` only — never in frontend
 - All audio via Tone.js synthesis — no audio files
 - Audio starts only on first user interaction via `Tone.start()`
+
+## Testing rules
+
+- Every task that adds dialogue, choices, scene transitions, or interactive UI **must** include a flow test in `tests/flows.spec.js` that walks the complete user path before the task is marked DONE
+- Structural tests (DOM existence checks) do **not** satisfy this requirement — the test must click, press keys, and assert the state the player would see
+- All `beforeEach` blocks in Playwright that call `waitForSceneActive` must use `test.setTimeout(SCENE_TIMEOUT)` from `tests/helpers.js` — never hardcode `90_000`
 
 ## File placement
 

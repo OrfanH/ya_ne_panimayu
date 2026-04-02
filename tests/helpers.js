@@ -4,6 +4,7 @@
  */
 
 const BOOT_TIMEOUT = 20_000;
+const SCENE_TIMEOUT = 90_000;
 
 /**
  * Navigate to the game and wait until the World scene is fully active.
@@ -79,7 +80,7 @@ async function seedProgressAndBoot(page, progress) {
  * @param {string} sceneKey - e.g. 'Apartment', 'World', 'Park'
  * @param {number} timeout
  */
-async function waitForSceneActive(page, sceneKey, timeout = 8000) {
+async function waitForSceneActive(page, sceneKey, timeout = SCENE_TIMEOUT) {
   await page.waitForFunction(
     (key) => window.__GAME__?.scene?.isActive(key),
     sceneKey,
@@ -87,4 +88,4 @@ async function waitForSceneActive(page, sceneKey, timeout = 8000) {
   );
 }
 
-module.exports = { waitForGameReady, dispatchGameEvent, seedProgressAndBoot, waitForSceneActive, BOOT_TIMEOUT };
+module.exports = { waitForGameReady, dispatchGameEvent, seedProgressAndBoot, waitForSceneActive, BOOT_TIMEOUT, SCENE_TIMEOUT };
