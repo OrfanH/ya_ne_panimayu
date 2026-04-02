@@ -59,7 +59,9 @@ const DEFAULT_PROGRESS = {
   completedLocations: [],
   activeMission: null,
   testScores: {},
-  npcRelationships: {},
+  npcRelationships: {
+    galina: { met: false, tier: 0, visitCount: 0 },
+  },
   lastSession: null,
   hasSeenIntro: false,
   hasSeenGraduation: false,

@@ -1002,6 +1002,402 @@ const APARTMENT_DIALOGUE = (() => {
       ],
     },
 
+    // ─── TIER 0 — STRANGER (вы, formal) ─────────────────────────────────────────
+
+    {
+      id: 'opening_formal_redirect',
+      minTier: 0,
+      trigger: (flags, progress) =>
+        progress.npcRelationships?.galina?.tier === 0 &&
+        flags.galina_met === true,
+      title: 'Wrong Floor Again',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Опять вы. Это первый этаж. Квартира три. Вам нужен другой этаж?',
+          translation: 'You again. This is the first floor. Apartment three. You need a different floor?',
+          stage_direction: 'Galina opens the door with mild recognition — not warm, not cold. She waits.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Да. Извините.',
+              translation: 'Yes. I\'m sorry.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Какой этаж?',
+              translation: 'Which floor?',
+              isFinal: false,
+            },
+            {
+              id: 'c',
+              russian: 'Я не понимаю.',
+              translation: 'I don\'t understand.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'galina',
+          russian: 'Пожалуйста. Запомните: первый этаж — один, два, три.',
+          translation: 'You\'re welcome. Remember: first floor — one, two, three.',
+          stage_direction: 'She taps the door frame once, counts on three fingers, and closes the door gently.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'galina',
+          russian: 'Скажите номер квартиры. Я скажу этаж.',
+          translation: 'Say the apartment number. I will tell you the floor.',
+          stage_direction: 'She tilts her head and waits with folded arms.',
+          isFinal: true,
+        },
+        {
+          id: 'response_c',
+          choiceId: 'c',
+          speaker: 'galina',
+          russian: 'Этаж. Первый этаж — здесь. Второй этаж — сверху. Вам нужен какой?',
+          translation: 'Floor. First floor — here. Second floor — upstairs. Which one do you need?',
+          stage_direction: 'She points down at the floor, then up at the ceiling, then at you.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    {
+      id: 'opening_formal_origins',
+      minTier: 0,
+      trigger: (flags, progress) =>
+        progress.npcRelationships?.galina?.tier === 0 &&
+        flags.galina_met === true &&
+        flags.galina_intro === true,
+      title: 'Where Are You From',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Вы не отсюда. Откуда вы? Из России?',
+          translation: 'You are not from here. Where are you from? From Russia?',
+          stage_direction: 'She looks at the player with mild appraisal — not unfriendly, simply direct.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Я из [место]. Не из России.',
+              translation: 'I am from [place]. Not from Russia.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Я из [место].',
+              translation: 'I am from [place].',
+              isFinal: false,
+            },
+            {
+              id: 'c',
+              russian: 'Я не понимаю.',
+              translation: 'I don\'t understand.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'galina',
+          russian: 'Не из России. Понятно. Далеко. Откуда вы — из [место]. Запомните эту фразу.',
+          translation: 'Not from Russia. I see. Far away. Where are you from — from [place]. Remember this phrase.',
+          stage_direction: 'She repeats the full phrase back slowly, stressing the "я из" structure.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'galina',
+          russian: 'Я из [место]. Вот так. Хорошо.',
+          translation: 'I am from [place]. Just like that. Good.',
+          stage_direction: 'A small nod — she accepts this without fanfare.',
+          isFinal: true,
+        },
+        {
+          id: 'response_c',
+          choiceId: 'c',
+          speaker: 'galina',
+          russian: 'Откуда вы. Это вопрос. Вы из России? Из Англии? Откуда?',
+          translation: 'Where are you from. That is a question. Are you from Russia? From England? From where?',
+          stage_direction: 'She repeats the question word by word, hands open, genuinely waiting.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    // ─── TIER 1 — ACQUAINTANCE (ты, вы→ты switch) ────────────────────────────────
+
+    {
+      id: 'acquaintance_switch',
+      minTier: 1,
+      trigger: (flags, progress) =>
+        progress.npcRelationships?.galina?.tier === 1 &&
+        flags.galina_switch_done !== true,
+      title: 'The вы→ты Switch',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Я вас уже знаю. Будем на ты. Не "вы" — ты. Понятно?',
+          translation: 'I already know you. We\'ll use "ты" now. Not "вы" — "ты". Understood?',
+          stage_direction: 'She says it plainly, as if settling a small administrative matter. No ceremony.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Понятно. Спасибо.',
+              translation: 'Understood. Thank you.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Вы — ты. Хорошо.',
+              translation: '"Вы" — "ты". Okay.',
+              isFinal: false,
+            },
+            {
+              id: 'c',
+              russian: 'Я не понимаю.',
+              translation: 'I don\'t understand.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'galina',
+          russian: 'Хорошо. Ты студент — я соседка. На ты.',
+          translation: 'Good. You are a student — I am a neighbor. We use "ты".',
+          stage_direction: 'She nods once. The matter is closed.',
+          isFinal: true,
+          setsFlag: 'galina_switch_done',
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'galina',
+          russian: 'Да. Вы — это незнакомые люди. Ты — это я и ты. Теперь на ты.',
+          translation: '"Вы" — that is for strangers. "Ты" — that is you and me. Now we use "ты".',
+          stage_direction: 'She separates the words with two precise gestures: distant, then close.',
+          isFinal: true,
+          setsFlag: 'galina_switch_done',
+        },
+        {
+          id: 'response_c',
+          choiceId: 'c',
+          speaker: 'galina',
+          russian: '"Вы" — незнакомые. "Ты" — знакомые. Мы уже знакомы. Значит — ты.',
+          translation: '"Вы" — for people you don\'t know. "Ты" — for people you know. We already know each other. So — "ты".',
+          stage_direction: 'She speaks each sentence slowly, one finger for each step.',
+          isFinal: true,
+          setsFlag: 'galina_switch_done',
+        },
+      ],
+    },
+
+    {
+      id: 'acquaintance_mailbox_callback',
+      minTier: 1,
+      trigger: (flags, progress) =>
+        progress.npcRelationships?.galina?.tier === 1 &&
+        flags.galina_switch_done === true,
+      title: 'Mailbox Callback',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Ты уже знаешь, где почтовый ящик? Да? Хорошо. Там всегда письма.',
+          translation: 'You already know where the mailbox is? Yes? Good. There are always letters there.',
+          stage_direction: 'She leans against the doorframe — a fraction more relaxed than before.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Да, уже знаю. Спасибо.',
+              translation: 'Yes, I already know. Thank you.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Почтовый ящик — где?',
+              translation: 'The mailbox — where?',
+              isFinal: false,
+            },
+            {
+              id: 'c',
+              russian: 'Нет, не нашёл.',
+              translation: 'No, I didn\'t find it.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'galina',
+          russian: 'Хорошо. Пожалуйста. В следующий раз — скажи мне, если что.',
+          translation: 'Good. You\'re welcome. Next time — tell me if anything comes up.',
+          stage_direction: 'The faintest sign of ease in her face. She turns back inside.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'galina',
+          russian: 'Почтовый ящик — вот, у входа. Номер квартиры на ящике.',
+          translation: 'The mailbox — there, by the entrance. Apartment number on the box.',
+          stage_direction: 'She points past the player toward the building entrance.',
+          isFinal: true,
+        },
+        {
+          id: 'response_c',
+          choiceId: 'c',
+          speaker: 'galina',
+          russian: 'У входа. Ящик — твой номер. Запомни.',
+          translation: 'By the entrance. The box — your number. Remember that.',
+          stage_direction: 'She repeats the direction with a short pointing gesture. No judgment.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    // ─── TIER 2 — FRIEND (initiates small talk, ты, world texture) ───────────────
+
+    {
+      id: 'friend_asks_studies',
+      minTier: 2,
+      trigger: (flags, progress) =>
+        progress.npcRelationships?.galina?.tier === 2,
+      title: 'How Are Your Studies',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Как учёба? Ты учишься хорошо?',
+          translation: 'How are your studies? Are you studying well?',
+          stage_direction: 'She opens the door before the player knocks — she heard the footsteps. A small thing.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'Да, хорошо. Спасибо.',
+              translation: 'Yes, well. Thank you.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Трудно. Но я стараюсь.',
+              translation: 'It\'s hard. But I\'m trying.',
+              isFinal: false,
+            },
+            {
+              id: 'c',
+              russian: 'Я не знаю.',
+              translation: 'I don\'t know.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'galina',
+          russian: 'Хорошо. Студенты должны учиться. Ты молодец.',
+          translation: 'Good. Students should study. Well done.',
+          stage_direction: 'She says "молодец" without irony. It is a small, genuine thing from her.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'galina',
+          russian: 'Трудно — это нормально. Главное — стараться. Хорошо.',
+          translation: 'Hard — that is normal. The main thing is to try. Good.',
+          stage_direction: 'She nods slowly, as if she has thought about this before.',
+          isFinal: true,
+        },
+        {
+          id: 'response_c',
+          choiceId: 'c',
+          speaker: 'galina',
+          russian: 'Не знаешь — спрашивай. Это всегда помогает.',
+          translation: 'If you don\'t know — ask. It always helps.',
+          stage_direction: 'Dry, but not unkind. She means it.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    {
+      id: 'friend_sister_lyudmila',
+      minTier: 2,
+      trigger: (flags, progress) =>
+        progress.npcRelationships?.galina?.tier === 2 &&
+        flags.galina_lyudmila_mentioned !== true,
+      title: 'Sister Lyudmila',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Моя сестра Людмила звонила. Она живёт в Новосибирске. Далеко.',
+          translation: 'My sister Lyudmila called. She lives in Novosibirsk. Far away.',
+          stage_direction: 'She says this while moving letters from her doorstep — not quite looking at the player. An aside, offered freely.',
+          choices: [
+            {
+              id: 'a',
+              russian: 'У тебя есть сестра? Хорошо.',
+              translation: 'You have a sister? That\'s good.',
+              isFinal: false,
+            },
+            {
+              id: 'b',
+              russian: 'Новосибирск — это далеко?',
+              translation: 'Is Novosibirsk far?',
+              isFinal: false,
+            },
+            {
+              id: 'c',
+              russian: 'Понятно.',
+              translation: 'I see.',
+              isFinal: false,
+            },
+          ],
+        },
+        {
+          id: 'response_a',
+          choiceId: 'a',
+          speaker: 'galina',
+          russian: 'Есть. Одна сестра. Людмила. Она врач.',
+          translation: 'I have one. One sister. Lyudmila. She is a doctor.',
+          stage_direction: 'She says it plainly, as a fact she has carried for years.',
+          isFinal: true,
+          setsFlag: 'galina_lyudmila_mentioned',
+        },
+        {
+          id: 'response_b',
+          choiceId: 'b',
+          speaker: 'galina',
+          russian: 'Далеко. Четыре часа на самолёте. Или три дня на поезде.',
+          translation: 'Far. Four hours by plane. Or three days by train.',
+          stage_direction: 'She says the train option with a very slight lift of her brow — a standing joke between her and herself.',
+          isFinal: true,
+          setsFlag: 'galina_lyudmila_mentioned',
+        },
+        {
+          id: 'response_c',
+          choiceId: 'c',
+          speaker: 'galina',
+          russian: 'Да. Людмила. Она врач. Мы редко видимся.',
+          translation: 'Yes. Lyudmila. She is a doctor. We rarely see each other.',
+          stage_direction: 'She picks up the last letter, glances at it. The subject is closed on her terms.',
+          isFinal: true,
+          setsFlag: 'galina_lyudmila_mentioned',
+        },
+      ],
+    },
+
     {
       id: 'cross_reference_park_and_cafe',
       trigger: { flag: 'artyom_met', value: true },
@@ -1113,5 +1509,30 @@ const APARTMENT_DIALOGUE = (() => {
     },
   };
 
-  return { NPC_DATA, VARIATIONS, UNLOCK };
+  /**
+   * updateGalinaTier — call once per dialogue session end (from ApartmentScene._onDialogueEnd).
+   * Mutates and returns the progress object. Caller must saveProgress(progress) after.
+   *
+   * Thresholds:
+   *   tier 0 → 1 : visitCount >= 3
+   *   tier 1 → 2 : visitCount >= 7
+   */
+  function updateGalinaTier(progress) {
+    if (!progress.npcRelationships) {
+      progress.npcRelationships = {};
+    }
+    if (!progress.npcRelationships.galina) {
+      progress.npcRelationships.galina = { met: false, tier: 0, visitCount: 0 };
+    }
+    const rel = progress.npcRelationships.galina;
+    rel.visitCount += 1;
+    if (rel.tier === 0 && rel.visitCount >= 3) {
+      rel.tier = 1;
+    } else if (rel.tier === 1 && rel.visitCount >= 7) {
+      rel.tier = 2;
+    }
+    return progress;
+  }
+
+  return { NPC_DATA, VARIATIONS, UNLOCK, updateGalinaTier };
 })();
