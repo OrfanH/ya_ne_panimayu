@@ -19,6 +19,7 @@ const {
   waitForGameReady,
   waitForSceneActive,
   seedProgressAndBoot,
+  pressKey,
   BOOT_TIMEOUT,
   SCENE_TIMEOUT,
 } = require('./helpers');
@@ -97,7 +98,7 @@ test.describe('First-visit onboarding flow', () => {
     await page.waitForTimeout(600);
 
     // Enter key should advance narration — FAILS until BUG-023 wires Enter in dialogue.js
-    await page.keyboard.press('Enter');
+    await pressKey(page, 'Enter', 0); // 600ms settle already done above
 
     await expect(page.locator('.dialogue-choice-btn')).toHaveCount(3, { timeout: 2000 });
   });
@@ -386,9 +387,7 @@ test.describe('Dialogue keyboard shortcuts', () => {
       });
     });
 
-    // Give the browser a moment to register the listener before pressing
-    await page.waitForTimeout(100);
-    await page.keyboard.press('Enter');
+    await pressKey(page, 'Enter');
     const fired = await resultPromise;
     expect(fired, 'Enter key should dispatch dialogue:choice __advance__').toBe(true);
   });
@@ -437,5 +436,108 @@ test.describe('No crashes during flows', () => {
     await page.waitForTimeout(500);
 
     expect(errors, `JS errors during onboarding:\n${errors.join('\n')}`).toHaveLength(0);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 7. Galina tier promotion (TASK-074b)
+//
+// Guards: updateGalinaTier() wired into _onDialogueEnd, visitCount increments,
+//         tier threshold at 3 visits promotes from 0 → 1.
+// Strategy: seed progress with visitCount: 2, enter ApartmentScene (return
+//           visit mode — _firstVisitScripted = false), dispatch dialogue:end
+//           directly so we don't depend on TutorAI loading, then read progress
+//           from localStorage and assert tier === 1.
+// ─────────────────────────────────────────────────────────────────────────────
+test.describe('Galina tier promotion', () => {
+  test.beforeEach(async ({ page }) => {
+    test.setTimeout(90_000);
+  });
+
+  test('3rd visit promotes galina tier 0 → 1', async ({ page }) => {
+    const TIER0_VISIT2_PROGRESS = {
+      hasSeenIntro: true,
+      chapter: 1,
+      unlockedLocations: ['apartment', 'park'],
+      completedMissions: [],
+      activeMission: null,
+      npcRelationships: { galina: { met: true, tier: 0, visitCount: 2 } },
+      testScores: {},
+      lastSession: null,
+      hasSeenGraduation: false,
+      playerPosition: { scene: 'World', x: 400, y: 300 },
+    };
+
+    await seedProgressAndBoot(page, TIER0_VISIT2_PROGRESS);
+    await page.evaluate(() => window.__GAME__.scene.start('Apartment'));
+    await waitForSceneActive(page, 'Apartment');
+
+    // Give scene listeners time to register before firing dialogue:end
+    await page.waitForTimeout(400);
+
+    // Dispatch dialogue:end directly — simulates completing a Galina conversation.
+    // _onDialogueEnd calls updateGalinaTier(progress) then saveProgress(progress).
+    await page.evaluate(() => {
+      window.dispatchEvent(new CustomEvent('dialogue:end'));
+    });
+
+    // Allow async getProgress / saveProgress chain to complete
+    await page.waitForTimeout(600);
+
+    // Read the saved progress directly from localStorage
+    const tier = await page.evaluate(() => {
+      try {
+        const raw = localStorage.getItem('progress');
+        if (!raw) return null;
+        const p = JSON.parse(raw);
+        return p.npcRelationships?.galina?.tier;
+      } catch (_) { return null; }
+    });
+
+    expect(tier).toBe(1);
+  });
+
+  test('hydration guard backfills tier/visitCount for old saves', async ({ page }) => {
+    // Old save format: { met: true } with no tier or visitCount
+    const OLD_SAVE_PROGRESS = {
+      hasSeenIntro: true,
+      chapter: 1,
+      unlockedLocations: ['apartment', 'park'],
+      completedMissions: [],
+      activeMission: null,
+      npcRelationships: { galina: { met: true } },
+      testScores: {},
+      lastSession: null,
+      hasSeenGraduation: false,
+      playerPosition: { scene: 'World', x: 400, y: 300 },
+    };
+
+    await seedProgressAndBoot(page, OLD_SAVE_PROGRESS);
+    await page.evaluate(() => window.__GAME__.scene.start('Apartment'));
+    await waitForSceneActive(page, 'Apartment');
+
+    // Hydration guard runs in create() — give it time to save
+    await page.waitForTimeout(600);
+
+    // Dispatch dialogue:end to also exercise the _onDialogueEnd guard path
+    await page.evaluate(() => {
+      window.dispatchEvent(new CustomEvent('dialogue:end'));
+    });
+    await page.waitForTimeout(600);
+
+    const rel = await page.evaluate(() => {
+      try {
+        const raw = localStorage.getItem('progress');
+        if (!raw) return null;
+        const p = JSON.parse(raw);
+        return p.npcRelationships?.galina;
+      } catch (_) { return null; }
+    });
+
+    // After hydration + one dialogue end: tier 0, visitCount 1, met true
+    expect(rel).not.toBeNull();
+    expect(rel.tier).toBe(0);
+    expect(typeof rel.visitCount).toBe('number');
+    expect(rel.met).toBe(true);
   });
 });

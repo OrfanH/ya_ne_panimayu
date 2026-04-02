@@ -91,6 +91,7 @@ Always reference a token. If a token doesn't exist, add it to `tokens.css` first
 - Every task that adds dialogue, choices, scene transitions, or interactive UI **must** include a flow test in `tests/flows.spec.js` that walks the complete user path before the task is marked DONE
 - Structural tests (DOM existence checks) do **not** satisfy this requirement — the test must click, press keys, and assert the state the player would see
 - All `beforeEach` blocks in Playwright that call `waitForSceneActive` must use `test.setTimeout(SCENE_TIMEOUT)` from `tests/helpers.js` — never hardcode `90_000`
+- Never call `page.keyboard.press()` directly in flow tests — always use `pressKey(page, key)` from `tests/helpers.js` so the settle delay is baked in
 
 ## File placement
 

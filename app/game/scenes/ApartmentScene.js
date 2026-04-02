@@ -189,18 +189,27 @@ class ApartmentScene extends Phaser.Scene {
     window.addEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
 
     // -------------------------------------------------------
-    // 8. Dialogue-end listener → resume physics, save galina_met
-    //    on first visit, then hand off to TutorAI for next visit.
+    // 8. Dialogue-end listener → resume physics, save galina.met,
+    //    and call updateGalinaTier() to increment visitCount / promote tier.
+    //    Runs on every visit (first and return).
     // -------------------------------------------------------
     this._onDialogueEnd = () => {
       this.physics.resume();
       if (this._firstVisitScripted) {
         this._firstVisitScripted = false;
-        getProgress().then((progress) => {
-          progress.npcRelationships.galina = { met: true };
-          saveProgress(progress);
-        });
       }
+      getProgress().then((progress) => {
+        // Old saves may have { met: true } with no tier/visitCount —
+        // backfill before calling updateGalinaTier so visitCount += 1 is valid.
+        const rel = progress.npcRelationships && progress.npcRelationships.galina;
+        if (rel && rel.met === true && rel.tier === undefined) {
+          rel.tier = 0;
+          rel.visitCount = 0;
+        }
+        APARTMENT_DIALOGUE.updateGalinaTier(progress);
+        progress.npcRelationships.galina.met = true;
+        saveProgress(progress);
+      });
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
@@ -239,6 +248,15 @@ class ApartmentScene extends Phaser.Scene {
     this._firstVisitScripted = true;
     this._scriptedPhase = 'narration';
     getProgress().then((progress) => {
+      // Hydration guard: old saves have { met: true } with no tier/visitCount.
+      // Backfill so tier-based variation selection and updateGalinaTier are safe.
+      const existingRel = progress.npcRelationships && progress.npcRelationships.galina;
+      if (existingRel && existingRel.met === true && existingRel.tier === undefined) {
+        existingRel.tier = 0;
+        existingRel.visitCount = 0;
+        saveProgress(progress);
+      }
+
       const isFirstVisit = progress.npcRelationships.galina === undefined;
       if (isFirstVisit) {
         this.time.delayedCall(350, () => {

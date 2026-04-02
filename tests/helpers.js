@@ -88,4 +88,17 @@ async function waitForSceneActive(page, sceneKey, timeout = SCENE_TIMEOUT) {
   );
 }
 
-module.exports = { waitForGameReady, dispatchGameEvent, seedProgressAndBoot, waitForSceneActive, BOOT_TIMEOUT, SCENE_TIMEOUT };
+/**
+ * Press a key with a short settle delay so scene listeners have time to register.
+ * Always use this instead of bare page.keyboard.press() in flow tests.
+ *
+ * @param {import('@playwright/test').Page} page
+ * @param {string} key - e.g. 'Enter', 'Escape', 'KeyE'
+ * @param {number} settleMs - ms to wait before pressing (default 100)
+ */
+async function pressKey(page, key, settleMs = 100) {
+  await page.waitForTimeout(settleMs);
+  await page.keyboard.press(key);
+}
+
+module.exports = { waitForGameReady, dispatchGameEvent, seedProgressAndBoot, waitForSceneActive, pressKey, BOOT_TIMEOUT, SCENE_TIMEOUT };
