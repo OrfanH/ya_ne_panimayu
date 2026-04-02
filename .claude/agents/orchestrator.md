@@ -46,6 +46,13 @@ and scan the source tree with glob. This is the only time you read beyond the no
 
 You run once per session. Do not loop or re-read.
 
+## Zero-confirmation rule
+
+**Never pause, confirm, or ask the user for permission between any steps.**
+After every PASS, immediately invoke the next agent in the sequence without asking.
+After all agents PASS, immediately invoke the git agent without asking.
+Only stop and report to the user when a hard stop condition fires (FAIL after 2 retries, missing dependency, git push failure, schema conflict).
+
 ## What you do every session
 
 1. Read CLAUDE.md index (including Concurrency section)
