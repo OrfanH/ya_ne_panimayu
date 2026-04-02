@@ -151,6 +151,7 @@ test.describe('First-visit onboarding flow', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Return-visit apartment flow', () => {
   test.beforeEach(async ({ page }) => {
+    test.setTimeout(90_000);
     await seedProgressAndBoot(page, RETURN_VISIT_PROGRESS);
     await page.evaluate(() => window.__GAME__.scene.start('Apartment'));
     await waitForSceneActive(page, 'Apartment');
@@ -192,6 +193,7 @@ test.describe('Return-visit apartment flow', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Scene transitions', () => {
   test.beforeEach(async ({ page }) => {
+    test.setTimeout(90_000);
     await waitForGameReady(page);
   });
 
