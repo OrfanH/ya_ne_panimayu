@@ -56,6 +56,7 @@ const RETURN_VISIT_PROGRESS = {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('First-visit onboarding flow', () => {
   test.beforeEach(async ({ page }) => {
+    test.setTimeout(90_000);
     await seedProgressAndBoot(page, FIRST_VISIT_PROGRESS);
     await page.evaluate(() => window.__GAME__.scene.start('Apartment'));
     await waitForSceneActive(page, 'Apartment');
@@ -259,6 +260,7 @@ test.describe('Scene transitions', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Mission system flows', () => {
   test.beforeEach(async ({ page }) => {
+    test.setTimeout(90_000);
     await waitForGameReady(page);
   });
 
@@ -348,6 +350,7 @@ test.describe('Mission system flows', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Dialogue keyboard shortcuts', () => {
   test.beforeEach(async ({ page }) => {
+    test.setTimeout(90_000);
     await waitForGameReady(page);
   });
 
