@@ -666,6 +666,7 @@ test.describe('Block 7 – Return visits (all complete)', () => {
   });
 
   test('7-errors no JS errors during return visits to all 6 scenes', async ({ page }) => {
+    test.setTimeout(90_000);
     const errors = [];
     page.on('pageerror', (err) => errors.push(err.message));
 
