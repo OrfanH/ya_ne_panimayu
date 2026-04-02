@@ -260,6 +260,8 @@ class WorldScene extends Phaser.Scene {
   }
 
   shutdown() {
+    clearTimeout(this._controlsHintTimer);
+    this._controlsHintTimer = null;
     window.removeEventListener(EVENTS.INTRO_DONE, this._onIntroDone);
     window.removeEventListener(EVENTS.LOCATION_COMPLETE, this._onLocationComplete);
     this.game.events.off(EVENTS.ZONE_ENTER, this._onZoneEnter);
@@ -482,7 +484,8 @@ class WorldScene extends Phaser.Scene {
     const DURATION = 5000;
 
     // Delay slightly so the scene fade-in completes first
-    const showTimer = setTimeout(() => {
+    this._controlsHintTimer = setTimeout(() => {
+      this._controlsHintTimer = null;
       window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
         detail: { message, duration: DURATION },
       }));
@@ -490,7 +493,8 @@ class WorldScene extends Phaser.Scene {
 
     // Dismiss early on first player movement
     const _onMove = () => {
-      clearTimeout(showTimer);
+      clearTimeout(this._controlsHintTimer);
+      this._controlsHintTimer = null;
       window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
         detail: { message: '', duration: 1 },
       }));

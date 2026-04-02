@@ -99,10 +99,19 @@ class PoliceScene extends Phaser.Scene {
       left: Phaser.Input.Keyboard.KeyCodes.A, right: Phaser.Input.Keyboard.KeyCodes.D,
     });
 
-    // Dialogue
+    // -------------------------------------------------------
+    // Dialogue-start listener → init TutorAI with NPC data
+    //   Skipped during first-visit scripted mode (_firstVisitScripted flag).
+    //   NOTE: _firstVisitScripted is initialised synchronously before
+    //   the async getProgress() call, so it is always set before this
+    //   listener can fire.
+    // -------------------------------------------------------
+    this._firstVisitScripted = false; // placeholder; overwritten synchronously below
+
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
       if (TutorAI.isActive()) { return; }
+      if (this._firstVisitScripted) { return; }
       if (detail.npcId === alinaData.id) {
         TutorAI.startConversation(alinaData);
       } else if (detail.npcId === sergeiData.id) {
@@ -111,13 +120,114 @@ class PoliceScene extends Phaser.Scene {
     };
     window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
 
-    this._onDialogueEnd = () => { this.physics.resume(); };
+    // -------------------------------------------------------
+    // Dialogue-choice handler for first-visit scripted responses
+    //   TutorAI ignores choices when _npcId is null, so this
+    //   handler is the sole responder during scripted mode.
+    // -------------------------------------------------------
+    this._onDialogueChoice = (e) => {
+      if (!this._firstVisitScripted) { return; }
+      const detail = e.detail || {};
+      const choiceId = detail.choiceId;
+
+      // Narration phase: player tapped to advance past the context line
+      if (this._scriptedPhase === 'narration' && choiceId === '__advance__') {
+        this._scriptedPhase = 'choices';
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       alinaData.id,
+            npcName:     alinaData.name,
+            russian:     'Чем могу помочь?',
+            translation: 'How can I help you?',
+            portrait:    alinaData.portrait || null,
+            choices: [
+              { choiceId: 'c1', text: 'Добрый день.',          translation: 'Good afternoon.' },
+              { choiceId: 'c2', text: 'Я потерял документы.',  translation: 'I have lost my documents.' },
+              { choiceId: 'c3', text: 'Я просто зашёл.',       translation: 'I just stopped by.' },
+            ],
+          },
+        }));
+        return;
+      }
+
+      // Choices phase: any of the three choices closes the dialogue
+      if (this._scriptedPhase === 'choices' &&
+          (choiceId === 'c1' || choiceId === 'c2' || choiceId === 'c3')) {
+        this._scriptedPhase = 'done';
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       alinaData.id,
+            npcName:     alinaData.name,
+            russian:     '',
+            translation: '',
+            portrait:    alinaData.portrait || null,
+            choices:     [],
+          },
+        }));
+        this._scriptedCloseTimer = setTimeout(() => {
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+        }, 1500);
+      }
+    };
+    window.addEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
+
+    // -------------------------------------------------------
+    // Dialogue-end listener → resume physics, save alina.met
+    //   on first visit, then hand off to TutorAI for next visit.
+    // -------------------------------------------------------
+    this._onDialogueEnd = () => {
+      this.physics.resume();
+      if (this._firstVisitScripted) {
+        this._firstVisitScripted = false;
+        getProgress().then((progress) => {
+          progress.npcRelationships.alina = { met: true };
+          saveProgress(progress);
+        });
+      }
+    };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
     // HUD
     window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_ENTER, {
       detail: { name: 'Police Station' },
     }));
+
+    // -------------------------------------------------------
+    // First-visit: auto-trigger scripted opening with choices
+    //   _firstVisitScripted blocks TutorAI takeover until
+    //   the scripted exchange completes and alina.met is saved.
+    //
+    //   IMPORTANT: set _firstVisitScripted = true synchronously
+    //   BEFORE the async getProgress() call so TutorAI cannot
+    //   race in during the period when the promise is in-flight.
+    //   The flag is downgraded back to false inside the callback
+    //   only when it turns out this is NOT a first visit.
+    // -------------------------------------------------------
+    this._scriptedPhase = null;
+    this._scriptedCloseTimer = null;
+    this._firstVisitScripted = true;
+    this._scriptedPhase = 'narration';
+    getProgress().then((progress) => {
+      const isFirstVisit = !progress.npcRelationships.alina || !progress.npcRelationships.alina.met;
+      if (isFirstVisit) {
+        this.time.delayedCall(350, () => {
+          this.physics.pause();
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+            detail: {
+              npcId:       alinaData.id,
+              npcName:     alinaData.name,
+              russian:     'Полицейский участок. За стойкой сидит офицер — Алина. Она смотрит на вас.',
+              translation: 'The police station. Behind the desk sits an officer — Alina. She looks at you.',
+              portrait:    alinaData.portrait || null,
+              choices:     [],
+            },
+          }));
+        });
+      } else {
+        this._firstVisitScripted = false;
+        this._scriptedPhase = null;
+      }
+    });
   }
 
   update() {
@@ -140,7 +250,12 @@ class PoliceScene extends Phaser.Scene {
 
   shutdown() {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
+    window.removeEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+    if (this._scriptedCloseTimer !== null) {
+      clearTimeout(this._scriptedCloseTimer);
+      this._scriptedCloseTimer = null;
+    }
     this._player.destroy();
   }
 }

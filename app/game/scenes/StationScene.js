@@ -98,10 +98,21 @@ class StationScene extends Phaser.Scene {
       left: Phaser.Input.Keyboard.KeyCodes.A, right: Phaser.Input.Keyboard.KeyCodes.D,
     });
 
-    // Dialogue
+    // -------------------------------------------------------
+    // Dialogue-start listener → init TutorAI with NPC data.
+    //   Skipped during first-visit scripted mode (_firstVisitScripted flag).
+    //   NOTE: _firstVisitScripted is initialised synchronously below (section
+    //   "First-visit") BEFORE the async getProgress() call, so it is always
+    //   set before this listener can fire.
+    // -------------------------------------------------------
+    this._firstVisitScripted = false; // placeholder; overwritten synchronously below
+    this._scriptedPhase = null;
+    this._scriptedCloseTimer = null;
+
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
       if (TutorAI.isActive()) { return; }
+      if (this._firstVisitScripted) { return; }
       if (detail.npcId === konstantinData.id) {
         TutorAI.startConversation(konstantinData);
       } else if (detail.npcId === nadyaData.id) {
@@ -110,7 +121,68 @@ class StationScene extends Phaser.Scene {
     };
     window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
 
-    this._onDialogueEnd = () => { this.physics.resume(); };
+    // -------------------------------------------------------
+    // Dialogue-choice handler for first-visit scripted responses.
+    //   TutorAI ignores choices when _npcId is null, so this
+    //   handler is the sole responder during scripted mode.
+    // -------------------------------------------------------
+    this._onDialogueChoice = (e) => {
+      if (!this._firstVisitScripted) { return; }
+      const detail = e.detail || {};
+      const choiceId = detail.choiceId;
+
+      if (this._scriptedPhase === 'narration' && choiceId === '__advance__') {
+        this._scriptedPhase = 'choices';
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       konstantinData.id,
+            npcName:     konstantinData.name,
+            russian:     'Ваш билет, пожалуйста.',
+            translation: 'Your ticket, please.',
+            portrait:    konstantinData.portrait || null,
+            choices: [
+              { choiceId: 'c1', text: 'Вот мой билет.',           translation: 'Here is my ticket.' },
+              { choiceId: 'c2', text: 'Я только смотрю.',         translation: 'I am just looking around.' },
+              { choiceId: 'c3', text: 'Куда идёт этот поезд?',    translation: 'Where does this train go?' },
+            ],
+          },
+        }));
+        return;
+      }
+
+      if (this._scriptedPhase === 'choices') {
+        this._scriptedPhase = 'done';
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       konstantinData.id,
+            npcName:     konstantinData.name,
+            russian:     'Хорошо.',
+            translation: 'All right.',
+            portrait:    konstantinData.portrait || null,
+            choices:     [],
+          },
+        }));
+        this._scriptedCloseTimer = setTimeout(() => {
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+        }, 1500);
+      }
+    };
+    window.addEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
+
+    // -------------------------------------------------------
+    // Dialogue-end listener → resume physics, save konstantin.met
+    //   on first visit, then hand off to TutorAI for next visit.
+    // -------------------------------------------------------
+    this._onDialogueEnd = () => {
+      this.physics.resume();
+      if (this._firstVisitScripted) {
+        this._firstVisitScripted = false;
+        getProgress().then((progress) => {
+          progress.npcRelationships.konstantin = { met: true };
+          saveProgress(progress);
+        });
+      }
+    };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
     // HUD + unlock
@@ -125,6 +197,38 @@ class StationScene extends Phaser.Scene {
         window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
           detail: { message: 'The police station is now open!', duration: 4000 },
         }));
+      }
+    });
+
+    // -------------------------------------------------------
+    // First-visit: auto-trigger scripted opening with Konstantin.
+    //   IMPORTANT: set _firstVisitScripted = true synchronously
+    //   BEFORE the async getProgress() call so TutorAI cannot
+    //   race in during the period when the promise is in-flight.
+    //   The flag is downgraded back to false inside the callback
+    //   only when it turns out this is NOT a first visit.
+    // -------------------------------------------------------
+    this._firstVisitScripted = true;
+    this._scriptedPhase = 'narration';
+    getProgress().then((progress) => {
+      const isFirstVisit = !progress.npcRelationships.konstantin?.met;
+      if (isFirstVisit) {
+        this.time.delayedCall(350, () => {
+          this.physics.pause();
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+            detail: {
+              npcId:       konstantinData.id,
+              npcName:     konstantinData.name,
+              russian:     'Станция. Мужчина в форме — Константин — проверяет билеты.',
+              translation: 'The station. A man in uniform — Konstantin — checks tickets.',
+              portrait:    konstantinData.portrait || null,
+              choices:     [],
+            },
+          }));
+        });
+      } else {
+        this._firstVisitScripted = false;
+        this._scriptedPhase = null;
       }
     });
   }
@@ -149,7 +253,12 @@ class StationScene extends Phaser.Scene {
 
   shutdown() {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
+    window.removeEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+    if (this._scriptedCloseTimer !== null) {
+      clearTimeout(this._scriptedCloseTimer);
+      this._scriptedCloseTimer = null;
+    }
     this._player.destroy();
   }
 }

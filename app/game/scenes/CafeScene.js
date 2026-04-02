@@ -115,20 +115,89 @@ class CafeScene extends Phaser.Scene {
 
     // -------------------------------------------------------
     // 8. Dialogue listeners
+    //    _firstVisitScripted blocks TutorAI takeover until the
+    //    scripted exchange completes and lena.met is saved.
+    //    IMPORTANT: set _firstVisitScripted = true synchronously
+    //    BEFORE the async getProgress() call so TutorAI cannot
+    //    race in during the period when the promise is in-flight.
+    //    The flag is downgraded back to false inside the callback
+    //    only when it turns out this is NOT a first visit.
     // -------------------------------------------------------
+    this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 11
+    this._scriptedPhase = null;
+    this._scriptedCloseTimer = null;
+
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
-      if (TutorAI.isActive()) { return; }
-      if (detail.npcId === lenaData.id) {
-        TutorAI.startConversation(lenaData);
-      } else if (detail.npcId === borisData.id) {
-        TutorAI.startConversation(borisData);
+      if (detail.loading === true && !TutorAI.isActive() && !this._firstVisitScripted) {
+        if (detail.npcId === lenaData.id) {
+          TutorAI.startConversation(lenaData);
+        } else if (detail.npcId === borisData.id) {
+          TutorAI.startConversation(borisData);
+        }
       }
     };
     window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
 
+    // -------------------------------------------------------
+    // 8b. Dialogue-choice handler for first-visit scripted responses
+    //     TutorAI ignores choices when _npcId is null, so this
+    //     handler is the sole responder during scripted mode.
+    // -------------------------------------------------------
+    this._onDialogueChoice = (e) => {
+      if (!this._firstVisitScripted) { return; }
+      const detail = e.detail || {};
+      const choiceId = detail.choiceId;
+
+      // Narration phase: player tapped to advance past the context line
+      if (this._scriptedPhase === 'narration' && choiceId === '__advance__') {
+        this._scriptedPhase = 'choices';
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:   lenaData.id,
+            npcName: lenaData.name,
+            russian:     'Чем могу помочь?',
+            translation: 'How can I help you?',
+            portrait:    lenaData.portrait || null,
+            choices: [
+              { choiceId: 'c1', text: 'Добрый день!',             translation: 'Good afternoon!' },
+              { choiceId: 'c2', text: 'Один кофе, пожалуйста.',   translation: 'One coffee, please.' },
+              { choiceId: 'c3', text: 'Я новый здесь.',            translation: 'I am new here.' },
+            ],
+          },
+        }));
+        return;
+      }
+
+      // Choices phase: any choice selected — show closing response then end
+      if (this._scriptedPhase === 'choices') {
+        this._scriptedPhase = 'done';
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       lenaData.id,
+            npcName:     lenaData.name,
+            russian:     'Добро пожаловать!',
+            translation: 'Welcome!',
+            portrait:    lenaData.portrait || null,
+            choices:     [],
+          },
+        }));
+        this._scriptedCloseTimer = this.time.delayedCall(1500, () => {
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+        });
+      }
+    };
+    window.addEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
+
     this._onDialogueEnd = () => {
       this.physics.resume();
+      if (this._firstVisitScripted) {
+        this._firstVisitScripted = false;
+        getProgress().then((progress) => {
+          progress.npcRelationships.lena = { met: true };
+          saveProgress(progress);
+        });
+      }
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
@@ -149,6 +218,41 @@ class CafeScene extends Phaser.Scene {
         window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
           detail: { message: 'The market is now open!', duration: 4000 },
         }));
+      }
+    });
+
+    // -------------------------------------------------------
+    // 11. First-visit: auto-trigger scripted opening with choices
+    //     _firstVisitScripted blocks TutorAI takeover until
+    //     the scripted exchange completes and lena.met is saved.
+    //
+    //     IMPORTANT: set _firstVisitScripted = true synchronously
+    //     BEFORE the async getProgress() call so TutorAI cannot
+    //     race in during the period when the promise is in-flight.
+    //     The flag is downgraded back to false inside the callback
+    //     only when it turns out this is NOT a first visit.
+    // -------------------------------------------------------
+    this._firstVisitScripted = true;
+    this._scriptedPhase = 'narration';
+    getProgress().then((progress) => {
+      const isFirstVisit = !progress.npcRelationships.lena?.met;
+      if (isFirstVisit) {
+        this.time.delayedCall(350, () => {
+          this.physics.pause();
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+            detail: {
+              npcId:       lenaData.id,
+              npcName:     lenaData.name,
+              russian:     'Небольшое кафе. За стойкой стоит молодая женщина — Лена. Она улыбается.',
+              translation: 'The café has a warm smell of coffee. Behind the counter stands a young woman — Lena. She smiles at you.',
+              portrait:    lenaData.portrait || null,
+              choices:     [],
+            },
+          }));
+        });
+      } else {
+        this._firstVisitScripted = false;
+        this._scriptedPhase = null;
       }
     });
   }
@@ -174,7 +278,12 @@ class CafeScene extends Phaser.Scene {
 
   shutdown() {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
+    window.removeEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+    if (this._scriptedCloseTimer) {
+      this._scriptedCloseTimer.remove(false);
+      this._scriptedCloseTimer = null;
+    }
     this._player.destroy();
   }
 

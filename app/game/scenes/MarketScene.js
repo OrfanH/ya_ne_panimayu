@@ -112,10 +112,18 @@ class MarketScene extends Phaser.Scene {
 
     // -------------------------------------------------------
     // 7. Dialogue listeners
+    //    _firstVisitScripted blocks TutorAI takeover until the
+    //    scripted exchange completes and fatima.met is saved.
+    //    Initialised synchronously here; overwritten in section 9.
     // -------------------------------------------------------
+    this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 9
+    this._scriptedPhase      = null;
+    this._scriptedCloseTimer = null;
+
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
       if (TutorAI.isActive()) { return; }
+      if (this._firstVisitScripted) { return; }
       if (detail.npcId === fatimaData.id) {
         TutorAI.startConversation(fatimaData);
       } else if (detail.npcId === mishaData.id) {
@@ -126,13 +134,95 @@ class MarketScene extends Phaser.Scene {
     };
     window.addEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
 
+    // -------------------------------------------------------
+    // 7b. Dialogue-choice handler for first-visit scripted responses
+    // -------------------------------------------------------
+    this._onDialogueChoice = (e) => {
+      if (!this._firstVisitScripted) { return; }
+      const detail   = e.detail || {};
+      const choiceId = detail.choiceId;
+
+      // Narration phase: player tapped to advance past the context line
+      if (this._scriptedPhase === 'narration' && choiceId === '__advance__') {
+        this._scriptedPhase = 'choices';
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:   fatimaData.id,
+            npcName: fatimaData.name,
+            text:    'Что вам нужно? У нас свежие продукты.',
+            choices: [
+              { choiceId: 'c1', text: 'Здравствуйте!',        translation: 'Hello!' },
+              { choiceId: 'c2', text: 'Сколько стоит?',        translation: 'How much does it cost?' },
+              { choiceId: 'c3', text: 'Спасибо, я смотрю.',    translation: 'Thank you, I am just looking.' },
+            ],
+          },
+        }));
+        return;
+      }
+
+      // Choices phase: any choice closes the scripted dialogue
+      if (this._scriptedPhase === 'choices') {
+        this._scriptedPhase = 'done';
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:   fatimaData.id,
+            npcName: fatimaData.name,
+            text:    '',
+            choices: [],
+          },
+        }));
+        this._scriptedCloseTimer = setTimeout(() => {
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+        }, 1500);
+      }
+    };
+    window.addEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
+
     this._onDialogueEnd = () => {
       this.physics.resume();
+      if (this._firstVisitScripted) {
+        this._firstVisitScripted = false;
+        getProgress().then((progress) => {
+          progress.npcRelationships.fatima = { met: true };
+          saveProgress(progress);
+        });
+      }
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
     // -------------------------------------------------------
-    // 8. HUD + unlock chain
+    // 9. First-visit: auto-trigger scripted opening with Fatima
+    //
+    //    IMPORTANT: set _firstVisitScripted = true synchronously
+    //    BEFORE the async getProgress() call so TutorAI cannot
+    //    race in during the period when the promise is in-flight.
+    //    The flag is downgraded back to false inside the callback
+    //    only when it turns out this is NOT a first visit.
+    // -------------------------------------------------------
+    this._firstVisitScripted = true;
+    this._scriptedPhase      = 'narration';
+    getProgress().then((progress) => {
+      const isFirstVisit = !progress.npcRelationships.fatima || !progress.npcRelationships.fatima.met;
+      if (isFirstVisit) {
+        this.time.delayedCall(350, () => {
+          this.physics.pause();
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_START, {
+            detail: {
+              npcId:   fatimaData.id,
+              npcName: fatimaData.name,
+              text:    'Рынок шумит. Женщина за прилавком — Фатима — раскладывает овощи.',
+              choices: [],
+            },
+          }));
+        });
+      } else {
+        this._firstVisitScripted = false;
+        this._scriptedPhase      = null;
+      }
+    });
+
+    // -------------------------------------------------------
+    // 10. HUD + unlock chain (original section 8 content)
     // -------------------------------------------------------
     window.dispatchEvent(new CustomEvent(EVENTS.LOCATION_ENTER, {
       detail: { name: 'Market' },
@@ -171,7 +261,9 @@ class MarketScene extends Phaser.Scene {
 
   shutdown() {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
+    window.removeEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+    clearTimeout(this._scriptedCloseTimer);
     this._player.destroy();
   }
 
