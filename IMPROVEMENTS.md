@@ -38,7 +38,7 @@
 - BUG-026 | DONE | 2026-04-02 | Return-visit test timeout — test.setTimeout(90_000) added to 7-errors test | 80f01d5
 - TASK-074 | DONE | 2026-04-02 | Galina relationship tiers — 6 VARIATION lines + updateGalinaTier() helper (wiring in TASK-074b) | 4d9ebd1
 - BUG-027 | DONE | 2026-04-03 | Pre-commit hook timeouts — 90s timeout for all 5 beforeEach blocks in flows.spec.js | 70d2ebe
-- TASK-074b | DONE | 2026-04-03 | Wire updateGalinaTier() into ApartmentScene._onDialogueEnd — hydration guard + 2 Playwright tier tests | pending
+- TASK-074b | DONE | 2026-04-03 | Wire updateGalinaTier() into ApartmentScene._onDialogueEnd — hydration guard + 2 Playwright tier tests | 52f0866
 
 ---
 
@@ -487,7 +487,7 @@
 ### TASK-074b
 **title:** Wire updateGalinaTier() into ApartmentScene._onDialogueEnd — tier promotion not yet active
 **track:** FAST
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P2
 **depends_on:** [TASK-074]
 **assigned_agents:** [coder, reviewer, playtester, git]

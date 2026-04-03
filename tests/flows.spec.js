@@ -451,7 +451,7 @@ test.describe('No crashes during flows', () => {
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Galina tier promotion', () => {
   test.beforeEach(async ({ page }) => {
-    test.setTimeout(90_000);
+    test.setTimeout(SCENE_TIMEOUT);
   });
 
   test('3rd visit promotes galina tier 0 → 1', async ({ page }) => {
