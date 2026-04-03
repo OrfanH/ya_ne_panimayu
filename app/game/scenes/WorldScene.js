@@ -483,9 +483,14 @@ class WorldScene extends Phaser.Scene {
       : 'WASD / \u2191\u2193\u2190\u2192 to move, E to talk';
     const DURATION = 5000;
 
-    // Delay slightly so the scene fade-in completes first
+    // Delay slightly so the scene fade-in completes first.
+    // Skip if another toast (e.g. an unlock toast) is already visible.
     this._controlsHintTimer = setTimeout(() => {
       this._controlsHintTimer = null;
+      const toastEl = document.getElementById('tutor-status');
+      if (toastEl && toastEl.classList.contains('visible') && toastEl.textContent.trim() !== '') {
+        return;
+      }
       window.dispatchEvent(new CustomEvent(EVENTS.HUD_TOAST, {
         detail: { message, duration: DURATION },
       }));
