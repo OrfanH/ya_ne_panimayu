@@ -42,6 +42,8 @@
 - TASK-083 | DONE | 2026-04-03 | TutorAI persona tier injection — вы tier 0, ты tier 1, friend tier 2 appended to persona | 0a93b49
 - TASK-084 | DONE | 2026-04-03 | Scripted variation selector — selectVariation() + all 6 scenes wired + Playwright test | 924292f
 - BUG-028 | DONE | 2026-04-03 | First-visit vocab seeding — 5 words from tutorVocabulary seeded on DIALOGUE_END + Playwright test | 03b1443
+- TASK-076 | DONE | 2026-04-03 | Temporal NPC variations — morning/evening/frequent_visitor triggers + { tier } selector fix | 1206c5a
+- TASK-075 | DONE | 2026-04-03 | Production input — inputPrompt field renders text input, Enter dispatches __typed__ choice | 1206c5a
 
 ---
 
@@ -448,7 +450,7 @@
 ### TASK-075
 **title:** [GAME_FEEL] Active production input — add typing field to dialogue for vocabulary production moments
 **track:** BUILD
-**status:** BACKLOG
+**status:** DONE
 **priority:** P2
 **depends_on:** []
 **assigned_agents:** [architect, coder, reviewer, playtester, git]
@@ -504,7 +506,7 @@
 ### TASK-076
 **title:** [ALIVENESS] Time-of-day and visit-count NPC variation triggers — add temporal variation to dialogue
 **track:** CONTENT
-**status:** BACKLOG
+**status:** DONE
 **priority:** P2
 **depends_on:** [TASK-074]
 **assigned_agents:** [content-writer, linguist, coder, git]
@@ -810,6 +812,20 @@
 **writes:** [.claude/skills/]
 **done_when:** Run /improve after every 3 completed BUILD tasks. Each run: (1) review last 3 task outputs for repeated patterns, (2) create or update at least 1 skill, (3) all skill evals pass at 100%.
 **notes:** This is a recurring meta-task, not a one-time backlog item. The orchestrator should trigger /improve automatically after TASK-006, TASK-009, TASK-012, TASK-015, TASK-018, TASK-021. Any agent can also request /improve mid-task if they identify an improvement opportunity.
+
+---
+
+### BUG-029
+**title:** WorldScene controls-hint toast overwrites location-unlock toasts in every test
+**track:** BUG
+**status:** READY
+**priority:** P2
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester]
+**reads:** [app/game/scenes/WorldScene.js]
+**writes:** [app/game/scenes/WorldScene.js]
+**done_when:** All four of these pass on desktop: `flows.spec.js > Mission system flows > unlock toast appears when hud:toast fires`, `Block 1 – Apartment first visit > 1-9 park unlock toast fires on first apartment visit`, `Block 2 – Park first visit > 2-9 cafe unlock toast fires on first park visit`, `Block 3 – Café first visit > 3-9 market unlock toast fires on first cafe visit`. Each must show the expected text (`"The park is now open!"`, `/park/i`, `/cafe/i`, `/market/i`) in `#tutor-status` rather than "WASD / ↑↓←→ to move, E to talk".
+**notes:** Found by playtester. `WorldScene._showControlsHint()` (`app/game/scenes/WorldScene.js:487`) fires a `hud:toast` via `setTimeout(..., 400)` on every fresh page load. The `sessionStorage` guard resets per Playwright test page, so the 400ms controls-hint toast fires in every test and overwrites any unlock toast that was dispatched earlier. Fix: check whether `#tutor-status` is already showing active content before firing the controls hint, or skip the controls hint if an unlock toast is queued. Do NOT modify test files. Failing tests: `tests/flows.spec.js > Mission system flows > unlock toast appears when hud:toast fires` (line 351), and the three block-level unlock toast tests.
 
 ## Blocked
 
