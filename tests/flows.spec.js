@@ -144,6 +144,31 @@ test.describe('First-visit onboarding flow', () => {
     const progress = await page.evaluate(async () => await getProgress());
     expect(progress.npcRelationships?.galina?.met).toBe(true);
   });
+
+  test('first-visit exchange seeds >= 5 vocabulary words (BUG-028)', async ({ page }) => {
+    // Full first-visit flow: narration → advance → pick choice → dialogue closes
+    await expect(page.locator('#dialogue-overlay')).toHaveClass(/is-active/, { timeout: 2000 });
+    await page.waitForTimeout(600);
+    await page.locator('.dialogue-body').click({ position: { x: 80, y: 30 }, force: true });
+    await expect(page.locator('.dialogue-choice-btn')).toHaveCount(3, { timeout: 2000 });
+    await page.locator('.dialogue-choice-btn').first().click();
+    await expect(page.locator('#dialogue-overlay')).not.toHaveClass(/is-active/, { timeout: 3000 });
+
+    // Allow async addVocabulary chain to complete
+    await page.waitForTimeout(800);
+
+    // _onDialogueEnd seeds first 5 words from tutorVocabulary into localStorage
+    const wordCount = await page.evaluate(() => {
+      try {
+        const raw = localStorage.getItem('vocabulary');
+        if (!raw) return 0;
+        const v = JSON.parse(raw);
+        return (v.words || []).length;
+      } catch (_) { return 0; }
+    });
+
+    expect(wordCount, 'vocabulary should have >= 5 seeded words after first-visit exchange').toBeGreaterThanOrEqual(5);
+  });
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
