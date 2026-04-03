@@ -39,7 +39,7 @@
 - TASK-074 | DONE | 2026-04-02 | Galina relationship tiers — 6 VARIATION lines + updateGalinaTier() helper (wiring in TASK-074b) | 4d9ebd1
 - BUG-027 | DONE | 2026-04-03 | Pre-commit hook timeouts — 90s timeout for all 5 beforeEach blocks in flows.spec.js | 70d2ebe
 - TASK-074b | DONE | 2026-04-03 | Wire updateGalinaTier() into ApartmentScene._onDialogueEnd — hydration guard + 2 Playwright tier tests | 52f0866
-- TASK-083 | DONE | 2026-04-03 | TutorAI persona tier injection — вы tier 0, ты tier 1, friend tier 2 appended to persona | pending
+- TASK-083 | DONE | 2026-04-03 | TutorAI persona tier injection — вы tier 0, ты tier 1, friend tier 2 appended to persona | 0a93b49
 
 ---
 
