@@ -104,29 +104,29 @@ class ApartmentScene extends Phaser.Scene {
     //    listener can fire.
     // -------------------------------------------------------
     this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 11
+    this._galinaTier = 0; // cached from getProgress() in section 11; used by _onDialogueStart
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
       if (detail.npcId === npcData.id && detail.loading === true && !TutorAI.isActive() && !this._firstVisitScripted) {
+        // Build tier-aware persona suffix so TutorAI uses the correct register
+        // (вы=stranger at tier 0, ты=acquaintance at tier 1, friend at tier 2).
+        const errorCorrectionNote =
+          ' When the student makes a grammar error, naturally model the correct form' +
+          ' in your reply without labelling it as an error (recast correction).' +
+          ' For example: if the student says "Я хочу идти", you reply using "пойти" naturally in your response.';
+        const tierNote =
+          this._galinaTier === 0 ? '' :
+          this._galinaTier === 1
+            ? ' You have spoken with this student several times. Address them with ты (informal you) instead of вы. Reference that you have met before.'
+            : ' This student is a friend now. Use ты, initiate small talk, ask how their studies are going, and reference your past conversations.';
+        const persona = npcData.persona + errorCorrectionNote + tierNote;
+
         getVocabulary().then((vocab) => {
           const knownWords = (vocab.words || []).slice(-20);
-          const aiNpcData = Object.assign({}, npcData, {
-            persona: npcData.persona +
-              ' When the student makes a grammar error, naturally model the correct form' +
-              ' in your reply without labelling it as an error (recast correction).' +
-              ' For example: if the student says "Я хочу идти", you reply using "пойти" naturally in your response.',
-            knownWords,
-          });
-          TutorAI.startConversation(aiNpcData);
+          TutorAI.startConversation(Object.assign({}, npcData, { persona, knownWords }));
         }).catch(() => {
-          const aiNpcData = Object.assign({}, npcData, {
-            persona: npcData.persona +
-              ' When the student makes a grammar error, naturally model the correct form' +
-              ' in your reply without labelling it as an error (recast correction).' +
-              ' For example: if the student says "Я хочу идти", you reply using "пойти" naturally in your response.',
-            knownWords: [],
-          });
-          TutorAI.startConversation(aiNpcData);
+          TutorAI.startConversation(Object.assign({}, npcData, { persona, knownWords: [] }));
         });
       }
     };
@@ -256,6 +256,11 @@ class ApartmentScene extends Phaser.Scene {
         existingRel.visitCount = 0;
         saveProgress(progress);
       }
+
+      // Cache current tier so _onDialogueStart can inject it into TutorAI persona.
+      this._galinaTier = (progress.npcRelationships && progress.npcRelationships.galina)
+        ? (progress.npcRelationships.galina.tier || 0)
+        : 0;
 
       const isFirstVisit = progress.npcRelationships.galina === undefined;
       if (isFirstVisit) {
