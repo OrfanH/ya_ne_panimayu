@@ -134,3 +134,55 @@ function close() {
 ```
 
 **Expected:** CORRECT — `_open` is reset before `_teardownUI()` in the close path. No re-entrancy issue because the reset happens first.
+
+---
+
+## Eval 7 — Timer stored as local var, not cancelled in shutdown [added 2026-04-02]
+
+```js
+class WorldScene extends Phaser.Scene {
+  _showControlsHint() {
+    const showTimer = setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('hud:toast', { detail: { message: 'WASD to move' } }));
+    }, 400);
+
+    this.input.keyboard.once('keydown', () => {
+      clearTimeout(showTimer);
+    });
+  }
+
+  shutdown() {
+    window.removeEventListener(EVENTS.INTRO_DONE, this._onIntroDone);
+  }
+}
+```
+
+**Expected:** BROKEN — `showTimer` is a local variable inaccessible from `shutdown()`. If the player enters a building before 400ms, `shutdown()` cannot cancel the timer. The timer fires into the next scene, polluting its HUD toast. Anti-pattern: Local timer var (BUG-025 pattern).
+
+---
+
+## Eval 8 — Timer promoted to instance property, cancelled in shutdown [added 2026-04-02]
+
+```js
+class WorldScene extends Phaser.Scene {
+  _showControlsHint() {
+    this._controlsHintTimer = setTimeout(() => {
+      window.dispatchEvent(new CustomEvent('hud:toast', { detail: { message: 'WASD to move' } }));
+      this._controlsHintTimer = null;
+    }, 400);
+
+    this.input.keyboard.once('keydown', () => {
+      clearTimeout(this._controlsHintTimer);
+      this._controlsHintTimer = null;
+    });
+  }
+
+  shutdown() {
+    clearTimeout(this._controlsHintTimer);
+    this._controlsHintTimer = null;
+    window.removeEventListener(EVENTS.INTRO_DONE, this._onIntroDone);
+  }
+}
+```
+
+**Expected:** CORRECT — timer stored on `this`, cleared in callback after firing, cleared on early dismiss, and cancelled in `shutdown()`. No leak into next scene.

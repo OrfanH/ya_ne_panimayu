@@ -541,3 +541,46 @@ test.describe('Galina tier promotion', () => {
     expect(rel.met).toBe(true);
   });
 });
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Scripted variation selector
+// ─────────────────────────────────────────────────────────────────────────────
+test.describe('Scripted variation selector', () => {
+  test.beforeEach(async ({ page }) => {
+    test.setTimeout(90_000);
+  });
+
+  test('return-visit variation fires for Galina (tier 0, met true)', async ({ page }) => {
+    // Seed: met=true, tier=0, no seenVariations → VARIATIONS[1] (opening_formal_redirect) should match
+    const progress = {
+      hasSeenIntro: true, chapter: 1,
+      unlockedLocations: ['apartment','park'],
+      completedMissions: [], activeMission: null,
+      npcRelationships: { galina: { met: true, tier: 0, visitCount: 1, seenVariations: [] } },
+      testScores: {}, lastSession: null, hasSeenGraduation: false,
+      playerPosition: { scene: 'World', x: 400, y: 300 },
+    };
+    await seedProgressAndBoot(page, progress);
+    await page.evaluate(() => window.__GAME__.scene.start('Apartment'));
+    await waitForSceneActive(page, 'Apartment');
+    await page.waitForTimeout(400);
+
+    // Trigger NPC interaction — fires DIALOGUE_START with loading:true
+    await page.evaluate(() => {
+      window.dispatchEvent(new CustomEvent('dialogue:start', {
+        detail: { npcId: 'galina', npcName: 'Галина Ивановна', loading: true, choices: [] }
+      }));
+    });
+
+    // Variation should overwrite loading state with scripted content within 1s
+    await page.waitForTimeout(1000);
+
+    // Assert dialogue is open and shows scripted Russian text (not loading)
+    const overlayActive = await page.locator('#dialogue-overlay').evaluate(el => el.classList.contains('is-active'));
+    expect(overlayActive).toBe(true);
+
+    // Assert some Russian text is visible (variation has Russian content)
+    const russianText = await page.locator('.dialogue-russian, .dialogue-text').textContent().catch(() => '');
+    expect(russianText.length).toBeGreaterThan(0);
+  });
+});

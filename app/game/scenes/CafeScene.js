@@ -126,11 +126,38 @@ class CafeScene extends Phaser.Scene {
     this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 11
     this._scriptedPhase = null;
     this._scriptedCloseTimer = null;
+    this._activeVariation = null;
+    this._npcSeenVariations = [];
+    this._npcFlags = { lena_met: false };
+    this._cachedNpcProgress = { npcRelationships: { lena: { seenVariations: [] } } };
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
       if (detail.loading === true && !TutorAI.isActive() && !this._firstVisitScripted) {
         if (detail.npcId === lenaData.id) {
+          const variation = selectVariation(
+            CAFE_DIALOGUE.LENA.VARIATIONS,
+            this._npcFlags,
+            this._cachedNpcProgress,
+            lenaData.id
+          );
+          if (variation) {
+            this._activeVariation = variation;
+            this._firstVisitScripted = true;
+            this._scriptedPhase = 'variation';
+            const firstLine = variation.lines[0];
+            window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+              detail: {
+                npcId:       lenaData.id,
+                npcName:     lenaData.name,
+                russian:     firstLine.russian,
+                translation: firstLine.translation,
+                portrait:    lenaData.portrait || null,
+                choices:     firstLine.choices || [],
+              },
+            }));
+            return;
+          }
           TutorAI.startConversation(lenaData);
         } else if (detail.npcId === borisData.id) {
           TutorAI.startConversation(borisData);
@@ -148,6 +175,27 @@ class CafeScene extends Phaser.Scene {
       if (!this._firstVisitScripted) { return; }
       const detail = e.detail || {};
       const choiceId = detail.choiceId;
+
+      if (this._firstVisitScripted && this._scriptedPhase === 'variation' && this._activeVariation) {
+        const response = this._activeVariation.lines.find((l) => l.choiceId === choiceId);
+        if (!response) { return; }
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       lenaData.id,
+            npcName:     lenaData.name,
+            russian:     response.russian,
+            translation: response.translation,
+            portrait:    lenaData.portrait || null,
+            choices:     response.isFinal ? [] : (response.choices || []),
+          },
+        }));
+        if (response.isFinal) {
+          this._scriptedCloseTimer = this.time.delayedCall(1500, () => {
+            window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+          });
+        }
+        return;
+      }
 
       // Narration phase: player tapped to advance past the context line
       if (this._scriptedPhase === 'narration' && choiceId === '__advance__') {
@@ -191,10 +239,28 @@ class CafeScene extends Phaser.Scene {
 
     this._onDialogueEnd = () => {
       this.physics.resume();
+      const varId = this._activeVariation ? this._activeVariation.id : null;
+      this._activeVariation = null;
       if (this._firstVisitScripted) {
         this._firstVisitScripted = false;
         getProgress().then((progress) => {
-          progress.npcRelationships.lena = { met: true };
+          if (!progress.npcRelationships.lena) progress.npcRelationships.lena = {};
+          progress.npcRelationships.lena.met = true;
+          if (varId) {
+            if (!progress.npcRelationships.lena.seenVariations) {
+              progress.npcRelationships.lena.seenVariations = [];
+            }
+            progress.npcRelationships.lena.seenVariations.push(varId);
+          }
+          saveProgress(progress);
+        });
+      } else if (varId) {
+        getProgress().then((progress) => {
+          if (!progress.npcRelationships.lena) progress.npcRelationships.lena = {};
+          if (!progress.npcRelationships.lena.seenVariations) {
+            progress.npcRelationships.lena.seenVariations = [];
+          }
+          progress.npcRelationships.lena.seenVariations.push(varId);
           saveProgress(progress);
         });
       }
@@ -235,6 +301,17 @@ class CafeScene extends Phaser.Scene {
     this._firstVisitScripted = true;
     this._scriptedPhase = 'narration';
     getProgress().then((progress) => {
+      const rel = progress.npcRelationships && progress.npcRelationships.lena;
+      // cache for variation selector — avoids async in _onDialogueStart
+      this._npcSeenVariations = (rel && rel.seenVariations) ? [...rel.seenVariations] : [];
+      this._npcFlags = { lena_met: !!(rel && rel.met) };
+      this._cachedNpcProgress = {
+        npcRelationships: {
+          lena: {
+            seenVariations: this._npcSeenVariations,
+          }
+        }
+      };
       const isFirstVisit = !progress.npcRelationships.lena?.met;
       if (isFirstVisit) {
         this.time.delayedCall(350, () => {
@@ -280,6 +357,7 @@ class CafeScene extends Phaser.Scene {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
     window.removeEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+    this._activeVariation = null;
     if (this._scriptedCloseTimer) {
       this._scriptedCloseTimer.remove(false);
       this._scriptedCloseTimer = null;

@@ -1,6 +1,6 @@
 ---
 name: state-flag-discipline
-description: auto-invoke when writing or reviewing any JS module that sets a boolean flag on error, failure, or async state change — enforces paired set/reset discipline
+description: auto-invoke when writing or reviewing any JS module that sets a boolean flag OR stores a timer/interval handle — enforces paired set/reset and cancel-in-shutdown discipline
 ---
 
 # State Flag Discipline
@@ -68,14 +68,62 @@ shutdown() {
 }
 ```
 
+## Timer handle discipline [added 2026-04-02]
+
+`setTimeout` and `setInterval` handles follow the same "set / cancel / shutdown" discipline as boolean flags. Failing to cancel a pending timer in `shutdown()` causes it to fire into the next active scene, polluting HUD, audio, or game state.
+
+### Three required locations to check (timers)
+
+1. **Store site** — handle MUST be stored on `this` (instance property), not in a local `const`/`let`. Local vars are inaccessible to `shutdown()`.
+2. **Cancel site** — `clearTimeout` / `clearInterval` called whenever the timer is no longer needed (callback fires, early dismiss, external cancel).
+3. **Shutdown site** — `clearTimeout(this._timerHandle); this._timerHandle = null;` in `shutdown()` or `destroy()`.
+
+### Good: timer promoted to instance property
+
+```js
+_showControlsHint() {
+  this._controlsHintTimer = setTimeout(() => {
+    window.dispatchEvent(...);
+    this._controlsHintTimer = null;   // clear after firing
+  }, 400);
+}
+
+shutdown() {
+  clearTimeout(this._controlsHintTimer);   // cancel if pending
+  this._controlsHintTimer = null;
+  // ...other cleanup
+}
+```
+
+### Bad: timer stored as local variable
+
+```js
+_showControlsHint() {
+  const showTimer = setTimeout(() => { ... }, 400);
+  // showTimer is a closure-local — shutdown() cannot cancel it
+  // Timer fires after scene transition, polluting next scene's HUD
+}
+
+shutdown() {
+  // No clearTimeout — BUG-025 pattern
+}
+```
+
 ## Reviewer checklist
 
-When reviewing any JS file with a boolean flag:
+When reviewing any JS file with a boolean flag OR timer handle:
 
+**Boolean flags:**
 - [ ] Find every `flagName = true` assignment
 - [ ] Confirm a `flagName = false` exists in the success/recovery/exit path
 - [ ] Confirm `flagName = false` exists in `shutdown()` or `destroy()` if the flag is instance-level
 - [ ] If flag is module-level (closure var), confirm reset happens before any re-entrant call
+
+**Timer/interval handles:**
+- [ ] Every `setTimeout`/`setInterval` call stores its handle on `this` (not a local var)
+- [ ] The callback sets `this._timerHandle = null` after executing
+- [ ] Any early-dismiss path calls `clearTimeout(this._timerHandle)` and sets to null
+- [ ] `shutdown()` / `destroy()` calls `clearTimeout(this._timerHandle); this._timerHandle = null;`
 
 ## Anti-patterns
 
@@ -83,3 +131,4 @@ When reviewing any JS file with a boolean flag:
 2. **Reset in wrong place** — flag reset in `create()` instead of `shutdown()`. Next `start()` resets it too late; stale state bleeds into `preload()`.
 3. **Guard without reset** — `if (_transitioning) return;` guard exists but `_transitioning` never set back to `false`. All future transitions silently blocked.
 4. **Async forgot reset** — async function sets flag before `await`, but only resets in the happy path. Error branch returns early without resetting.
+5. **Local timer var** — `const timer = setTimeout(...)` inside a method. Timer is inaccessible to `shutdown()`, fires into the next scene (BUG-025 pattern).

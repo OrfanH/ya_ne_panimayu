@@ -40,6 +40,7 @@
 - BUG-027 | DONE | 2026-04-03 | Pre-commit hook timeouts — 90s timeout for all 5 beforeEach blocks in flows.spec.js | 70d2ebe
 - TASK-074b | DONE | 2026-04-03 | Wire updateGalinaTier() into ApartmentScene._onDialogueEnd — hydration guard + 2 Playwright tier tests | 52f0866
 - TASK-083 | DONE | 2026-04-03 | TutorAI persona tier injection — вы tier 0, ты tier 1, friend tier 2 appended to persona | 0a93b49
+- TASK-084 | DONE | 2026-04-03 | Scripted variation selector — selectVariation() + all 6 scenes wired + Playwright test | pending
 
 ---
 
@@ -299,7 +300,7 @@
 ### BUG-028
 **title:** [PLAYABILITY] First-visit scripted dialogue never seeds vocabulary — story:apartment:2 blocked without TutorAI
 **track:** BUG
-**status:** BACKLOG
+**status:** IN_PROGRESS
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** [fixer, reviewer, playtester, git]
@@ -474,7 +475,7 @@
 ### TASK-084
 **title:** [ALIVENESS] VARIATIONS content banks are dead code — wire scripted variation selector for return visits across all 6 scenes
 **track:** BUILD
-**status:** BACKLOG
+**status:** DONE
 **priority:** P2
 **depends_on:** [TASK-083]
 **assigned_agents:** [architect, coder, reviewer, playtester, git]

@@ -29,6 +29,35 @@ Track all skill creation and modification events here.
   - Deprecated refs: root CLAUDE-*.md and .claude/agents/ CLEAN; worktree copies have stale dialogue-writer refs but are isolated branch snapshots (not load-bearing)
 - **Agents affected:** composer
 
+## 2026-04-02 — token-drift-audit (2)
+- **Action:** audit (no new skill)
+- **Triggered by:** orchestrator (4 tasks since last improve: TASK-079–082)
+- **Findings:**
+  - Handoff sizes: 2 files (fix-report ~200w, review-report ~100w) — CLEAN
+  - Index-file drift: 0 new violations — CLEAN
+  - New large files: 0 new .md files in last 4 commits — CLEAN
+  - Deprecated refs: no new stale references — CLEAN
+  - Pattern analysis: TASK-079/080/081/082 all identical scripted-dialogue scaffold, all reviewer PASS first attempt — no skill gap to address
+- **Action taken:** none needed
+
+## 2026-04-02 — state-flag-discipline
+- **Action:** updated
+- **Triggered by:** orchestrator (post-BUG-025, 3+ tasks since last run)
+- **Reason:** BUG-025 was a setTimeout handle stored as local var, inaccessible to shutdown() — same "set-without-cleanup" class as boolean flag anti-patterns. Extended skill to cover timer/interval handles: instance-property promotion, cancel-in-callback, cancel-in-shutdown.
+- **Eval score:** 8/8 (100%)
+- **Agents affected:** coder, fixer, reviewer
+
+## 2026-04-02 — token-drift-audit
+- **Action:** audit (no new skill)
+- **Triggered by:** orchestrator (/improve after BUG-025)
+- **Findings:**
+  - Handoff sizes: 2 files checked (fix-report.md ~200w, review-report.md ~50w) — CLEAN
+  - Index-file drift: 0 agents instructed to read index files for content — CLEAN
+  - New large files: 0 new .md files in last 3 commits — CLEAN
+  - Deprecated refs: dialogue-writer refs in content-writer.md:12 (contextual note, not routing instruction) and improve/SKILL.md (audit check itself) — NOT STALE, CLEAN
+  - Worktrees in .claude/worktrees/: 4 isolated snapshots, non-load-bearing (confirmed in prior audit)
+- **Action taken:** none needed
+
 ## 2026-03-30 — state-flag-discipline
 - **Action:** created
 - **Triggered by:** /improve pass 1 (TASK-055, TASK-053, TASK-054 review)

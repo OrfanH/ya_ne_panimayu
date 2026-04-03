@@ -11,7 +11,14 @@ Run date: 2026-03-30
 | 5 | Correct full discipline: set, reset, and shutdown | CORRECT | CORRECT — `_transitioning = false` in both the guard (via `create()` init) and `shutdown()`. All three required locations covered. | PASS |
 | 6 | Module-level var, reset before re-entrant call | CORRECT | CORRECT — `_open` resets before teardown. No stale state possible if `open()` is called again after `close()`. | PASS |
 
-**Score: 6/6 (100%)**
+## Update — 2026-04-02 (timer handle extension)
+
+| # | Scenario | Expected verdict | Actual verdict | Pass? |
+|---|---|---|---|---|
+| 7 | Timer stored as local var, not cancelled in shutdown | BROKEN — Local timer var | BROKEN — `const showTimer` inaccessible from `shutdown()`. Timer fires into next scene. Anti-pattern: Local timer var. | PASS |
+| 8 | Timer promoted to instance property, cancelled in shutdown | CORRECT | CORRECT — `this._controlsHintTimer` set/null in callback, cleared on early dismiss, and in `shutdown()`. No leak. | PASS |
+
+**Score: 8/8 (100%)**
 
 ## Evidence from codebase
 

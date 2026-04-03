@@ -105,23 +105,46 @@ class ApartmentScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 11
     this._galinaTier = 0; // cached from getProgress() in section 11; used by _onDialogueStart
+    this._activeVariation = null;
+    this._scriptedCloseTimer = null;
+    this._npcSeenVariations = [];
+    this._npcFlags = { galina_met: false };
+    this._cachedNpcProgress = { npcRelationships: { galina: { tier: 0, seenVariations: [] } } };
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
       if (detail.npcId === npcData.id && detail.loading === true && !TutorAI.isActive() && !this._firstVisitScripted) {
-        // Build tier-aware persona suffix so TutorAI uses the correct register
-        // (вы=stranger at tier 0, ты=acquaintance at tier 1, friend at tier 2).
-        const errorCorrectionNote =
-          ' When the student makes a grammar error, naturally model the correct form' +
-          ' in your reply without labelling it as an error (recast correction).' +
-          ' For example: if the student says "Я хочу идти", you reply using "пойти" naturally in your response.';
+        const variation = selectVariation(
+          APARTMENT_DIALOGUE.VARIATIONS,
+          this._npcFlags,
+          this._cachedNpcProgress,
+          npcData.id
+        );
+        if (variation) {
+          this._activeVariation = variation;
+          this._firstVisitScripted = true;   // reuse flag to block TutorAI
+          this._scriptedPhase = 'variation';
+          const firstLine = variation.lines[0];
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+            detail: {
+              npcId:       npcData.id,
+              npcName:     npcData.name,
+              russian:     firstLine.russian,
+              translation: firstLine.translation,
+              portrait:    npcData.portrait || null,
+              choices:     firstLine.choices || [],
+            },
+          }));
+          return;
+        }
+        // No variation matched → fall through to TutorAI (existing persona logic)
+        const errorCorrectionNote = ' When the student makes a grammar error, naturally model the correct form in your reply without labelling it as an error (recast correction). For example: if the student says "Я хочу идти", you reply using "пойти" naturally in your response.';
         const tierNote =
           this._galinaTier === 0 ? '' :
           this._galinaTier === 1
             ? ' You have spoken with this student several times. Address them with ты (informal you) instead of вы. Reference that you have met before.'
             : ' This student is a friend now. Use ты, initiate small talk, ask how their studies are going, and reference your past conversations.';
         const persona = npcData.persona + errorCorrectionNote + tierNote;
-
         getVocabulary().then((vocab) => {
           const knownWords = (vocab.words || []).slice(-20);
           TutorAI.startConversation(Object.assign({}, npcData, { persona, knownWords }));
@@ -141,6 +164,27 @@ class ApartmentScene extends Phaser.Scene {
       if (!this._firstVisitScripted) { return; }
       const detail = e.detail || {};
       const choiceId = detail.choiceId;
+
+      if (this._firstVisitScripted && this._scriptedPhase === 'variation' && this._activeVariation) {
+        const response = this._activeVariation.lines.find((l) => l.choiceId === choiceId);
+        if (!response) { return; }
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       npcData.id,
+            npcName:     npcData.name,
+            russian:     response.russian,
+            translation: response.translation,
+            portrait:    npcData.portrait || null,
+            choices:     response.isFinal ? [] : (response.choices || []),
+          },
+        }));
+        if (response.isFinal) {
+          this._scriptedCloseTimer = this.time.delayedCall(1500, () => {
+            window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+          });
+        }
+        return;  // don't fall through to first-visit choice handler
+      }
 
       // Narration phase: player tapped to advance past the context line
       if (this._scriptedPhase === 'narration' && choiceId === '__advance__') {
@@ -198,6 +242,8 @@ class ApartmentScene extends Phaser.Scene {
       if (this._firstVisitScripted) {
         this._firstVisitScripted = false;
       }
+      const varId = this._activeVariation ? this._activeVariation.id : null;
+      this._activeVariation = null;
       getProgress().then((progress) => {
         // Old saves may have { met: true } with no tier/visitCount —
         // backfill before calling updateGalinaTier so visitCount += 1 is valid.
@@ -208,6 +254,12 @@ class ApartmentScene extends Phaser.Scene {
         }
         APARTMENT_DIALOGUE.updateGalinaTier(progress);
         progress.npcRelationships.galina.met = true;
+        if (varId) {
+          if (!progress.npcRelationships.galina.seenVariations) {
+            progress.npcRelationships.galina.seenVariations = [];
+          }
+          progress.npcRelationships.galina.seenVariations.push(varId);
+        }
         saveProgress(progress);
       });
     };
@@ -258,9 +310,19 @@ class ApartmentScene extends Phaser.Scene {
       }
 
       // Cache current tier so _onDialogueStart can inject it into TutorAI persona.
-      this._galinaTier = (progress.npcRelationships && progress.npcRelationships.galina)
-        ? (progress.npcRelationships.galina.tier || 0)
-        : 0;
+      const rel = progress.npcRelationships && progress.npcRelationships.galina;
+      this._galinaTier = rel ? (rel.tier || 0) : 0;
+      // cache for variation selector — avoids async in _onDialogueStart
+      this._npcSeenVariations = (rel && rel.seenVariations) ? [...rel.seenVariations] : [];
+      this._npcFlags = { galina_met: !!(rel && rel.met) };
+      this._cachedNpcProgress = {
+        npcRelationships: {
+          galina: {
+            tier: this._galinaTier,
+            seenVariations: this._npcSeenVariations,
+          }
+        }
+      };
 
       const isFirstVisit = progress.npcRelationships.galina === undefined;
       if (isFirstVisit) {
@@ -307,6 +369,11 @@ class ApartmentScene extends Phaser.Scene {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
     window.removeEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+    this._activeVariation = null;
+    if (this._scriptedCloseTimer) {
+      this._scriptedCloseTimer.remove(false);
+      this._scriptedCloseTimer = null;
+    }
     this._player.destroy();
   }
 }

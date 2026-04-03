@@ -119,11 +119,41 @@ class MarketScene extends Phaser.Scene {
     this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 9
     this._scriptedPhase      = null;
     this._scriptedCloseTimer = null;
+    this._activeVariation = null;
+    this._variationCloseTimer = null;
+    this._npcSeenVariations = [];
+    this._npcFlags = { fatima_met: false };
+    this._cachedNpcProgress = { npcRelationships: { fatima: { seenVariations: [] } } };
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
       if (TutorAI.isActive()) { return; }
       if (this._firstVisitScripted) { return; }
+      if (detail.npcId === fatimaData.id && detail.loading === true) {
+        const variation = selectVariation(
+          MARKET_DIALOGUE.FATIMA.VARIATIONS,
+          this._npcFlags,
+          this._cachedNpcProgress,
+          fatimaData.id
+        );
+        if (variation) {
+          this._activeVariation = variation;
+          this._firstVisitScripted = true;
+          this._scriptedPhase = 'variation';
+          const firstLine = variation.lines[0];
+          window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+            detail: {
+              npcId:       fatimaData.id,
+              npcName:     fatimaData.name,
+              russian:     firstLine.russian,
+              translation: firstLine.translation,
+              portrait:    fatimaData.portrait || null,
+              choices:     firstLine.choices || [],
+            },
+          }));
+          return;
+        }
+      }
       if (detail.npcId === fatimaData.id) {
         TutorAI.startConversation(fatimaData);
       } else if (detail.npcId === mishaData.id) {
@@ -141,6 +171,27 @@ class MarketScene extends Phaser.Scene {
       if (!this._firstVisitScripted) { return; }
       const detail   = e.detail || {};
       const choiceId = detail.choiceId;
+
+      if (this._firstVisitScripted && this._scriptedPhase === 'variation' && this._activeVariation) {
+        const response = this._activeVariation.lines.find((l) => l.choiceId === choiceId);
+        if (!response) { return; }
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_UPDATE, {
+          detail: {
+            npcId:       fatimaData.id,
+            npcName:     fatimaData.name,
+            russian:     response.russian,
+            translation: response.translation,
+            portrait:    fatimaData.portrait || null,
+            choices:     response.isFinal ? [] : (response.choices || []),
+          },
+        }));
+        if (response.isFinal) {
+          this._variationCloseTimer = this.time.delayedCall(1500, () => {
+            window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
+          });
+        }
+        return;
+      }
 
       // Narration phase: player tapped to advance past the context line
       if (this._scriptedPhase === 'narration' && choiceId === '__advance__') {
@@ -180,10 +231,28 @@ class MarketScene extends Phaser.Scene {
 
     this._onDialogueEnd = () => {
       this.physics.resume();
+      const varId = this._activeVariation ? this._activeVariation.id : null;
+      this._activeVariation = null;
       if (this._firstVisitScripted) {
         this._firstVisitScripted = false;
         getProgress().then((progress) => {
-          progress.npcRelationships.fatima = { met: true };
+          if (!progress.npcRelationships.fatima) progress.npcRelationships.fatima = {};
+          progress.npcRelationships.fatima.met = true;
+          if (varId) {
+            if (!progress.npcRelationships.fatima.seenVariations) {
+              progress.npcRelationships.fatima.seenVariations = [];
+            }
+            progress.npcRelationships.fatima.seenVariations.push(varId);
+          }
+          saveProgress(progress);
+        });
+      } else if (varId) {
+        getProgress().then((progress) => {
+          if (!progress.npcRelationships.fatima) progress.npcRelationships.fatima = {};
+          if (!progress.npcRelationships.fatima.seenVariations) {
+            progress.npcRelationships.fatima.seenVariations = [];
+          }
+          progress.npcRelationships.fatima.seenVariations.push(varId);
           saveProgress(progress);
         });
       }
@@ -202,6 +271,17 @@ class MarketScene extends Phaser.Scene {
     this._firstVisitScripted = true;
     this._scriptedPhase      = 'narration';
     getProgress().then((progress) => {
+      const rel = progress.npcRelationships && progress.npcRelationships.fatima;
+      // cache for variation selector — avoids async in _onDialogueStart
+      this._npcSeenVariations = (rel && rel.seenVariations) ? [...rel.seenVariations] : [];
+      this._npcFlags = { fatima_met: !!(rel && rel.met) };
+      this._cachedNpcProgress = {
+        npcRelationships: {
+          fatima: {
+            seenVariations: this._npcSeenVariations,
+          }
+        }
+      };
       const isFirstVisit = !progress.npcRelationships.fatima || !progress.npcRelationships.fatima.met;
       if (isFirstVisit) {
         this.time.delayedCall(350, () => {
@@ -263,7 +343,12 @@ class MarketScene extends Phaser.Scene {
     window.removeEventListener(EVENTS.DIALOGUE_START, this._onDialogueStart);
     window.removeEventListener(EVENTS.DIALOGUE_CHOICE, this._onDialogueChoice);
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
+    this._activeVariation = null;
     clearTimeout(this._scriptedCloseTimer);
+    if (this._variationCloseTimer) {
+      this._variationCloseTimer.remove(false);
+      this._variationCloseTimer = null;
+    }
     this._player.destroy();
   }
 
