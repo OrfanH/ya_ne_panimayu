@@ -192,9 +192,9 @@ class PoliceScene extends Phaser.Scene {
             translation: 'How can I help you?',
             portrait:    alinaData.portrait || null,
             choices: [
-              { choiceId: 'c1', text: 'Добрый день.',          translation: 'Good afternoon.' },
-              { choiceId: 'c2', text: 'Я потерял документы.',  translation: 'I have lost my documents.' },
-              { choiceId: 'c3', text: 'Я просто зашёл.',       translation: 'I just stopped by.' },
+              { id: 'c1', russian: 'Добрый день.',          translation: 'Good afternoon.' },
+              { id: 'c2', russian: 'Я потерял документы.',  translation: 'I have lost my documents.' },
+              { id: 'c3', russian: 'Я просто зашёл.',       translation: 'I just stopped by.' },
             ],
           },
         }));
@@ -228,31 +228,23 @@ class PoliceScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._onDialogueEnd = () => {
       this.physics.resume();
-      const varId = this._activeVariation ? this._activeVariation.id : null;
-      this._activeVariation = null;
       if (this._firstVisitScripted) {
         this._firstVisitScripted = false;
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.alina) progress.npcRelationships.alina = {};
-          progress.npcRelationships.alina.met = true;
-          if (varId) {
-            if (!progress.npcRelationships.alina.seenVariations) {
-              progress.npcRelationships.alina.seenVariations = [];
-            }
-            progress.npcRelationships.alina.seenVariations.push(varId);
-          }
-          saveProgress(progress);
-        });
-      } else if (varId) {
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.alina) progress.npcRelationships.alina = {};
+      }
+      const varId = this._activeVariation ? this._activeVariation.id : null;
+      this._activeVariation = null;
+      getProgress().then((progress) => {
+        if (!progress.npcRelationships) progress.npcRelationships = {};
+        if (!progress.npcRelationships.alina) progress.npcRelationships.alina = {};
+        progress.npcRelationships.alina.met = true;
+        if (varId) {
           if (!progress.npcRelationships.alina.seenVariations) {
             progress.npcRelationships.alina.seenVariations = [];
           }
           progress.npcRelationships.alina.seenVariations.push(varId);
-          saveProgress(progress);
-        });
-      }
+        }
+        saveProgress(progress);
+      });
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 

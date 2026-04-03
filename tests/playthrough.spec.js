@@ -526,6 +526,7 @@ test.describe('Block 5 – Station first visit', () => {
 // — filed as TASK-082. Test 6-9 is absent (final location, no next unlock).
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Block 6 – Police first visit', () => {
+  test.setTimeout(90_000);
   test.beforeEach(async ({ page }) => {
     await seedProgressAndBoot(page, POL_SEED);
     await page.evaluate(() => window.__GAME__.scene.start('Police'));

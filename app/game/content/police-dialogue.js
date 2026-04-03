@@ -69,20 +69,7 @@ const POLICE_DIALOGUE = (() => {
           russian: 'Какой документ? Паспорт? Или что-то другое?',
           translation: 'Which document? Passport? Or something else?',
           stage_direction: 'She reaches for a form. First question answered. Moving to second.',
-          choices: [
-            {
-              id: 'a2',
-              russian: 'Паспорт.',
-              translation: 'Passport.',
-              isFinal: false,
-            },
-            {
-              id: 'b2',
-              russian: 'У меня нет паспорта.',
-              translation: 'I don\'t have my passport.',
-              isFinal: false,
-            },
-          ],
+          isFinal: true,
         },
         {
           id: 'response_b',
@@ -91,20 +78,7 @@ const POLICE_DIALOGUE = (() => {
           russian: 'Помогу. Что случилось? Расскажите, пожалуйста, по порядку.',
           translation: 'I\'ll help. What happened? Please tell me in order.',
           stage_direction: 'She settles back slightly. She is ready to listen. "По порядку" is her standard phrase.',
-          choices: [
-            {
-              id: 'a2',
-              russian: 'Я потерял/а паспорт.',
-              translation: 'I lost my passport.',
-              isFinal: false,
-            },
-            {
-              id: 'b2',
-              russian: 'Мне нужно заполнить заявление?',
-              translation: 'Do I need to fill out a report?',
-              isFinal: false,
-            },
-          ],
+          isFinal: true,
         },
         {
           id: 'response_c',
@@ -113,14 +87,7 @@ const POLICE_DIALOGUE = (() => {
           russian: 'Подождите. Сначала скажите мне: что случилось? Документы — потом.',
           translation: 'Wait. First tell me: what happened? Documents — then.',
           stage_direction: 'She does not take the passport. She needs the narrative before the forms.',
-          choices: [
-            {
-              id: 'a2',
-              russian: 'Я потерял/а паспорт.',
-              translation: 'I lost my passport.',
-              isFinal: false,
-            },
-          ],
+          isFinal: true,
         },
         {
           id: 'response_a2',
