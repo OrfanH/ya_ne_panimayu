@@ -568,6 +568,102 @@ test.describe('Galina tier promotion', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+// 8. Temporal NPC variation triggers (TASK-076)
+//
+// Guards: morning_greeting, evening_greeting, frequent_visitor trigger functions
+//         evaluate correctly based on time-of-day and visit count.
+// Strategy: in-browser unit tests via page.evaluate — call trigger(flags, progress)
+//           directly, mocking Date.prototype.getHours for time-dependent triggers.
+// ─────────────────────────────────────────────────────────────────────────────
+test.describe('Temporal NPC variation triggers', () => {
+  test.beforeEach(async ({ page }) => {
+    test.setTimeout(SCENE_TIMEOUT);
+    await seedProgressAndBoot(page, RETURN_VISIT_PROGRESS);
+  });
+
+  test('morning_greeting trigger fires for galina_met:true at 09:00', async ({ page }) => {
+    const matches = await page.evaluate(() => {
+      const v = APARTMENT_DIALOGUE.VARIATIONS.find(x => x.id === 'morning_greeting');
+      if (!v || typeof v.trigger !== 'function') return null;
+      const orig = Date.prototype.getHours;
+      Date.prototype.getHours = () => 9;
+      const flags = { galina_met: true };
+      const progress = { npcRelationships: { galina: { met: true, tier: 0 } } };
+      const result = !!v.trigger(flags, progress);
+      Date.prototype.getHours = orig;
+      return result;
+    });
+    expect(matches).toBe(true);
+  });
+
+  test('morning_greeting trigger does NOT fire outside 06–12 window', async ({ page }) => {
+    const matches = await page.evaluate(() => {
+      const v = APARTMENT_DIALOGUE.VARIATIONS.find(x => x.id === 'morning_greeting');
+      if (!v || typeof v.trigger !== 'function') return null;
+      const orig = Date.prototype.getHours;
+      Date.prototype.getHours = () => 15;
+      const flags = { galina_met: true };
+      const progress = { npcRelationships: { galina: { met: true, tier: 0 } } };
+      const result = !!v.trigger(flags, progress);
+      Date.prototype.getHours = orig;
+      return result;
+    });
+    expect(matches).toBe(false);
+  });
+
+  test('evening_greeting trigger fires for galina_met:true at 20:00', async ({ page }) => {
+    const matches = await page.evaluate(() => {
+      const v = APARTMENT_DIALOGUE.VARIATIONS.find(x => x.id === 'evening_greeting');
+      if (!v || typeof v.trigger !== 'function') return null;
+      const orig = Date.prototype.getHours;
+      Date.prototype.getHours = () => 20;
+      const flags = { galina_met: true };
+      const progress = { npcRelationships: { galina: { met: true, tier: 0 } } };
+      const result = !!v.trigger(flags, progress);
+      Date.prototype.getHours = orig;
+      return result;
+    });
+    expect(matches).toBe(true);
+  });
+
+  test('frequent_visitor trigger fires when visitCount >= 5', async ({ page }) => {
+    const matches = await page.evaluate(() => {
+      const v = APARTMENT_DIALOGUE.VARIATIONS.find(x => x.id === 'frequent_visitor');
+      if (!v || typeof v.trigger !== 'function') return null;
+      const flags = { galina_met: true };
+      const progress = { npcRelationships: { galina: { met: true, tier: 0, visitCount: 5 } } };
+      return !!v.trigger(flags, progress);
+    });
+    expect(matches).toBe(true);
+  });
+
+  test('frequent_visitor trigger does NOT fire when visitCount < 5', async ({ page }) => {
+    const matches = await page.evaluate(() => {
+      const v = APARTMENT_DIALOGUE.VARIATIONS.find(x => x.id === 'frequent_visitor');
+      if (!v || typeof v.trigger !== 'function') return null;
+      const flags = { galina_met: true };
+      const progress = { npcRelationships: { galina: { met: true, tier: 0, visitCount: 4 } } };
+      return !!v.trigger(flags, progress);
+    });
+    expect(matches).toBe(false);
+  });
+
+  test('tier selector handles { tier: N } trigger format', async ({ page }) => {
+    // Verify selectVariation picks up tier_acquaintance_1 when tier >= 1
+    const variationId = await page.evaluate(() => {
+      const flags = {};
+      const progress = { npcRelationships: { galina: { tier: 1, seenVariations: [] } } };
+      // Pass only the tier_acquaintance_1 variation in isolation to avoid ordering effects
+      const tierVar = APARTMENT_DIALOGUE.VARIATIONS.find(x => x.id === 'tier_acquaintance_1');
+      if (!tierVar) return null;
+      const result = selectVariation([tierVar], flags, progress, 'galina');
+      return result ? result.id : null;
+    });
+    expect(variationId).toBe('tier_acquaintance_1');
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Scripted variation selector
 // ─────────────────────────────────────────────────────────────────────────────
 test.describe('Scripted variation selector', () => {
@@ -607,5 +703,75 @@ test.describe('Scripted variation selector', () => {
     // Assert some Russian text is visible (variation has Russian content)
     const russianText = await page.locator('.dialogue-russian, .dialogue-text').textContent().catch(() => '');
     expect(russianText.length).toBeGreaterThan(0);
+  });
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9. Production input (TASK-075)
+//
+// Guards: inputPrompt field in DIALOGUE_UPDATE renders a text input; typing
+//         and pressing Enter dispatches dialogue:choice with choiceId __typed__.
+// ─────────────────────────────────────────────────────────────────────────────
+test.describe('Production input (TASK-075)', () => {
+  test.beforeEach(async ({ page }) => {
+    test.setTimeout(SCENE_TIMEOUT);
+    await seedProgressAndBoot(page, RETURN_VISIT_PROGRESS);
+  });
+
+  test('inputPrompt renders a text input inside the dialogue overlay', async ({ page }) => {
+    // Dispatch a DIALOGUE_START then DIALOGUE_UPDATE with inputPrompt
+    await page.evaluate(() => {
+      window.dispatchEvent(new CustomEvent('dialogue:start', {
+        detail: { npcId: 'galina', npcName: 'Галина Ивановна', russian: 'Напишите:', translation: 'Write:', choices: [] }
+      }));
+    });
+    await expect(page.locator('#dialogue-overlay')).toHaveClass(/is-active/, { timeout: 2000 });
+    await page.evaluate(() => {
+      window.dispatchEvent(new CustomEvent('dialogue:update', {
+        detail: {
+          npcId: 'galina', npcName: 'Галина Ивановна',
+          russian: 'Напишите: привет.', translation: 'Write: привет.',
+          choices: [], inputPrompt: 'Напишите слово...',
+        }
+      }));
+    });
+    await expect(page.locator('.dialogue-type-input')).toBeVisible({ timeout: 1000 });
+  });
+
+  test('typing and pressing Enter dispatches dialogue:choice with choiceId __typed__', async ({ page }) => {
+    await page.evaluate(() => {
+      window.dispatchEvent(new CustomEvent('dialogue:start', {
+        detail: { npcId: 'galina', npcName: 'Галина Ивановна', russian: 'Напишите:', translation: 'Write:', choices: [] }
+      }));
+    });
+    await expect(page.locator('#dialogue-overlay')).toHaveClass(/is-active/, { timeout: 2000 });
+    await page.evaluate(() => {
+      window.dispatchEvent(new CustomEvent('dialogue:update', {
+        detail: {
+          npcId: 'galina', npcName: 'Галина Ивановна',
+          russian: 'Напишите: привет.', translation: 'Write: привет.',
+          choices: [], inputPrompt: 'Напишите слово...',
+        }
+      }));
+    });
+    await expect(page.locator('.dialogue-type-input')).toBeVisible({ timeout: 1000 });
+
+    // Listen for the dialogue:choice event before typing
+    const resultPromise = page.evaluate(() => new Promise((resolve) => {
+      const timeout = setTimeout(() => resolve(null), 3000);
+      window.addEventListener('dialogue:choice', (e) => {
+        clearTimeout(timeout);
+        resolve({ choiceId: e.detail?.choiceId, text: e.detail?.text });
+      }, { once: true });
+    }));
+
+    // Type a word and press Enter
+    await page.locator('.dialogue-type-input').fill('привет');
+    await page.locator('.dialogue-type-input').press('Enter');
+
+    const result = await resultPromise;
+    expect(result).not.toBeNull();
+    expect(result.choiceId).toBe('__typed__');
+    expect(result.text).toBe('привет');
   });
 });

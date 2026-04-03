@@ -220,13 +220,34 @@ const DialogueUI = (() => {
       }, 2500);
     }
 
-    // Advance hint — shown when there are no choices and not loading
+    // Advance hint — shown when there are no choices, no inputPrompt, and not loading
     _choices.innerHTML = '';
-    if (effectiveChoices.length === 0 && !line.loading) {
+    if (effectiveChoices.length === 0 && !line.loading && !line.inputPrompt) {
       const hint = document.createElement('p');
       hint.className = 'dialogue-advance-hint';
       hint.textContent = '▼ tap / press Enter to continue';
       _choices.appendChild(hint);
+    }
+
+    // Production input — shown when inputPrompt is present instead of choice buttons
+    if (line.inputPrompt) {
+      const inputEl = document.createElement('input');
+      inputEl.type = 'text';
+      inputEl.className = 'dialogue-type-input';
+      inputEl.placeholder = line.inputPrompt;
+      inputEl.autocomplete = 'off';
+      inputEl.setAttribute('spellcheck', 'false');
+      inputEl.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') { return; }
+        const text = inputEl.value.trim();
+        if (!text) { return; }
+        window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_CHOICE, {
+          detail: { choiceId: '__typed__', text },
+        }));
+      });
+      _choices.appendChild(inputEl);
+      // Focus after transition settles so the overlay animation doesn't steal it
+      setTimeout(() => { if (document.contains(inputEl)) { inputEl.focus(); } }, 80);
     }
 
     for (const choice of effectiveChoices) {
@@ -392,6 +413,7 @@ const DialogueUI = (() => {
       choices: detail.choices || [],
       offline: detail.offline || false,
       loading: detail.loading || false,
+      inputPrompt: detail.inputPrompt || null,
     };
     open(line);
   }
@@ -410,6 +432,7 @@ const DialogueUI = (() => {
       choices: detail.choices || [],
       offline: detail.offline || false,
       loading: detail.loading || false,
+      inputPrompt: detail.inputPrompt || null,
     };
     update(line);
   }

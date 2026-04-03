@@ -9,6 +9,10 @@ function selectVariation(variations, flags, progress, npcId) {
       try { matches = !!v.trigger(flags, progress); } catch (_) {}
     } else if (v.trigger.flag !== undefined) {
       matches = flags[v.trigger.flag] === v.trigger.value;
+    } else if (v.trigger.tier !== undefined) {
+      const rel = progress.npcRelationships && progress.npcRelationships[npcId];
+      const currentTier = (rel && rel.tier != null) ? rel.tier : 0;
+      matches = currentTier >= v.trigger.tier;
     }
     // { visit_count } and other unrecognised formats → matches stays false (intentional)
     if (matches) return v;

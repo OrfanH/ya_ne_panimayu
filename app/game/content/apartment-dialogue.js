@@ -1398,6 +1398,164 @@ const APARTMENT_DIALOGUE = (() => {
       ],
     },
 
+    // ─── PRODUCTION INPUT — typing exercises ─────────────────────────────────────
+
+    {
+      id: 'type_privet',
+      trigger: (flags, progress) => flags.galina_met === true,
+      title: 'Type привет',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Напишите: привет. Одно слово.',
+          translation: 'Write: привет. One word.',
+          stage_direction: 'She holds up one finger. Testing recall, not comprehension.',
+          inputPrompt: 'Напишите слово...',
+          choices: [],
+        },
+        {
+          id: 'response_typed',
+          choiceId: '__typed__',
+          speaker: 'galina',
+          russian: 'Хорошо. Запомните: привет — это неформально. Привет — для друзей.',
+          translation: 'Good. Remember: привет — that\'s informal. Привет — for friends.',
+          stage_direction: 'She glances at what they typed. Her expression doesn\'t change much — she\'s already moving to the lesson.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    // ─── TEMPORAL — Time-of-day and visit-count triggers ─────────────────────────
+
+    {
+      id: 'morning_greeting',
+      trigger: (flags, progress) => {
+        const hour = new Date().getHours();
+        return flags.galina_met === true && hour >= 6 && hour < 12;
+      },
+      title: 'Morning Greeting',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Доброе утро. Рано встаёте.',
+          translation: 'Good morning. You\'re up early.',
+          stage_direction: 'She opens her door briefly — on her way to the kitchen, perhaps. Mildly surprised to see you at this hour. Not unwelcome.',
+          choices: [
+            { id: 'a', russian: 'Доброе утро, Галина Ивановна.', translation: 'Good morning, Galina Ivanovna.', isFinal: false },
+            { id: 'b', russian: 'Да, я на занятия.', translation: 'Yes, I\'m off to class.', isFinal: false },
+            { id: 'c', russian: 'Доброе утро!', translation: 'Good morning!', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'galina',
+          russian: 'Правильно. Имя и отчество. Хорошо.',
+          translation: 'Correct. First name and patronymic. Good.',
+          stage_direction: 'A small nod. She is pleased the student used the full form.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'galina',
+          russian: 'Хорошо. Учёба — это важно. Идите.',
+          translation: 'Good. Studies — that is important. Go.',
+          stage_direction: 'She waves you on, already retreating indoors.',
+          isFinal: true,
+        },
+        {
+          id: 'response_c', choiceId: 'c', speaker: 'galina',
+          russian: 'Доброе утро. Есть три варианта: доброе утро, добрый день, добрый вечер. Время дня.',
+          translation: 'Good morning. There are three options: good morning, good afternoon, good evening. Time of day.',
+          stage_direction: 'She ticks them off on three fingers without hurrying. An incidental lesson.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    {
+      id: 'evening_greeting',
+      trigger: (flags, progress) => {
+        const hour = new Date().getHours();
+        return flags.galina_met === true && hour >= 18 && hour < 23;
+      },
+      title: 'Evening Greeting',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Добрый вечер. Уже темно. Поздно возвращаетесь?',
+          translation: 'Good evening. It\'s already dark. Returning late?',
+          stage_direction: 'She is checking the mailbox as you come in. She glances at the door, then at you. Not disapproving — just noting.',
+          choices: [
+            { id: 'a', russian: 'Добрый вечер. Да, с занятий.', translation: 'Good evening. Yes, from class.', isFinal: false },
+            { id: 'b', russian: 'Добрый вечер, Галина Ивановна.', translation: 'Good evening, Galina Ivanovna.', isFinal: false },
+            { id: 'c', russian: 'Добрый вечер! Извините.', translation: 'Good evening! I\'m sorry.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'galina',
+          russian: 'С занятий — хорошо. После десяти — тишина. Помните.',
+          translation: 'From class — good. After ten — quiet. Remember.',
+          stage_direction: 'She closes the mailbox. The reminder is automatic by now.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'galina',
+          russian: 'Добрый вечер. Всё правильно. Утро, день, вечер.',
+          translation: 'Good evening. All correct. Morning, afternoon, evening.',
+          stage_direction: 'She says the three greetings quietly, as a small register of approval.',
+          isFinal: true,
+        },
+        {
+          id: 'response_c', choiceId: 'c', speaker: 'galina',
+          russian: 'Не нужно "извините". Добрый вечер — и всё. Не опоздали.',
+          translation: 'No need for "sorry". Good evening — and that\'s it. You\'re not late.',
+          stage_direction: 'She says it practically. You did nothing wrong.',
+          isFinal: true,
+        },
+      ],
+    },
+
+    {
+      id: 'frequent_visitor',
+      trigger: (flags, progress) => {
+        const visitCount = progress.npcRelationships?.galina?.visitCount ?? 0;
+        return flags.galina_met === true && visitCount >= 5;
+      },
+      title: 'Frequent Visitor',
+      lines: [
+        {
+          speaker: 'galina',
+          russian: 'Вы снова здесь. Я уже знаю ваши шаги. Третья ступенька — она скрипит.',
+          translation: 'You\'re here again. I already know your footsteps. The third step — it creaks.',
+          stage_direction: 'She says it without opening the door fully. A dry acknowledgement of routine. Perhaps a small thing she finds privately amusing.',
+          choices: [
+            { id: 'a', russian: 'Да, я снова здесь.', translation: 'Yes, I\'m here again.', isFinal: false },
+            { id: 'b', russian: 'Извините... Я буду тихо.', translation: 'I\'m sorry... I\'ll be quiet.', isFinal: false },
+            { id: 'c', russian: 'Ступенька скрипит?', translation: 'The step creaks?', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'galina',
+          russian: 'Ничего. Хорошо, что вы здесь. Студенты должны практиковаться.',
+          translation: 'That\'s fine. Good that you\'re here. Students should practise.',
+          stage_direction: 'A small concession. She is, in her way, glad of it.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'galina',
+          russian: 'Не шумите после десяти. До десяти — нет проблем.',
+          translation: 'Don\'t make noise after ten. Before ten — no problem.',
+          stage_direction: 'She clarifies the rule precisely, neither annoyed nor warm.',
+          isFinal: true,
+        },
+        {
+          id: 'response_c', choiceId: 'c', speaker: 'galina',
+          russian: 'Скрипит. Третья. Я её знаю двадцать лет. Она не изменится.',
+          translation: 'It creaks. The third one. I\'ve known it twenty years. It will not change.',
+          stage_direction: 'She says it with the quiet acceptance of someone who has long since stopped fighting the small things.',
+          isFinal: true,
+        },
+      ],
+    },
+
     {
       id: 'cross_reference_park_and_cafe',
       trigger: { flag: 'artyom_met', value: true },

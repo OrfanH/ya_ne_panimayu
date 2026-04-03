@@ -107,6 +107,8 @@ class ApartmentScene extends Phaser.Scene {
     this._galinaTier = 0; // cached from getProgress() in section 11; used by _onDialogueStart
     this._activeVariation = null;
     this._scriptedCloseTimer = null;
+    this._dialogueEndTimer = null;
+    this._firstVisitTimer = null;
     this._npcSeenVariations = [];
     this._npcFlags = { galina_met: false };
     this._cachedNpcProgress = { npcRelationships: { galina: { tier: 0, seenVariations: [] } } };
@@ -225,7 +227,7 @@ class ApartmentScene extends Phaser.Scene {
       }));
 
       if (response.isFinal) {
-        this.time.delayedCall(1500, () => {
+        this._dialogueEndTimer = this.time.delayedCall(1500, () => {
           window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
         });
       }
@@ -239,8 +241,24 @@ class ApartmentScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._onDialogueEnd = () => {
       this.physics.resume();
+      const wasFirstVisitScripted = this._firstVisitScripted;
       if (this._firstVisitScripted) {
         this._firstVisitScripted = false;
+      }
+      if (wasFirstVisitScripted) {
+        const seedWords = npcData.tutorVocabulary.slice(0, 5).map((w) => ({
+          cyrillic: w.russian,
+          transliteration: null,
+          meaning: w.translation,
+          gender: null,
+          exampleCyrillic: '',
+          exampleMeaning: '',
+        }));
+        addVocabulary(seedWords, 'apartment').then((vocab) => {
+          window.dispatchEvent(new CustomEvent(EVENTS.VOCABULARY_NEW, {
+            detail: { count: seedWords.length },
+          }));
+        });
       }
       const varId = this._activeVariation ? this._activeVariation.id : null;
       this._activeVariation = null;
@@ -326,7 +344,7 @@ class ApartmentScene extends Phaser.Scene {
 
       const isFirstVisit = progress.npcRelationships.galina === undefined;
       if (isFirstVisit) {
-        this.time.delayedCall(350, () => {
+        this._firstVisitTimer = this.time.delayedCall(350, () => {
           this.physics.pause();
           // Show a narration line first so the player knows what is happening
           // before being presented with Russian response choices.
@@ -373,6 +391,14 @@ class ApartmentScene extends Phaser.Scene {
     if (this._scriptedCloseTimer) {
       this._scriptedCloseTimer.remove(false);
       this._scriptedCloseTimer = null;
+    }
+    if (this._dialogueEndTimer) {
+      this._dialogueEndTimer.remove(false);
+      this._dialogueEndTimer = null;
+    }
+    if (this._firstVisitTimer) {
+      this._firstVisitTimer.remove(false);
+      this._firstVisitTimer = null;
     }
     this._player.destroy();
   }

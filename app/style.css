@@ -429,6 +429,31 @@ body {
   box-shadow: inset 1px 1px 0 #1e2028, inset -1px -1px 0 #8a8fa0;
 }
 
+/* --- Production input (TASK-075) --- */
+.dialogue-type-input {
+  width: 100%;
+  background: #1e2028;
+  color: #f0f0f5;
+  font-family: var(--font-game);
+  font-size: 1rem;
+  padding: var(--space-2) var(--space-3);
+  border: 2px solid #6e7487;
+  border-radius: 0;
+  outline: none;
+  box-sizing: border-box;
+  caret-color: #f0f0f5;
+}
+
+.dialogue-type-input::placeholder {
+  color: #6e7487;
+  font-style: italic;
+}
+
+.dialogue-type-input:focus {
+  border-color: #8a8fa0;
+  background: #282b36;
+}
+
 /* --- Journal --- */
 .journal {
   position: fixed;
