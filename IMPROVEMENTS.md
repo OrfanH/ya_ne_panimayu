@@ -4,6 +4,9 @@
 
 (none — see Backlog for next priorities)
 
+## Session log
+- 2026-04-03 /assess full: added BUG-028, TASK-083, TASK-084 — tier/TutorAI/VARIATIONS gaps identified
+
 ---
 
 ## Done
@@ -23,9 +26,19 @@
 - TASK-073 | DONE | 2026-04-01 | TutorAI vocab reinforcement uses slice(-8) for most recent words | e355ed3
 - TASK-069 | DONE | 2026-04-01 | Building completion overlay — amber glow on WorldScene buildings when all location missions done | ce47196
 - BUG-023 | DONE | 2026-04-02 | Narration dead-end — advance hint injected, Enter key wired, body click fixed (flex-wrap CSS + isFinal auto-close) | ff16d2c
-- TASK-077 | DONE | 2026-04-02 | Interactive flow tests — tests/flows.spec.js created (40/40 pass desktop+mobile) | ff16d2c (sign-off — committed as part of BUG-023)
+- TASK-077 | DONE | 2026-04-02 | Interactive flow tests — tests/flows.spec.js created (40/40 pass desktop+mobile) | ff16d2c
+- TASK-078 | DONE | 2026-04-02 | ParkScene first-visit scripted dialogue — Artyom intro, bilingual choices, artyom.met saved | 121ca4c
 - BUG-024 | DONE | 2026-04-02 | _onTapAdvance blocked by hint child — .dialogue-choices flex-wrap:wrap so .dialogue-body gets non-zero width | playtester-2026-04-02
 - BUG-025 | DONE | 2026-04-02 | Enter key __advance__ test race fixed — added waitForTimeout(100) before keyboard.press | playtester-2026-04-02
+- BUG-025b | DONE | 2026-04-02 | WorldScene controls-hint timer leak — this._controlsHintTimer + clearTimeout in shutdown() | 5798ba4
+- TASK-079 | DONE | 2026-04-02 | CafeScene first-visit scripted dialogue — Lena intro, bilingual choices, lena.met saved | 5798ba4
+- TASK-080 | DONE | 2026-04-02 | MarketScene first-visit scripted dialogue — Fatima intro, bilingual choices, fatima.met saved | 5798ba4
+- TASK-081 | DONE | 2026-04-02 | StationScene first-visit scripted dialogue — Konstantin intro, bilingual choices, konstantin.met saved | 5798ba4
+- TASK-082 | DONE | 2026-04-02 | PoliceScene first-visit scripted dialogue — Alina intro, bilingual choices, alina.met saved | 5798ba4
+- BUG-026 | DONE | 2026-04-02 | Return-visit test timeout — test.setTimeout(90_000) added to 7-errors test | 80f01d5
+- TASK-074 | DONE | 2026-04-02 | Galina relationship tiers — 6 VARIATION lines + updateGalinaTier() helper (wiring in TASK-074b) | 4d9ebd1
+- BUG-027 | DONE | 2026-04-03 | Pre-commit hook timeouts — 90s timeout for all 5 beforeEach blocks in flows.spec.js | 70d2ebe
+- TASK-074b | DONE | 2026-04-03 | Wire updateGalinaTier() into ApartmentScene._onDialogueEnd — hydration guard + 2 Playwright tier tests | pending
 
 ---
 
@@ -282,6 +295,20 @@
 
 ---
 
+### BUG-028
+**title:** [PLAYABILITY] First-visit scripted dialogue never seeds vocabulary — story:apartment:2 blocked without TutorAI
+**track:** BUG
+**status:** BACKLOG
+**priority:** P1
+**depends_on:** []
+**assigned_agents:** [fixer, reviewer, playtester, git]
+**reads:** [app/game/scenes/ApartmentScene.js, app/game/content/apartment-dialogue.js, app/storage.js, app/config.js]
+**writes:** [app/game/scenes/ApartmentScene.js]
+**done_when:** After the ApartmentScene first-visit scripted dialogue completes (DIALOGUE_END fires), at least 5 vocabulary entries from `APARTMENT_DIALOGUE.NPC_DATA.tutorVocabulary` (e.g. здравствуйте, привет, спасибо, да, нет) are dispatched as `EVENTS.VOCABULARY_NEW` events and saved to vocabulary storage. Story mission `story:apartment:2` (vocab_count >= 5) passes completion check after the scripted first visit without requiring TutorAI. Playwright test: first-visit flow → assert vocabulary storage has >= 5 entries after DIALOGUE_END.
+**notes:** [PLAYABILITY] [CODE SCAN] `story:apartment:2` requires `vocab_count >= 5`. Vocabulary is only added to the store via `EVENTS.DIALOGUE_END` with `detail.vocab` array (populated by TutorAI). The first-visit scripted dialogue fires DIALOGUE_END with no `vocab` field — zero words are seeded. If the Gemini API is unavailable, rate-limited, or the player exits before TutorAI completes a turn, they can never complete mission 2 and the entire progression chain (unlock park → café → etc.) is permanently blocked. Fix: in ApartmentScene `_onDialogueEnd`, when `_firstVisitScripted` was true (i.e. the first-visit scripted exchange just completed), dispatch 5 basic words from `NPC_DATA.tutorVocabulary` as a `VOCABULARY_NEW` event batch. This matches the pedagogical intent (Galina teaches these words in the scripted exchange) and unblocks progression without requiring API availability.
+
+---
+
 ### TASK-067
 **title:** [PLAYABILITY] Chapter test — add overworld access point; TestScene has no launch trigger
 **track:** BUG
@@ -404,7 +431,7 @@
 ### TASK-074
 **title:** [GAME_FEEL] NPC relationship tiers — implement stranger/acquaintance/friend dialogue switching
 **track:** BUILD
-**status:** BACKLOG
+**status:** DONE
 **priority:** P2
 **depends_on:** []
 **assigned_agents:** [architect, content-writer, linguist, coder, reviewer, playtester, git]
@@ -426,6 +453,48 @@
 **writes:** [app/ui/dialogue.js, app/style.css]
 **done_when:** The dialogue UI supports an optional `inputPrompt` field in `DIALOGUE_UPDATE` event detail. When present, a text input field renders below the NPC speech bubble with a placeholder (e.g., "Type the Russian word..."). Player types and submits with Enter. The submitted text is dispatched as `EVENTS.DIALOGUE_CHOICE` with `{ choiceId: '__typed__', text: <playerInput> }`. At minimum one StoryMissions conversation uses an inputPrompt to require the player to type a taught vocabulary word before the mission completes.
 **notes:** [GAME_FEEL] [EXPERIENCE SCAN] Every player interaction is a choice button click — no vocabulary word has ever required the player to produce (type) Russian text. Per REFERENCE-GAMEDESIGN.md §6: "production beats reception — studies show learners who use new words retain them significantly better than those who only encounter them. Design at least one active production moment per vocabulary word." The current system supports only reception (clicking displayed Russian). Adding an optional text input to the dialogue box (used sparingly, not on every turn) enables the "production" missions the curriculum plan requires. The input should be low-stakes — no red flash on wrong answers, NPC reacts in character.
+
+---
+
+### TASK-083
+**title:** [GAME_FEEL] TutorAI persona is tier-unaware — inject relationship tier into Galina's persona before startConversation()
+**track:** FAST
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** [TASK-074b]
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/ApartmentScene.js, app/game/content/apartment-dialogue.js, app/config.js]
+**writes:** [app/game/scenes/ApartmentScene.js]
+**done_when:** In `ApartmentScene._onDialogueStart`, before calling `TutorAI.startConversation(aiNpcData)`, read `progress.npcRelationships.galina.tier` from storage (sync from a cached value is fine — avoid a second async call; store it in `this._galinaTier` during `create()`). Build the persona string conditionally: tier 0 → existing persona (formal "вы", stranger register). Tier 1 → append "You have spoken with this student several times. Address them with ты (informal you) instead of вы. Reference that you have met before." Tier 2 → append "This student is a friend now. Use ты, initiate small talk, ask how their studies are going, reference your past conversations." Playwright test: seed progress with `galina.tier: 1`, enter Apartment, press E, assert dialogue opens — cannot assert AI content but can assert `TutorAI.startConversation` was called (smoke only). At minimum: no crash, dialogue opens with tier >= 1 save.
+**notes:** [GAME_FEEL] [CODE SCAN] `updateGalinaTier()` correctly promotes tier 0→1→2 based on visit count (wired in TASK-074b). However, `ApartmentScene._onDialogueStart` always passes the same static `persona` string to TutorAI regardless of tier. After 10 visits, Galina still greets the player as a complete stranger — "Это квартира три, какая вам нужна?" — because TutorAI has no knowledge of the relationship history. Per REFERENCE-GAMEDESIGN.md §3: "three tiers minimum — stranger, acquaintance, friend. Lines at each tier should reference shared history." The fix is 5-10 lines: cache tier in `create()` from getProgress(), inject a conditional tier descriptor into the persona before each `startConversation()` call.
+
+---
+
+### TASK-084
+**title:** [ALIVENESS] VARIATIONS content banks are dead code — wire scripted variation selector for return visits across all 6 scenes
+**track:** BUILD
+**status:** BACKLOG
+**priority:** P2
+**depends_on:** [TASK-083]
+**assigned_agents:** [architect, coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js, app/game/content/apartment-dialogue.js, app/game/content/park-dialogue.js, app/game/content/cafe-dialogue.js, app/game/content/market-dialogue.js, app/game/content/station-dialogue.js, app/game/content/police-dialogue.js, app/config.js]
+**writes:** [app/game/scenes/ApartmentScene.js, app/game/scenes/ParkScene.js, app/game/scenes/CafeScene.js, app/game/scenes/MarketScene.js, app/game/scenes/StationScene.js, app/game/scenes/PoliceScene.js]
+**done_when:** A shared `selectVariation(variations, flags, progress)` helper is implemented. Given the VARIATIONS array and current flags/progress state, it finds the first variation whose `trigger` matches: `{ flag, value }` objects check `flags[flag] === value`; function triggers call `trigger(flags, progress)`; `{ tier }` objects check `progress.npcRelationships[npcId].tier >= tier`. On NPC interaction (E key press), each scene calls `selectVariation()` before launching TutorAI. If a matching variation is found, it dispatches the variation's lines as scripted content (same pattern as ApartmentScene's first-visit scripted mode). If no match, TutorAI launches as fallback. Playwright test: seed `galina_met: true, galina_intro: false` → enter Apartment, press E → assert dialogue opens with variation_2 content (self-introduction exchange) within 2s.
+**notes:** [ALIVENESS] [CODE SCAN] All 6 content files (apartment-, park-, cafe-, market-, station-, police-dialogue.js) contain rich VARIATIONS arrays: Galina has 15+ scripted variations (including tier-gated lines for acquaintance and friend tiers), Artyom has 12+, Tamara has 12+, etc. None of these variations are ever rendered on return visits — every NPC interaction after first visit goes directly to TutorAI. The TutorAI does provide dynamic content, but it cannot replicate the carefully written scripted beats (the вы→ты switch reveal, the jam delivery mission, the Lyudmila life-detail moments). These scripted variations exist because they teach specific vocabulary or story beats in a controlled way that TutorAI cannot reliably reproduce. The fix architecture: a shared variation selector utility + a pre-TutorAI dispatch path in each scene's NPC interaction handler. Variations should be exhausted (each variation shown max once) before looping, with TutorAI as fallback when all available variations for current state are exhausted.
+
+---
+
+### TASK-074b
+**title:** Wire updateGalinaTier() into ApartmentScene._onDialogueEnd — tier promotion not yet active
+**track:** FAST
+**status:** IN_PROGRESS
+**priority:** P2
+**depends_on:** [TASK-074]
+**assigned_agents:** [coder, reviewer, playtester, git]
+**reads:** [app/game/scenes/ApartmentScene.js, app/game/content/apartment-dialogue.js]
+**writes:** [app/game/scenes/ApartmentScene.js]
+**done_when:** After each completed Galina interaction, `APARTMENT_DIALOGUE.updateGalinaTier(progress)` is called in `_onDialogueEnd` and the result is saved via `saveProgress()`. After 3 visits, `progress.npcRelationships.galina.tier` is 1. After 7, it is 2. A hydration guard in `create()` backfills `tier: 0, visitCount: 0` for existing saves missing those fields. Playwright test: simulate 3 visits, assert tier === 1.
+**notes:** The `updateGalinaTier(progress)` helper was added to apartment-dialogue.js in TASK-074 but ApartmentScene was not in the writes list. This follow-up wires the helper into the existing `_onDialogueEnd` flow. Also update the variation selector to filter by `(v.minTier ?? 0) <= currentTier` so tier-gated lines only show at the right tier.
 
 ---
 
@@ -615,7 +684,7 @@
 ### BUG-024
 **title:** Tap-to-advance blocked when advance hint shown — ApartmentScene first-visit onboarding dead-end (body click)
 **track:** BUG
-**status:** BACKLOG
+**status:** DONE
 **priority:** P0
 **depends_on:** [BUG-023]
 **assigned_agents:** fixer, reviewer
@@ -629,7 +698,7 @@
 ### BUG-025
 **title:** Location unlock toasts overwritten by controls hint — player never sees "park/cafe/market/station/police is now open"
 **track:** BUG
-**status:** BACKLOG
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** fixer, reviewer
@@ -643,7 +712,7 @@
 ### BUG-026
 **title:** Return-visit JS-errors test times out — 6-scene iteration loop exceeds 40s default test timeout
 **track:** BUG
-**status:** BACKLOG
+**status:** DONE
 **priority:** P2
 **depends_on:** []
 **assigned_agents:** fixer, reviewer
@@ -657,7 +726,7 @@
 ### TASK-078
 **title:** ParkScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Artyom
 **track:** BUILD
-**status:** IN_PROGRESS
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** fixer, reviewer
@@ -671,7 +740,7 @@
 ### TASK-079
 **title:** CafeScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Lena
 **track:** BUILD
-**status:** BACKLOG
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** fixer, reviewer
@@ -685,7 +754,7 @@
 ### TASK-080
 **title:** MarketScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Fatima
 **track:** BUILD
-**status:** BACKLOG
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** fixer, reviewer
@@ -699,7 +768,7 @@
 ### TASK-081
 **title:** StationScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Konstantin
 **track:** BUILD
-**status:** BACKLOG
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** fixer, reviewer
@@ -713,7 +782,7 @@
 ### TASK-082
 **title:** PoliceScene missing first-visit scripted dialogue — no auto-open, no NPC relationship save for Alina
 **track:** BUILD
-**status:** BACKLOG
+**status:** DONE
 **priority:** P1
 **depends_on:** []
 **assigned_agents:** fixer, reviewer
