@@ -182,6 +182,7 @@ class ApartmentScene extends Phaser.Scene {
         }));
         if (response.isFinal) {
           this._scriptedCloseTimer = this.time.delayedCall(1500, () => {
+            this._scriptedCloseTimer = null;
             window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
           });
         }
@@ -228,6 +229,7 @@ class ApartmentScene extends Phaser.Scene {
 
       if (response.isFinal) {
         this._dialogueEndTimer = this.time.delayedCall(1500, () => {
+          this._dialogueEndTimer = null;
           window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
         });
       }
