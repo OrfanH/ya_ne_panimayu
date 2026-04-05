@@ -727,8 +727,87 @@ const CAFE_DIALOGUE = (() => {
     },
   ];
 
+  // -----------------------------------------------------------
+  // Tier-1 VARIATIONS for Lena — added after first_meeting
+  // -----------------------------------------------------------
+  LENA_VARIATIONS.push(
+    {
+      id: 'lena_acquaintance_1',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'lena',
+          russian: 'Привет. Как обычно?',
+          translation: 'Hi. The usual?',
+          stage_direction: 'She reaches for a cup before you answer. First time she\'s used ты.',
+          choices: [
+            { id: 'a', russian: 'Да, как обычно.', translation: 'Yes, the usual.', isFinal: false },
+            { id: 'b', russian: 'Нет, сегодня чай.', translation: 'No, tea today.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'lena',
+          russian: 'Хорошо. Садись, принесу.',
+          translation: 'Good. Sit down, I\'ll bring it.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'lena',
+          russian: 'Хорошо. Чёрный или зелёный?',
+          translation: 'Good. Black or green?',
+          isFinal: true,
+        },
+      ],
+    },
+    {
+      id: 'lena_acquaintance_2',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'lena',
+          russian: 'Слушай, ты хорошо запоминаешь слова. Это редко.',
+          translation: 'You know, you remember words well. That\'s rare.',
+          stage_direction: 'She says it while wiping the counter — offhand, not a compliment exactly, just an observation.',
+          choices: [
+            { id: 'a', russian: 'Ты мне помогаешь.', translation: 'You help me.', isFinal: false },
+            { id: 'b', russian: 'Я просто практикую.', translation: 'I just practise.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'lena',
+          russian: 'Немного. Кофе не учит грамматике.',
+          translation: 'A little. Coffee doesn\'t teach grammar.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'lena',
+          russian: 'Это и есть метод.',
+          translation: 'That\'s the method.',
+          isFinal: true,
+        },
+      ],
+    }
+  );
+
+  // -----------------------------------------------------------
+  // updateLenaTier — call once per dialogue session end.
+  // Increments visitCount; promotes tier when threshold reached.
+  // -----------------------------------------------------------
+  function updateLenaTier(progress) {
+    if (!progress.npcRelationships) progress.npcRelationships = {};
+    if (!progress.npcRelationships.lena) {
+      progress.npcRelationships.lena = { met: false, tier: 0, visitCount: 0 };
+    }
+    const rel = progress.npcRelationships.lena;
+    rel.visitCount += 1;
+    if (rel.tier === 0 && rel.visitCount >= 3) { rel.tier = 1; }
+    else if (rel.tier === 1 && rel.visitCount >= 7) { rel.tier = 2; }
+    return progress;
+  }
+
   return {
     LENA: { ...LENA, VARIATIONS: LENA_VARIATIONS },
     BORIS: { ...BORIS, VARIATIONS: BORIS_VARIATIONS },
+    updateLenaTier,
   };
 })();

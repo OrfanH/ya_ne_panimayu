@@ -1428,8 +1428,87 @@ const POLICE_DIALOGUE = (() => {
     },
   ];
 
+  // -----------------------------------------------------------
+  // Tier-1 VARIATIONS for Alina — remains вы; warmth shows
+  // -----------------------------------------------------------
+  ALINA_VARIATIONS.push(
+    {
+      id: 'alina_acquaintance_1',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'alina',
+          russian: 'Здравствуйте. Всё в порядке? Не потеряли ничего на этот раз?',
+          translation: 'Good day. Everything all right? You haven\'t lost anything this time?',
+          stage_direction: 'A small dry warmth in the question. She remembers.',
+          choices: [
+            { id: 'a', russian: 'Нет, всё хорошо. Я просто хотел/а поговорить.', translation: 'No, everything\'s fine. I just wanted to talk.', isFinal: false },
+            { id: 'b', russian: 'К сожалению, да. Опять.', translation: 'Unfortunately, yes. Again.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'alina',
+          russian: 'Хорошо. Это приятно слышать. Садитесь.',
+          translation: 'Good. That\'s nice to hear. Please sit down.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'alina',
+          russian: 'Понятно. Расскажите. Начнём сначала.',
+          translation: 'I see. Tell me. We\'ll start from the beginning.',
+          isFinal: true,
+        },
+      ],
+    },
+    {
+      id: 'alina_acquaintance_2',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'alina',
+          russian: 'Ваш русский стал лучше. Прошлый раз вы почти не говорили.',
+          translation: 'Your Russian has improved. Last time you could barely speak.',
+          stage_direction: 'She says it without looking up from a form, then looks up.',
+          choices: [
+            { id: 'a', russian: 'Стараюсь.', translation: 'I am trying.', isFinal: false },
+            { id: 'b', russian: 'Здесь хорошая практика.', translation: 'It is good practice here.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'alina',
+          russian: 'Хорошо. Это важно.',
+          translation: 'Good. That matters.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'alina',
+          russian: 'Мне приятно это слышать. Хотя это не совсем цель работы.',
+          translation: 'That\'s kind to say. Though it isn\'t quite the point of the job.',
+          isFinal: true,
+        },
+      ],
+    }
+  );
+
+  // -----------------------------------------------------------
+  // updateAlinaTier — call once per dialogue session end.
+  // Increments visitCount; promotes tier when threshold reached.
+  // -----------------------------------------------------------
+  function updateAlinaTier(progress) {
+    if (!progress.npcRelationships) progress.npcRelationships = {};
+    if (!progress.npcRelationships.alina) {
+      progress.npcRelationships.alina = { met: false, tier: 0, visitCount: 0 };
+    }
+    const rel = progress.npcRelationships.alina;
+    rel.visitCount += 1;
+    if (rel.tier === 0 && rel.visitCount >= 3) { rel.tier = 1; }
+    else if (rel.tier === 1 && rel.visitCount >= 7) { rel.tier = 2; }
+    return progress;
+  }
+
   return {
     ALINA: { ...ALINA, VARIATIONS: ALINA_VARIATIONS },
     SERGEI: { ...SERGEI, VARIATIONS: SERGEI_VARIATIONS },
+    updateAlinaTier,
   };
 })();

@@ -132,11 +132,12 @@ class ParkScene extends Phaser.Scene {
     //    before this listener can fire.
     // -------------------------------------------------------
     this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 11
+    this._artyomTier = 0; // cached from getProgress() in section 11
     this._activeVariation = null;
     this._scriptedCloseTimer = null;
     this._npcSeenVariations = [];
     this._npcFlags = { artyom_met: false };
-    this._cachedNpcProgress = { npcRelationships: { artyom: { seenVariations: [] } } };
+    this._cachedNpcProgress = { npcRelationships: { artyom: { tier: 0, seenVariations: [] } } };
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
@@ -167,7 +168,12 @@ class ParkScene extends Phaser.Scene {
         }
       }
       if (detail.npcId === artyomData.id) {
-        TutorAI.startConversation(artyomData);
+        const tierNote =
+          this._artyomTier === 0 ? '' :
+          this._artyomTier === 1
+            ? ' You have spoken with this student several times. Address them with ты (informal). Reference that you have met before.'
+            : ' This student is a friend now. Use ты, initiate small talk, ask how their Russian is going, and reference your past conversations.';
+        TutorAI.startConversation(Object.assign({}, artyomData, { persona: artyomData.persona + tierNote }));
       } else if (detail.npcId === tamaraData.id) {
         TutorAI.startConversation(tamaraData);
       }
@@ -256,31 +262,27 @@ class ParkScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._onDialogueEnd = () => {
       this.physics.resume();
+      if (this._firstVisitScripted) { this._firstVisitScripted = false; }
       const varId = this._activeVariation ? this._activeVariation.id : null;
       this._activeVariation = null;
-      if (this._firstVisitScripted) {
-        this._firstVisitScripted = false;
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.artyom) progress.npcRelationships.artyom = {};
-          progress.npcRelationships.artyom.met = true;
-          if (varId) {
-            if (!progress.npcRelationships.artyom.seenVariations) {
-              progress.npcRelationships.artyom.seenVariations = [];
-            }
-            progress.npcRelationships.artyom.seenVariations.push(varId);
-          }
-          saveProgress(progress);
-        });
-      } else if (varId) {
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.artyom) progress.npcRelationships.artyom = {};
+      getProgress().then((progress) => {
+        // Hydration guard for old saves
+        const rel = progress.npcRelationships && progress.npcRelationships.artyom;
+        if (rel && rel.met === true && rel.tier === undefined) {
+          rel.tier = 0;
+          rel.visitCount = 0;
+        }
+        PARK_DIALOGUE.updateArtyomTier(progress);
+        if (!progress.npcRelationships.artyom) progress.npcRelationships.artyom = {};
+        progress.npcRelationships.artyom.met = true;
+        if (varId) {
           if (!progress.npcRelationships.artyom.seenVariations) {
             progress.npcRelationships.artyom.seenVariations = [];
           }
           progress.npcRelationships.artyom.seenVariations.push(varId);
-          saveProgress(progress);
-        });
-      }
+        }
+        saveProgress(progress);
+      });
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
@@ -319,12 +321,20 @@ class ParkScene extends Phaser.Scene {
     this._scriptedPhase = 'narration';
     getProgress().then((progress) => {
       const rel = progress.npcRelationships && progress.npcRelationships.artyom;
+      // Hydration guard: old saves have { met: true } with no tier/visitCount.
+      if (rel && rel.met === true && rel.tier === undefined) {
+        rel.tier = 0;
+        rel.visitCount = 0;
+        saveProgress(progress);
+      }
       // cache for variation selector — avoids async in _onDialogueStart
+      this._artyomTier = rel ? (rel.tier || 0) : 0;
       this._npcSeenVariations = (rel && rel.seenVariations) ? [...rel.seenVariations] : [];
       this._npcFlags = { artyom_met: !!(rel && rel.met) };
       this._cachedNpcProgress = {
         npcRelationships: {
           artyom: {
+            tier: this._artyomTier,
             seenVariations: this._npcSeenVariations,
           }
         }

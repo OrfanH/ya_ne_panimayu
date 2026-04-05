@@ -117,13 +117,14 @@ class MarketScene extends Phaser.Scene {
     //    Initialised synchronously here; overwritten in section 9.
     // -------------------------------------------------------
     this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 9
+    this._fatimaTier = 0; // cached from getProgress() in section 9
     this._scriptedPhase      = null;
     this._scriptedCloseTimer = null;
     this._activeVariation = null;
     this._variationCloseTimer = null;
     this._npcSeenVariations = [];
     this._npcFlags = { fatima_met: false };
-    this._cachedNpcProgress = { npcRelationships: { fatima: { seenVariations: [] } } };
+    this._cachedNpcProgress = { npcRelationships: { fatima: { tier: 0, seenVariations: [] } } };
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
@@ -155,7 +156,12 @@ class MarketScene extends Phaser.Scene {
         }
       }
       if (detail.npcId === fatimaData.id) {
-        TutorAI.startConversation(fatimaData);
+        const tierNote =
+          this._fatimaTier === 0 ? '' :
+          this._fatimaTier === 1
+            ? ' You have spoken with this student several times. Address them with ты (informal). Reference that you have met before.'
+            : ' This student is a friend now. Use ты, initiate small talk, ask how their Russian is going, and reference your past conversations.';
+        TutorAI.startConversation(Object.assign({}, fatimaData, { persona: fatimaData.persona + tierNote }));
       } else if (detail.npcId === mishaData.id) {
         TutorAI.startConversation(mishaData);
       } else if (detail.npcId === styopanData.id) {
@@ -223,6 +229,7 @@ class MarketScene extends Phaser.Scene {
           },
         }));
         this._scriptedCloseTimer = setTimeout(() => {
+          this._scriptedCloseTimer = null;
           window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
         }, 1500);
       }
@@ -231,31 +238,27 @@ class MarketScene extends Phaser.Scene {
 
     this._onDialogueEnd = () => {
       this.physics.resume();
+      if (this._firstVisitScripted) { this._firstVisitScripted = false; }
       const varId = this._activeVariation ? this._activeVariation.id : null;
       this._activeVariation = null;
-      if (this._firstVisitScripted) {
-        this._firstVisitScripted = false;
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.fatima) progress.npcRelationships.fatima = {};
-          progress.npcRelationships.fatima.met = true;
-          if (varId) {
-            if (!progress.npcRelationships.fatima.seenVariations) {
-              progress.npcRelationships.fatima.seenVariations = [];
-            }
-            progress.npcRelationships.fatima.seenVariations.push(varId);
-          }
-          saveProgress(progress);
-        });
-      } else if (varId) {
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.fatima) progress.npcRelationships.fatima = {};
+      getProgress().then((progress) => {
+        // Hydration guard for old saves
+        const rel = progress.npcRelationships && progress.npcRelationships.fatima;
+        if (rel && rel.met === true && rel.tier === undefined) {
+          rel.tier = 0;
+          rel.visitCount = 0;
+        }
+        MARKET_DIALOGUE.updateFatimaTier(progress);
+        if (!progress.npcRelationships.fatima) progress.npcRelationships.fatima = {};
+        progress.npcRelationships.fatima.met = true;
+        if (varId) {
           if (!progress.npcRelationships.fatima.seenVariations) {
             progress.npcRelationships.fatima.seenVariations = [];
           }
           progress.npcRelationships.fatima.seenVariations.push(varId);
-          saveProgress(progress);
-        });
-      }
+        }
+        saveProgress(progress);
+      });
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
@@ -272,12 +275,20 @@ class MarketScene extends Phaser.Scene {
     this._scriptedPhase      = 'narration';
     getProgress().then((progress) => {
       const rel = progress.npcRelationships && progress.npcRelationships.fatima;
+      // Hydration guard: old saves have { met: true } with no tier/visitCount.
+      if (rel && rel.met === true && rel.tier === undefined) {
+        rel.tier = 0;
+        rel.visitCount = 0;
+        saveProgress(progress);
+      }
       // cache for variation selector — avoids async in _onDialogueStart
+      this._fatimaTier = rel ? (rel.tier || 0) : 0;
       this._npcSeenVariations = (rel && rel.seenVariations) ? [...rel.seenVariations] : [];
       this._npcFlags = { fatima_met: !!(rel && rel.met) };
       this._cachedNpcProgress = {
         npcRelationships: {
           fatima: {
+            tier: this._fatimaTier,
             seenVariations: this._npcSeenVariations,
           }
         }
@@ -345,6 +356,7 @@ class MarketScene extends Phaser.Scene {
     window.removeEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
     this._activeVariation = null;
     clearTimeout(this._scriptedCloseTimer);
+    this._scriptedCloseTimer = null;
     if (this._variationCloseTimer) {
       this._variationCloseTimer.remove(false);
       this._variationCloseTimer = null;

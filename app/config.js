@@ -60,7 +60,12 @@ const DEFAULT_PROGRESS = {
   activeMission: null,
   testScores: {},
   npcRelationships: {
-    galina: { met: false, tier: 0, visitCount: 0 },
+    galina:     { met: false, tier: 0, visitCount: 0 },
+    artyom:     { met: false, tier: 0, visitCount: 0 },
+    lena:       { met: false, tier: 0, visitCount: 0 },
+    fatima:     { met: false, tier: 0, visitCount: 0 },
+    konstantin: { met: false, tier: 0, visitCount: 0 },
+    alina:      { met: false, tier: 0, visitCount: 0 },
   },
   lastSession: null,
   hasSeenIntro: false,

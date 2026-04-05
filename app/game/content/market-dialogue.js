@@ -1661,9 +1661,88 @@ const MARKET_DIALOGUE = (() => {
     },
   ];
 
+  // -----------------------------------------------------------
+  // Tier-1 VARIATIONS for Fatima — вы→ты shift is the lesson
+  // -----------------------------------------------------------
+  FATIMA_VARIATIONS.push(
+    {
+      id: 'fatima_acquaintance_1',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'fatima',
+          russian: 'Снова ты. Картошку берёшь?',
+          translation: 'You again. Potatoes today?',
+          stage_direction: 'She shifts to ты without announcement. She is already weighing something.',
+          choices: [
+            { id: 'a', russian: 'Да, килограмм.', translation: 'Yes, one kilogram.', isFinal: false },
+            { id: 'b', russian: 'Нет, яблоки.', translation: 'No, apples.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'fatima',
+          russian: 'Вот. Хорошая картошка. Вчера свежая.',
+          translation: 'Here. Good potatoes. Fresh yesterday.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'fatima',
+          russian: 'Яблоки там. Спелые, сегодня утром привезли.',
+          translation: 'Apples there. Ripe, brought in this morning.',
+          isFinal: true,
+        },
+      ],
+    },
+    {
+      id: 'fatima_acquaintance_2',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'fatima',
+          russian: 'Ты уже знаешь слово «сдача»? Помнишь, первый раз не знал.',
+          translation: 'You know the word "change" now? Remember, the first time you didn\'t.',
+          stage_direction: 'A rare almost-smile. She counts the change back without being asked.',
+          choices: [
+            { id: 'a', russian: 'Да, помню.', translation: 'Yes, I remember.', isFinal: false },
+            { id: 'b', russian: 'Ты меня научила.', translation: 'You taught me.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'fatima',
+          russian: 'Хорошо. Учишься.',
+          translation: 'Good. You\'re learning.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'fatima',
+          russian: 'Жизнь учит. Я только повторила.',
+          translation: 'Life teaches. I just repeated it.',
+          isFinal: true,
+        },
+      ],
+    }
+  );
+
+  // -----------------------------------------------------------
+  // updateFatimaTier — call once per dialogue session end.
+  // Increments visitCount; promotes tier when threshold reached.
+  // -----------------------------------------------------------
+  function updateFatimaTier(progress) {
+    if (!progress.npcRelationships) progress.npcRelationships = {};
+    if (!progress.npcRelationships.fatima) {
+      progress.npcRelationships.fatima = { met: false, tier: 0, visitCount: 0 };
+    }
+    const rel = progress.npcRelationships.fatima;
+    rel.visitCount += 1;
+    if (rel.tier === 0 && rel.visitCount >= 3) { rel.tier = 1; }
+    else if (rel.tier === 1 && rel.visitCount >= 7) { rel.tier = 2; }
+    return progress;
+  }
+
   return {
     FATIMA: { ...FATIMA, VARIATIONS: FATIMA_VARIATIONS },
     MISHA: { ...MISHA, VARIATIONS: MISHA_VARIATIONS },
     STYOPAN: { ...STYOPAN, VARIATIONS: STYOPAN_VARIATIONS },
+    updateFatimaTier,
   };
 })();

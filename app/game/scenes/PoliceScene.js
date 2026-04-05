@@ -107,11 +107,12 @@ class PoliceScene extends Phaser.Scene {
     //   listener can fire.
     // -------------------------------------------------------
     this._firstVisitScripted = false; // placeholder; overwritten synchronously below
+    this._alinaTier = 0; // cached from getProgress() below
     this._activeVariation = null;
     this._variationCloseTimer = null;
     this._npcSeenVariations = [];
     this._npcFlags = { alina_met: false };
-    this._cachedNpcProgress = { npcRelationships: { alina: { seenVariations: [] } } };
+    this._cachedNpcProgress = { npcRelationships: { alina: { tier: 0, seenVariations: [] } } };
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
@@ -143,7 +144,12 @@ class PoliceScene extends Phaser.Scene {
         }
       }
       if (detail.npcId === alinaData.id) {
-        TutorAI.startConversation(alinaData);
+        const tierNote =
+          this._alinaTier === 0 ? '' :
+          this._alinaTier === 1
+            ? ' You have seen this person before. Acknowledge it briefly. Remain formal (вы) but allow a small warmth in tone.'
+            : ' This person is a regular. You remember their name. Remain formal (вы), but you are no longer strangers.';
+        TutorAI.startConversation(Object.assign({}, alinaData, { persona: alinaData.persona + tierNote }));
       } else if (detail.npcId === sergeiData.id) {
         TutorAI.startConversation(sergeiData);
       }
@@ -216,6 +222,7 @@ class PoliceScene extends Phaser.Scene {
           },
         }));
         this._scriptedCloseTimer = setTimeout(() => {
+          this._scriptedCloseTimer = null;
           window.dispatchEvent(new CustomEvent(EVENTS.DIALOGUE_END));
         }, 1500);
       }
@@ -228,13 +235,18 @@ class PoliceScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._onDialogueEnd = () => {
       this.physics.resume();
-      if (this._firstVisitScripted) {
-        this._firstVisitScripted = false;
-      }
+      if (this._firstVisitScripted) { this._firstVisitScripted = false; }
       const varId = this._activeVariation ? this._activeVariation.id : null;
       this._activeVariation = null;
       getProgress().then((progress) => {
         if (!progress.npcRelationships) progress.npcRelationships = {};
+        // Hydration guard for old saves
+        const rel = progress.npcRelationships.alina;
+        if (rel && rel.met === true && rel.tier === undefined) {
+          rel.tier = 0;
+          rel.visitCount = 0;
+        }
+        POLICE_DIALOGUE.updateAlinaTier(progress);
         if (!progress.npcRelationships.alina) progress.npcRelationships.alina = {};
         progress.npcRelationships.alina.met = true;
         if (varId) {
@@ -270,12 +282,20 @@ class PoliceScene extends Phaser.Scene {
     this._scriptedPhase = 'narration';
     getProgress().then((progress) => {
       const rel = progress.npcRelationships && progress.npcRelationships.alina;
+      // Hydration guard: old saves have { met: true } with no tier/visitCount.
+      if (rel && rel.met === true && rel.tier === undefined) {
+        rel.tier = 0;
+        rel.visitCount = 0;
+        saveProgress(progress);
+      }
       // cache for variation selector — avoids async in _onDialogueStart
+      this._alinaTier = rel ? (rel.tier || 0) : 0;
       this._npcSeenVariations = (rel && rel.seenVariations) ? [...rel.seenVariations] : [];
       this._npcFlags = { alina_met: !!(rel && rel.met) };
       this._cachedNpcProgress = {
         npcRelationships: {
           alina: {
+            tier: this._alinaTier,
             seenVariations: this._npcSeenVariations,
           }
         }

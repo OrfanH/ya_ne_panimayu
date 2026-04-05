@@ -106,13 +106,14 @@ class StationScene extends Phaser.Scene {
     //   set before this listener can fire.
     // -------------------------------------------------------
     this._firstVisitScripted = false; // placeholder; overwritten synchronously below
+    this._konstantinTier = 0; // cached from getProgress() below
     this._scriptedPhase = null;
     this._scriptedCloseTimer = null;
     this._activeVariation = null;
     this._variationCloseTimer = null;
     this._npcSeenVariations = [];
     this._npcFlags = { konstantin_met: false };
-    this._cachedNpcProgress = { npcRelationships: { konstantin: { seenVariations: [] } } };
+    this._cachedNpcProgress = { npcRelationships: { konstantin: { tier: 0, seenVariations: [] } } };
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
@@ -144,7 +145,12 @@ class StationScene extends Phaser.Scene {
         }
       }
       if (detail.npcId === konstantinData.id) {
-        TutorAI.startConversation(konstantinData);
+        const tierNote =
+          this._konstantinTier === 0 ? '' :
+          this._konstantinTier === 1
+            ? ' You have seen this person before. Acknowledge it briefly. Remain formal (вы) but allow a small warmth in tone.'
+            : ' This person is a regular. You remember their name. Remain formal (вы), but you are no longer strangers.';
+        TutorAI.startConversation(Object.assign({}, konstantinData, { persona: konstantinData.persona + tierNote }));
       } else if (detail.npcId === nadyaData.id) {
         TutorAI.startConversation(nadyaData);
       }
@@ -226,31 +232,27 @@ class StationScene extends Phaser.Scene {
     // -------------------------------------------------------
     this._onDialogueEnd = () => {
       this.physics.resume();
+      if (this._firstVisitScripted) { this._firstVisitScripted = false; }
       const varId = this._activeVariation ? this._activeVariation.id : null;
       this._activeVariation = null;
-      if (this._firstVisitScripted) {
-        this._firstVisitScripted = false;
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.konstantin) progress.npcRelationships.konstantin = {};
-          progress.npcRelationships.konstantin.met = true;
-          if (varId) {
-            if (!progress.npcRelationships.konstantin.seenVariations) {
-              progress.npcRelationships.konstantin.seenVariations = [];
-            }
-            progress.npcRelationships.konstantin.seenVariations.push(varId);
-          }
-          saveProgress(progress);
-        });
-      } else if (varId) {
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.konstantin) progress.npcRelationships.konstantin = {};
+      getProgress().then((progress) => {
+        // Hydration guard for old saves
+        const rel = progress.npcRelationships && progress.npcRelationships.konstantin;
+        if (rel && rel.met === true && rel.tier === undefined) {
+          rel.tier = 0;
+          rel.visitCount = 0;
+        }
+        STATION_DIALOGUE.updateKonstantinTier(progress);
+        if (!progress.npcRelationships.konstantin) progress.npcRelationships.konstantin = {};
+        progress.npcRelationships.konstantin.met = true;
+        if (varId) {
           if (!progress.npcRelationships.konstantin.seenVariations) {
             progress.npcRelationships.konstantin.seenVariations = [];
           }
           progress.npcRelationships.konstantin.seenVariations.push(varId);
-          saveProgress(progress);
-        });
-      }
+        }
+        saveProgress(progress);
+      });
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
@@ -281,12 +283,20 @@ class StationScene extends Phaser.Scene {
     this._scriptedPhase = 'narration';
     getProgress().then((progress) => {
       const rel = progress.npcRelationships && progress.npcRelationships.konstantin;
+      // Hydration guard: old saves have { met: true } with no tier/visitCount.
+      if (rel && rel.met === true && rel.tier === undefined) {
+        rel.tier = 0;
+        rel.visitCount = 0;
+        saveProgress(progress);
+      }
       // cache for variation selector — avoids async in _onDialogueStart
+      this._konstantinTier = rel ? (rel.tier || 0) : 0;
       this._npcSeenVariations = (rel && rel.seenVariations) ? [...rel.seenVariations] : [];
       this._npcFlags = { konstantin_met: !!(rel && rel.met) };
       this._cachedNpcProgress = {
         npcRelationships: {
           konstantin: {
+            tier: this._konstantinTier,
             seenVariations: this._npcSeenVariations,
           }
         }

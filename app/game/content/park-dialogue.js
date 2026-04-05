@@ -792,8 +792,87 @@ const PARK_DIALOGUE = (() => {
     },
   ];
 
+  // -----------------------------------------------------------
+  // Tier-1 VARIATIONS for Artyom — added after first_meeting
+  // -----------------------------------------------------------
+  ARTYOM_VARIATIONS.push(
+    {
+      id: 'artyom_acquaintance_1',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'artyom',
+          russian: 'О, опять ты! Ты уже знаешь, где фонтан, да?',
+          translation: 'Oh, you again! You know where the fountain is by now, right?',
+          stage_direction: 'He grins from the bench, the same book open on his knee.',
+          choices: [
+            { id: 'a', russian: 'Да, уже знаю. Спасибо.', translation: 'Yes, I know now. Thanks.', isFinal: false },
+            { id: 'b', russian: 'Что читаешь?', translation: 'What are you reading?', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'artyom',
+          russian: 'Отлично. Учишься быстро.',
+          translation: 'Great. You learn fast.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'artyom',
+          russian: 'Беляев. «Человек-амфибия». Читал? Нет? Советую.',
+          translation: 'Belyaev. "The Amphibian Man". Read it? No? I recommend it.',
+          isFinal: true,
+        },
+      ],
+    },
+    {
+      id: 'artyom_acquaintance_2',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'artyom',
+          russian: 'Ты уже говоришь лучше. Слышно.',
+          translation: 'Your Russian is better already. I can hear it.',
+          stage_direction: 'He says it simply, without exaggeration — the way he would notice a new bird at the fountain.',
+          choices: [
+            { id: 'a', russian: 'Ты думаешь?', translation: 'You think so?', isFinal: false },
+            { id: 'b', russian: 'Я стараюсь.', translation: 'I am trying.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'artyom',
+          russian: 'Да. Первый раз ты говорил только «я не понимаю». Сейчас — нормально.',
+          translation: 'Yes. The first time you only said "I don\'t understand." Now — normal.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'artyom',
+          russian: 'Это видно. Так и надо.',
+          translation: 'It shows. That\'s how it should be.',
+          isFinal: true,
+        },
+      ],
+    }
+  );
+
+  // -----------------------------------------------------------
+  // updateArtyomTier — call once per dialogue session end.
+  // Increments visitCount; promotes tier when threshold reached.
+  // -----------------------------------------------------------
+  function updateArtyomTier(progress) {
+    if (!progress.npcRelationships) progress.npcRelationships = {};
+    if (!progress.npcRelationships.artyom) {
+      progress.npcRelationships.artyom = { met: false, tier: 0, visitCount: 0 };
+    }
+    const rel = progress.npcRelationships.artyom;
+    rel.visitCount += 1;
+    if (rel.tier === 0 && rel.visitCount >= 3) { rel.tier = 1; }
+    else if (rel.tier === 1 && rel.visitCount >= 7) { rel.tier = 2; }
+    return progress;
+  }
+
   return {
     ARTYOM: { ...ARTYOM, VARIATIONS: ARTYOM_VARIATIONS },
     TAMARA: { ...TAMARA, VARIATIONS: TAMARA_VARIATIONS },
+    updateArtyomTier,
   };
 })();

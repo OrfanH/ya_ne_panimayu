@@ -124,12 +124,13 @@ class CafeScene extends Phaser.Scene {
     //    only when it turns out this is NOT a first visit.
     // -------------------------------------------------------
     this._firstVisitScripted = false; // placeholder; overwritten synchronously in section 11
+    this._lenaTier = 0; // cached from getProgress() in section 11
     this._scriptedPhase = null;
     this._scriptedCloseTimer = null;
     this._activeVariation = null;
     this._npcSeenVariations = [];
     this._npcFlags = { lena_met: false };
-    this._cachedNpcProgress = { npcRelationships: { lena: { seenVariations: [] } } };
+    this._cachedNpcProgress = { npcRelationships: { lena: { tier: 0, seenVariations: [] } } };
 
     this._onDialogueStart = (e) => {
       const detail = e.detail || {};
@@ -158,7 +159,12 @@ class CafeScene extends Phaser.Scene {
             }));
             return;
           }
-          TutorAI.startConversation(lenaData);
+          const tierNote =
+            this._lenaTier === 0 ? '' :
+            this._lenaTier === 1
+              ? ' You have spoken with this student several times. Address them with ты (informal). Reference that you have met before.'
+              : ' This student is a friend now. Use ты, initiate small talk, ask how their Russian is going, and reference your past conversations.';
+          TutorAI.startConversation(Object.assign({}, lenaData, { persona: lenaData.persona + tierNote }));
         } else if (detail.npcId === borisData.id) {
           TutorAI.startConversation(borisData);
         }
@@ -241,31 +247,27 @@ class CafeScene extends Phaser.Scene {
 
     this._onDialogueEnd = () => {
       this.physics.resume();
+      if (this._firstVisitScripted) { this._firstVisitScripted = false; }
       const varId = this._activeVariation ? this._activeVariation.id : null;
       this._activeVariation = null;
-      if (this._firstVisitScripted) {
-        this._firstVisitScripted = false;
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.lena) progress.npcRelationships.lena = {};
-          progress.npcRelationships.lena.met = true;
-          if (varId) {
-            if (!progress.npcRelationships.lena.seenVariations) {
-              progress.npcRelationships.lena.seenVariations = [];
-            }
-            progress.npcRelationships.lena.seenVariations.push(varId);
-          }
-          saveProgress(progress);
-        });
-      } else if (varId) {
-        getProgress().then((progress) => {
-          if (!progress.npcRelationships.lena) progress.npcRelationships.lena = {};
+      getProgress().then((progress) => {
+        // Hydration guard for old saves
+        const rel = progress.npcRelationships && progress.npcRelationships.lena;
+        if (rel && rel.met === true && rel.tier === undefined) {
+          rel.tier = 0;
+          rel.visitCount = 0;
+        }
+        CAFE_DIALOGUE.updateLenaTier(progress);
+        if (!progress.npcRelationships.lena) progress.npcRelationships.lena = {};
+        progress.npcRelationships.lena.met = true;
+        if (varId) {
           if (!progress.npcRelationships.lena.seenVariations) {
             progress.npcRelationships.lena.seenVariations = [];
           }
           progress.npcRelationships.lena.seenVariations.push(varId);
-          saveProgress(progress);
-        });
-      }
+        }
+        saveProgress(progress);
+      });
     };
     window.addEventListener(EVENTS.DIALOGUE_END, this._onDialogueEnd);
 
@@ -304,12 +306,20 @@ class CafeScene extends Phaser.Scene {
     this._scriptedPhase = 'narration';
     getProgress().then((progress) => {
       const rel = progress.npcRelationships && progress.npcRelationships.lena;
+      // Hydration guard: old saves have { met: true } with no tier/visitCount.
+      if (rel && rel.met === true && rel.tier === undefined) {
+        rel.tier = 0;
+        rel.visitCount = 0;
+        saveProgress(progress);
+      }
       // cache for variation selector — avoids async in _onDialogueStart
+      this._lenaTier = rel ? (rel.tier || 0) : 0;
       this._npcSeenVariations = (rel && rel.seenVariations) ? [...rel.seenVariations] : [];
       this._npcFlags = { lena_met: !!(rel && rel.met) };
       this._cachedNpcProgress = {
         npcRelationships: {
           lena: {
+            tier: this._lenaTier,
             seenVariations: this._npcSeenVariations,
           }
         }

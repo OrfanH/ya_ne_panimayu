@@ -1308,8 +1308,87 @@ const STATION_DIALOGUE = (() => {
     },
   ];
 
+  // -----------------------------------------------------------
+  // Tier-1 VARIATIONS for Konstantin — remains вы; tone warms
+  // -----------------------------------------------------------
+  KONSTANTIN_VARIATIONS.push(
+    {
+      id: 'konstantin_acquaintance_1',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'konstantin',
+          russian: 'Добрый день. Вы снова здесь. Москва ещё не манит?',
+          translation: 'Good afternoon. You are here again. Moscow not calling yet?',
+          stage_direction: 'He does not quite smile, but his posture is marginally less precise.',
+          choices: [
+            { id: 'a', russian: 'Нет. Мне здесь нравится.', translation: 'No. I like it here.', isFinal: false },
+            { id: 'b', russian: 'Я хочу купить билет.', translation: 'I would like to buy a ticket.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'konstantin',
+          russian: 'Хороший ответ. Расписание не изменилось. Вы уже знаете.',
+          translation: 'A good answer. The schedule has not changed. You know it already.',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'konstantin',
+          russian: 'Конечно. Куда и когда?',
+          translation: 'Of course. Where to and when?',
+          isFinal: true,
+        },
+      ],
+    },
+    {
+      id: 'konstantin_acquaintance_2',
+      trigger: { tier: 1 },
+      lines: [
+        {
+          speaker: 'konstantin',
+          russian: 'Вы правильно сказали «здравствуйте» с первого раза. Не все так делают.',
+          translation: 'You said "zdravstvuyte" correctly from the first time. Not everyone does.',
+          stage_direction: 'He says it while stamping a form — a compliment delivered at the form, not at you.',
+          choices: [
+            { id: 'a', russian: 'Спасибо, Константин Петрович.', translation: 'Thank you, Konstantin Petrovich.', isFinal: false },
+            { id: 'b', russian: 'Я учусь.', translation: 'I am learning.', isFinal: false },
+          ],
+        },
+        {
+          id: 'response_a', choiceId: 'a', speaker: 'konstantin',
+          russian: 'Хорошо. Чем могу помочь?',
+          translation: 'Good. How can I help you?',
+          isFinal: true,
+        },
+        {
+          id: 'response_b', choiceId: 'b', speaker: 'konstantin',
+          russian: 'Это заметно. Продолжайте.',
+          translation: 'It shows. Continue.',
+          isFinal: true,
+        },
+      ],
+    }
+  );
+
+  // -----------------------------------------------------------
+  // updateKonstantinTier — call once per dialogue session end.
+  // Increments visitCount; promotes tier when threshold reached.
+  // -----------------------------------------------------------
+  function updateKonstantinTier(progress) {
+    if (!progress.npcRelationships) progress.npcRelationships = {};
+    if (!progress.npcRelationships.konstantin) {
+      progress.npcRelationships.konstantin = { met: false, tier: 0, visitCount: 0 };
+    }
+    const rel = progress.npcRelationships.konstantin;
+    rel.visitCount += 1;
+    if (rel.tier === 0 && rel.visitCount >= 3) { rel.tier = 1; }
+    else if (rel.tier === 1 && rel.visitCount >= 7) { rel.tier = 2; }
+    return progress;
+  }
+
   return {
     KONSTANTIN: { ...KONSTANTIN, VARIATIONS: KONSTANTIN_VARIATIONS },
     NADYA: { ...NADYA, VARIATIONS: NADYA_VARIATIONS },
+    updateKonstantinTier,
   };
 })();
